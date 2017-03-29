@@ -1,0 +1,1 @@
+define("tpl/configZoon_dialog.html", [], '<div class="row"><div class="col-md-12"><form action="<%=action %>" method="put" id="Form-Edit-Classification"> <input type="hidden" name="_token" value="<%=_token %>"><div class="form-group"> <%-tpl %></div></form></div></div>');

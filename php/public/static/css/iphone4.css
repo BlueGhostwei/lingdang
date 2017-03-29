@@ -1,0 +1,34 @@
+@media (width: 800px) {
+  .bs {
+    background-size: 2500px 2500px;
+  }
+  .bghome {
+    background: url("../img/common.png") no-repeat -1700px -191.25px;
+    background-size: 2500px 2500px;
+  }
+  .bg1 {
+    background: url("../img/common.png") no-repeat -828.75px -191.25px;
+    background-size: 2500px 2500px;
+  }
+  .bg2 {
+    background: url("../img/commonTwo.png") no-repeat 0px -1395px;
+    background-size: 2500px 2500px;
+  }
+  .bg3 {
+    background: url("../img/storexx.png") no-repeat -1700px -203.75px;
+    background-size: 2500px 2500px;
+  }
+  .bg4 {
+    background: url("../img/commonThree.png") no-repeat -1700px -1390px;
+    background-size: 2500px 2500px;
+  }
+  .end-main {
+    padding-top: 80px;
+  }
+  .main-grade-box .banner-btns {
+    left: 223px!important;
+  }
+  .main-system-box .banner-btns {
+    left: 223px!important;
+  }
+}
