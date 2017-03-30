@@ -97,6 +97,28 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/report/project', ['as' => 'report.project', 'uses' => 'ReportController@project_report']);
             Route::get('/report/financial', ['as' => 'report.financial', 'uses' => 'ReportController@report_financial']);
 
+          //内容管理
+
+           Route::get('/artice/index', ['as' => 'artice.index', 'uses' => 'ArticeControll@index']);
+           Route::get('/artice/artice_list', ['as' => 'artice.artice_list', 'uses' => 'ArticeControll@artice_list']);
+           Route::get('/artice/A_fenlei', ['as' => 'artice.A_fenlei', 'uses' => 'ArticeControll@A_fenlei']);
+           Route::get('/artice/Add_fenlei', ['as' => 'artice.Add_fenlei', 'uses' => 'ArticeControll@Add_fenlei']);
+
+           Route::get('/artice/Add_slide', ['as' => 'artice.Add_slide', 'uses' => 'ArticeControll@Add_slide']);
+           Route::get('/artice/slide', ['as' => 'artice.slide', 'uses' => 'ArticeControll@slide']);
+
+           Route::get('/artice/member_list', ['as' => 'artice.member_list', 'uses' => 'ArticeControll@member_list']);
+           Route::get('/artice/member', ['as' => 'artice.member', 'uses' => 'ArticeControll@member']);
+           Route::get('/artice/consumption', ['as' => 'artice.consumption', 'uses' => 'ArticeControll@consumption']);
+           Route::get('/artice/chongzhi', ['as' => 'artice.chongzhi', 'uses' => 'ArticeControll@chongzhi']);
+           Route::get('/artice/goods', ['as' => 'artice.goods', 'uses' => 'ArticeControll@goods']);
+           Route::get('/artice/goods_list', ['as' => 'artice.goods_list', 'uses' => 'ArticeControll@goods_list']);
+           Route::get('/artice/Add_goods', ['as' => 'artice.Add_goods', 'uses' => 'ArticeControll@Add_goods']);
+
+
+
+
+
         });
         // 文件上传, 图片处理
         Route::post('upload', 'UploadController@index');

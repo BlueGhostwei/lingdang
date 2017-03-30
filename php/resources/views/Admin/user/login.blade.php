@@ -6,17 +6,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="金融管理后台">
 <meta name="author" content="udpower">
-<title>登入 - 金融管理后台系统</title>
+<title>铃铛APP后台管理系统</title>
 <link rel="stylesheet" href="{{ url('/css/main.css') }}" type="text/css">
 </head>
 <body class="login-page">
 <div class="page-container">
-    {{--<div class="login-branding">
-        <a href="{{ url('/') }}"><img src="" alt="logo"></a>
-    </div>--}}
+    <div class="login-branding">
+        <a href="{{ url('/') }}"><img src="{{url('images/getAvatar.do.jpg')}}" alt="logo"></a>
+    </div>
     <div class="login-container">
 
-        <div style="text-align: center;font-size: 20px;color: #808080;font-weight: bold">金融管理后台</div>
+        <div style="text-align: center;font-size: 20px;color: #808080;font-weight: bold">铃铛APP后台管理系统</div>
         <form action="{{ route('user.login') }}" method="post" class="form-signin">
             {{ csrf_field() }}
             <input type="text" name="username" id="inputEmail" class="form-control floatlabel " value="" placeholder="用户名或邮箱" required autofocus >
@@ -26,7 +26,7 @@
                     <input type="checkbox" name="remember" class="switch-mini" /> 记住我
                 </label>
             </div>
-            <button style="background-color:#e8546b; border-color: #e8546b" class="btn btn-primary btn-block btn-signin" type="submit">登入</button>
+            <button style="background-color:#FACE08; border-color: #FACE08; font-size: 16px; font-weight: 700; color: #5C5447" class="btn btn-primary btn-block btn-signin" type="submit">登 入</button>
         </form>
         <a href="{{ route('password.email') }}" class="forgot-password">忘记密码</a>
         @if(Session::has('message'))

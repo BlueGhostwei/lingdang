@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="金融后台管理">
     <meta name="author" content="">
-    <title>@yield('title') - 金融后台管理</title>
+    <title>@yield('title') - 铃铛后台管理</title>
     <link rel="stylesheet" href="{{ url('/css/main.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ url('/static/css/common.css') }}" type="text/css">
     {{--<link rel="Shortcut Icon" href="/favicon.png" />--}}
@@ -31,7 +31,7 @@
         <!-- Content -->
         @yield('content')
 
-        <!--Footer Start Here -->
+        <!--Footer Start Here 
         <footer class="footer-container">
             <div class="container-fluid">
                 <div class="row">
@@ -46,7 +46,7 @@
                     </div>
                 </div>
             </div>
-        </footer>
+        </footer>-->
     </div>
 </div>
 
@@ -59,6 +59,8 @@
     {{Auth::id()}}
 
 </script>
+
+
 <script src="/js/jquery-2.1.4.min.js?v={{ env('VERSION') }}"></script>
 {{--<script src="/js/jquery-1.11.2.min.js"></script>--}}
 {{--<script src="/js/jquery-migrate-1.2.1.min.js"></script>--}}
@@ -91,6 +93,8 @@
 <script src="/js/matmix.init.js?v={{ time() }}"></script>
 <!--High Resolution Ready-->
 <script src="/js/retina.min.js?v={{ time() }}"></script>
+
+
 
 </body>
 </html>
