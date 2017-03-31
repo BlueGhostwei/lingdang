@@ -103,6 +103,28 @@ class ArticeControll extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function brand_list()
+    {
+      
+        return view('Admin.artice.brand_list');
+    }
+
+     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function Add_brand()
+    {
+      
+        return view('Admin.artice.Add_brand');
+    }
+
+     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function consumption()
     {
       
@@ -151,6 +173,39 @@ class ArticeControll extends Controller
         return view('Admin.artice.Add_goods');
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function order()  
+    {
+      
+        return view('Admin.artice.order');
+    }
+    
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function order_XQ()  
+    {
+      
+        return view('Admin.artice.order_XQ');
+    }
+    
+     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function Add_subtopic()  
+    {
+      
+        return view('Admin.artice.Add_subtopic');
+    }
+    
     /**
      * Store a newly created resource in storage.
      *

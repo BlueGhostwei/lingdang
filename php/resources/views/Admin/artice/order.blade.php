@@ -1,6 +1,6 @@
 @extends('Admin.layout.main')
 
-@section('title', '会员管理')
+@section('title', '订单管理')
 @section('header_related')
    <link rel="stylesheet" href="{{ url('/css/style.css') }}" type="text/css">
 
@@ -18,7 +18,7 @@
      </div>-->
 
 <div class="Iartice">
-    <div class="IAhead"><strong style="padding-right: 10px;">会员管理</strong><a href="{{ route('artice.member_list') }}">会员列表</a>|<a href="{{ route('artice.member') }}">添加会员</a>|<a href="{{ route('artice.chongzhi') }}">充值记录</a>|<a href="{{ route('artice.consumption') }}">消费记录</a>|</div>
+    <div class="IAhead"><strong style="padding-right: 10px;">订单管理</strong><a href="{{ route('artice.order') }}">订单列表</a>|<a href="{{ route('artice.order') }}">已发货</a>|<a href="{{ route('artice.order') }}">未发货</a>|<a href="{{ route('artice.order') }}">已完成</a>|<a href="{{ route('artice.order') }}">已作废</a>|<a href="{{ route('artice.order') }}">待收货</a>|</div>
     <div class="IAMAIN_list">
         <div class="Alist">
             <form method="post" action="">
@@ -26,14 +26,14 @@
                 <tr>
                     <td>            
                         <select name="cateid">
-                            <option>用户名</option>
-                            <option>手机</option>
-                            <option>邮箱</option>
+                            <option>订单号</option>
+                            <option>订单状态</option>
+                            <option>商品名称</option>
                         </select>           
                     </td>
                     <td>            
                         <select name="cateid">
-                            <option>ID排序</option>
+                            <option>时间排序</option>
                         </select>           
                     </td>
                     <td align="right">关键字：</td>
@@ -48,24 +48,24 @@
             <form method="post" action="">
             <table width="100%"  cellspacing="0" cellpadding="0" >
                 <tr class="Alist_head">
-                    <th style="width: 80px;">UID</th>
-                    <th>用户名</th>
-                    <th>昵称</th>
-                    <th>手机</th>
-                    <th>邮箱</th>
-                    <th>地址</th>
-                    <th>账户余额</th>
-                    <th style="width: 130px;">管理操作</th>
+                    <th style="width: 80px;">排序</th>
+                    <th>订单号</th>
+                    <th>商品标题</th>
+                    <th>购买用户</th>
+                    <th>购买总价</th>
+                    <th>购买日期</th>
+                    <th>订单状态</th>
+                    <th>操作</th>
                 </tr>
                 <tr class="Alist_main">
                     <td class="IMar_list" />1</td>
-                    <td>铃铛</td>
-                    <td>铃铛宝贝</td>
+                    <td>255561ljnojo</td>
+                    <td>童装上衣</td>
                     <td>13711174990</td>
-                    <td>1171801173@qq.com</td>
-                    <td>广州市海珠区怡安路财京公馆515室</td>
                     <td><font color="red">￥228.00</font></td>
-                    <td><a href="">修改 </a>|<a href=""> 删除</a></td>
+                    <td>2017-3-30 20:12</td>
+                    <td>已付款,未发货,未完成</td>
+                    <td><a href="{{ route('artice.order_XQ') }}"">详情</a></td>
                 </tr>
             </table>
             </form>

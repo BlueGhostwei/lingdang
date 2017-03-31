@@ -17,7 +17,7 @@ select {
 	border-style: solid;
 	border-width: 1px;
 	color: #333;
-	padding: 2px; font-size: 12px; padding: 5px 30px;
+	padding: 2px; font-size: 12px; padding: 5px ;
 }
 input{color: #333; background: #f9f9f9; border: 1px solid #999; height: 25px;}
 .Iar_input{ width: 450px; }
@@ -59,3 +59,50 @@ input.button {
 
 input[type="radio"]{width: 13px; height: 13px;}
 input[type="checkbox"]{width: 13px; height: 13px;}
+.xqorder{ width: 240px; height: auto; float: left; margin: 15px; }
+.xqorder img{ width: 240px; height: 150px; }
+.xqorder h3{ font-size: 1em; line-height:1.5em ;margin-top: 10px; float: left;}
+.xqO_img{width: 240px;height: 150px; border: 1px solid #eee; float: left;}
+.xORder{padding-top: 20px; float:left;margin-left: 5%; width: 95%;}
+.xORder tr td{ float: left; padding-right: 10px; line-height: 40px }
+.xORder tr{ border-bottom: 1px dashed #ccc }
+
+
+
+
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+.clearfix{display:inline-table; float: left;}/* Hides from IE-mac \*/
+.Brand_main{ width: 70%; height: auto; }
+.Brand_main li{ float: left;list-style-type:none;}
+.Brand_main li a{ float: left;width:auto; }
+
+
+
+.default-tag a,.default-tag a span,.plus-tag a,.plus-tag a em,.plus-tag-add a{background:url(../images/tagbg.png) no-repeat;}
+.tagbtn a{color:#333333;display:block;float:left;height:22px;line-height:22px;overflow:hidden;margin:0 10px 10px 0;padding:0 10px 0 5px;white-space:nowrap;}
+/* default-tag */
+.default-tag{padding:16px 0 0 0;float:left; width: 100%;}
+.default-tag a{background-position:100% 0;}
+.default-tag a:hover{background-position:100% -22px;}
+.default-tag a span{padding:0 0 0 11px;background-position:0 -60px;}
+.default-tag a:hover span{background-position:0 -98px;}
+.default-tag a.selected{opacity:0.6;filter:alpha(opacity=60);}
+/* plus-tag */
+.plus-tag a span{float:left;}
+.plus-tag a em{display:block;float:left;margin:5px 0 0 8px;width:13px;height:13px;overflow:hidden;background-position:-165px -100px;cursor:pointer;}
+.plus-tag a:hover em{background-position:-168px -64px;}
+/* plus-tag-add */
+.plus-tag-add a{float:left;display:inline;font-size:12px;background-position:-289px -62px;padding:0 0 0 15px;list-style-type:none; color: red;}
+.plus-tag-add a.plus{background-position:-289px -99px;}
+
+.Goodslist{ width: 100%; height: auto;padding-top: 20px; float:left;}
+.GoodsLmain{ width:17%; height: auto; float: left; margin:0 1%; margin-bottom: 10px;}
+.GoodsLmain img{ width: 100%; height: auto; }
+.GoodsML_head{ line-height: 20px; font-size: 12px; text-align:left; width: 100%;float: left; padding-top: 5px;}
+.GoodsML_head span{ float: right; padding-right: 5px;  }
+.Gbottom{ width: 100%; float: left; height: auto; margin-top: 15px; }
+.Gbottom a{ width: auto; padding: 0 15px; line-height: 2em; font-size: 0.7em; text-align: center; border: 1px solid #eee; float: left;}
+.zhigou a{color:#ff0000;display: none;}
+.jifen a{}
+
+.stext{ width: 100px; }
