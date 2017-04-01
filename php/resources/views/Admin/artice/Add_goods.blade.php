@@ -24,11 +24,23 @@
             <table width="100%"  cellspacing="0" cellpadding="0">
                 <tr>
                     <td align="right" width="120"><font color="red">*</font>所属分类：</td>
-                    <td><input  type="text"  value="" class="Iar_list"></td>
+                    <td>
+                        <select name="cateid" class="asnt">
+                            <option>所属分类</option>
+                            <option>所属分类</option>
+                            <option>所属分类</option>
+                        </select>  
+                    </td>
                 </tr> 
                 <tr>
                     <td align="right" width="120"><font color="red">*</font>所属品牌：</td>
-                    <td><input  type="text"  value="" class="Iar_list"></td>
+                    <td>
+                        <select name="cateid" class="asnt">
+                            <option>所属分类</option>
+                            <option>所属分类</option>
+                            <option>所属分类</option>
+                        </select>  
+                    </td>
                 </tr>
                 <tr>
                     <td align="right">商品类型：</td>
@@ -87,11 +99,6 @@
                         <tr>
                             <td style="color: #ff0000; padding-right: 10px;">肩宽</td>
                             <td>
-                                <div class="plus-tagJK tagbtn clearfix" id="myTags" style="float: left;width: auto;"></div>
-                                <div class="plus-tag-addJK" style="float: left;width: auto;">
-                                    <input id="" name="" type="text" class="stext" maxlength="20" />
-                                    <button type="button" class="Button RedButton Button18" >添加</button>
-                                </div>
                             </td>
                         </tr>
                         <tr>
@@ -142,7 +149,7 @@
                 </tr> 
                 <tr>
                     <td align="right">商品属性：</td>
-                    <td><input type="radio" name="radio" id="boy" value="boy"> 推荐 <input type="radio" name="radio" id="girl" value="girl"> 人气</td>
+                    <td><input type="radio" name="radio" id="boy" value="boy"> 推荐 </td>
                 </tr> 
                 <tr height="60px">
                     <td align="right"></td>
@@ -153,7 +160,7 @@
     </div>
 </div>
 
-<!---->
+<!--尺码-->
 <script type="text/javascript">
 var FancyForm=function(){
     return{
@@ -175,17 +182,14 @@ var FancyForm=function(){
     }
 }();
 </script>
-
 <script type="text/javascript">
 $(document).ready(function() {
     FancyForm.setup();
 });
 </script>
-
 <script type="text/javascript">
 var searchAjax=function(){};
 var G_tocard_maxTips=30;
-
 $(function(){(
     function(){
         
@@ -267,8 +271,6 @@ $(function(){(
     
 )()});
 </script>
-
-
 <script type="text/javascript">
 // 更新选中标签标签
 $(function(){
@@ -319,6 +321,8 @@ var searchAjax = function(name, id, isAdd){
 })();
 
 </script>
+
+
 
 
 @endsection
