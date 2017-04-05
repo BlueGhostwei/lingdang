@@ -10,19 +10,19 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::group(['namespace' => 'Home'], function () {
+/*Route::group(['namespace' => 'Home'], function () {
     //前台页面路由开始
     Route::get('/', ['as' => 'home.index', 'uses' => 'HomeController@index']);
-
-
-});
-
 //验证码
-Route::get('yanzheng/test',['as'=>'captcha.test','uses'=>'Admin\CaptchaController@index']);
+    Route::get('yanzheng/test',['as'=>'captcha.test','uses'=>'Admin\CaptchaController@index']);
 //生成
-Route::get('yanzheng/mews',['as'=>'captcha.mews','uses'=>'Admin\CaptchaController@mews']);
+    Route::get('yanzheng/mews',['as'=>'captcha.mews','uses'=>'Admin\CaptchaController@mews']);
 //验证验证码
-Route::any('yanzheng/cpt',['as'=>'captcha.cpt','uses'=>'Admin\CaptchaController@cpt']);
+    Route::any('yanzheng/cpt',['as'=>'captcha.cpt','uses'=>'Admin\CaptchaController@cpt']);
+
+
+});*/
+
 
 
 
@@ -51,7 +51,7 @@ Route::group(['middleware' => 'guest'], function () {
 // 需要登录状态的路由
 Route::group(['middleware' => 'auth'], function () {
     Route::group(['namespace' => 'Admin'], function () {
-        Route::get('/admin',['as'=>'admin.dashboard','uses'=>'DashboardController@index'] );
+        Route::get('/',['as'=>'admin.dashboard','uses'=>'DashboardController@index'] );
         // 需要登录状态和权限控制的路由
         Route::group(['middleware' => ['auth', 'acl']], function () {
             Route::get('admin/system/logs', ['as' => 'system.logs', 'uses' => 'SystemController@logs']);

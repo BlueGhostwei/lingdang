@@ -392,7 +392,7 @@ class UserController extends Controller
        // dd($password);
         $remember = Input::get('remember', false);
         $field = isEmail($username) ? 'email' : 'name';
-        $redirect = urldecode(Input::get('redirect', '/admin'));
+        $redirect = urldecode(Input::get('redirect', '/'));
         $data['id'] = User::where(array(
             'name' => $username,
             'deleted_at' => NULL

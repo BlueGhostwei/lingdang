@@ -135,7 +135,7 @@ return [
     |
     */
 
-    'domain' => env('SESSION_DOMAIN', 'weixin_baixin.com'),
+    'domain' => env('SESSION_DOMAIN', 'www.lingdang_baobei.com'),
     
 
     /*
