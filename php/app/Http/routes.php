@@ -114,7 +114,11 @@ Route::group(['middleware' => 'auth'], function () {
            Route::get('/artice/goods', ['as' => 'artice.goods', 'uses' => 'ArticeControll@goods']);
            Route::get('/artice/goods_list', ['as' => 'artice.goods_list', 'uses' => 'ArticeControll@goods_list']);
            Route::get('/artice/Add_goods', ['as' => 'artice.Add_goods', 'uses' => 'ArticeControll@Add_goods']);
-
+           Route::get('/artice/order', ['as' => 'artice.order', 'uses' => 'ArticeControll@order']);
+           Route::get('/artice/order_XQ', ['as' => 'artice.order_XQ', 'uses' => 'ArticeControll@order_XQ']);
+            Route::get('/artice/brand_list', ['as' => 'artice.brand_list', 'uses' => 'ArticeControll@brand_list']);
+           Route::get('/artice/Add_brand', ['as' => 'artice.Add_brand', 'uses' => 'ArticeControll@Add_brand']);
+           Route::get('/artice/Add_subtopic', ['as' => 'artice.Add_subtopic', 'uses' => 'ArticeControll@Add_subtopic']);
 
 
 

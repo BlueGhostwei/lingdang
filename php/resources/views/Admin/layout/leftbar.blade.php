@@ -34,6 +34,9 @@
                     <li><a href="{{ route('artice.Add_goods') }}">添加商品</a></li>
                     <li><a href="{{ route('artice.goods_list') }}">商品列表</a></li>
                     <li><a href="{{ route('artice.goods') }}">商品分类</a></li>
+                    <li><a href="{{ route('artice.Add_brand') }}">添加品牌</a></li>
+                    <li><a href="{{ route('artice.brand_list') }}">品牌列表</a></li>
+                    <li><a href="{{ route('artice.order') }}">订单列表</a></li>
 
                 </ul>
             </li>
