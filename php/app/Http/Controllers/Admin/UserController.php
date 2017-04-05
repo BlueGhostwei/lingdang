@@ -26,19 +26,7 @@ use App\Http\Controllers\Controller;
  */
 class UserController extends Controller
 {
-    public function Send_sms(){
-        $mobile=Input::get('mobile');
-        $sendsms=new SendSMS();
-        $rst=$sendsms->send_sms($mobile,'sign_up');
-        dd($rst);
-
-
-    }
-
-
-
-
-
+    
     /**
      * 用户列表, 排除已经删除的
      *

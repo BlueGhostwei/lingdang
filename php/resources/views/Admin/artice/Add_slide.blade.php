@@ -6,16 +6,14 @@
 
 @endsection
 @section('content')
-    <!--<div class="main-container">
+   {{-- <div class="main-container">
         <div class="container-fluid">
             @include('Admin.layout.breadcrumb', [
                 'title' => '添加文章',
                 '' => [
                     '' => '',
                 ]
-            ])
-        </div>
-     </div>-->
+            ])--}}
 
 <div class="Iartice">
     <div class="IAhead"><strong style="padding-right: 10px;">添加幻灯片</strong></div>
@@ -24,11 +22,11 @@
             <table width="100%"  cellspacing="0" cellpadding="0">
                 <tr>
                     <td align="right"><font color="red">*</font>幻灯名称：</td>
-                    <td><input  type="text"  value="" class="Iar_input"></td>
+                    <td><input  type="name"  value="" class="Iar_input"></td>
                 </tr> 
                 <tr>
                     <td align="right"><font color="red">*</font>图片地址：</td>
-                    <td><input type="text" name="" class="Iar_inputt">
+                    <td><input type="url_line" name="" class="Iar_inputt">
                         <input type="button" class="button" value="上传图片"/></td>
                 </tr> 
                 <tr>

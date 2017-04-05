@@ -24,8 +24,6 @@
 });*/
 
 
-
-
 // 游客状态下的路由
 Route::group(['middleware' => 'guest'], function () {
     Route::group(['namespace' => 'Admin'], function () {
@@ -51,7 +49,7 @@ Route::group(['middleware' => 'guest'], function () {
 // 需要登录状态的路由
 Route::group(['middleware' => 'auth'], function () {
     Route::group(['namespace' => 'Admin'], function () {
-        Route::get('/',['as'=>'admin.dashboard','uses'=>'DashboardController@index'] );
+        Route::get('/', ['as' => 'admin.dashboard', 'uses' => 'DashboardController@index']);
         // 需要登录状态和权限控制的路由
         Route::group(['middleware' => ['auth', 'acl']], function () {
             Route::get('admin/system/logs', ['as' => 'system.logs', 'uses' => 'SystemController@logs']);
@@ -97,30 +95,30 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/report/project', ['as' => 'report.project', 'uses' => 'ReportController@project_report']);
             Route::get('/report/financial', ['as' => 'report.financial', 'uses' => 'ReportController@report_financial']);
 
-          //内容管理
+            //内容管理
 
-           Route::get('/artice/index', ['as' => 'artice.index', 'uses' => 'ArticeControll@index']);
-           Route::get('/artice/artice_list', ['as' => 'artice.artice_list', 'uses' => 'ArticeControll@artice_list']);
-           Route::get('/artice/A_fenlei', ['as' => 'artice.A_fenlei', 'uses' => 'ArticeControll@A_fenlei']);
-           Route::get('/artice/Add_fenlei', ['as' => 'artice.Add_fenlei', 'uses' => 'ArticeControll@Add_fenlei']);
+            Route::get('/artice/index', ['as' => 'artice.index', 'uses' => 'ArticeControll@index']);
+            Route::get('/artice/artice_list', ['as' => 'artice.artice_list', 'uses' => 'ArticeControll@artice_list']);
+            Route::get('/artice/A_fenlei', ['as' => 'artice.A_fenlei', 'uses' => 'ArticeControll@A_fenlei']);
+            Route::get('/artice/Add_fenlei', ['as' => 'artice.Add_fenlei', 'uses' => 'ArticeControll@Add_fenlei']);
 
-           Route::get('/artice/Add_slide', ['as' => 'artice.Add_slide', 'uses' => 'ArticeControll@Add_slide']);
-           Route::get('/artice/slide', ['as' => 'artice.slide', 'uses' => 'ArticeControll@slide']);
+            Route::get('/artice/Add_slide', ['as' => 'artice.Add_slide', 'uses' => 'ArticeControll@Add_slide']);
+            Route::get('/artice/slide', ['as' => 'artice.slide', 'uses' => 'ArticeControll@slide']);
 
-           Route::get('/artice/member_list', ['as' => 'artice.member_list', 'uses' => 'ArticeControll@member_list']);
-           Route::get('/artice/member', ['as' => 'artice.member', 'uses' => 'ArticeControll@member']);
-           Route::get('/artice/consumption', ['as' => 'artice.consumption', 'uses' => 'ArticeControll@consumption']);
-           Route::get('/artice/chongzhi', ['as' => 'artice.chongzhi', 'uses' => 'ArticeControll@chongzhi']);
-           Route::get('/artice/goods', ['as' => 'artice.goods', 'uses' => 'ArticeControll@goods']);
-           Route::get('/artice/goods_list', ['as' => 'artice.goods_list', 'uses' => 'ArticeControll@goods_list']);
-           Route::get('/artice/Add_goods', ['as' => 'artice.Add_goods', 'uses' => 'ArticeControll@Add_goods']);
-           Route::get('/artice/order', ['as' => 'artice.order', 'uses' => 'ArticeControll@order']);
-           Route::get('/artice/order_XQ', ['as' => 'artice.order_XQ', 'uses' => 'ArticeControll@order_XQ']);
+            Route::get('/artice/member_list', ['as' => 'artice.member_list', 'uses' => 'ArticeControll@member_list']);
+            Route::get('/artice/member', ['as' => 'artice.member', 'uses' => 'ArticeControll@member']);
+            Route::get('/artice/consumption', ['as' => 'artice.consumption', 'uses' => 'ArticeControll@consumption']);
+            Route::get('/artice/chongzhi', ['as' => 'artice.chongzhi', 'uses' => 'ArticeControll@chongzhi']);
+            Route::get('/artice/goods', ['as' => 'artice.goods', 'uses' => 'ArticeControll@goods']);
+            Route::get('/artice/goods_list', ['as' => 'artice.goods_list', 'uses' => 'ArticeControll@goods_list']);
+            Route::get('/artice/Add_goods', ['as' => 'artice.Add_goods', 'uses' => 'ArticeControll@Add_goods']);
+            Route::get('/artice/order', ['as' => 'artice.order', 'uses' => 'ArticeControll@order']);
+            Route::get('/artice/order_XQ', ['as' => 'artice.order_XQ', 'uses' => 'ArticeControll@order_XQ']);
             Route::get('/artice/brand_list', ['as' => 'artice.brand_list', 'uses' => 'ArticeControll@brand_list']);
-           Route::get('/artice/Add_brand', ['as' => 'artice.Add_brand', 'uses' => 'ArticeControll@Add_brand']);
-           Route::get('/artice/Add_subtopic', ['as' => 'artice.Add_subtopic', 'uses' => 'ArticeControll@Add_subtopic']);
-
-
+            Route::get('/artice/Add_brand', ['as' => 'artice.Add_brand', 'uses' => 'SortController@index']);//添加商品移动分类
+            Route::post('sort/store',['as'=>'sort.store','uses'=>'SortController@store']);//添加商品分类
+            Route::post('sort/store',['as'=>'sort.store','uses'=>'SortController@storeBrand']);//添加分类品牌
+            Route::get('/artice/Add_subtopic', ['as' => 'artice.Add_subtopic', 'uses' => 'ArticeControll@Add_subtopic']);
 
 
         });

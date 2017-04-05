@@ -18,7 +18,7 @@
      </div>-->
 
 <div class="Iartice">
-    <div class="IAhead"><strong style="padding-right: 10px;">商品分类管理</strong><a href="{{ route('artice.goods') }}">分类列表</a>|<a href="{{ route('artice.Add_brand') }}">添加分类</a>|<a href="{{ route('artice.goods_list') }}">商品列表</a>|<a href="{{ route('artice.brand_list') }}">品牌列表</a>|</div>
+    <div class="IAhead"><strong style="padding-right: 10px;">商品分类管理</strong><a href="{{ route('artice.goods') }}">分类列表</a>|<a href="{{ route('artice.Add_subtopic') }}">添加分类</a>|<a href="{{ route('artice.goods_list') }}">商品列表</a>|<a href="{{ route('artice.brand_list') }}">品牌列表</a>|</div>
     <div class="IAMAIN_list">
         <div class="Alist">
             <form method="post" action="">

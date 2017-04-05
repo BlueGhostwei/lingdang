@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Bell_user;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Database\Eloquent\Model;
@@ -50,17 +51,17 @@ class SendSMS extends Eloquent
     public function index(Request $request)
     {
         //获取手机号码
-        $mobile_number = Input::get("moblie_number");
+        $mobile_number = Input::get("user_mobile");
         //判断用户是否已注册
-        $set_user = User::where(['username' => $mobile_number])->select('id')->get()->toArray();
+        $set_user = User::where(['name' => $mobile_number])->select('id')->get()->toArray();
         if (!empty($set_user)) {
-            return json_encode(["msg" => "用户已注册，请登陆", "sta" => 1, "data" => ""], JSON_UNESCAPED_UNICODE);
+            return json_encode(["msg" => "用户已注册，请登陆", "sta" => 0, "data" => ""], JSON_UNESCAPED_UNICODE);
         } else {
             $send_SMS = $this->send_sms($mobile_number, "register");
             if ($send_SMS['sta'] == 0) {
-                return json_encode(['msg' => '短信发送成功', 'sta' => 0, 'data' => $send_SMS['code']], JSON_UNESCAPED_UNICODE);
+                return json_encode(['msg' => '短信发送成功', 'sta' => 1, 'data' => $send_SMS['code']], JSON_UNESCAPED_UNICODE);
             } else {
-                return json_encode(['msg' => $send_SMS['msg'], 'sta' => 1, 'data' => ''], JSON_UNESCAPED_UNICODE);
+                return json_encode(['msg' => $send_SMS['msg'], 'sta' => 0, 'data' => ''], JSON_UNESCAPED_UNICODE);
             }
         }
     }
@@ -109,7 +110,7 @@ class SendSMS extends Eloquent
                 Redis::del('user_Send_num');
                 $array2 = array(
                     'num' => 1,
-                    'user_phone' => $mob,
+                    'user_mobile' => $mob,
                     'type' => $type,
                     'Send_time' => time()
                 );
@@ -118,14 +119,14 @@ class SendSMS extends Eloquent
                 $array2 = array(
                     'num' => $send_num['num'] + 1,
                     'type' => $type,
-                    'user_phone' => $mob,
+                    'user_mobile' => $mob,
                     'Send_time' => $send_num['Send_time']
                 );
             }
         } else {
             $array2 = array(
                 'num' => 1,
-                'user_phone' => $mob,
+                'user_mobile' => $mob,
                 'type' => $type,
                 'Send_time' => time()
             );
@@ -148,27 +149,26 @@ class SendSMS extends Eloquent
     public function send_sms($mob, $type = null)
     {
         $set_type = $this->send_num($mob, $type);
-        //dd($set_type);
-        if ($set_type['sta'] == 0) { //num < 5
+        if ($set_type['sta'] == 1) { //num < 5
             $vcode = $this->get_random();
             $array2 = $this->getnumber($mob, $type);
             $result = $this->Tohttp_requst($mob,$vcode);
             $data = json_decode($result['res'], true);
             if ($data['code'] == 0) {
                 $array = array(
-                    'user_phone' => $mob,
+                    'user_mobile' => $mob,
                     'Send_time' => time(),
                     'code' => $vcode,
                     'type' => $type
                 );
                 Redis::set('user_SMS', json_encode($array));
                 Redis::set('user_Send_num', json_encode($array2));
-                return array('code' => $vcode, 'sta' => 0);
+                return array('code' => $vcode, 'sta' => 1);
             } else {
-                return array('msg' => "短信发送失败，请联系客服！", 'sta' => '1', 'data' => '');
+                return array('msg' => "短信发送失败，请联系客服！", 'sta' => '0', 'data' => '');
             }
         } else {
-            return array('msg' => $set_type['msg'], 'sta' => '1', 'data' => '');
+            return array('msg' => $set_type['msg'], 'sta' => '0', 'data' => '');
 
         }
     }
@@ -192,11 +192,11 @@ class SendSMS extends Eloquent
     public function send_num($mob, $type)
     {
         if ($this->isMobile($mob)) {
-            if ($type == "register") {
+            if ($type == "sign_up") {
                 //判断用户是否已注册
-                $set_user = User::where(['username' => $mob])->select('id')->get()->toArray();
+                $set_user = User::where(['name' => $mob])->select('id')->get()->toArray();
                 if (!empty($set_user)) {
-                    return array("msg" => "用户已注册，请登陆", "sta" => "1", "data" => "");
+                    return array("msg" => "用户已注册，请登陆", "sta" => "0", "data" => "");
                 }
                 $send_num_data = Redis::get('user_Send_num');
                 $send_num = json_decode($send_num_data, true);
@@ -204,9 +204,9 @@ class SendSMS extends Eloquent
                     $send_date = date('Y-m-d', $send_num['Send_time']) == date('Y-m-d', time());//判断日期
                     if ($send_date == false) {
                         Redis::del('user_Send_num');
-                        return array('msg' => '', 'sta' => "0");
+                        return array('msg' => '', 'sta' => "1");
                     }
-                    if ($mob == $send_num['user_phone'] && $send_num['num'] >= 5 && $send_date == true) {//当天发送次数等于5
+                    if ($mob == $send_num['user_mobile'] && $send_num['num'] >= 5 && $send_date == true) {//当天发送次数等于5
                         if (time() < ($send_num['Send_time'] + 600)) {
                             $endtime = date('Y-m-d H:i:s', $send_num['Send_time'] + 600);
                             $this_time = date('Y-m-d H:i:s', time());
@@ -215,11 +215,11 @@ class SendSMS extends Eloquent
                             if ($second <> 0 && $second < 0) {
                                 $second_time = substr($second, 1);
                                 $msg = "系统提示：您的操作过于频繁，请在" . $second_time . "分钟后再试";
-                                return array('msg' => $msg, 'sta' => "1");
+                                return array('msg' => $msg, 'sta' => "0");
                             }
                         }
                         Redis::del('user_Send_num');
-                        return array('msg' => '', 'sta' => "0");
+                        return array('msg' => '', 'sta' => "1");
                     } else {
                         $send_num_data = Redis::get('user_SMS');
                         $send_num = json_decode($send_num_data, true);
@@ -231,24 +231,24 @@ class SendSMS extends Eloquent
                             if ($second <> 0 && $second < 0) { //小于零
                                 $second_time = substr($second, 1);
                                 $msg = "系统提示：您的操作过于频繁，请在" . $second_time . "秒后再试";
-                                return  array('msg' => $msg, 'sta' => "1");
+                                return  array('msg' => $msg, 'sta' => "0");
                             }
                         }
                         Redis::del('user_SMS');//清空数据
-                        return array('msg' => '', 'sta' => "0");
+                        return array('msg' => '', 'sta' => "1");
 
                     }
                 } else {
-                    return array('msg' => '', 'sta' => "0");
+                    return array('msg' => '', 'sta' => "1");
                 }
             } else {
                 /**
                  * 别的发送请求
                  */
-                return array('msg' => '', 'sta' => "0");
+                return array('msg' => '', 'sta' => "1");
             }
         } else {
-            return array('msg' => "短息发送失败，请输入合法的手机号码！", 'sta' => 1, 'data' => '');
+            return array('msg' => "短息发送失败，请输入合法的手机号码！", 'sta' => "0", 'data' => '');
         }
 
     }

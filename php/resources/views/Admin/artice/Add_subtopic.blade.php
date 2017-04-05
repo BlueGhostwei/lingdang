@@ -9,7 +9,7 @@
     <!--<div class="main-container">
         <div class="container-fluid">
             @include('Admin.layout.breadcrumb', [
-                'title' => '添加文章',
+                'title' => '添加商品分类',
                 '' => [
                     '' => '',
                 ]
@@ -20,18 +20,17 @@
 <div class="Iartice">
     <div class="IAhead"><strong style="padding-right: 10px;">添加商品分类</strong></div>
     <div class="IAMAIN">
-        <form method="post" action="">
+        <form method="post" action="{{route('sort.store')}}">
+            {{csrf_field()}}
             <table width="100%"  cellspacing="0" cellpadding="0">
                 <tr style=" height: auto">
                     <td align="right" valign="top"><font color="red">*</font>上级栏目：</td>
                     <td>
                         <select name="cateid">
                             <option>作为一级分类</option>
-                            <option><div style="float: left;">宝宝服饰</div></option>
-                                <!--<ul>
-                                    <li><option> ├─防辐射服</option></li>
-                                    <li><option> ├─文胸内裤</option></li>
-                                </ul>-->
+                            <option>
+                                <div style="float: left;">宝宝服饰</div>
+                            </option>
                             <option>妈咪包背婴带</option>
                             <option>妈妈专区</option>
                         </select>
@@ -43,7 +42,7 @@
                 </tr> 
                 <tr>
                     <td align="right">排列顺序：</td>
-                    <td><input type="text" value="" class="Iar_inpun" /></td>            
+                    <td><input type="text" name="num" value="" class="Iar_inpun" /></td>
                 </tr>  
                    
                 <tr height="60px">
