@@ -117,8 +117,11 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/artice/brand_list', ['as' => 'artice.brand_list', 'uses' => 'ArticeControll@brand_list']);
             Route::get('/artice/Add_brand', ['as' => 'artice.Add_brand', 'uses' => 'SortController@index']);//添加商品移动分类
             Route::post('sort/store',['as'=>'sort.store','uses'=>'SortController@store']);//添加商品分类
-            Route::post('sort/store',['as'=>'sort.store','uses'=>'SortController@storeBrand']);//添加分类品牌
-            Route::get('/artice/Add_subtopic', ['as' => 'artice.Add_subtopic', 'uses' => 'ArticeControll@Add_subtopic']);
+            Route::get('sort/edit/{id}',['as'=>'sort.edit','uses'=>'SortController@edit']);//修改分类
+            Route::post('sort/destroy',['as'=>'sort.destroy','uses'=>'SortController@destroy']);//删除分类
+            Route::post('sort/update/{id}',['as'=>'sort.update','uses'=>'SortController@update']);//更新商品分类
+            Route::post('sort/storeBrand',['as'=>'sort.storeBrand','uses'=>'SortController@storeBrand']);//添加分类品牌
+            Route::get('artice/Add_subtopic/{id}', ['as' => 'artice.Add_subtopic', 'uses' => 'ArticeControll@Add_subtopic']);
 
 
         });

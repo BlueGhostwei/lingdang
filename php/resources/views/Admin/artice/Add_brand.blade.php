@@ -32,21 +32,26 @@
                         <div class="plus-tag-add"><a href="javascript:void(0);">展开推荐标签</a></div>
                         <div id="mycard-plus" style="display:none;">
                             <div class="default-tag tagbtn">
-                                <div class="clearfix Brand_main">
-                                    {{--展示部分--}}
-                                     <li><a value="-1" title="互联网"
-                                            href="javascript:void(0);"><span>互联网</span><em></em></a></li>
-                                     <li><a value="-1" title="├─ 移动互联网"
-                                            href="javascript:void(0);"><span>├─ 移动互联网</span><em></em></a></li>
-                                     <li><a value="-1" title="├─ it"
-                                            href="javascript:void(0);"><span>├─ it</span><em></em></a></li>
-                                     <li><a value="-1" title="电子商务"
-                                            href="javascript:void(0);"><span>电子商务</span><em></em></a></li>
-                                     <li><a value="-1" title="广告" href="javascript:void(0);"><span>广告</span><em></em></a>
-                                     </li>
-                                </div>
-                                <div class="clearfix Brand_main">
-                                    {{--展示部分--}}
+                                 @if(isset($sort))
+                                    <div class="clearfix Brand_main">
+                                        {{--展示部分--}}
+                                        <li><a value="-1" title="互联网"
+                                               href="javascript:void(0);">
+                                                <span>互联网</span>
+
+                                                <em></em></a></li>
+                                        <li><a value="-1" title="├─ 移动互联网"
+                                               href="javascript:void(0);"><span>├─ 移动互联网</span><em></em></a></li>
+                                        <li><a value="-1" title="├─ it"
+                                               href="javascript:void(0);"><span>├─ it</span><em></em></a></li>
+                                        <li><a value="-1" title="电子商务"
+                                               href="javascript:void(0);"><span>电子商务</span><em></em></a></li>
+                                        <li><a value="-1" title="广告" href="javascript:void(0);"><span>广告</span><em></em></a>
+                                        </li>
+                                    </div>
+                                    @endif
+                                {{--<div class="clearfix Brand_main">
+                                    --}}{{--展示部分--}}{{--
                                     <li><a value="-1" title="互联网2"
                                            href="javascript:void(0);"><span>互联网2</span><em></em></a></li>
                                     <li><a value="-1" title="├─ 移动互联网"
@@ -57,7 +62,7 @@
                                            href="javascript:void(0);"><span>电子商务</span><em></em></a></li>
                                     <li><a value="-1" title="广告" href="javascript:void(0);"><span>广告</span><em></em></a>
                                     </li>
-                                </div>
+                                </div>--}}
                             </div>
                         </div>
                     </td>
@@ -88,11 +93,11 @@
                 var name = $("input[name='store_num']").val();
                 var num = $("input[name='store_name']").val();
                 var
-                    $("#myTags a").each(function(){
-                     $(this).attr("value");
-                        debugger
-                    });
-
+                        $
+                ("#myTags a").each(function () {
+                    $(this).attr("value");
+                    debugger
+                });
 
 
                 debugger

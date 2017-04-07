@@ -8,11 +8,20 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Image;
 use Input;
+use DB;
 
 abstract class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    /**
+     * @param $str
+     * @return bool
+     * 判断字符串是否有特殊字符
+     */
+    public function unusual($str){
+        return preg_match("/[\'.,:;*?~`!@#$%^&+=)(<>{}]|\]|\[|\/|\\\|\"|\|/",trim($str)) ? true : false;
+    }
 
     /**
      * @param $mobile
@@ -51,7 +60,6 @@ abstract class Controller extends BaseController
         }
         return $age;
     }
-
 
 
     /**
@@ -112,6 +120,14 @@ abstract class Controller extends BaseController
 
         return $data;
 
+    }
+    public function get_category($category_id)
+    {
+        $category_ids = $category_id . ",";
+        $child_category = DB::select("select id from sort where pid = '$category_id'");
+        foreach ($child_category as $key => $val)
+            $category_ids .= $this->get_category($val->id);
+        return $category_ids;
     }
 
 

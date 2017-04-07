@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="{{ url('/static/css/common.css') }}" type="text/css">
     {{--<link rel="Shortcut Icon" href="/favicon.png" />--}}
     {{--<link rel="Bookmark" href="/favicon.png" />--}}
-
+    <script src="/js/jquery-1.11.2.min.js"></script>
+    <script src="{{url("js/layer/layer.js")}}"></script>
     <!--Page's related css-->
     @yield('header_related')
 </head>
@@ -62,7 +63,7 @@
 
 
 <script src="/js/jquery-2.1.4.min.js?v={{ env('VERSION') }}"></script>
-{{--<script src="/js/jquery-1.11.2.min.js"></script>--}}
+
 {{--<script src="/js/jquery-migrate-1.2.1.min.js"></script>--}}
 <!--Load Mask-->
 <script src="/js/jquery.loadmask.js?v={{ env('VERSION') }}"></script>
@@ -75,7 +76,7 @@
 <!--Smart Resize-->
 <script src="/js/smart-resize.js?v={{ env('VERSION') }}"></script>
 {{--js调用参考, 不要去掉注释--}}
-
+<script style="{{url('js/layer/layer.js')}}" type="text/javascript"></script>
 
 
 <script src="/js/sea.js?v={{ env('VERSION') }}"></script>
