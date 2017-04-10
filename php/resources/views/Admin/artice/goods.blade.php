@@ -29,7 +29,7 @@
     <div class="IAMAIN_list">
         <div class="Alist">
             <form method="post" action="">
-                {{csrf_field()}}}
+                {{csrf_field()}}
             <table width="100%"  cellspacing="0" cellpadding="0" >
                 <tr class="Alist_head">
                     <th style="width: 80px;">编号</th>

@@ -7,6 +7,7 @@
     <meta name="description" content="金融后台管理">
     <meta name="author" content="">
     <title>@yield('title') - 铃铛后台管理</title>
+    <link href="/getAvatar.ico" rel="shortcut icon"/>
     <link rel="stylesheet" href="{{ url('/css/main.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ url('/static/css/common.css') }}" type="text/css">
     {{--<link rel="Shortcut Icon" href="/favicon.png" />--}}

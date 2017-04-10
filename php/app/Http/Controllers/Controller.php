@@ -8,6 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Image;
 use Input;
+use App\Models\Sort;
 use DB;
 
 abstract class Controller extends BaseController
@@ -130,6 +131,29 @@ abstract class Controller extends BaseController
         return $category_ids;
     }
 
+    public function get_sort_data(){
+        $sort = Sort::where('pid', '0')->select('id', 'pid', 'name')->orderBy('id', 'asc')->orderBy('num', 'asc')->get()->toArray();
+        if (!empty($sort)) {
+            foreach ($sort as $ky => $vy) {
+                $rst = $this->get_category($vy['id']);
+                if (strlen($rst) >= 4) {
+                    $child = substr($rst, 0, strlen($rst) - 1);
+                    $child = explode(',', $child);
+                    foreach ($child as $k => $v) {
+                        if ($v != $vy['id']) {
+                            $result = Sort::where('id', $v)->select('id', 'pid', 'name')->get()->toArray();
+                            if (!empty($result)) {
+                                $sort[$ky]['child'][$k - 1] = $result[0];
+                            }
+                        }
+                    }
+                } else {
+                    $sort[$ky]['child'] = "";
+                }
+            }
+        }
+        return $sort;
+    }
 
 
 

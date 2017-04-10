@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\UploadController;
 use App\Models\User;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Arr;
+use App\Models\Sort;
 
 /**
  * 修改角色权限时, 判断是否选中某个功能
@@ -243,6 +244,36 @@ function get_extension($file)
     return pathinfo($file, PATHINFO_EXTENSION);
 }
 
+/**
+ *获取分类信息名称
+ */
+function get_srot_name($id){
+    $id=explode(',',$id);
+    $name="";
+    foreach ($id as $k =>$v){
+      $rst=Sort::where('id',$v)->select('name')->first();
+        if(!empty($name)){
+            $name=$name."[ ".$rst->name." ]"." ";
+        }else{
+            $name="[ ".$rst->name." ]"." ";
+        }
+    }
+  return $name;
+}
+
+/**
+ * @param $id
+ * @return bool
+ * 判断上级分类
+ */
+function read_pid($id){
+    $rst=Sort::where('id',$id)->select('id','pid','name')->first();
+    if($rst->pid && $rst->pid != 0){
+        return true;
+    }else{
+        return false;
+    }
+}
 
 
 /**

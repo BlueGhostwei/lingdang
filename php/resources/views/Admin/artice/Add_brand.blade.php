@@ -27,29 +27,60 @@
                     <td align="right" valign="top"><font color="red">*</font>所属栏目：</td>
                     <td>
                         <div class="plus-tag tagbtn clearfix" id="myTags">
+                            @if(isset($Get_Brand) && !empty(array_get($Get_Brand,'sort_data')))
+                                @foreach(array_get($Get_Brand,'sort_data') as $k =>$v)
+                                    <a value="{{$v['id']}}"
+                                       @if(read_pid($v['id'])==true)
+                                       title="├─{{$v['name']}}"
+                                       @else
+                                       title="{{$v['name']}}"
+                                       @endif
+                                       href="javascript:void(0);"><span>
+                                                @if(read_pid($v['id'])==true)
+                                                ├─{{$v['name']}}
+                                            @else
+                                                {{$v['name']}}
+                                            @endif
+                                            </span><em></em></a>
+
+                                @endforeach
+                                {{--  <a value="7" title="├─ 鸿星尔克" href="javascript:void(0);"><span>├─ 鸿星尔克</span><em></em></a>--}}
+                            @endif
                             {{--添加元素展示部分--}}
                         </div>
-                        <div class="plus-tag-add"><a href="javascript:void(0);">展开推荐标签</a></div>
-                        <div id="mycard-plus" style="display:none;">
+                        <div class="plus-tag-add"><a href="javascript:void(0);">
+                                @if(isset($Get_Brand))
+                                    收起商品分类
+                                @else
+                                    展开推荐标签
+                                @endif
+                            </a></div>
+                        <div id="mycard-plus"
+                             @if(isset($Get_Brand))
+                             style="display:block;"
+                             @else
+                             style="display:none;"
+                                @endif
+                        >
                             <div class="default-tag tagbtn">
-                                 @if(isset($sort))
-                                    <div class="clearfix Brand_main">
-                                        {{--展示部分--}}
-                                        <li><a value="-1" title="互联网"
-                                               href="javascript:void(0);">
-                                                <span>互联网</span>
-
-                                                <em></em></a></li>
-                                        <li><a value="-1" title="├─ 移动互联网"
-                                               href="javascript:void(0);"><span>├─ 移动互联网</span><em></em></a></li>
-                                        <li><a value="-1" title="├─ it"
-                                               href="javascript:void(0);"><span>├─ it</span><em></em></a></li>
-                                        <li><a value="-1" title="电子商务"
-                                               href="javascript:void(0);"><span>电子商务</span><em></em></a></li>
-                                        <li><a value="-1" title="广告" href="javascript:void(0);"><span>广告</span><em></em></a>
-                                        </li>
-                                    </div>
-                                    @endif
+                                @if(isset($sort) && !empty($sort))
+                                    @foreach($sort as $k =>$v)
+                                        <div class="clearfix Brand_main">
+                                            {{--展示部分--}}
+                                            <li><a value="{{$v['id']}}" title="{{$v['name']}}"
+                                                   href="javascript:void(0);">
+                                                    <span>{{$v['name']}}</span>
+                                                    <em></em></a></li>
+                                            @if(isset($v['child']))
+                                                @foreach($v['child'] as $rs =>$rb)
+                                                    <li><a value="{{$rb['id']}}" title="├─{{$rb['name']}}"
+                                                           href="javascript:void(0);"><span>├─ {{$rb['name']}}</span><em></em></a>
+                                                    </li>
+                                                @endforeach
+                                            @endif
+                                        </div>
+                                    @endforeach
+                                @endif
                                 {{--<div class="clearfix Brand_main">
                                     --}}{{--展示部分--}}{{--
                                     <li><a value="-1" title="互联网2"
@@ -69,11 +100,14 @@
                 </tr>
                 <tr>
                     <td align="right"><font color="red">*</font>品牌名称：</td>
-                    <td><input type="text" name="store_name" value="" class="Iar_input"></td>
+                    {{csrf_field()}}
+                    <td><input type="text" name="store_name"
+                               value="{{isset($Get_Brand)?$Get_Brand[0]['brand_name']:""}}" class="Iar_input"></td>
                 </tr>
                 <tr>
                     <td align="right">排列顺序：</td>
-                    <td><input type="text" name="store_num" value="" class="Iar_inpun"/></td>
+                    <td><input type="text" name="store_num" value="{{isset($Get_Brand)?$Get_Brand[0]['brand_num']:""}}"
+                               class="Iar_inpun"/></td>
                 </tr>
 
                 <tr height="60px">
@@ -88,19 +122,56 @@
 
     <script type="text/javascript">
         $(function () {
-
             $('.sumbutton').click(function () {
-                var name = $("input[name='store_num']").val();
-                var num = $("input[name='store_name']").val();
-                var
-                        $
-                ("#myTags a").each(function () {
-                    $(this).attr("value");
-                    debugger
+                var _token = $('input[name="_token"]').val();
+                var name = $("input[name='store_name']").val();
+                var num = $("input[name='store_num']").val();
+                var url = "@if(isset($Get_Brand)){{route('artice.brand_update')}}@else{{route('sort.storeBrand')}}@endif";
+                var reload_url = "{{url('artice/brand_list')}}";// 请求成功后跳转页面
+                var id = "";
+                $("#myTags a").each(function (e) {
+                    if (id != "") {
+                        id = id + "," + $(this).attr("value");
+                    } else {
+                        id = $(this).attr("value");
+                    }
+                });
+                if (id == '') {
+                    layer.msg('请选择品牌所属栏目');
+                    return false
+                }
+                if (name == '') {
+                    layer.msg('请填写品牌名称');
+                    return false
+                }
+
+                $.ajax({
+                    url: url,
+                    data: {
+                        'up_id':"{{isset($Get_Brand)?$Get_Brand[0]['id']:""}}",
+                        'sort_id': id,
+                        'brand_name': name,
+                        'brand_num': num,
+                        '_token': _token
+                    },
+                    type: 'post',
+                    dataType: "json",
+                    stopAllStart: true,
+                    success: function (data) {
+                        if (data.sta == '1') {
+                            layer.msg(data.msg, {icon: 1});
+                            setTimeout(window.location.href = reload_url, 1000);
+                        } else {
+                            layer.msg(data.msg || '请求失败');
+                        }
+                    },
+                    error: function () {
+                        layer.msg(data.msg || '网络发生错误');
+                        return false;
+                    }
                 });
 
 
-                debugger
             });
 
 
@@ -265,6 +336,22 @@
             }
 
         })();
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $("#myTags a").each(function (e) {
+                var id = $(this).attr("value");
+                if (id != '') {
+                    $('.default-tag a').each(function () {
+                        var $this = $(this);
+                        var $get_id = $(this).attr('value');
+                        if ($get_id == id) {
+                            $this.addClass('selected');
+                        }
+                    })
+                }
+            });
+        });
     </script>
 
 @endsection
