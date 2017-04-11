@@ -6,6 +6,11 @@
 .img_Imain{ width: 100%; height: auto;  }
 .img_Imain img{ width: 100%;height: auto; }
 
+.user-nav .dropdown-menu{ margin-top: 60px; }
+.user-nav > ul > li.open > a{ border-left:1px solid #ccc; border-right:1px solid #ccc; }
+.user-nav > ul > li > a{border-left:1px solid #ccc; border-right:1px solid #ccc; }
+
+
 .Iartice{ width: 95%; height: auto; margin:auto; margin: 2%}
 .IAhead{ width: 100%; line-height:3em; font-size: 1em; padding:0 2%; background:#eceff1; }
 .IAhead a{ width: auto; font-size: 0.8em; color: #666; margin: 0 10px; padding-top:10px;}

@@ -131,6 +131,23 @@ abstract class Controller extends BaseController
         return $category_ids;
     }
 
+    /**
+     * @param $url
+     * @return bool
+     * 验证地址是否合法
+     */
+    function check_url($url){
+
+        if(!preg_match('/http:\/\/[\w.]+[\w\/]*[\w.]*\??[\w=&\+\%]*/is',$url)){
+
+            return false;
+
+        }
+
+        return true;
+
+    }
+
     public function get_sort_data(){
         $sort = Sort::where('pid', '0')->select('id', 'pid', 'name')->orderBy('id', 'asc')->orderBy('num', 'asc')->get()->toArray();
         if (!empty($sort)) {

@@ -275,6 +275,27 @@ function read_pid($id){
     }
 }
 
+/**
+ * @param $id
+ * @param $child
+ * @return array|string
+ * 获取子集分类名字
+ */
+function child_sort($id,$child){
+    if (strlen($child) >= 4) {
+        $child = substr($child, 0, strlen($child) - 1);
+        $child = explode(',', $child);
+        $result=[];
+        foreach ($child as $k => $v) {
+            if ($v != $id) {
+                $result[$k] = Sort::where('id', $v)->select('id', 'pid', 'name')->first();
+            }
+        }
+      return $result;
+    }
+    return "";
+}
+
 
 /**
  * 创建目录

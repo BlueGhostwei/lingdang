@@ -47,7 +47,7 @@
                 </a>
                 <ul>
                     <li><a href="{{ route('artice.Add_slide') }}">添加幻灯片</a></li>
-                    <li><a href="{{ route('artice.slide') }}">幻灯管理</a></li>
+                    <li><a href="{{ route('photo.slide') }}">幻灯管理</a></li>
                 </ul>
             </li>
             <li>
@@ -56,7 +56,6 @@
                     <span class="nav-label">会员管理</span>
                 </a>
                 <ul>
-                    <li><a href="{{route('artice.member')}}">添加会员</a></li>
                     <li><a href="{{route('artice.member_list') }}">会员列表</a></li>
                     <li><a href="{{route('artice.chongzhi') }}">充值记录</a></li>
                     <li><a href="{{route('artice.consumption')}}">消费记录</a></li>

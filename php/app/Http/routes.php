@@ -102,9 +102,13 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/artice/A_fenlei', ['as' => 'artice.A_fenlei', 'uses' => 'ArticeControll@A_fenlei']);
             Route::get('/artice/Add_fenlei', ['as' => 'artice.Add_fenlei', 'uses' => 'ArticeControll@Add_fenlei']);
 
-            Route::get('/artice/Add_slide', ['as' => 'artice.Add_slide', 'uses' => 'ArticeControll@Add_slide']);
-            Route::get('/artice/slide', ['as' => 'artice.slide', 'uses' => 'ArticeControll@slide']);
-
+            //轮播图管理
+            Route::get('/artice/Add_slide', ['as' => 'artice.Add_slide', 'uses' => 'ArticeControll@Add_slide']);//添加幻灯片图片
+            Route::post('/artice/save_slide', ['as' => 'artice.save_slide', 'uses' => 'ArticeControll@save_slide']);//保存幻灯片图片
+            Route::get('/photo/slide', ['as' => 'photo.slide', 'uses' => 'ArticeControll@slide']);//幻灯片列表
+            Route::get('/photo/show/{id}', ['as' => 'photo.show', 'uses' => 'ArticeControll@show']);//轮播图查看
+            Route::post('/photo/update', ['as' => 'photo.update', 'uses' => 'ArticeControll@update']);//轮播图修改
+            Route::post('/photo/destroy', ['as' => 'photo.destroy', 'uses' => 'ArticeControll@destroy']);//轮播图删除
             Route::get('/artice/member_list', ['as' => 'artice.member_list', 'uses' => 'ArticeControll@member_list']);
             Route::get('/artice/member', ['as' => 'artice.member', 'uses' => 'ArticeControll@member']);
             Route::get('/artice/consumption', ['as' => 'artice.consumption', 'uses' => 'ArticeControll@consumption']);

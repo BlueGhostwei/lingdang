@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\AclUser;
 use App\Models\Sort;
-use ClassesWithParents\G;
+use Faker\Provider\Image;
 use Hamcrest\Type\IsNumeric;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Redirect;
-use App\Models\Brand;
+use App\Models\Brand, App\Models\Photo;
 use Input;
 use Validator;
 use Auth;
@@ -74,15 +74,41 @@ class ArticeControll extends Controller
     }
 
     /**
+     * 保存banner图片
+     */
+    public function save_slide()
+    {
+        $photo = new Photo();
+        $data['file_name'] = Input::get('file_name');
+        $data['img_Md5'] = Input::get('img_Md5');
+        $data['line'] = Input::get('line');
+        $data['number'] = Input::get('number');
+        if (empty($data['img_Md5'])) {
+            return \Response::json(['msg' => '请选择要上传的图片', 'sta' => '0', 'data' => '']);
+        }
+        if (!empty($data['line']) && $this->check_url($data['line']) == false) {
+            return \Response::json(['msg' => '请输入合法的地址链接', 'sta' => '0', 'data' => '']);
+        }
+        if (!empty($data['number']) && !is_numeric(intval($data['number']))) {
+            return \Response::json(['msg' => '编号只能为整数', 'sta' => '0', 'data' => '']);
+        }
+        $rst = $photo->create($data);
+        if ($rst) {
+            return \Response::json(['sta' => '1', 'msg' => '保存成功', 'data' => $rst]);
+        }
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function slide()
     {
-
-        return view('Admin.artice.slide');
+        $photo = Photo::orderBy('number', 'asc')->get()->toArray();
+        return view('Admin.artice.slide', ['photo' => $photo]);
     }
+
 
     /**
      * Display a listing of the resource.
@@ -229,23 +255,12 @@ class ArticeControll extends Controller
      */
     public function goods()
     {
-        $sort = Sort::where('pid', '0')->select('id', 'pid', 'name')->orderBy('id', 'asc')->orderBy('num', 'asc')->get()->toArray();
-        if (!empty($sort)) {
+        $sort = Sort::where('pid', '0')->select('id', 'pid', 'name')->orderBy('id', 'asc')->orderBy('num', 'asc')->paginate(10);
+        if (count($sort) >= 1) {
             foreach ($sort as $ky => $vy) {
-                $rst = $this->get_category($vy['id']);
+                $rst = $this->get_category($vy->id);
                 if (strlen($rst) >= 4) {
-                    $child = substr($rst, 0, strlen($rst) - 1);
-                    $child = explode(',', $child);
-                    foreach ($child as $k => $v) {
-                        if ($v != $vy['id']) {
-                            $result = Sort::where('id', $v)->select('id', 'pid', 'name')->get()->toArray();
-                            if (!empty($result)) {
-                                $sort[$ky]['child'][$k - 1] = $result[0];
-                            }
-                        }
-                    }
-                } else {
-                    $sort[$ky]['child'] = "";
+                    $sort[$ky]->child = $rst;
                 }
             }
         }
@@ -328,13 +343,18 @@ class ArticeControll extends Controller
 
     /**
      * Display the specified resource.
-     *
+     * 轮播图展示
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        $rst = Photo::find($id);
+        if ($rst) {
+            return view('Admin.artice.Add_slide', ['rst' => $rst]);
+        } else {
+            return Redirect::back()->withErrors('请求失败，参数错误');
+        }
     }
 
     /**
@@ -353,11 +373,26 @@ class ArticeControll extends Controller
      *
      * @param  \Illuminate\Http\Request $request
      * @param  int $id
+     * 轮播图更新
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update()
     {
-        //
+        $rst = Photo::find(Input::get('photo_id'));
+        if ($rst) {
+            $data['file_name'] = Input::get('file_name');
+            $data['line'] = Input::get('line');
+            $data['img_Md5'] = Input::get('img_Md5');
+            $data['number'] = Input::get('number');
+            $result = Photo::where('id', Input::get('photo_id'))->update($data);
+            if ($result) {
+                return \Response::json(['msg' => '更新成功', 'sta' => '1', 'data' => '']);
+            } else {
+                return \Response::json(['msg' => '请求失败，参数错误', 'sta' => '0', 'data' => '']);
+            }
+        } else {
+            return \Response::json(['msg' => '请求失败，参数错误', 'sta' => '0', 'data' => '']);
+        }
     }
 
     /**
@@ -366,8 +401,15 @@ class ArticeControll extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
-        //
+        $id = Input::get('id');
+        $rst = Photo::find($id);
+        if($rst){
+            Photo::where('id',$id)->delete();
+            return \Response::json(['msg' => '删除成功', 'sta' => '1', 'data' => '']);
+        }else{
+            return \Response::json(['msg' => '删除失败，参数错误', 'sta' => '0', 'data' => '']);
+        }
     }
 }

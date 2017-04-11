@@ -71,7 +71,7 @@
                                                    href="javascript:void(0);">
                                                     <span>{{$v['name']}}</span>
                                                     <em></em></a></li>
-                                            @if(isset($v['child']))
+                                             @if(isset($v['child']) && !empty($v['child']) )
                                                 @foreach($v['child'] as $rs =>$rb)
                                                     <li><a value="{{$rb['id']}}" title="├─{{$rb['name']}}"
                                                            href="javascript:void(0);"><span>├─ {{$rb['name']}}</span><em></em></a>

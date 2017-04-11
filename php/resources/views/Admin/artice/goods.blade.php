@@ -44,14 +44,14 @@
                             <td style="text-align: left; padding-left: 20px;">{{$v['name']}}</td>
                             <td><a href="{{ route('artice.Add_subtopic',$v['id'])}}">添加子栏目 </a>|<a href="{{route('sort.edit',$v['id'])}}"> 修改 </a>|<span data_id="{{$v['id']}}" class="dele"  > 删除</span></td>
                         </tr>
-                        @if(isset($v['child']) && $v['child']!=null)
-                           @foreach($v['child'] as $rs=>$vb)
-                                <tr class="Alist_main">
-                                    <td class="IMar_list" />{{$vb['id']}}</td>
-                                    <td style="text-align: left; padding-left: 20px;">├── {{$vb['name']}}</td>
-                                    <td><a href="{{route('sort.edit',$vb['id'])}}"> 修改 </a>|<span data_id="{{$vb['id']}}" class="dele" > 删除</span></td>
-                                </tr>
-                               @endforeach
+                        @if(isset($v['child']) && child_sort($v['id'],$v['child']) !='')
+                            @foreach(child_sort($v['id'],$v['child']) as $ky =>$vy)
+                            <tr class="Alist_main">
+                                <td class="IMar_list" />1</td>
+                                <td style="text-align: left; padding-left: 20px;">├─{{$vy['name']}}</td>
+                                <td><a href="{{route('sort.edit',$vy['id'])}}"> 修改 </a>|<span data_id="{{$vy['id']}}" class="dele"> 删除</span></td>
+                            </tr>
+                            @endforeach
                             @endif
                         @endforeach
                     @endif
@@ -77,6 +77,8 @@
                     <td><a href="{{ route('artice.Add_subtopic') }}">添加子栏目 </a>|<a href=""> 修改 </a>|<a href=""> 删除</a></td>
                 </tr>--}}
             </table>
+
+             <div style="text-align: center">   {!! $sort->render() !!}</div>
             </form>
         </div>
     </div>

@@ -68,9 +68,9 @@ class UploadController extends Controller
      */
     public function index()
     {
+        //dd(Input::all());
         // 有效文件
         $key = Input::get('fileKey', 'file');
-
         $file = Input::file($key);
         //dd($file,$file->isValid());
 
