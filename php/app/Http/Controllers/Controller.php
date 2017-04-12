@@ -149,7 +149,7 @@ abstract class Controller extends BaseController
     }
 
     public function get_sort_data(){
-        $sort = Sort::where('pid', '0')->select('id', 'pid', 'name')->orderBy('id', 'asc')->orderBy('num', 'asc')->get()->toArray();
+        $sort = Sort::where(['pid'=>'0','type'=>'0'])->select('id', 'pid', 'name')->orderBy('id', 'asc')->orderBy('num', 'asc')->get()->toArray();
         if (!empty($sort)) {
             foreach ($sort as $ky => $vy) {
                 $rst = $this->get_category($vy['id']);

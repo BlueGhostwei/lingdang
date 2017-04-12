@@ -332,13 +332,9 @@ function resize_img($img,$new_with=200,$md5=true)
     }else{
         $old_url = $img;
     }
-    //dd($old_url);
-
     if ($old_url != NULL) {
         //取出最后数组进行命名
         //$url = explode('/', $old_url);
-        //dd($url);exit;
-
         //$last_arr_num = count($url) - 1;
         //$last_arr_val = 'resize_' . $new_with . '_' . $url[$last_arr_num];
         //$url[$last_arr_num] = $last_arr_val;
@@ -348,22 +344,11 @@ function resize_img($img,$new_with=200,$md5=true)
         //$path_arr = array_slice($url, -$del_arr_num);
         //$path = implode('/', $path_arr);
         $host_url = parse_url(dirname($old_url).'/resize_' . $new_with . '_' .basename($old_url));
-
-
-        //dd($host);
-
         if($host_url['host'] == 'lsadmin.umallushop.com'){
             $path =   str_replace('http://lsadmin.umallushop.com/','',dirname($old_url).'/resize_' . $new_with . '_' .basename($old_url));
         }else{
             $path = str_replace(url('/').'/','',dirname($old_url).'/resize_' . $new_with . '_' .basename($old_url));
         }
-
-
-
-
-
-
-        //dd($path);
         //原来图片路径
         //$yuan_url = explode('/',$old_url);
         //$old_del_arr_num = count($yuan_url) - 3;
@@ -389,60 +374,43 @@ function resize_img($img,$new_with=200,$md5=true)
                 //$url_head = implode('/', $url_head_arr);
                 //$new_url = $url_head . '/' . $path;
                 $new_url = dirname($old_url).'/resize_' . $new_with . '_' .basename($old_url);
-
-
-                //dd($path);
                 //判断图片是否存在
-                //dd($new_url);
                 if (!file_exists($path)) {
-                    //dd(11);
                     //读取文件夹下所有名
                     //$data_img = array();
                     //searchDir(pathinfo($path, PATHINFO_DIRNAME), $data_img);
-
                     //图片压缩优化，判断当单张图片压缩超过100张时删除压缩图重新动态压缩
                     //如果该文件量大于100，侧删除压缩图
                     //if (count($data_img) > 100) {
-
                         //正则匹配压缩图
                         //$zhengze = '([a-z]+\_[0-9]+\_[a-fA-F0-9]+\.(jpg|gif|png|bmp|psd|zip|rar|7z|tar|txt|pdf|csv|doc|docx|ppt|pptx|xls|xlsx))';
-
                         //拿出匹配压缩图
                         //$del_img = array();
                         //foreach ($data_img as $k => $v) {
                         //    preg_match($zhengze, $v, $result);
                         //    $del_img[] = $result;
                         //}
-
                         //判断是否存在压缩图并删除本地压缩图
                         //foreach ($del_img as $k => $v) {
                          //   if (count($v) != 0) {
                                 //拿出图片本地路径
                          //       $real_pathinfo = pathinfo($path, PATHINFO_DIRNAME);
-
                                 //删除操作
                          //       unlink($real_pathinfo . '/' . $v[0]);
                          //   }
                         //}
                     //}
-
                     //保存图片
                     Image::make($old_path)->resize($new_with, $new_height)->save($path);
-
-
                 }
-
                 //dd(file_exists($path));
                 return $new_url;
             } else {
                 return $old_url;
-
             }
         }else{
             return $old_url;
         }
-
-
     } else {
         return $old_url;
     }

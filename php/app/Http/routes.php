@@ -96,11 +96,18 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/report/financial', ['as' => 'report.financial', 'uses' => 'ReportController@report_financial']);
 
             //内容管理
-
             Route::get('/artice/index', ['as' => 'artice.index', 'uses' => 'ArticeControll@index']);
-            Route::get('/artice/artice_list', ['as' => 'artice.artice_list', 'uses' => 'ArticeControll@artice_list']);
+            Route::get('/artice/artice_list', ['as' => 'artice.artice_list', 'uses' => 'ArticeControll@artice_list']);//文章列表
+            Route::post('/artice/artice_list',  'ArticeControll@artice_list');//文章列表
+            Route::get('/artice/artice_list_show/{id}', ['as' => 'artice.artice_list_show', 'uses' => 'ArticeControll@artice_list_show']);//文章查看
+            Route::post('/artice/artice_list_update', ['as' => 'artice.artice_list_update', 'uses' => 'ArticeControll@artice_list_update']);//文章更新
+            Route::post('/artice/artice_list_destroy', ['as' => 'artice.artice_list_destroy', 'uses' => 'ArticeControll@artice_list_destroy']);//删除文章
             Route::get('/artice/A_fenlei', ['as' => 'artice.A_fenlei', 'uses' => 'ArticeControll@A_fenlei']);
-            Route::get('/artice/Add_fenlei', ['as' => 'artice.Add_fenlei', 'uses' => 'ArticeControll@Add_fenlei']);
+            Route::get('/artice/Add_fenlei', ['as' => 'artice.Add_fenlei', 'uses' => 'ArticeControll@Add_fenlei']);//添加文章分类页
+            Route::post('/artice/save_fenlei', ['as' => 'artice.save_fenlei', 'uses' => 'ArticeControll@save_fenlei']);//保存文章分类
+            Route::get('/support/show/{id}', ['as' => 'support.show', 'uses' => 'ArticeControll@support_show']);//查看文章分类
+            Route::post('/support/update', ['as' => 'support.update', 'uses' => 'ArticeControll@support_update']);//更新文章分类
+            Route::post('/artice/store_actice', ['as' => 'support.store_actice', 'uses' => 'ArticeControll@store_actice']);//添加文章
 
             //轮播图管理
             Route::get('/artice/Add_slide', ['as' => 'artice.Add_slide', 'uses' => 'ArticeControll@Add_slide']);//添加幻灯片图片

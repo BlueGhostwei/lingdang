@@ -157,8 +157,8 @@ class SortController extends Controller
      */
     public function edit($id)
     {
-        $sort = Sort::where('pid', '0')->select('id', 'pid', 'name', 'num')->orderBy('id', 'asc')->get()->toArray();
-        $edit_sort = Sort::where('id', $id)->select('id', 'pid', 'name', 'num')->first();
+        $sort = Sort::where(['pid'=>'0','type'=>'0'])->select('id', 'pid', 'name', 'num')->orderBy('id', 'asc')->get()->toArray();
+        $edit_sort = Sort::where(['id'=>$id,'type'=>'0'])->select('id', 'pid', 'name', 'num')->first();
         if (!empty($edit_sort) && $edit_sort->pid != 0) {
             $par_id = $this->get_top_parentid($edit_sort->id);
         } else {

@@ -27,6 +27,7 @@ class AclResourceController extends Controller
      */
     public function index()
     {
+
         $resource = (new AclResource())->AclResource;
 
         return view('Admin.acl.resource.index')->withResource($resource);

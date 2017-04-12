@@ -354,13 +354,10 @@ class UserController extends Controller
     public function postLogin()
     {
         $data = $this->_postLogin();
-        //验证表单提交是否与数据库匹配\
-
-        //dd($data['rst']);
+        //验证表单提交是否与数据库匹配
         if (is_array($data)) {
             if ($data['rst'] == true) {
                 return redirect()->intended($data['redirect'])->withMessage('登录成功');//登录成功，跳转页面
-                //return Redirect::intended($data['redirect'])->withMessage('登录成功');
             } else {
                 return Redirect::back()->withMessage('用户名或者密码错误')->withInput();
             }
@@ -399,9 +396,6 @@ class UserController extends Controller
         } else {
             return Redirect::back()->withMessage('用户名或者密码错误')->withInput();
         }
-        //dump($data);exit;
-
-
     }
 
 

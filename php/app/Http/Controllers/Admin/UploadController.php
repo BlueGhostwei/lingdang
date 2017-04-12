@@ -68,10 +68,15 @@ class UploadController extends Controller
      */
     public function index()
     {
-        //dd(Input::all());
         // 有效文件
+        //dd(Input::file('wangEditorH5File'));
         $key = Input::get('fileKey', 'file');
-        $file = Input::file($key);
+        $Editfile=Input::file('wangEditorH5File');
+        if($Editfile==null){
+            $file = Input::file($key);
+        }else{
+            $file=$Editfile;
+        }
         //dd($file,$file->isValid());
 
         if (!$file || !$file->isValid()) return Response::json(array('sta' => 0, 'msg' => '无效的文件'));
@@ -203,13 +208,17 @@ class UploadController extends Controller
                 'resize_img' => $resize_img
             ]);
         }
+       if($Editfile != null){
+           return $this->md52url($md5);
+       }else{
+           return Response::json([
+               'sta' => 1,
+               'msg' => '上传成功',
+               'md5' => $md5,
+               'url' => $this->md52url($md5),
+           ]);
+       }
 
-        return Response::json([
-            'sta' => 1,
-            'msg' => '上传成功',
-            'md5' => $md5,
-            'url' => $this->md52url($md5),
-        ]);
     }
 
 
@@ -268,7 +277,6 @@ class UploadController extends Controller
         //压缩图片
         $resize = Input::get('resize');
         if($resize){
-            //dd(11);
             $resize_img = resize_img(env('assets').'/'.$path,$resize,false);
             return json_encode([
                 'md5' => basename($path),
@@ -278,8 +286,6 @@ class UploadController extends Controller
                 'resize_img' => $resize_img
             ]);
         }
-
-
         return json_encode([
             'md5' => basename($path),
             'sta' => 1,

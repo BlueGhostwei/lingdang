@@ -14,41 +14,25 @@ use App\Models\Brand, App\Models\Photo;
 use Input;
 use Validator;
 use Auth;
+use App\Models\Actice;
 use DB;
 
 class ArticeControll extends Controller
 {
+
+
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * 文章处理开始
      */
-    public function index()
-    {
-
-        return view('Admin.artice.index');
-    }
-
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function artice_list()
-    {
-
-        return view('Admin.artice.action_list');
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
+     * 文章分类列表
      * @return \Illuminate\Http\Response
      */
     public function A_fenlei()
     {
-
-        return view('Admin.artice.A_fenlei');
+        $artice_sort = Sort::where('type', 1)->select('name', 'id')->orderBy('num', 'asc')->paginate(10);
+        return view('Admin.artice.A_fenlei', ['artice_sort' => $artice_sort]);
     }
 
     /**
@@ -63,13 +47,192 @@ class ArticeControll extends Controller
     }
 
     /**
+     * @return $this|\Illuminate\Http\RedirectResponse
+     *  添加文章分类
+     */
+    public function save_fenlei()
+    {
+        $sort = new Sort();
+        $data['name'] = trim(Input::get('sort_name'));
+        $data['num'] = trim(Input::get('sort_num'));
+        $data['type'] = "1";//绑定分类
+        if ($data['name'] != '') {
+            if ($this->unusual($data['name']) == true) {
+                return Redirect::back()->withErrors(['sort_name' => "分类名称不能带有特殊字符！"]);
+            }
+        } else {
+            return Redirect::back()->withErrors(['sort_name' => "分类名称不能为空"]);
+        }
+        $data['pid'] = "0";
+        $data['id_str'] = '';
+        $rst = $sort->create($data);
+        if ($rst) {
+            return Redirect()->route('artice.A_fenlei');
+        }
+    }
+
+    /**
+     * @param $id
+     * @return $this
+     * 查看文章分类详情
+     */
+    public function support_show($id)
+    {
+        $Rst_Data = Sort::find($id);
+        if ($Rst_Data) {
+            return view('Admin.artice.Add_fenlei', ['Rst_Data' => $Rst_Data]);
+        } else {
+            return Redirect::back()->withErrors('请求失败，参数错误');
+        }
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     * 修改文章分类
+     */
+    public function support_update()
+    {
+        $id = Input::get('id');
+        $result = Sort::find($id);
+        if ($result) {
+            $result['name'] = Input::get('sort_name');
+            $result['num'] = Input::get('sort_num');
+            $rst = $result->save();
+            return Redirect()->route('artice.A_fenlei')->with('msg', '请求成功');
+        } else {
+            return Redirect()->route('artice.A_fenlei')->with('msg', '请求失败，参数错误');
+        }
+
+    }
+
+    /**
+     * Display a listing of the resource.
+     *  添加文章页面
+     *  获取文章分类
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $actice_sort = Sort::where('type', 1)->orderBy('num', 'asc')->get();
+        return view('Admin.artice.index', ['actice_sort' => $actice_sort]);
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     *  'user_id', 操作者id
+     * 'sort_id',文章分类id
+     * 'writer',作者
+     * 'title',标题
+     * 'content'内容，因为这里的内容存在表情，所以要以base处理存储
+     */
+    public function store_actice(Request $request)
+    {
+       $actice=New Actice();
+       $msg=[
+           'sort_id.required'=>'请选择文章栏目分类',
+           'writer.required'=>'请输入文章作者',
+           'writer.min'=>'作者名称至少2个字符',
+           'title.required'=>'请输入文章标题',
+           'title.unique'=>'该文章标题已被占用',
+           'content.required'=>'文章内容不能为空',
+           'content.min'=>'文章内容至少20个字符'
+       ];
+        $validator=Validator::make($request->all(),$actice->rules()['create'],$msg);
+        if($validator->failed()){
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
+        $rst=$actice->create($request->only($actice->getFillable()));
+        if($rst){
+            return \Response::json(['msg'=>'添加成功','sta'=>'1','data'=>'']);
+        }else{
+            return \Response::json(['msg'=>'网络错误，添加失败','sta'=>'0','data'=>'']);
+        }
+
+    }
+    /**
+     * Display a listing of the resource.
+     * 文章列表
+     * @return \Illuminate\Http\Response
+     */
+    public function artice_list()
+    {
+       $keyword=trim(Input::get('keyword'));
+        if($keyword){
+            $actice_data= Actice::where('id',$keyword)->orWhere('title','like',"%$keyword%")->orderBy('id','asc')->paginate(10);
+        }else{
+            $actice_data= Actice::orderBy('id','asc')->paginate(10);
+        }
+        return view('Admin.artice.action_list',['actice_data'=>$actice_data,'keyword'=>$keyword]);
+    }
+
+    /**
+     * @param $id
+     * @return $this
+     * 文章展示
+     */
+    public function artice_list_show($id){
+        $actice=Actice::find($id);
+        $actice_sort = Sort::where('type', 1)->orderBy('num', 'asc')->get();
+        if($actice){
+            return view('Admin.artice.index', ['actice_sort' => $actice_sort,'actice'=>$actice]);
+        }else{
+            return Redirect::back()->withErrors('请求失败，请刷新页面重试');
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @return $this|\Illuminate\Http\JsonResponse
+     * 更新文章
+     */
+    public function artice_list_update(Request $request){
+        $actice=Actice::find($request->actice_id);
+        $msg=[
+            'sort_id.required'=>'请选择文章栏目分类',
+            'writer.required'=>'请输入文章作者',
+            'writer.min'=>'作者名称至少2个字符',
+            'title.required'=>'请输入文章标题',
+            'content.required'=>'文章内容不能为空',
+            'content.min'=>'文章内容至少20个字符'
+        ];
+        $validator=Validator::make($request->all(),$actice->rules()['update'],$msg);
+        if($validator->failed()){
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
+        $rst=$actice->update($request->only($actice->getFillable()));
+        if($rst){
+            return \Response::json(['msg'=>'修改成功','sta'=>'1','data'=>'']);
+        }else{
+            return \Response::json(['msg'=>'网络错误，修改失败','sta'=>'0','data'=>'']);
+        }
+
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
+     * 文章删除
+     */
+    public function artice_list_destroy(){
+        $id=Input::get('actice_id');
+        $actice=Actice::find($id);
+        if($actice){
+            Actice::where('id',$id)->delete();
+            return \Response::json(['sta'=>'1','msg'=>'删除成功']);
+        }else{
+            return \Response::json(['sta'=>'0','msg'=>'请求失败，参数错误']);
+        }
+
+    }
+
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function Add_slide()
     {
-
         return view('Admin.artice.Add_slide');
     }
 
@@ -116,8 +279,7 @@ class ArticeControll extends Controller
      * @return \Illuminate\Http\Response
      */
     public function member_list()
-    {
-
+    {   
         return view('Admin.artice.member_list');
     }
 
@@ -255,7 +417,7 @@ class ArticeControll extends Controller
      */
     public function goods()
     {
-        $sort = Sort::where('pid', '0')->select('id', 'pid', 'name')->orderBy('id', 'asc')->orderBy('num', 'asc')->paginate(10);
+        $sort = Sort::where(['type' => '0', 'pid' => "0"])->select('id', 'pid', 'name')->orderBy('id', 'asc')->orderBy('num', 'asc')->paginate(10);
         if (count($sort) >= 1) {
             foreach ($sort as $ky => $vy) {
                 $rst = $this->get_category($vy->id);
@@ -326,7 +488,7 @@ class ArticeControll extends Controller
      */
     public function Add_subtopic($id)
     {
-        $sort = Sort::where('pid', '0')->select('id', 'pid', 'name')->orderBy('id', 'asc')->get()->toArray();
+        $sort = Sort::where(['type' => '0', 'pid' => "0"])->select('id', 'pid', 'name')->orderBy('id', 'asc')->get()->toArray();
         return view('Admin.artice.Add_subtopic', ['sort' => $sort, 'id' => $id]);
     }
 
@@ -405,10 +567,10 @@ class ArticeControll extends Controller
     {
         $id = Input::get('id');
         $rst = Photo::find($id);
-        if($rst){
-            Photo::where('id',$id)->delete();
+        if ($rst) {
+            Photo::where('id', $id)->delete();
             return \Response::json(['msg' => '删除成功', 'sta' => '1', 'data' => '']);
-        }else{
+        } else {
             return \Response::json(['msg' => '删除失败，参数错误', 'sta' => '0', 'data' => '']);
         }
     }
