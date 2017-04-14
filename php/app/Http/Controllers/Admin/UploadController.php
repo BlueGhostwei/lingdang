@@ -79,14 +79,16 @@ class UploadController extends Controller
         }
         //dd($file,$file->isValid());
 
-        if (!$file || !$file->isValid()) return Response::json(array('sta' => 0, 'msg' => '无效的文件'));
+//		if (!$file || !$file->isValid()) return Response::json(array('sta' => 0, 'msg' => '无效的文件'));
+		if (!$file || !$file->isValid()) return json_encode(array('sta' => 0, 'msg' => '无效的文件'));
 
         // 文件类型
         $mimeType = explode('/', $file->getMimeType());
 
 
         if (!$mimeType || count($mimeType) != 2) {
-            return Response::json(array('sta' => 0, 'msg' => '不允许的文件类型'));
+//			return Response::json(array('sta' => 0, 'msg' => '不允许的文件类型'));
+			return json_encode(array('sta' => 0, 'msg' => '不允许的文件类型'));
         }
 
         // 使用文件的 mime 识别后缀
@@ -167,12 +169,14 @@ class UploadController extends Controller
 
 
         if (!$fileType || !$fileTypeKey) {
-            return Response::json(array('sta' => 0, 'msg' => '不允许的文件类型'));
+//			return Response::json(array('sta' => 0, 'msg' => '不允许的文件类型'));
+            return json_encode(array('sta' => 0, 'msg' => '不允许的文件类型'));
         }
 
         // 大小判断
         if ($file->getSize() > $this->allowMaxSize) {
-            return Response::json(array('sta' => 0, 'msg' => '文件大小不能超过: '.sizeFormat($this->allowMaxSize)));
+//			return Response::json(array('sta' => 0, 'msg' => '文件大小不能超过: '.sizeFormat($this->allowMaxSize)));
+			return json_encode(array('sta' => 0, 'msg' => '文件大小不能超过: '.sizeFormat($this->allowMaxSize)));
         }
 
 
@@ -200,7 +204,8 @@ class UploadController extends Controller
 
             File::put(config_path('rebate.php'), sprintf("<?php%s%sreturn %s;%s", PHP_EOL, PHP_EOL, var_export($resize, true), PHP_EOL));
 
-            return Response::json([
+//			return Response::json([
+			return json_encode([
                 'sta' => 1,
                 'msg' => '上传成功',
                 'md5' => $md5,
@@ -211,7 +216,8 @@ class UploadController extends Controller
        if($Editfile != null){
            return $this->md52url($md5);
        }else{
-           return Response::json([
+//			return Response::json([
+			return json_encode([
                'sta' => 1,
                'msg' => '上传成功',
                'md5' => $md5,

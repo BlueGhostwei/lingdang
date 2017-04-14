@@ -26194,3 +26194,6 @@ table.dataTable > tbody > tr.child span.dtr-title {
     background-color: #337ab7;
     color: #fff
 }
+
+#uppic_1,
+#add_uppic_2{	cursor:pointer;	}
