@@ -25,7 +25,7 @@
      </div>-->
 
 <div class="Iartice">
-    <div class="IAhead"><strong style="padding-right: 10px;">品牌管理</strong><a href="{{ route('artice.brand_list') }}">品牌列表</a>|<a href="{{ route('artice.Add_brand') }}">添加品牌</a>|<a href="{{ route('artice.goods_list') }}">商品列表</a>|<a href="{{ route('artice.Add_goods') }}">添加商品</a>|</div>
+    <div class="IAhead"><strong style="padding-right: 10px;">品牌管理</strong><a href="{{ route('artice.brand_list') }}">品牌列表</a>|<a href="{{ route('artice.Add_brand') }}">添加品牌</a>|<a href="{{ route('artice.goods_list') }}">商品列表</a>|<a href="{{ route('goods.Add_goods') }}">添加商品</a>|</div>
     <div class="IAMAIN_list">
         <div class="Alist">
             <form method="post" action="">

@@ -14,8 +14,13 @@ class Bell_userController extends Controller
 {
     public function Send_sms()
     {
-        $mobile = Input::get('username');
-        $mobile = '13217616078';
+
+        $file = fopen("log.txt","w");
+        fwrite($file,var_export(Input::all(),true));
+        fclose($file);
+
+
+        $mobile = Input::get('mobile');
         $sendsms = new SendSMS();
         $rst = $sendsms->send_sms($mobile, 'sign_up');
         if ($rst['sta'] == 1) {
@@ -95,14 +100,15 @@ class Bell_userController extends Controller
      * 验证用户密码，最后Bell_user->save();
      * @return \Illuminate\Http\Response
      */
-    public function sign_up(Request $request)
+    public function sign_up()
     {
-
-        $data=$request->all();
-        $data['type']='phone';
-        $data['name']='13217616078';
-        $data['password']='123123';
-        $data['user_code']="5683";
+        $data=Input::all();
+        $data['type']='1';
+        $data['name']=Input::get('name');
+        $data['password']=Input::get('password');
+        $data['password_confirmation']=Input::get('password');
+        $data['user_code']=Input::get('user_code');
+        $data['role']="3";
         $user_SMS = Redis::exists('user_SMS');
         if ($user_SMS == 1 && $data) {
             $send_num_data = Redis::get('user_SMS');
@@ -120,8 +126,8 @@ class Bell_userController extends Controller
                 if ($data['name'] != $send_num['user_mobile']) {
                     return json_encode(['msg' => "验证用户不一致！", 'sta' => "1", 'data' => ''], JSON_UNESCAPED_UNICODE);
                 }
-                $bell_user = new User();
-                $validate = Validator::make($data, $bell_user->rules()['create']);
+                $user = new User();
+                $validate = Validator::make($data, $user->rules()['create']);
                 $messages = $validate->messages();
                 if ($validate->fails()) {
                     $msg = $messages->toArray();
@@ -129,12 +135,17 @@ class Bell_userController extends Controller
                         return json_encode(['sta' => "1", 'msg' => $v[0], 'data' => ''], JSON_UNESCAPED_UNICODE);
                     }
                 }
-                $use_data = $bell_user->create($data);
+                $use_data = $user->create($data);
+                if($use_data){
+                    //创建关系表
+                    $bell_user=new Bell_user();
+                    $bell_user->create(['user_id'=>$use_data->id]);
+                }
                 Auth::login($use_data);
                 // $data = User::where(['username'=>$request->username])->update(['created_by' => Auth::id()]);
-                if ($data) {
+                    if ($data) {
                     Redis::del('user_SMS');
-                    return json_encode(['sta' => "0", 'msg' => '注册成功', 'data' => $data], JSON_UNESCAPED_UNICODE);
+                    return json_encode(['sta' => "0", 'msg' => '注册成功', 'data' => $use_data], JSON_UNESCAPED_UNICODE);
                 }
             } else {
                 return json_encode(['msg' => "验证码错误", 'sta' => "1", 'data' => '']);

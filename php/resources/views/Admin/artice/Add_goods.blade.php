@@ -12,7 +12,7 @@
     <!--<div class="main-container">
         <div class="container-fluid">
             @include('Admin.layout.breadcrumb', [
-                'title' => '添加文章',
+                'title' => '添加商品',
                 '' => [
                     '' => '',
                 ]
@@ -30,10 +30,18 @@
                 <tr>
                     <td align="right" width="120"><font color="red">*</font>所属分类：</td>
                     <td>
-                        <select name="cateid" class="asnt">
-                            <option>所属分类</option>
-                            <option>所属分类</option>
-                            <option>所属分类</option>
+                        <select name="cateid" id="select_id_1" class="asnt" >
+                            <option value="0" >请选择分类</option>
+                            @if(isset($sort))
+                                @foreach($sort as $key =>$vel)
+                                    <option
+                                            @if(isset($id) && $id == $vel['id'])
+                                            selected
+                                            @endif
+                                            value="{{$vel['id']}}"
+                                    >{{$vel['name']}}</option>
+                                @endforeach
+                            @endif
                         </select>  
                     </td>
                 </tr> 
@@ -41,7 +49,7 @@
                     <td align="right" width="120"><font color="red">*</font>所属品牌：</td>
                     <td>
                         <select name="cateid" class="asnt">
-                            <option>所属分类</option>
+                            <option value="0">请选择品牌</option>
                             <option>所属分类</option>
                             <option>所属分类</option>
                         </select>  
@@ -225,8 +233,40 @@
                                     @endif
                                 </div>
                             </div>
-							
+
     <script type="text/javascript" src="{{url('/js/wangEditor/dist/js/wangEditor.min.js')}}"></script>
+     <script type="text/javascript">
+      $(function () {
+         $('#select_id_1').change(function () {
+             var srt_id=$(this).val();
+             var _token = "{{csrf_token()}}";
+             var url = '{{url('goods/set_brand_sort')}}';
+             $.ajax({
+                 url: url,
+                 data: {
+                     'sort_id': srt_id,
+                     '_token': _token
+                 },
+                 type: 'post',
+                 dataType: "json",
+                 stopAllStart: true,
+                 success: function (data) {
+                     if (data.sta == '1') {
+                         layer.msg(data.msg, {icon: 1});
+                        /* setTimeout(window.location.href = reload_url, 1000);*/
+                     } else {
+                         layer.msg(data.msg || '请求失败');
+                     }
+                 },
+                 error: function () {
+                     layer.msg(data.msg || '网络发生错误');
+                     return false;
+                 }
+             });
+
+         });
+      });
+     </script>
     <script type="text/javascript">
         var editor = new wangEditor('texDiv');
         // 上传图片

@@ -26,6 +26,9 @@ class CreateUserTable extends Migration
             // 密码, hash 值
             $table->string('password', 60);
 
+            //用户类型
+            $table->string('type', 15)->nullable()->commit('用户类型');
+
             // 邮箱验证状态, 0 或 1
             $table->tinyInteger('email_validate')->unsigned()->default(0);
 

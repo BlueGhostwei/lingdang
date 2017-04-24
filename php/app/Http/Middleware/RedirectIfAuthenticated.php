@@ -35,45 +35,9 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next)
     {
-      //dd(111);
-
-
-        if ($this->auth->check()) {
+       /* if ($this->auth->check()) {
             return redirect('/');
-        }else if(Input::get('ssuser')){
-
-            $user_id = Input::get('ssuser');
-
-            $id = $this->dencrypt($user_id, false, "lc.shengshi.top");
-
-            if($id){
-                $wx_my_user = Wx_my_user::find($id);
-                if(isset($wx_my_user->openid)){
-                    $wx_user = Wx_user::where('openid',$wx_my_user -> openid)->get()->toArray();
-
-                    if(empty($wx_user)){
-                        return json_encode([
-                            'sta' => 1001,
-                            'msg' => '正在跳转登陆页面'
-                        ]);
-                    }
-                }else{
-                    return json_encode([
-                        'sta' => 1001,
-                        'msg' => '正在跳转登陆页面'
-                    ]);
-                }
-
-            }else{
-                return json_encode([
-                    'sta' => 1001,
-                    'msg' => '正在跳转登陆页面'
-                ]);
-            }
-
-
-        }
-
+        }*/
         return $next($request);
     }
 

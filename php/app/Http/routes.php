@@ -28,6 +28,7 @@
 Route::group(['middleware' => 'guest'], function () {
     Route::group(['namespace' => 'Admin'], function () {
         // 登录注册
+		Route::post('user/sign_up',['as'=>'user.sign_up','uses'=>'Bell_userController@sign_up']);
         Route::get('Admin/user/login', ['as' => 'user.login', 'uses' => 'UserController@getLogin']);
         Route::post('Admin/user/login', 'UserController@postLogin');
         Route::get('/user/register', ['as' => 'user.register', 'uses' => 'UserController@getRegister']);
@@ -42,7 +43,8 @@ Route::group(['middleware' => 'guest'], function () {
         Route::get('password/reset/{token}', ['as' => 'password.reset', 'uses' => 'Auth\PasswordController@getReset']);
         Route::post('password/reset', ['as' => 'password.reset', 'uses' => 'Auth\PasswordController@postReset']);
         //ios
-        Route::get('user/send_sms', ['as' => 'send_sms', 'uses' => 'UserController@Send_sms']);
+        Route::get('user/Get_Token','UserController@GEt_token');
+        Route::post('user/send_sms', ['as' => 'user.send_sms', 'uses' => 'Bell_userController@Send_sms']);
     });
 });
 
@@ -116,13 +118,13 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/photo/show/{id}', ['as' => 'photo.show', 'uses' => 'ArticeControll@show']);//轮播图查看
             Route::post('/photo/update', ['as' => 'photo.update', 'uses' => 'ArticeControll@update']);//轮播图修改
             Route::post('/photo/destroy', ['as' => 'photo.destroy', 'uses' => 'ArticeControll@destroy']);//轮播图删除
-            Route::get('/artice/member_list', ['as' => 'artice.member_list', 'uses' => 'ArticeControll@member_list']);
+            Route::get('/Bells/member_list', ['as' => 'Bells.member_list', 'uses' => 'UserController@member_list']);
             Route::get('/artice/member', ['as' => 'artice.member', 'uses' => 'ArticeControll@member']);
             Route::get('/artice/consumption', ['as' => 'artice.consumption', 'uses' => 'ArticeControll@consumption']);
             Route::get('/artice/chongzhi', ['as' => 'artice.chongzhi', 'uses' => 'ArticeControll@chongzhi']);
             Route::get('/artice/goods', ['as' => 'artice.goods', 'uses' => 'ArticeControll@goods']);
             Route::get('/artice/goods_list', ['as' => 'artice.goods_list', 'uses' => 'ArticeControll@goods_list']);
-            Route::get('/artice/Add_goods', ['as' => 'artice.Add_goods', 'uses' => 'ArticeControll@Add_goods']);
+            Route::get('/goods/Add_goods', ['as' => 'goods.Add_goods', 'uses' => 'GoodsController@Add_goods']);
             Route::get('/artice/order', ['as' => 'artice.order', 'uses' => 'ArticeControll@order']);
             Route::get('/artice/order_XQ', ['as' => 'artice.order_XQ', 'uses' => 'ArticeControll@order_XQ']);
             Route::get('/artice/brand_list', ['as' => 'artice.brand_list', 'uses' => 'ArticeControll@brand_list']);//品牌列表

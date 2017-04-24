@@ -28,7 +28,7 @@ class Bell_user extends Eloquent
      *  location 所在地
      */
     protected $fillable = [
-        'user_mobile',
+        'user_id',
         'ma_avatar',
         'fa_avatar',
         'baby_id',
@@ -43,11 +43,22 @@ class Bell_user extends Eloquent
     {
         return [
             'create' => [
-                'user_mobile' => "required|min:3|max:100|unique:".$this->getTable(),
+                'name' => "required|min:3|max:100|unique:".$this->getTable(),
                 'password' => 'required|min:6|max:12',
             ],
         ];
     }
 
-    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * 关联用户表
+     */
+    public function belongsToUser(){
+
+        return $this->belongsTo(User::class);
+
+    }
+
+
+
 }

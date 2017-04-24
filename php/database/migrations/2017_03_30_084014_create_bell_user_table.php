@@ -7,7 +7,6 @@ class CreateBellUserTable extends Migration
 {
     /**
      * Run the migrations.
-     *'user_mobile',用户号码
      * 'ma_avatar',妈妈的头像
      * 'fa_avatar',爸爸的头像
      * 'baby_id',宝贝id

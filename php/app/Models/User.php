@@ -46,6 +46,7 @@ class User extends Eloquent implements AuthenticatableContract, CanResetPassword
      */
     protected $fillable = [
         'name',
+        'type',
         'password',
         'email',
         'avatar',
@@ -84,6 +85,16 @@ class User extends Eloquent implements AuthenticatableContract, CanResetPassword
     static public function boot()
     {
         User::observe(new UserObserver());
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * 用户表副表
+     */
+    public function bell_user(){
+
+        return $this->hasOne(Bell_user::class);
+
     }
 
     /**

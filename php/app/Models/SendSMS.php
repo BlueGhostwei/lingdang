@@ -77,9 +77,9 @@ class SendSMS extends Eloquent
         curl_setopt($ch, CURLOPT_URL, "http://api.weimi.cc/2/sms/send.html");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($ch, CURLOPT_POST, TRUE);
-        $uid = '5CipH7ou8gpw';
-        $pas = 'hbnv53a3';
-        $cid = "R7NwD6BxC0Mc";
+        $uid = '5p44z7ul4r1x';
+        $pas = 'xkesmap2';
+        $cid = "zoT2pYQcJ51F";
         $vcode = $code;
         $p2 = "3";
         curl_setopt($ch, CURLOPT_POSTFIELDS, 'uid=' . $uid . '&pas=' . $pas . '&mob=' . $mob . '&cid=' . $cid . '&p1=' . $vcode . '&p2=' . $p2 . '&type=json');

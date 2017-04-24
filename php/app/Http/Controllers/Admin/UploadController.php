@@ -69,7 +69,6 @@ class UploadController extends Controller
     public function index()
     {
         // 有效文件
-        //dd(Input::file('wangEditorH5File'));
         $key = Input::get('fileKey', 'file');
         $Editfile=Input::file('wangEditorH5File');
         if($Editfile==null){
@@ -203,8 +202,6 @@ class UploadController extends Controller
             $resize_img = resize_img($md5,$resize,true);
 
             File::put(config_path('rebate.php'), sprintf("<?php%s%sreturn %s;%s", PHP_EOL, PHP_EOL, var_export($resize, true), PHP_EOL));
-
-//			return Response::json([
 			return json_encode([
                 'sta' => 1,
                 'msg' => '上传成功',
@@ -216,7 +213,6 @@ class UploadController extends Controller
        if($Editfile != null){
            return $this->md52url($md5);
        }else{
-//			return Response::json([
 			return json_encode([
                'sta' => 1,
                'msg' => '上传成功',

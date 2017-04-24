@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Brand;
-use Hamcrest\Core\IsNull;
 use Illuminate\Http\Request;
 use App\Models\Sort;
 use Input;
 use Redirect;
-use DB;
 use Auth;
 use Response;
 use App\Http\Requests;

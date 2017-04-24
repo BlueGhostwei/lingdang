@@ -15,7 +15,6 @@ use Input;
 use Validator;
 use Auth;
 use App\Models\Actice;
-use DB;
 
 class ArticeControll extends Controller
 {
@@ -63,6 +62,11 @@ class ArticeControll extends Controller
         } else {
             return Redirect::back()->withErrors(['sort_name' => "分类名称不能为空"]);
         }
+        $rst = $sort->where('name', $data['name'])->select('id')->get()->toArray();
+        if ($rst) { 
+            return Redirect::back()->withErrors(['sort_name' => "该分类名称已被占用"])->withInput();
+        }
+
         $data['pid'] = "0";
         $data['id_str'] = '';
         $rst = $sort->create($data);
@@ -127,28 +131,29 @@ class ArticeControll extends Controller
      */
     public function store_actice(Request $request)
     {
-       $actice=New Actice();
-       $msg=[
-           'sort_id.required'=>'请选择文章栏目分类',
-           'writer.required'=>'请输入文章作者',
-           'writer.min'=>'作者名称至少2个字符',
-           'title.required'=>'请输入文章标题',
-           'title.unique'=>'该文章标题已被占用',
-           'content.required'=>'文章内容不能为空',
-           'content.min'=>'文章内容至少20个字符'
-       ];
-        $validator=Validator::make($request->all(),$actice->rules()['create'],$msg);
-        if($validator->failed()){
+        $actice = New Actice();
+        $msg = [
+            'sort_id.required' => '请选择文章栏目分类',
+            'writer.required' => '请输入文章作者',
+            'writer.min' => '作者名称至少2个字符',
+            'title.required' => '请输入文章标题',
+            'title.unique' => '该文章标题已被占用',
+            'content.required' => '文章内容不能为空',
+            'content.min' => '文章内容至少20个字符'
+        ];
+        $validator = Validator::make($request->all(), $actice->rules()['create'], $msg);
+        if ($validator->failed()) {
             return Redirect::back()->withErrors($validator)->withInput();
         }
-        $rst=$actice->create($request->only($actice->getFillable()));
-        if($rst){
-            return \Response::json(['msg'=>'添加成功','sta'=>'1','data'=>'']);
-        }else{
-            return \Response::json(['msg'=>'网络错误，添加失败','sta'=>'0','data'=>'']);
+        $rst = $actice->create($request->only($actice->getFillable()));
+        if ($rst) {
+            return \Response::json(['msg' => '添加成功', 'sta' => '1', 'data' => '']);
+        } else {
+            return \Response::json(['msg' => '网络错误，添加失败', 'sta' => '0', 'data' => '']);
         }
 
     }
+
     /**
      * Display a listing of the resource.
      * 文章列表
@@ -156,13 +161,13 @@ class ArticeControll extends Controller
      */
     public function artice_list()
     {
-       $keyword=trim(Input::get('keyword'));
-        if($keyword){
-            $actice_data= Actice::where('id',$keyword)->orWhere('title','like',"%$keyword%")->orderBy('id','asc')->paginate(10);
-        }else{
-            $actice_data= Actice::orderBy('id','asc')->paginate(10);
+        $keyword = trim(Input::get('keyword'));
+        if ($keyword) {
+            $actice_data = Actice::where('id', $keyword)->orWhere('title', 'like', "%$keyword%")->orderBy('id', 'asc')->paginate(10);
+        } else {
+            $actice_data = Actice::orderBy('id', 'asc')->paginate(10);
         }
-        return view('Admin.artice.action_list',['actice_data'=>$actice_data,'keyword'=>$keyword]);
+        return view('Admin.artice.action_list', ['actice_data' => $actice_data, 'keyword' => $keyword]);
     }
 
     /**
@@ -170,12 +175,13 @@ class ArticeControll extends Controller
      * @return $this
      * 文章展示
      */
-    public function artice_list_show($id){
-        $actice=Actice::find($id);
+    public function artice_list_show($id)
+    {
+        $actice = Actice::find($id);
         $actice_sort = Sort::where('type', 1)->orderBy('num', 'asc')->get();
-        if($actice){
-            return view('Admin.artice.index', ['actice_sort' => $actice_sort,'actice'=>$actice]);
-        }else{
+        if ($actice) {
+            return view('Admin.artice.index', ['actice_sort' => $actice_sort, 'actice' => $actice]);
+        } else {
             return Redirect::back()->withErrors('请求失败，请刷新页面重试');
         }
     }
@@ -185,25 +191,26 @@ class ArticeControll extends Controller
      * @return $this|\Illuminate\Http\JsonResponse
      * 更新文章
      */
-    public function artice_list_update(Request $request){
-        $actice=Actice::find($request->actice_id);
-        $msg=[
-            'sort_id.required'=>'请选择文章栏目分类',
-            'writer.required'=>'请输入文章作者',
-            'writer.min'=>'作者名称至少2个字符',
-            'title.required'=>'请输入文章标题',
-            'content.required'=>'文章内容不能为空',
-            'content.min'=>'文章内容至少20个字符'
+    public function artice_list_update(Request $request)
+    {
+        $actice = Actice::find($request->actice_id);
+        $msg = [
+            'sort_id.required' => '请选择文章栏目分类',
+            'writer.required' => '请输入文章作者',
+            'writer.min' => '作者名称至少2个字符',
+            'title.required' => '请输入文章标题',
+            'content.required' => '文章内容不能为空',
+            'content.min' => '文章内容至少20个字符'
         ];
-        $validator=Validator::make($request->all(),$actice->rules()['update'],$msg);
-        if($validator->failed()){
+        $validator = Validator::make($request->all(), $actice->rules()['update'], $msg);
+        if ($validator->failed()) {
             return Redirect::back()->withErrors($validator)->withInput();
         }
-        $rst=$actice->update($request->only($actice->getFillable()));
-        if($rst){
-            return \Response::json(['msg'=>'修改成功','sta'=>'1','data'=>'']);
-        }else{
-            return \Response::json(['msg'=>'网络错误，修改失败','sta'=>'0','data'=>'']);
+        $rst = $actice->update($request->only($actice->getFillable()));
+        if ($rst) {
+            return \Response::json(['msg' => '修改成功', 'sta' => '1', 'data' => '']);
+        } else {
+            return \Response::json(['msg' => '网络错误，修改失败', 'sta' => '0', 'data' => '']);
         }
 
     }
@@ -213,14 +220,15 @@ class ArticeControll extends Controller
      * @throws \Exception
      * 文章删除
      */
-    public function artice_list_destroy(){
-        $id=Input::get('actice_id');
-        $actice=Actice::find($id);
-        if($actice){
-            Actice::where('id',$id)->delete();
-            return \Response::json(['sta'=>'1','msg'=>'删除成功']);
-        }else{
-            return \Response::json(['sta'=>'0','msg'=>'请求失败，参数错误']);
+    public function artice_list_destroy()
+    {
+        $id = Input::get('actice_id');
+        $actice = Actice::find($id);
+        if ($actice) {
+            Actice::where('id', $id)->delete();
+            return \Response::json(['sta' => '1', 'msg' => '删除成功']);
+        } else {
+            return \Response::json(['sta' => '0', 'msg' => '请求失败，参数错误']);
         }
 
     }
@@ -237,6 +245,7 @@ class ArticeControll extends Controller
     }
 
     /**
+     * @return \Illuminate\Http\JsonResponse
      * 保存banner图片
      */
     public function save_slide()
@@ -272,16 +281,6 @@ class ArticeControll extends Controller
         return view('Admin.artice.slide', ['photo' => $photo]);
     }
 
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function member_list()
-    {   
-        return view('Admin.artice.member_list');
-    }
 
     /**
      * Display a listing of the resource.
@@ -448,16 +447,6 @@ class ArticeControll extends Controller
         return view('Admin.artice.goods_list');
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function Add_goods()
-    {
-
-        return view('Admin.artice.Add_goods');
-    }
 
     /**
      * Display a listing of the resource.

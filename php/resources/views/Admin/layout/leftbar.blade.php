@@ -31,7 +31,7 @@
                     <span class="nav-label">商品管理</span>
                 </a>
                 <ul>
-                    <li><a href="{{ route('artice.Add_goods') }}">添加商品</a></li>
+                    <li><a href="{{ route('goods.Add_goods') }}">添加商品</a></li>
                     <li><a href="{{ route('artice.goods_list') }}">商品列表</a></li>
                     <li><a href="{{ route('artice.goods') }}">商品分类</a></li>
                     <li><a href="{{ route('artice.Add_brand') }}">添加品牌</a></li>
@@ -56,7 +56,7 @@
                     <span class="nav-label">会员管理</span>
                 </a>
                 <ul>
-                    <li><a href="{{route('artice.member_list') }}">会员列表</a></li>
+                    <li><a href="{{route('Bells.member_list') }}">会员列表</a></li>
                     <li><a href="{{route('artice.chongzhi') }}">充值记录</a></li>
                     <li><a href="{{route('artice.consumption')}}">消费记录</a></li>
                 </ul>

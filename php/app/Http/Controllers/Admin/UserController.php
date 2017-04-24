@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Auth;
 use Input;
+use phpDocumentor\Reflection\Types\Null_;
 use Redirect;
 use Response;
 use App\Models\User;
@@ -26,6 +27,10 @@ use App\Http\Controllers\Controller;
  */
 class UserController extends Controller
 {
+
+    public function GEt_token(){
+        return csrf_token();
+    }
     
     /**
      * 用户列表, 排除已经删除的
@@ -104,6 +109,17 @@ class UserController extends Controller
         } else {
             return Response::json(['state' => 0, 'message' => '用户已是正常用户.']);
         }
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function member_list()
+    {
+
+        return view('Admin.artice.member_list');
     }
 
     /**
@@ -380,7 +396,8 @@ class UserController extends Controller
         $redirect = urldecode(Input::get('redirect', '/'));
         $data['id'] = User::where(array(
             'name' => $username,
-            'deleted_at' => NULL
+            'deleted_at' => NULL,
+            'type'=>NULL
         ))->get();
         if (count($data['id']->toArray()) > 0) {
             $id_data = $data['id']->toArray();
