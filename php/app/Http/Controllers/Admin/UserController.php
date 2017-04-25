@@ -29,7 +29,7 @@ class UserController extends Controller
 {
 
     public function GEt_token(){
-        return csrf_token();
+        return json_encode(['msg'=>'请求成功','sta'=>'1','data'=>csrf_token()]);
     }
     
     /**

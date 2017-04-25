@@ -53,7 +53,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['namespace' => 'Admin'], function () {
         Route::get('/', ['as' => 'admin.dashboard', 'uses' => 'DashboardController@index']);
         // 需要登录状态和权限控制的路由
-        Route::group(['middleware' => ['auth', 'acl']], function () {
+        Route::group(['middleware' => 'auth'], function () {
             Route::get('admin/system/logs', ['as' => 'system.logs', 'uses' => 'SystemController@logs']);
             Route::get('admin/system/action', ['as' => 'system.action', 'uses' => 'SystemController@action']);
             Route::get('admin/system/login-history', ['as' => 'system.login-history', 'uses' => 'SystemController@loginHistory']);
@@ -138,8 +138,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('sort/update/{id}',['as'=>'sort.update','uses'=>'SortController@update']);//更新商品分类
             Route::post('sort/storeBrand',['as'=>'sort.storeBrand','uses'=>'SortController@storeBrand']);//添加分类品牌
             Route::get('artice/Add_subtopic/{id}', ['as' => 'artice.Add_subtopic', 'uses' => 'ArticeControll@Add_subtopic']);
-
-
+            Route::post('goods/set_brand_sort', ['as' => 'goods.set_brand_sort', 'uses' => 'GoodsController@set_brand_sort']);
         });
         // 文件上传, 图片处理
         Route::post('upload', 'UploadController@index');
@@ -147,7 +146,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('upload/Cut_out', 'UploadController@Cut_out');//剪切图片
         Route::get('f/files/{s1}/{s2}/{s3}/{file}', 'ImageController@index');
         Route::get('upload/config', 'UploadController@config');
-        // Api
+        // iosapi 接口
+        Route::get('user/baby_info',['as'=>'user.baby_info','uses'=>'Bell_userController@baby_info']);
 
     });
     Route::group(['prefix' => 'api', 'as' => 'api', 'namespace' => 'Api'], function () {

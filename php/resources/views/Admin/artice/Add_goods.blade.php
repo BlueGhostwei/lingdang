@@ -252,6 +252,7 @@
                  stopAllStart: true,
                  success: function (data) {
                      if (data.sta == '1') {
+                         debugger
                          layer.msg(data.msg, {icon: 1});
                         /* setTimeout(window.location.href = reload_url, 1000);*/
                      } else {
@@ -259,7 +260,6 @@
                      }
                  },
                  error: function () {
-                     layer.msg(data.msg || '网络发生错误');
                      return false;
                  }
              });

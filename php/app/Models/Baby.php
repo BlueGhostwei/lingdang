@@ -11,7 +11,6 @@ class Baby extends Eloquent
 
     /**
      * @var array
-     * user_id 父（母）id
      * gender 性别
      *  'bady_name',宝宝名字
      * 'bady_avatar',宝宝头像
@@ -20,10 +19,12 @@ class Baby extends Eloquent
      * remind 是否提醒生日
      */
     protected $fillable = [
+        'nickname',
+        'height',
         'gender',
-        'baby_name',
-        'baby_avatar',
-        'baby_weight',
+        'name',
+        'avatar',
+        'weight',
         'birthday',
         'remind',
         'bady_age'
@@ -34,11 +35,10 @@ class Baby extends Eloquent
         return [
             'create' => [
                 'gender' => "required",
-                'baby_name' => 'required',
-                'baby_avatar' => 'required',
-                'baby_weight' => 'required',
+                'name' => 'required',
+                'avatar' => 'required',
+                'weight' => 'required',
                 'birthday' => 'required',
-                'remind' => 'required'
             ],
         ];
     }

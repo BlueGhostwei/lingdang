@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use DB,App\Models\Integration,Input,App\Models\SendSMS,App\Models\Baby;
-use Validator,Auth,App\Models\Bell_user;
+use DB, App\Models\Integration, Input, App\Models\SendSMS, App\Models\Baby;
+use Validator, Auth, App\Models\Bell_user;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redis;
 use App\Http\Controllers\Controller;
@@ -15,11 +15,9 @@ class Bell_userController extends Controller
     public function Send_sms()
     {
 
-        $file = fopen("log.txt","w");
+        /*$file = fopen("log.txt","w");
         fwrite($file,var_export(Input::all(),true));
-        fclose($file);
-
-
+        fclose($file);*/
         $mobile = Input::get('mobile');
         $sendsms = new SendSMS();
         $rst = $sendsms->send_sms($mobile, 'sign_up');
@@ -33,41 +31,53 @@ class Bell_userController extends Controller
     /**
      *
      * 宝贝信息录入
+     *
+     * 'email',
+     * 'avatar',
+     * 'role',
+     * 'nickname',
+     * 'gender',
+     * 'phone',
+     * 'wechat',
+     * 'height',
+     * 'birthday',
+     * 'bady_age',
+     * 'location',
      * 身高体重， 男女，生日，性别,是否提醒生日
      */
     public function baby_info(Request $request)
     {
-        $bady=new Baby();
-        $data['gender'] = Input::get('gender');
-        $data['birthday'] = Input::get('birthday');
-        $data['baby_weight'] = Input::get('baby_weight');
-        $data['remind'] = Input::get('remind');
-        $data['MOM_id'] = Auth::id();
-        $message = [
-            'gender.required' => "请选择宝贝的性别",
-            'baby_weight.required' => '请填写宝贝的体重',
-            'birthday.required' => '请填写宝贝的生日',
-            'remind.required' => '请选择是否提醒宝贝生日'
-        ];
+        dd(2141234);
+        $user_id = Auth::id();
+        $bady = User::where('id', $user_id)->first();
         //计算宝贝多大
-        $data['bady_age']=Controller::calcAge($data['birthday']);
-        $validate= Validator::make($data, $message, $bady->rules()['create']);
-        $messages = $validate->messages();
-        if ($validate->fails()) {
-            $msg = $messages->toArray();
-            foreach ($msg as $k => $v) {
-                return json_encode(['sta' => '0', 'msg' => $v[0], 'data' => '']);
+        /*$data=Input::all();
+        $data['bady_age'] = Controller::calcAge($bady['birthday']);
+        $data['signature'] = Input::get('signature');//个性签名*/
+        $data['location']="广州-海珠-市二宫";
+        $data['phone']="13226431320";
+        $data['birthday']="1994-09-09";
+        $data['wechat']="13226431320";
+        $data['nickname']="森尼";
+        $data['gender']="1";
+        $data['bady_age'] = Controller::calcAge($bady['birthday']);//格式如：1994-09-09
+        dd($data);
+        if ($bady) {
+            //开启事务
+            DB::beginTransaction();
+            try {
+                $rst = User::where('id', $user_id)->update($request->only($bady->getFillable()));
+                Bell_user::where('user_id', $user_id)->update(['signature', $data['signature']]);
+            } catch (\Exception $e) {
+                //接收异常处理并回滚
+                DB::rollBack();
+                return json_encode(['sta' => '0', 'msg' => $e->getMessage(), 'data' => '']);
             }
+        } else {
+            $rst = null;
         }
-        $rst = Baby::create($data);
-        if($rst){
-            return json_encode(['sta' => '1', 'msg' =>'请求成功', 'data' => $rst]);
-        }else{
-            return json_encode(['sta' => '0', 'msg' =>'请求失败', 'data' => '']);
-        }
-
+        return json_encode(['sta' => '1', 'msg' => '请求成功', 'data' => $rst]);
     }
-
 
 
     /**
@@ -80,17 +90,17 @@ class Bell_userController extends Controller
     public function User_Integration()
     {
         //获取当前时间。
-        $user_id=Input::get('user_id');
-        $flush=Integration::where('user_id',$user_id)->select('sign_time')->orderBy('id','desc')->limit(1)->get()->toArray();
-        if(empty($flush)){
+        $user_id = Input::get('user_id');
+        $flush = Integration::where('user_id', $user_id)->select('sign_time')->orderBy('id', 'desc')->limit(1)->get()->toArray();
+        if (empty($flush)) {
             //更新积分
-            Bell_user::where('id',$user_id)->update(['integral',Auth::user()->get()->integral+2]);
-        }else{
-            return json_encode(['msg'=>'您今天已经签到过了！','sta'=>'0','data'=>'']);
+            Bell_user::where('id', $user_id)->update(['integral', Auth::user()->get()->integral + 2]);
+        } else {
+            return json_encode(['msg' => '您今天已经签到过了！', 'sta' => '0', 'data' => '']);
         }
         //根据上面的结果来查询这个月有几天是签到过得。
-        $All_in=DB::select("SELECT sign_time FROM Integration WHERE user_id = ".$user_id." AND DATE_FORMAT(NOW(),'%Y-%m-%d')");
-        return json_encode(['msg'=>'请求成功','sta'=>'1','data'=>$All_in]);
+        $All_in = DB::select("SELECT sign_time FROM Integration WHERE user_id = " . $user_id . " AND DATE_FORMAT(NOW(),'%Y-%m-%d')");
+        return json_encode(['msg' => '请求成功', 'sta' => '1', 'data' => $All_in]);
     }
 
     /**
@@ -102,13 +112,13 @@ class Bell_userController extends Controller
      */
     public function sign_up()
     {
-        $data=Input::all();
-        $data['type']='1';
-        $data['name']=Input::get('name');
-        $data['password']=Input::get('password');
-        $data['password_confirmation']=Input::get('password');
-        $data['user_code']=Input::get('user_code');
-        $data['role']="3";
+        $data = Input::all();
+        $data['type'] = '1';
+        $data['name'] = Input::get('name');
+        $data['password'] = Input::get('password');
+        $data['password_confirmation'] = Input::get('password');
+        $data['user_code'] = Input::get('user_code');
+        $data['role'] = "3";
         $user_SMS = Redis::exists('user_SMS');
         if ($user_SMS == 1 && $data) {
             $send_num_data = Redis::get('user_SMS');
@@ -121,10 +131,10 @@ class Bell_userController extends Controller
                 $second = intval((strtotime($this_time) - strtotime($endtime)) % 86400);
                 if ($second <> 0 && $second > 0) {
                     Redis::del('user_SMS');
-                    return json_encode(['sta' => "1", 'msg' => '验证码已过期，请重新申请', 'data' => ""], JSON_UNESCAPED_UNICODE);
+                    return json_encode(['sta' => "0", 'msg' => '验证码已过期，请重新申请', 'data' => ""], JSON_UNESCAPED_UNICODE);
                 }
                 if ($data['name'] != $send_num['user_mobile']) {
-                    return json_encode(['msg' => "验证用户不一致！", 'sta' => "1", 'data' => ''], JSON_UNESCAPED_UNICODE);
+                    return json_encode(['msg' => "验证用户不一致！", 'sta' => "0", 'data' => ''], JSON_UNESCAPED_UNICODE);
                 }
                 $user = new User();
                 $validate = Validator::make($data, $user->rules()['create']);
@@ -132,23 +142,23 @@ class Bell_userController extends Controller
                 if ($validate->fails()) {
                     $msg = $messages->toArray();
                     foreach ($msg as $k => $v) {
-                        return json_encode(['sta' => "1", 'msg' => $v[0], 'data' => ''], JSON_UNESCAPED_UNICODE);
+                        return json_encode(['sta' => "0", 'msg' => $v[0], 'data' => ''], JSON_UNESCAPED_UNICODE);
                     }
                 }
                 $use_data = $user->create($data);
-                if($use_data){
+                if ($use_data) {
                     //创建关系表
-                    $bell_user=new Bell_user();
-                    $bell_user->create(['user_id'=>$use_data->id]);
+                    $bell_user = new Bell_user();
+                    $bell_user->create(['user_id' => $use_data->id]);
                 }
                 Auth::login($use_data);
                 // $data = User::where(['username'=>$request->username])->update(['created_by' => Auth::id()]);
-                    if ($data) {
+                if ($data) {
                     Redis::del('user_SMS');
-                    return json_encode(['sta' => "0", 'msg' => '注册成功', 'data' => $use_data], JSON_UNESCAPED_UNICODE);
+                    return json_encode(['sta' => "1", 'msg' => '注册成功', 'data' => $use_data], JSON_UNESCAPED_UNICODE);
                 }
             } else {
-                return json_encode(['msg' => "验证码错误", 'sta' => "1", 'data' => '']);
+                return json_encode(['msg' => "验证码错误", 'sta' => "0", 'data' => '']);
             }
         }
 
@@ -161,21 +171,19 @@ class Bell_userController extends Controller
      * QQ wechat,weibo
      * 获取账号类型，与对应openid
      */
-    protected function  ThirdParty(){
-        $type=Input::get('type');//账号类型QQ，wechat,weibo
-        $Account_type=$type;
-
-
-
-
-
+    protected function ThirdParty()
+    {
+        $type = Input::get('type');//账号类型QQ，wechat,weibo
+        $Account_type = $type;
 
 
     }
+
     /**
      * 用户找回密码
      */
-    public function findPass(){
+    public function findPass()
+    {
 
     }
 
@@ -183,7 +191,7 @@ class Bell_userController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -194,7 +202,7 @@ class Bell_userController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -205,7 +213,7 @@ class Bell_userController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -216,8 +224,8 @@ class Bell_userController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -228,7 +236,7 @@ class Bell_userController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

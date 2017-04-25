@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Brand;
 use App\Models\Sort;
 use Illuminate\Http\Request;
-
+use DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -27,7 +28,7 @@ class GoodsController extends Controller
      */
     public function create()
     {
-        //
+        //7
     }
 
     /**
@@ -38,13 +39,13 @@ class GoodsController extends Controller
     public function Add_goods()
     {
         $sort = Sort::where(['type' => '0', 'pid' => "0"])->select('id', 'pid', 'name')->orderBy('id', 'asc')->get()->toArray();
-
         return view('Admin.artice.Add_goods',['sort'=>$sort]);
     }
 
     public function set_brand_sort(){
-     $id=\Input::get('sort_id');
-
+     $id=\Input::get('sort_id');//获取到分id，获取品牌分类
+     $sql="select * from brand where instr(concat(',',sort_id,','),',$id,')<>0";
+     $rst=DB::query($sql);
     }
     /**
      * Store a newly created resource in storage.

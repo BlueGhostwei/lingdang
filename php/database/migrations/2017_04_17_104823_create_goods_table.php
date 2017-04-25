@@ -12,7 +12,11 @@ class CreateGoodsTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('goods',function(Blueprint $table){
+            //主键id
+            $table->increments('id');
+            
+        });
     }
 
     /**
