@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Brand;
 use App\Models\Sort;
+use Input;
 use Illuminate\Http\Request;
 use DB;
 use App\Http\Requests;
+use Response;
 use App\Http\Controllers\Controller;
 
 class GoodsController extends Controller
@@ -43,9 +45,10 @@ class GoodsController extends Controller
     }
 
     public function set_brand_sort(){
-     $id=\Input::get('sort_id');//获取到分id，获取品牌分类
-     $sql="select * from brand where instr(concat(',',sort_id,','),',$id,')<>0";
-     $rst=DB::query($sql);
+     $id=Input::get('sort_id');//获取到分id，获取品牌分类
+     $sql="select * from brand where instr(concat(',',sort_id,','),',$id,')<>0 order by brand_num DESC ";
+     $rst=DB::select($sql);
+     return Response::json(['msg'=>'请求成功','data'=>$rst,'sta'=>'1']);
     }
     /**
      * Store a newly created resource in storage.
@@ -55,7 +58,7 @@ class GoodsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**

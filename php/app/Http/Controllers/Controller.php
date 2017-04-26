@@ -42,8 +42,11 @@ abstract class Controller extends BaseController
      * @return int
      *  根据生日计算年龄
      */
-    public function calcAge($birthday) {
-        $age = 0;
+    public function calcAge($birth) {
+
+        $date = date_diff(date_create($birth), date_create(date('Y-m-d')));
+        return $date->y.'岁'.$date->m.'月'.$date->d.'天';
+      /*  $age = 0;
         if(!empty($birthday)){
             $age = strtotime($birthday);
             if($age === false){
@@ -59,7 +62,7 @@ abstract class Controller extends BaseController
                 $age -= 1;
             }
         }
-        return $age;
+        return $age;*/
     }
 
 

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Contracts\Validation\ValidationException;
+use Redirect;
+use Response;
 use App\Models\User;
 use Illuminate\Http\Request;
-use DB, App\Models\Integration, Input, App\Models\SendSMS, App\Models\Baby;
+use DB, App\Models\Integration, Input, App\Models\SendSMS;
 use Validator, Auth, App\Models\Bell_user;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redis;
@@ -45,38 +48,45 @@ class Bell_userController extends Controller
      * 'location',
      * 身高体重， 男女，生日，性别,是否提醒生日
      */
-    public function baby_info(Request $request)
+    public function baby_info()
     {
-        dd(2141234);
         $user_id = Auth::id();
         $bady = User::where('id', $user_id)->first();
-        //计算宝贝多大
-        /*$data=Input::all();
-        $data['bady_age'] = Controller::calcAge($bady['birthday']);
-        $data['signature'] = Input::get('signature');//个性签名*/
-        $data['location']="广州-海珠-市二宫";
-        $data['phone']="13226431320";
-        $data['birthday']="1994-09-09";
-        $data['wechat']="13226431320";
-        $data['nickname']="森尼";
-        $data['gender']="1";
-        $data['bady_age'] = Controller::calcAge($bady['birthday']);//格式如：1994-09-09
-        dd($data);
-        if ($bady) {
-            //开启事务
-            DB::beginTransaction();
-            try {
-                $rst = User::where('id', $user_id)->update($request->only($bady->getFillable()));
-                Bell_user::where('user_id', $user_id)->update(['signature', $data['signature']]);
-            } catch (\Exception $e) {
-                //接收异常处理并回滚
-                DB::rollBack();
-                return json_encode(['sta' => '0', 'msg' => $e->getMessage(), 'data' => '']);
-            }
-        } else {
-            $rst = null;
-        }
-        return json_encode(['sta' => '1', 'msg' => '请求成功', 'data' => $rst]);
+        $data['location'] = Input::get('location');
+        $data['avatar'] = Input::get('avatar');
+        $data['phone'] = Input::get('phone');
+        $data['birthday'] = Input::get('birthday');
+        $data['wechat'] = trim(Input::get('wechat'));
+        $data['height'] = trim(Input::get('height'));
+        $data['nickname'] = Input::get('nickname');
+        $data['gender'] = Input::get('gender');
+        $signature = Input::get('signature');
+       /* $data['location'] = '广州番禺';
+        $data['avatar'] = 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=938117960,418509084&fm=117&gp=0.jpg';
+        $data['phone'] = '13226431320';
+        $data['birthday'] = '2014-09-09';
+        $data['wechat'] = '35';
+        $data['height'] = "120";
+        $data['nickname'] = "鲍勃";
+        $data['gender'] ='1';
+        $signature = "美丽即是正义~";*/
+        $data['bady_age'] = Controller::calcAge($data['birthday']);//格式如：1994-09-09
+       if($bady){
+           DB::beginTransaction();
+           try {
+               User::where('id', Auth::id())->update($data);
+               Bell_user::where('user_id', Auth::id())->update(['signature' => $signature]);
+               DB::commit();
+               // all good
+           } catch (\Exception $e) {
+               DB::rollback();
+               return json_encode(['msg'=>$e->getMessage(),'sta'=>0,'data'=>'']);
+               // something went wron
+           }
+       }else{
+           return json_encode(['sta' => '0', 'msg' => '请求失败', 'data' => ""]);
+       }
+        return json_encode(['sta' => '1', 'msg' => '请求成功', 'data' => ""]);
     }
 
 

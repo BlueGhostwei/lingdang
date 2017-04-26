@@ -38,8 +38,10 @@ class Authenticate
     public function handle($request, Closure $next)
     {
         if ($this->auth->guest()) {
+
             return redirect()->route('user.login')->withErrors('请先登录');
         }
+       
         return $next($request);
         /*
         if ($this->auth->guest()) {

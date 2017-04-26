@@ -9,7 +9,7 @@
             <!--<div class="main-container">
         <div class="container-fluid">
             @include('Admin.layout.breadcrumb', [
-                'title' => '添加文章',
+                'title' => '添加内容',
                 '' => [
                     '' => '',
                 ]
@@ -120,7 +120,7 @@
                   layer.msg('请选择分类');
                   return false
               }
-              var _token = $('input[name="_token"]').val();
+              var _token = $('input[name="_token"]').val(); 
               var title = $('input[name="title"]').val();
               if(title == ''){
                   layer.msg('标题不能为空');

@@ -48,26 +48,25 @@
                 <tr>
                     <td align="right" width="120"><font color="red">*</font>所属品牌：</td>
                     <td>
-                        <select name="cateid" class="asnt">
+                        <select name="cateid"  id="set_brand" class="asnt">
                             <option value="0">请选择品牌</option>
-                            <option>所属分类</option>
-                            <option>所属分类</option>
                         </select>  
                     </td>
                 </tr>
                 <tr>
                     <td align="right">商品类型：</td>
-                    <td><input type="radio" name="radio" id="boy" value="boy"> 女童 <input type="radio" name="radio" id="girl" value="girl"> 男童</td>
+                    <td><input type="radio" checked name="goods_sort" id="boy" value="boy"> 男童 <input type="radio" name="goods_sort" id="girl" value="girl"> 女童</td>
                 </tr> 
                 <tr>
                     <td align="right">商品标题：</td>
-                    <td><input  type="text"  value="" class="Iar_input"></td>
+                    <td><input  type="text" name="goods_title"  value="" class="Iar_input"></td>
                 </tr>
                 <tr>
                     <td align="right" width="120">缩略图：</td>
                     <td>
 <div class="" style="position:relative;">
 	<form id="form_1" action="" method="post" style="aposition:relative;z-index:1000;">
+        {{csrf_field()}}
 		<input type="file" name="file" id="file_1" style="opacity:0;position:absolute;left:347px;top:0;width:68px;height:26px;cursor:pointer;"	/>
 		<input type="text" name="upfile_1" id="upfile_1" class="Iar_inputt">
 		<input type="button" class="button" id="up_1" value="上传图片"/>
@@ -86,6 +85,7 @@
                     <td>
 <div class="" style="position:relative;">
 	<form id="form_2" action="" method="post" style="aposition:relative;z-index:1000;">
+        {{csrf_field()}}
 		<input type="file" name="file" id="file_2" style="opacity:0;position:absolute;left:347px;top:0;width:68px;height:26px;cursor:pointer;"	/>
 		<input type="text" name="upfile_2" id="upfile_2" class="Iar_inputt">
 		<input type="button" class="button" id="up_2" value="上传图片"/> <i>*最多可以上传10 张图片</i>
@@ -103,15 +103,15 @@
                 </tr> 
                 <tr>
                     <td align="right">商品总价格：</td>
-                    <td><input  type="text"  value="" class="Iar_inpun" style="margin-right: 10px;"><font color="red">元</font></td>
-                </tr> 
+                    <td><input  name="price" type="text"  value="" class="Iar_inpun" style="margin-right: 10px;"><font color="red">元</font></td>
+                </tr>
                 <tr>
                     <td align="right">库存：</td>
-                    <td><input  type="text"  value="" class="Iar_inpun" style="margin-right: 10px;"><font color="red">个</font></td>
+                    <td><input  name="inventory" type="text"  value="" class="Iar_inpun" style="margin-right: 10px;"><font color="red">个</font></td>
                 </tr> 
                 <tr>
                     <td align="right">尺码参考：</td>
-                    <td><input type="text" name="" class="Iar_input"></td>
+                    <td><input type="text" name="Size_reference" class="Iar_input"></td>
                 </tr> 
                 <tr>
                     <td align="right">尺码：</td>
@@ -121,7 +121,7 @@
                             <td>
                                 <div data="1" class="plus-tag tagbtn clearfix" style="float: left;width: auto;"></div>
                                 <div data="1" class="plus-tag-add" style="float: left;width: auto;">
-                                    <input id="" name="" type="text" class="stext" maxlength="20" />
+                                    <input id="" name="measure" type="text" class="stext" maxlength="20" />
                                     <button type="button" class="Button RedButton Button18" >添加</button>
                                 </div>
                             </td>
@@ -131,7 +131,7 @@
                             <td>
                                 <div data="2" class="plus-tag tagbtn clearfix" style="float: left;width: auto;"></div>
                                 <div data="2" class="plus-tag-add" style="float: left;width: auto;">
-                                    <input id="" name="" type="text" class="stext" maxlength="20" />
+                                    <input id="" name="Shoulder_width" type="text" class="stext" maxlength="20" />
                                     <button type="button" class="Button RedButton Button18" >添加</button>
                                 </div>
                             </td>
@@ -141,7 +141,7 @@
                             <td>
                                 <div data="3" class="plus-tag tagbtn clearfix" style="float: left;width: auto;"></div>
                                 <div data="3" class="plus-tag-add" style="float: left;width: auto;">
-                                    <input id="" name="" type="text" class="stext" maxlength="20" />
+                                    <input id="" name="Long_clothing" type="text" class="stext" maxlength="20" />
                                     <button type="button" class="Button RedButton Button18" >添加</button>
                                 </div>
                             </td>
@@ -151,7 +151,7 @@
                             <td>
                                 <div data="4" class="plus-tag tagbtn clearfix" style="float: left;width: auto;"></div>
                                 <div data="4" class="plus-tag-add" style="float: left;width: auto;">
-                                    <input id="" name="" type="text" class="stext" maxlength="20" />
+                                    <input id="" name="Sleeve_Length" type="text" class="stext" maxlength="20" />
                                     <button type="button" class="Button RedButton Button18" >添加</button>
                                 </div>
                             </td>
@@ -161,7 +161,7 @@
                             <td>
                                 <div data="5" class="plus-tag tagbtn clearfix" style="float: left;width: auto;"></div>
                                 <div data="5" class="plus-tag-add" style="float: left;width: auto;">
-                                    <input id="" name="" type="text" class="stext" maxlength="20" />
+                                    <input id="" name="bust" type="text" class="stext" maxlength="20" />
                                     <button type="button" class="Button RedButton Button18" >添加</button>
                                 </div>
                             </td>
@@ -173,7 +173,7 @@
                     <td>
                                 <div data="6" class="plus-tag tagbtn clearfix" style="float: left;width: auto;"></div>
                                 <div data="6" class="plus-tag-add" style="float: left;width: auto;">
-                                    <input id="" name="" type="text" class="stext" maxlength="20" />
+                                    <input id="" name="Material" type="text" class="stext" maxlength="20" />
                                     <button type="button" class="Button RedButton Button18" >添加</button>
                                 </div>
                     </td>
@@ -183,7 +183,7 @@
                     <td>
                                 <div data="7" class="plus-tag tagbtn clearfix" style="float: left;width: auto;"></div>
                                 <div data="7" class="plus-tag-add" style="float: left;width: auto;">
-                                    <input id="" name="" type="text" class="stext" maxlength="20" />
+                                    <input id="" name="Colour" type="text" class="stext" maxlength="20" />
                                     <button type="button" class="Button RedButton Button18" >添加</button>
                                 </div>
 					</td>
@@ -193,7 +193,7 @@
                     <td>
                                 <div data="8" class="plus-tag tagbtn clearfix" style="float: left;width: auto;"></div>
                                 <div data="8" class="plus-tag-add" style="float: left;width: auto;">
-                                    <input id="" name="" type="text" class="stext" maxlength="20" />
+                                    <input id="" name="Sleeve_Type" type="text" class="stext" maxlength="20" />
                                     <button type="button" class="Button RedButton Button18" >添加</button>
                                 </div>
 					</td>
@@ -203,7 +203,7 @@
                     <td>
                                 <div data="9" class="plus-tag tagbtn clearfix" style="float: left;width: auto;"></div>
                                 <div data="9" class="plus-tag-add" style="float: left;width: auto;">
-                                    <input id="" name="" type="text" class="stext" maxlength="20" />
+                                    <input id="" name="style" type="text" class="stext" maxlength="20" />
                                     <button type="button" class="Button RedButton Button18" >添加</button>
                                 </div>
 					</td>
@@ -213,7 +213,7 @@
                     <td>
                                 <div data="10" class="plus-tag tagbtn clearfix" style="float: left;width: auto;"></div>
                                 <div data="10" class="plus-tag-add" style="float: left;width: auto;">
-                                    <input id="" name="" type="text" class="stext" maxlength="20" />
+                                    <input id="" name="Version_type" type="text" class="stext" maxlength="20" />
                                     <button type="button" class="Button RedButton Button18" >添加</button>
                                 </div>
 					</td>
@@ -252,8 +252,18 @@
                  stopAllStart: true,
                  success: function (data) {
                      if (data.sta == '1') {
-                         debugger
-                         layer.msg(data.msg, {icon: 1});
+                         var num =  data.data.length;
+                         var rst ="";
+                          for(var i =0;i<num;i++){
+                             rst += "<option value="+ data.data[i]['id']+">" +
+                                     data.data[i]['brand_name']
+                                     +"</option>";
+                          }
+                         $("#set_brand").find("option").remove();
+                         $("#set_brand").append(rst);
+                         //插入html结构
+                        //  layer.msg(data.msg, {icon: 1});
+                         return false;
                         /* setTimeout(window.location.href = reload_url, 1000);*/
                      } else {
                          layer.msg(data.msg || '请求失败');
@@ -293,7 +303,7 @@
                 </tr> 
                 <tr>
                     <td align="right">商品属性：</td>
-                    <td><input type="radio" name="radio" id="boy" value="boy"> 推荐 </td>
+                    <td><input type="radio" name="recommend" id="boy" value="boy"> 推荐 </td>
                 </tr> 
                 <tr height="60px">
                     <td align="right"></td>
