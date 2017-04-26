@@ -303,11 +303,12 @@
                 </tr> 
                 <tr>
                     <td align="right">商品属性：</td>
-                    <td><input type="radio" name="recommend" id="boy" value="boy"> 推荐 </td>
+                    <td><input type="checkbox" name="recommend" value="tj"> 推荐 
+					</td>
                 </tr> 
                 <tr height="60px">
                     <td align="right"></td>
-                    <td><input type="submit" name="dosubmit" class="button" value="提 交"></td>
+                    <td><input type="submit" name="dosubmit" class="button" id="submit" value="提 交"></td>
                 </tr>
             </table>
 <!--
@@ -390,6 +391,97 @@
 	$("#file_2").change(function () {
 		$("#form_2").ajaxSubmit(options2);
 	});
+	
+	$("#submit").click(function(){
+		var dataf = [];
+		dataf['cateid'] = $("#select_id_1").val();
+		dataf['cateid2'] = $("#set_brand").val();
+		dataf['goods_sort'] = $("input[name='goods_sort']:checked").val();
+		dataf['goods_title'] = $("input[name='goods_title']").val();
+		dataf['pic1'] = $("#upfile_1").val();
+		dataf['pic2'] = '';
+			$("#uppic_2 img").each(function(i){
+				if( $(this).attr("data") ){
+					var data = $(this).attr("data");
+					if( i > 0 ){	dataf['pic2'] += ",";	}
+					dataf['pic2'] += data;
+				}
+			});;
+		dataf['price'] = $("input[name='price']").val();
+		dataf['inventory'] = $("input[name='inventory']").val();
+		dataf['Size_reference'] = $("input[name='Size_reference']").val();
+		dataf['measure'] = getString('measure');
+		dataf['Shoulder_width'] = getString('Shoulder_width');
+		dataf['Long_clothing'] = getString('Long_clothing');
+		dataf['Sleeve_Length'] = getString('Sleeve_Length');
+		dataf['bust'] = getString('bust');
+		dataf['Material'] = getString('Material');
+		dataf['Colour'] = getString('Colour');
+		dataf['Sleeve_Type'] = getString('Sleeve_Type');
+		dataf['style'] = getString('style');
+		dataf['Version_type'] = getString('Version_type');
+		// 获取编辑器区域完整html代码
+		dataf['content'] = editor.$txt.html();
+		dataf['recommend'] = "";
+		if( $("input[name=recommend]").is(":checked") ){				//我已经阅读并同意云媒体交易平台习家规则
+			dataf['recommend'] = $("input[name=recommend]").val();
+		}
+		console.log(dataf);
+		
+		URL = "";
+		$.ajax({
+                  url: URL,
+                  data: {
+                      "cateid" : dataf['cateid'],
+                      "cateid2" : dataf['cateid2'],
+                      "goods_sort" : dataf['goods_sort'],
+                      "goods_title" : dataf['goods_title'],
+                      "pic1" : dataf['pic1'],
+                      "pic2" : dataf['pic2'],
+                      "price" : dataf['price'],
+                      "inventory" : dataf['inventory'],
+                      "Size_reference" : dataf['Size_reference'],
+                      "measure" : dataf['measure'],
+                      "Shoulder_width" : dataf['Shoulder_width'],
+                      "Long_clothing" : dataf['Long_clothing'],
+                      "Sleeve_Length" : dataf['Sleeve_Length'],
+                      "bust" : dataf['bust'],
+                      "Material" : dataf['Material'],
+                      "Colour" : dataf['Colour'],
+                      "Sleeve_Type" : dataf['Sleeve_Type'],
+                      "style" : dataf['style'],
+                      "Version_type" : dataf['Version_type'],
+                      "content" : dataf['content'],
+                      "recommend" : dataf['recommend']
+                  },
+                  type: 'post',
+                  dataType: "json",
+                  stopAllStart: true,
+                  success: function (data) {
+                      if (data.sta == '1') {
+                          layer.msg(data.msg, {icon: 1});
+                          setTimeout(window.location.href = reload_url, 1000);
+                      } else {
+                          layer.msg(data.msg || '请求失败');
+                      }
+                  },
+                  error: function (data) {
+                      layer.msg(data.msg || '网络发生错误');
+                      return false;
+                  }
+		});
+	});
+	function getString(name){
+		var string_l = '';
+		$("input[name="+name+"]").parent().prev().find("a").each(function(i){
+			var value = $(this).attr("title");
+			if( i > 0 ){	string_l += ",";	}
+			string_l += value;
+		});
+		return string_l;
+	}
+	
+	
 </script>
 <!--尺码-->
 <script type="text/javascript">
