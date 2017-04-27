@@ -436,16 +436,7 @@ class ArticeControll extends Controller
      */
 
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function goods_list()
-    {
-
-        return view('Admin.artice.goods_list');
-    }
+    
 
 
     /**

@@ -296,6 +296,11 @@ function child_sort($id,$child){
     return "";
 }
 
+function get_brand($id){
+    $sql = "select * from brand where instr(concat(',',sort_id,','),',$id,')<>0 order by brand_num DESC ";
+    $rst = DB::select($sql);
+    return $rst;
+}
 
 /**
  * 创建目录

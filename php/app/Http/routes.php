@@ -127,8 +127,10 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/artice/consumption', ['as' => 'artice.consumption', 'uses' => 'ArticeControll@consumption']);
             Route::get('/artice/chongzhi', ['as' => 'artice.chongzhi', 'uses' => 'ArticeControll@chongzhi']);
             Route::get('/artice/goods', ['as' => 'artice.goods', 'uses' => 'ArticeControll@goods']);
-            Route::get('/artice/goods_list', ['as' => 'artice.goods_list', 'uses' => 'ArticeControll@goods_list']);
-            Route::get('/goods/Add_goods', ['as' => 'goods.Add_goods', 'uses' => 'GoodsController@Add_goods']);
+            Route::get('goods/goods_list', ['as' => 'goods.goods_list', 'uses' => 'GoodsController@goods_list']);//商品列表
+            Route::get('/goods/show/{id}', ['as' => 'goods.show', 'uses' => 'GoodsController@show']);//商品详情
+            Route::post('/goods/update', ['as' => 'goods.update', 'uses' => 'GoodsController@update']);//商品更新
+            Route::get('/goods/Add_goods', ['as' => 'goods.Add_goods', 'uses' => 'GoodsController@Add_goods']);//添加商品
             Route::get('/artice/order', ['as' => 'artice.order', 'uses' => 'ArticeControll@order']);
             Route::get('/artice/order_XQ', ['as' => 'artice.order_XQ', 'uses' => 'ArticeControll@order_XQ']);
             Route::get('/artice/brand_list', ['as' => 'artice.brand_list', 'uses' => 'ArticeControll@brand_list']);//品牌列表
@@ -143,7 +145,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('sort/storeBrand',['as'=>'sort.storeBrand','uses'=>'SortController@storeBrand']);//添加分类品牌
             Route::get('artice/Add_subtopic/{id}', ['as' => 'artice.Add_subtopic', 'uses' => 'ArticeControll@Add_subtopic']);
             Route::post('goods/set_brand_sort', ['as' => 'goods.set_brand_sort', 'uses' => 'GoodsController@set_brand_sort']);
-            Route::post('goods/store', ['as' => 'goods.store', 'uses' => 'GoodsController@store ']);
+            Route::post('goods/store', 'GoodsController@store');
 
 
 
