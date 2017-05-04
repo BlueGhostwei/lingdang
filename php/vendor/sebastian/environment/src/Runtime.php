@@ -41,26 +41,44 @@ class Runtime
     {
         // HHVM
         if (self::$binary === null && $this->isHHVM()) {
-            // @codeCoverageIgnoreStart
             if ((self::$binary = getenv('PHP_BINARY')) === false) {
                 self::$binary = PHP_BINARY;
             }
 
             self::$binary = escapeshellarg(self::$binary) . ' --php';
-            // @codeCoverageIgnoreEnd
         }
 
-        if (PHP_BINARY !== '') {
-            self::$binary = escapeshellarg(PHP_BINARY);
+        // PHP >= 5.4.0
+        if (self::$binary === null && defined('PHP_BINARY')) {
+            if (PHP_BINARY !== '') {
+                self::$binary = escapeshellarg(PHP_BINARY);
+            }
+        }
+
+        // PHP < 5.4.0
+        if (self::$binary === null) {
+            if (PHP_SAPI == 'cli' && isset($_SERVER['_'])) {
+                if (strpos($_SERVER['_'], 'phpunit') !== false) {
+                    $file = file($_SERVER['_']);
+
+                    if (strpos($file[0], ' ') !== false) {
+                        $tmp          = explode(' ', $file[0]);
+                        self::$binary = escapeshellarg(trim($tmp[1]));
+                    } else {
+                        self::$binary = escapeshellarg(ltrim(trim($file[0]), '#!'));
+                    }
+                } elseif (strpos(basename($_SERVER['_']), 'php') !== false) {
+                    self::$binary = escapeshellarg($_SERVER['_']);
+                }
+            }
         }
 
         if (self::$binary === null) {
-            // @codeCoverageIgnoreStart
-            $possibleBinaryLocations = [
+            $possibleBinaryLocations = array(
                 PHP_BINDIR . '/php',
                 PHP_BINDIR . '/php-cli.exe',
                 PHP_BINDIR . '/php.exe'
-            ];
+            );
 
             foreach ($possibleBinaryLocations as $binary) {
                 if (is_readable($binary)) {
@@ -68,13 +86,10 @@ class Runtime
                     break;
                 }
             }
-            // @codeCoverageIgnoreEnd
         }
 
         if (self::$binary === null) {
-            // @codeCoverageIgnoreStart
             self::$binary = 'php';
-            // @codeCoverageIgnoreEnd
         }
 
         return self::$binary;
@@ -94,13 +109,9 @@ class Runtime
     public function getName()
     {
         if ($this->isHHVM()) {
-            // @codeCoverageIgnoreStart
             return 'HHVM';
-            // @codeCoverageIgnoreEnd
         } elseif ($this->isPHPDBG()) {
-            // @codeCoverageIgnoreStart
             return 'PHPDBG';
-            // @codeCoverageIgnoreEnd
         } else {
             return 'PHP';
         }
@@ -112,9 +123,7 @@ class Runtime
     public function getVendorUrl()
     {
         if ($this->isHHVM()) {
-            // @codeCoverageIgnoreStart
             return 'http://hhvm.com/';
-            // @codeCoverageIgnoreEnd
         } else {
             return 'https://secure.php.net/';
         }
@@ -126,9 +135,7 @@ class Runtime
     public function getVersion()
     {
         if ($this->isHHVM()) {
-            // @codeCoverageIgnoreStart
             return HHVM_VERSION;
-            // @codeCoverageIgnoreEnd
         } else {
             return PHP_VERSION;
         }
@@ -179,8 +186,6 @@ class Runtime
      * and the phpdbg_*_oplog() functions are available (PHP >= 7.0).
      *
      * @return bool
-     *
-     * @codeCoverageIgnore
      */
     public function hasPHPDBGCodeCoverage()
     {

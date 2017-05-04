@@ -98,7 +98,7 @@ class SendSMS extends Eloquent
      */
     public function getnumber($mob, $type)
     {
-        $send_num_data = Redis::get('user_Send_num');
+        $send_num_data = Redis::get('user_Send_num_'.$mob);
         $send_num = json_decode($send_num_data, true);
         if (!empty($send_num)) {
             //时间判断
@@ -107,7 +107,7 @@ class SendSMS extends Eloquent
             $second = intval((strtotime($endtime) - strtotime($this_time)) % 86400);
             //当前时间是否大于发送时间+时间限制 在限制时间内，当前时间小于发送时间+限制
             if ($second <> 0 && $second < 0) {
-                Redis::del('user_Send_num');
+                Redis::del('user_Send_num_'.$mob);
                 $array2 = array(
                     'num' => 1,
                     'user_mobile' => $mob,
@@ -115,7 +115,7 @@ class SendSMS extends Eloquent
                     'Send_time' => time()
                 );
             } else {
-                Redis::del('user_Send_num');
+                Redis::del('user_Send_num_'.$mob);
                 $array2 = array(
                     'num' => $send_num['num'] + 1,
                     'type' => $type,
@@ -161,14 +161,14 @@ class SendSMS extends Eloquent
                     'code' => $vcode,
                     'type' => $type
                 );
-                Redis::set('user_SMS', json_encode($array));
-                Redis::set('user_Send_num', json_encode($array2));
+                Redis::set('user_SMS_'.$mob, json_encode($array));
+                Redis::set('user_Send_num_'.$mob, json_encode($array2));
                 return array('code' => $vcode, 'sta' => 1);
             } else {
                 return array('msg' => "短信发送失败，请联系客服！", 'sta' => '0', 'data' => '');
             }
         } else {
-            return array('msg' => $set_type['msg'], 'sta' => '0', 'data' => '');
+            return array('msg' => $set_type['msg'], 'sta' => $set_type['sta'], 'data' => '');
 
         }
     }
@@ -196,14 +196,14 @@ class SendSMS extends Eloquent
                 //判断用户是否已注册
                 $set_user = User::where(['name' => $mob])->select('id')->get()->toArray();
                 if (!empty($set_user)) {
-                    return array("msg" => "用户已注册，请登陆", "sta" => "0", "data" => "");
+                    return array("msg" => "用户已注册，请登陆", "sta" => "002", "data" => "");
                 }
-                $send_num_data = Redis::get('user_Send_num');
+                $send_num_data = Redis::get('user_Send_num_'.$mob);
                 $send_num = json_decode($send_num_data, true);
                 if (!empty($send_num)) {
                     $send_date = date('Y-m-d', $send_num['Send_time']) == date('Y-m-d', time());//判断日期
                     if ($send_date == false) {
-                        Redis::del('user_Send_num');
+                        Redis::del('user_Send_num_'.$mob);
                         return array('msg' => '', 'sta' => "1");
                     }
                     if ($mob == $send_num['user_mobile'] && $send_num['num'] >= 5 && $send_date == true) {//当天发送次数等于5
@@ -218,10 +218,10 @@ class SendSMS extends Eloquent
                                 return array('msg' => $msg, 'sta' => "0");
                             }
                         }
-                        Redis::del('user_Send_num');
+                        Redis::del('user_Send_num_'.$mob);
                         return array('msg' => '', 'sta' => "1");
                     } else {
-                        $send_num_data = Redis::get('user_SMS');
+                        $send_num_data = Redis::get('user_SMS_'.$mob);
                         $send_num = json_decode($send_num_data, true);
                         $endtime1=$send_num['Send_time']+60;
                         if (time() < $endtime1) {
@@ -234,7 +234,7 @@ class SendSMS extends Eloquent
                                 return  array('msg' => $msg, 'sta' => "0");
                             }
                         }
-                        Redis::del('user_SMS');//清空数据
+                        Redis::del('user_SMS_'.$mob);//清空数据
                         return array('msg' => '', 'sta' => "1");
 
                     }

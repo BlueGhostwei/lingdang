@@ -139,7 +139,7 @@ class User extends Eloquent implements AuthenticatableContract, CanResetPassword
             unset($this->attributes['password']);
             return true;
         }
-
+        //Hash::check('输入的密码','数据库密码');比对密码是否一致
         return $this->attributes['password'] = Hash::make($password);
     }
 

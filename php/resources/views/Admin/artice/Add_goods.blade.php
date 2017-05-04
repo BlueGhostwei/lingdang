@@ -48,7 +48,7 @@
                     <td>
                         <select name="cateid" id="set_brand" class="asnt">
                             <option value="0">请选择品牌</option>
-                            @if($set_goods && get_brand($set_goods->sort_id)!==null)
+                            @if(isset($set_goods) && get_brand($set_goods->sort_id)!==null)
                                 @foreach(get_brand($set_goods->sort_id) as  $ky=>$vy)
                                     <option
                                             @if($set_goods->brand_id==$vy->id)

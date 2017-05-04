@@ -21,6 +21,9 @@ abstract class Controller extends BaseController
      * 判断字符串是否有特殊字符
      */
     public function unusual($str){
+        /*$myfile = fopen("logn.txt","w");
+        fwrite($myfile,var_export(Input::all(),true));
+        fclose($myfile);*/
         return preg_match("/[\'.,:;*?~`!@#$%^&+=)(<>{}]|\]|\[|\/|\\\|\"|\|/",trim($str)) ? true : false;
     }
 

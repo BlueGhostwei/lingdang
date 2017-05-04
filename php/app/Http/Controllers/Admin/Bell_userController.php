@@ -10,24 +10,32 @@ use Illuminate\Http\Request;
 use DB, App\Models\Integration, Input, App\Models\SendSMS;
 use Validator, Auth, App\Models\Bell_user;
 use App\Http\Requests;
+use Hash;
 use Illuminate\Support\Facades\Redis;
 use App\Http\Controllers\Controller;
 
 class Bell_userController extends Controller
 {
+
+
+    public function check_login(){
+        return json_encode(['msg'=>'','sta'=>'1','data'=>Auth::id()]);
+    }
+
     public function Send_sms()
     {
-
-        /*$file = fopen("log.txt","w");
-        fwrite($file,var_export(Input::all(),true));
-        fclose($file);*/
         $mobile = Input::get('mobile');
+        $type = Input::get('type');
         $sendsms = new SendSMS();
-        $rst = $sendsms->send_sms($mobile, 'sign_up');
+        if (!empty($type)) {
+            $rst = $sendsms->send_sms($mobile, $type);
+        } else {
+            $rst = $sendsms->send_sms($mobile, 'sign_up');
+        }
         if ($rst['sta'] == 1) {
             return json_encode(['sta' => '1', 'msg' => '请求成功', 'data' => $rst], JSON_UNESCAPED_UNICODE);
         } else {
-            return json_encode(['sta' => '0', 'msg' => $rst['msg'], 'data' => ''], JSON_UNESCAPED_UNICODE);
+            return json_encode(['sta' => $rst['sta'], 'msg' => $rst['msg'], 'data' => ''], JSON_UNESCAPED_UNICODE);
         }
     }
 
@@ -35,17 +43,17 @@ class Bell_userController extends Controller
      *
      * 宝贝信息录入
      *
-     * 'email',
-     * 'avatar',
-     * 'role',
-     * 'nickname',
-     * 'gender',
-     * 'phone',
-     * 'wechat',
-     * 'height',
-     * 'birthday',
-     * 'bady_age',
-     * 'location',
+     * 'email', 邮箱
+     * 'avatar',头像
+     * 'role',权限
+     * 'nickname',昵称
+     * 'gender',性别
+     * 'phone',手机
+     * 'wechat',微信
+     * 'height'，身高
+     * 'birthday',生日
+     * 'bady_age',年龄
+     * 'location',地址
      * 身高体重， 男女，生日，性别,是否提醒生日
      */
     public function baby_info()
@@ -54,38 +62,38 @@ class Bell_userController extends Controller
         $bady = User::where('id', $user_id)->first();
         $data['location'] = Input::get('location');
         $data['avatar'] = Input::get('avatar');
-        $data['phone'] = Input::get('phone');
+        $data['phone'] = Input::get('mobile');
         $data['birthday'] = Input::get('birthday');
         $data['wechat'] = trim(Input::get('wechat'));
         $data['height'] = trim(Input::get('height'));
         $data['nickname'] = Input::get('nickname');
         $data['gender'] = Input::get('gender');
         $signature = Input::get('signature');
-       /* $data['location'] = '广州番禺';
-        $data['avatar'] = 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=938117960,418509084&fm=117&gp=0.jpg';
-        $data['phone'] = '13226431320';
-        $data['birthday'] = '2014-09-09';
-        $data['wechat'] = '35';
-        $data['height'] = "120";
-        $data['nickname'] = "鲍勃";
-        $data['gender'] ='1';
-        $signature = "美丽即是正义~";*/
+        /* $data['location'] = '广州番禺';
+         $data['avatar'] = 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=938117960,418509084&fm=117&gp=0.jpg';
+         $data['phone'] = '13226431320';
+         $data['birthday'] = '2014-09-09';
+         $data['wechat'] = '35';
+         $data['height'] = "120";
+         $data['nickname'] = "鲍勃";
+         $data['gender'] ='1';
+         $signature = "美丽即是正义~";*/
         $data['bady_age'] = Controller::calcAge($data['birthday']);//格式如：1994-09-09
-       if($bady){
-           DB::beginTransaction();
-           try {
-               User::where('id', Auth::id())->update($data);
-               Bell_user::where('user_id', Auth::id())->update(['signature' => $signature]);
-               DB::commit();
-               // all good
-           } catch (\Exception $e) {
-               DB::rollback();
-               return json_encode(['msg'=>$e->getMessage(),'sta'=>0,'data'=>'']);
-               // something went wron
-           }
-       }else{
-           return json_encode(['sta' => '0', 'msg' => '请求失败', 'data' => ""]);
-       }
+        if ($bady) {
+            DB::beginTransaction();
+            try {
+                User::where('id', Auth::id())->update($data);
+                Bell_user::where('user_id', Auth::id())->update(['signature' => $signature]);
+                DB::commit();
+                // all good
+            } catch (\Exception $e) {
+                DB::rollback();
+                return json_encode(['msg' => $e->getMessage(), 'sta' => 0, 'data' => '']);
+                // something went wron
+            }
+        } else {
+            return json_encode(['sta' => '0', 'msg' => '请求失败', 'data' => ""]);
+        }
         return json_encode(['sta' => '1', 'msg' => '请求成功', 'data' => ""]);
     }
 
@@ -118,6 +126,7 @@ class Bell_userController extends Controller
      * 用户注册（仅限手机用户），接收手机号码，短信验证码
      * 验证用户手机号合法性，验证该手机用户是否已注册，验证该手机用户验证码正确性与实时性。
      * 验证用户密码，最后Bell_user->save();
+     *
      * @return \Illuminate\Http\Response
      */
     public function sign_up()
@@ -129,9 +138,9 @@ class Bell_userController extends Controller
         $data['password_confirmation'] = Input::get('password');
         $data['user_code'] = Input::get('user_code');
         $data['role'] = "3";
-        $user_SMS = Redis::exists('user_SMS');
+        $user_SMS = Redis::exists('user_SMS_'.$data['name']);
         if ($user_SMS == 1 && $data) {
-            $send_num_data = Redis::get('user_SMS');
+            $send_num_data = Redis::get('user_SMS_'.$data['name']);
             $send_num = json_decode($send_num_data, true);
             if ($data['user_code'] == $send_num['code']) {
                 //验证码5分钟内有效
@@ -140,7 +149,7 @@ class Bell_userController extends Controller
                 //当前时间是否大于发送时间+时间限制 在限制时间内，当前时间小于发送时间+限制
                 $second = intval((strtotime($this_time) - strtotime($endtime)) % 86400);
                 if ($second <> 0 && $second > 0) {
-                    Redis::del('user_SMS');
+                    Redis::del('user_SMS_'.$data['name']);
                     return json_encode(['sta' => "0", 'msg' => '验证码已过期，请重新申请', 'data' => ""], JSON_UNESCAPED_UNICODE);
                 }
                 if ($data['name'] != $send_num['user_mobile']) {
@@ -155,16 +164,15 @@ class Bell_userController extends Controller
                         return json_encode(['sta' => "0", 'msg' => $v[0], 'data' => ''], JSON_UNESCAPED_UNICODE);
                     }
                 }
-                $use_data = $user->create($data);
+                $use_data = $user->create($data );
                 if ($use_data) {
                     //创建关系表
                     $bell_user = new Bell_user();
                     $bell_user->create(['user_id' => $use_data->id]);
                 }
-                Auth::login($use_data);
-                // $data = User::where(['username'=>$request->username])->update(['created_by' => Auth::id()]);
                 if ($data) {
-                    Redis::del('user_SMS');
+                    Redis::del('user_SMS_'.$data['name']);
+                    Redis::del('user_Send_num_'.$data['name']);
                     return json_encode(['sta' => "1", 'msg' => '注册成功', 'data' => $use_data], JSON_UNESCAPED_UNICODE);
                 }
             } else {
@@ -175,11 +183,49 @@ class Bell_userController extends Controller
 
     }
 
+
+    /**
+     * @return mixed
+     *
+     */
+    public function user_login()
+    {
+        $username = Input::get('name');
+        $password = Input::get('password');
+        $remember = Input::get('remember', false);
+        $field = isEmail($username) ? 'email' : 'name';
+        $redirect = urldecode(Input::get('redirect', '/'));
+        $data['id'] = User::where(array(
+            'name' => $username,
+            'deleted_at' => NULL,
+            'type' => 1
+        ))->get();
+        if (count($data['id']->toArray()) > 0) {
+            $id_data = $data['id']->toArray();
+            $data['id'] = $id_data['0']['id'];
+            $rst = Auth::attempt([$field => $username, $field => $username, 'password' => $password], $remember);
+            if ($rst == false) {
+                return json_encode(['msg' => "用户名或者密码错误", 'sta' => 0, 'data' => '']);
+            }
+            $data = ([
+                'id' => $data['id'],
+                'rst' => $rst,
+                'username' => $username,
+                'password' => $password,
+                'redirect' => $redirect,
+            ]);
+            return json_encode(['msg' => '登录成功', 'sta' => '1', 'data' => $data]);
+        } else {
+            return json_encode(['msg' => "用户名或者密码错误", 'sta' => 0, 'data' => '']);
+        }
+    }
+
     /**
      *
      * 第三方登陆集合
      * QQ wechat,weibo
      * 获取账号类型，与对应openid
+     *
      */
     protected function ThirdParty()
     {
@@ -191,10 +237,48 @@ class Bell_userController extends Controller
 
     /**
      * 用户找回密码
+     * bcrypt($password)
      */
-    public function findPass()
+    public function findPass(Request $request)
     {
-
+        $name = Input::get('name');
+        $code = Input::get('user_code');
+        $password = Input::get('new_pass');
+        $data = User::where('name', $name)->first();
+        if (empty($data->name)) {
+            return json_encode(['sta' => "0", 'msg' => '用户不存在，请注册', 'data' => ""], JSON_UNESCAPED_UNICODE);
+        }
+        $user_SMS = Redis::exists('user_SMS_'.$name);
+        if ($user_SMS == 1 && $data) {
+            $send_num_data = Redis::get('user_SMS_'.$name);
+            $send_num = json_decode($send_num_data, true);
+            if (trim($code) == $send_num['code']) {
+                //验证码5分钟内有效
+                $endtime = date('Y-m-d H:i:s', $send_num['Send_time'] + 600);
+                $this_time = date('Y-m-d H:i:s', time());
+                //当前时间是否大于发送时间+时间限制 在限制时间内，当前时间小于发送时间+限制
+                $second = intval((strtotime($this_time) - strtotime($endtime)) % 86400);
+                if ($second <> 0 && $second > 0) {
+                    Redis::del('user_SMS_'.$name);
+                    return json_encode(['sta' => "0", 'msg' => '验证码已过期，请重新申请', 'data' => ""], JSON_UNESCAPED_UNICODE);
+                }
+                if ($data->name != $send_num['user_mobile']) {
+                    return json_encode(['msg' => "验证用户不一致！", 'sta' => "0", 'data' => ''], JSON_UNESCAPED_UNICODE);
+                }
+                if (Hash::check($password, $data->password)) {
+                    return json_encode(['sta' => "0", 'msg' => '密码与原密码太过于相似', 'data' => ""], JSON_UNESCAPED_UNICODE);
+                }
+                $data->password = bcrypt($password);
+                $use_data = User::where('name', $name)->update(['password' => bcrypt($password)]);
+                if ($use_data) {
+                    Redis::del('user_SMS_'.$name);
+                    Redis::del('user_Send_num_'.$name);
+                    return json_encode(['sta' => "1", 'msg' => '密码修改成功', 'data' => $use_data], JSON_UNESCAPED_UNICODE);
+                }
+            } else {
+                return json_encode(['msg' => "验证码错误", 'sta' => "0", 'data' => '']);
+            }
+        }
     }
 
 

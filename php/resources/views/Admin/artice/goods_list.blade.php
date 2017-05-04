@@ -6,7 +6,8 @@
 
     @endsection
     @section('content')
-            <!--<div class="main-container">
+            <!--<div class="main-container">goods_list
+
         <div class="container-fluid">
             @include('Admin.layout.breadcrumb', [
                 'title' => '添加文章',
@@ -46,8 +47,8 @@
                                 <div class="jifen"><a href="">加入积分商城</a></div>
                                 <div class="zhigou"><a href="">加入直购商城</a></div>
                                 <a href="{{route('goods.show',$v['id'])}}">查看详情</a>
-                                <a href="">删除</a>
-                            </div>
+                                <a class="delete_goods" data_id="{{$v['id']}}">删除</a>
+                            </div>  
                         </div>
                     @endforeach
                 @else
@@ -64,11 +65,20 @@
                         </div>
                     </div>
                 @endif
-                <div style="text-align: center"> {!! $goods_list->render() !!}</div>
+                @if(isset($goods_list))
+                        <div style="text-align: center"> {!! $goods_list->render() !!}</div>
+                    @endif
             </div>
         </div>
     </div>
-
+<script type="text/javascript">
+    $(function () {
+       $('.delete_goods').click(function () {
+           var id =$(this).attr('data_id');
+           debugger
+       }); 
+    });
+</script>
 @endsection
 @section('footer_related')
 @endsection

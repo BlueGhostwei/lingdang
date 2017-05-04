@@ -48,7 +48,7 @@ class EventManager
      * @param EventArgs|null $eventArgs The event arguments to pass to the event handlers/listeners.
      *                                  If not supplied, the single empty EventArgs instance is used.
      *
-     * @return void
+     * @return boolean
      */
     public function dispatchEvent($eventName, EventArgs $eventArgs = null)
     {
