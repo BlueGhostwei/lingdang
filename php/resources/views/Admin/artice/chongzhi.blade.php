@@ -18,22 +18,12 @@
      </div>-->
 
 <div class="Iartice">
-    <div class="IAhead"><strong style="padding-right: 10px;">账户查询</strong><a href="{{ route('artice.chongzhi') }}">充值记录</a>|<a href="{{ route('artice.consumption') }}">消费记录</a>|<a href="{{ route('artice.member_list') }}">会员列表</a>|<a href="{{ route('artice.member') }}">添加会员</a>|</div>
+    <div class="IAhead"><strong style="padding-right: 10px;">账户查询</strong><a href="{{ route('artice.chongzhi') }}">充值记录</a>|<a href="{{ route('artice.consumption') }}">消费记录</a>|<a href="{{ route('Bells.member_list') }}">会员列表</a>|<a href="{{ route('artice.member') }}">添加会员</a>|</div>
     <div class="IAMAIN_list">
         <div class="Alist">
             <form method="post" action="">
             <table width=""  cellspacing="0" cellpadding="0" style="float: right; margin-right: 30px;">
                 <tr>
-                    <td>            
-                        <select name="cateid">
-                            <option>用户名</option>
-                        </select>           
-                    </td>
-                    <td>            
-                        <select name="cateid">
-                            <option>时间排序</option>
-                        </select>           
-                    </td>
                     <td align="right">关键字：</td>
                     <td><input type="text" value="" class="Iar_list" /></td> 
                     <td><input type="submit" name="dosubmit" class="button" value="搜 索"></td>

@@ -7,7 +7,7 @@ class CreateUserattentionTable extends Migration
 {
     /**
      * Run the migrations.
-     *
+     * 关注好友表（好友关系表）
      * @return void
      */
     public function up()

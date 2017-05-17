@@ -11,13 +11,17 @@ class Integration extends Eloquent
     /**
      * @var array
      *  'user_id',用户id
-     * 'sign_time'签到时间
+     *  'sign_time'签到时间
      */
     protected $fillable = [
         'user_id',
         'sign_time'
     ];
 
+	/**
+	*禁止自动更新
+	*/
+	public $timestamps = false;
 
 
 

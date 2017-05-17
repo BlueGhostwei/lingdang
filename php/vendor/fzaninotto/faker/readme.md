@@ -893,6 +893,24 @@ echo $faker->faxNumber; // "71937729"
 
 ```
 
+### `Faker\Provider\en_NG\Address`
+
+```php
+<?php
+
+// Generates a random region name
+echo $faker->region; // 'Katsina'
+```
+
+### `Faker\Provider\en_NG\Person`
+
+```php
+<?php
+
+// Generates a random person name
+echo $faker->name; // 'Oluwunmi Mayowa'
+```
+
 ### `Faker\Provider\en_NZ\Phone`
 
 ```php
@@ -1415,6 +1433,12 @@ echo $faker->premiumRatePhoneNumber; // "0900123456"
 
 // Generates a Russian bank name (based on list of real russian banks)
 echo $faker->bank; // "ОТП Банк"
+
+//Generate a Russian Tax Payment Number for Company
+echo $faker->inn; //  7813540735
+
+//Generate a Russian Tax Code for Company
+echo $faker->kpp; // 781301001
 ```
 
 ### `Faker\Provider\sv_SE\Payment`

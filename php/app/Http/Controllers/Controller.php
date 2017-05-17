@@ -28,6 +28,15 @@ abstract class Controller extends BaseController
     }
 
     /**
+     * @param $strParam
+     * @return mixed
+     *去除特殊字符
+     */
+    public function replaceSpecialChar($strParam){
+        $regex = "/\/|\~|\!|\@|\#|\\$|\%|\^|\&|\*|\(|\)|\_|\+|\{|\}|\:|\<|\>|\?|\[|\]|\,|\.|\/|\;|\'|\`|\-|\=|\\\|\|/";
+        return preg_replace($regex,"",$strParam);
+    }
+    /**
      * @param $mobile
      * @return bool
      * 验证手机号码合法性

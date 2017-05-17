@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use Input, Response, Config,Image,File;
 use App\Http\Controllers\Controller;
+use App\Models\Image_pic;
 
 /**
  * 文件上传类, 支持普通上传, base64编码上传, 远程下载
@@ -243,17 +244,13 @@ class UploadController extends Controller
             mkdir(iconv("UTF-8", "GBK", dirname($path)),0777,true);
         }
         file_put_contents($path, $image);
-        $img_txt = Image::make($path);
+       // $img_txt = Image::make($path);
         return json_encode([
             'md5' => basename($path),
             'sta' => 1,
             'msg' =>'上传成功',
             'url' => env('assets').'/'.$path
         ]);
-
-
-
-
 
     }
 
@@ -267,6 +264,8 @@ class UploadController extends Controller
     public function encode()
     {
         // todo
+       //$img_pic=new Image_pic();
+       //$base64_str = $img_pic->base_img();
         $base64_str = Input::get('base64');
         $image = base64_decode($base64_str);
         $png_url = "lcover".time().".jpg";
@@ -275,13 +274,13 @@ class UploadController extends Controller
             mkdir(iconv("UTF-8", "GBK", dirname($path)),0777,true);
         }
         file_put_contents($path, $image);
-        $img_txt = Image::make($path);
+       // $img_txt = Image::make($path);
         //压缩图片
         $resize = Input::get('resize');
         if($resize){
             $resize_img = resize_img(env('assets').'/'.$path,$resize,false);
             return json_encode([
-                'md5' => basename($path),
+                'img_path' => $path,
                 'sta' => 1,
                 'msg' =>'上传成功',
                 'url' => env('assets').'/'.$path,
@@ -289,16 +288,54 @@ class UploadController extends Controller
             ]);
         }
         return json_encode([
-            'md5' => basename($path),
+            'img_path' => $path,
             'sta' => 1,
             'msg' =>'上传成功',
             'url' => env('assets').'/'.$path
         ]);
 
-        //Image::make($image->getRealPath())->save($path);stata
-        // I've tried using
-        // $result = file_put_contents($path, $image);
-        // too but still not working
+
+
+    }
+
+    public  function base64imgsave(){
+
+        $setimg=New Image_pic();
+        $img=$setimg->base_img();
+
+        //文件夹日期
+        $ymd = date("Ymd");
+
+        //图片路径地址
+        $basedir = 'upload/base64/'.$ymd.'';
+        $fullpath = $basedir;
+        if(!is_dir($fullpath)){
+            mkdir($fullpath,0777,true);
+        }
+        $types = empty($types)? array('jpg', 'gif', 'png', 'jpeg'):$types;
+        $img = str_replace(array('_','-'), array('/','+'), $img);
+        $b64img = substr($img, 0,100);
+        if(preg_match('/^(data:\s*image\/(\w+);base64,)/', $b64img, $matches)){
+            $type = $matches[2];
+            if(!in_array($type, $types)){
+                return json_encode(['sta'=>1,'msg'=>'图片格式不正确，只支持 jpg、gif、png、jpeg哦！','data'=>'']);
+            }
+            $img = str_replace($matches[1], '', $img);
+            $img = base64_decode($img);
+            $photo = '/'.md5(date('YmdHis').rand(1000, 9999)).'.'.$type;
+            file_put_contents($fullpath.$photo, $img);
+            $ary['sta'] = 1;
+            $ary['msg'] = '保存图片成功';
+            $ary['url'] = $basedir.$photo;
+
+            return $ary;
+
+        }
+
+        $ary['sta'] = 0;
+        $ary['msg'] = '请选择要上传的图片';
+
+        return $ary;
 
 
     }

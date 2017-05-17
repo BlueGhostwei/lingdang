@@ -25,6 +25,7 @@ class Bell_user extends Eloquent
      * signature 个性签名
      */
     protected $fillable = [
+        'sign_sta',
         'user_id',
         'integral',
         'remind',
@@ -33,15 +34,7 @@ class Bell_user extends Eloquent
         'signature',
     ];
 
-    public function rules()
-    {
-        return [
-            'create' => [
-                'name' => "required|min:3|max:100|unique:" . $this->getTable(),
-                'password' => 'required|min:6|max:12',
-            ],
-        ];
-    }
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

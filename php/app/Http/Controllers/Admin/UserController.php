@@ -6,6 +6,7 @@ use Auth;
 use Input;
 use phpDocumentor\Reflection\Types\Null_;
 use Redirect;
+
 use Response;
 use App\Models\User;
 use App\Http\Requests;
@@ -15,6 +16,7 @@ use App\Models\AclUser;
 use App\Models\AclRole;
 use App\Models\AclResource;
 use Illuminate\Http\Request;
+use App\Models\Image_pic;
 use App\Http\Controllers\Controller;
 
 /**
@@ -27,11 +29,24 @@ use App\Http\Controllers\Controller;
  */
 class UserController extends Controller
 {
-
-    public function GEt_token(){
-        return json_encode(['msg'=>'请求成功','sta'=>'1','data'=>csrf_token()]);
-    }
     
+
+
+
+
+
+
+
+
+    /**
+     * @return mixed
+     *
+     */
+    public function GEt_token()
+    {
+        return json_encode(['msg' => '请求成功', 'sta' => '1', 'data' => csrf_token()]);
+    }
+
     /**
      * 用户列表, 排除已经删除的
      *
@@ -118,8 +133,8 @@ class UserController extends Controller
      */
     public function member_list()
     {
-
-        return view('Admin.artice.member_list');
+        $member_list=User::where('type',1)->paginate(10);
+        return view('Admin.artice.member_list',['member_list'=>$member_list]);
     }
 
     /**
@@ -162,7 +177,7 @@ class UserController extends Controller
             }
         }*/
         $user->create($request->only($user->getFillable()));
-        $data = $user->where('name',$data['name'])->update(['created_by' => Auth::id()]);
+        $data = $user->where('name', $data['name'])->update(['created_by' => Auth::id()]);
 
         if ($data) {
             return json_encode(['sta' => 1, 'msg' => '请求成功', 'data' => '']);
@@ -214,7 +229,7 @@ class UserController extends Controller
                 }
             }
             $user->update($request->only($user->getFillable()));
-            if($user){
+            if ($user) {
                 return json_encode(['sta' => 1, 'msg' => '请求成功', 'data' => '']);
             }
         } else {
@@ -390,14 +405,14 @@ class UserController extends Controller
     {
         $username = Input::get('username');
         $password = Input::get('password');
-       // dd($password);
+        // dd($password);
         $remember = Input::get('remember', false);
         $field = isEmail($username) ? 'email' : 'name';
         $redirect = urldecode(Input::get('redirect', '/'));
         $data['id'] = User::where(array(
             'name' => $username,
             'deleted_at' => NULL,
-            'type'=>NULL
+            'type' => NULL
         ))->get();
         if (count($data['id']->toArray()) > 0) {
             $id_data = $data['id']->toArray();

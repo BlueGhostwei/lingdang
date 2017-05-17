@@ -19,10 +19,7 @@
     Route::get('yanzheng/mews',['as'=>'captcha.mews','uses'=>'Admin\CaptchaController@mews']);
 //验证验证码
     Route::any('yanzheng/cpt',['as'=>'captcha.cpt','uses'=>'Admin\CaptchaController@cpt']);
-
-
 });*/
-
 
 // 游客状态下的路由
 Route::group(['middleware' => 'guest'], function () {
@@ -57,8 +54,17 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/', ['as' => 'admin.dashboard', 'uses' => 'DashboardController@index']);
         //ios登陆接口
         Route::post('user/baby_info', ['as' => 'user.baby_info', 'uses' => 'Bell_userController@baby_info']);
-        // 需要登录状态和权限控制的路由
+        Route::get('user/User_Integration', ['as' => 'user.User_Integration', 'uses' => 'Bell_userController@User_Integration']);
+        Route::get('user/Api_logo', ['as' => 'user.Api_logo', 'uses' => 'Apicontroller@Api_logo']);
+        Route::get('user/add_friend', ['as' => 'user.add_friend', 'uses' => 'Bell_userController@add_friend']);
+        Route::get('user/daily_record', ['as' => 'user.daily_record', 'uses' => 'Bell_userController@daily_record']);
+        Route::get('user/Get_friend_list', ['as' => 'user.Get_friend_list', 'uses' => 'Bell_userController@Get_friend_list']);
 
+
+
+
+
+        // 需要登录状态和权限控制的路由
         Route::get('admin/system/logs', ['as' => 'system.logs', 'uses' => 'SystemController@logs']);
         Route::get('admin/system/action', ['as' => 'system.action', 'uses' => 'SystemController@action']);
         Route::get('admin/system/login-history', ['as' => 'system.login-history', 'uses' => 'SystemController@loginHistory']);
@@ -147,16 +153,14 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('artice/Add_subtopic/{id}', ['as' => 'artice.Add_subtopic', 'uses' => 'ArticeControll@Add_subtopic']);
         Route::post('goods/set_brand_sort', ['as' => 'goods.set_brand_sort', 'uses' => 'GoodsController@set_brand_sort']);
         Route::post('goods/store', 'GoodsController@store');
-
-        // 文件上传, 图片处理
+        //文件上传, 图片处理
         Route::post('upload', 'UploadController@index');
         Route::post('upload/encode', 'UploadController@encode');
         Route::post('upload/Cut_out', 'UploadController@Cut_out');//剪切图片
         Route::get('f/files/{s1}/{s2}/{s3}/{file}', 'ImageController@index');
         Route::get('upload/config', 'UploadController@config');
+        Route::get('upload/base64imgsave', 'UploadController@base64imgsave');
         // iosapi 接口
-
-
     });
     Route::group(['prefix' => 'api', 'as' => 'api', 'namespace' => 'Api'], function () {
         Route::controller('helper', 'HelperController');

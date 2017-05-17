@@ -54,10 +54,11 @@ return [
     |
     */
 
-    'from' => ['address' => 'noreply1@udpower.cn', 'name' => '优梦力量'],
+    'from' => ['address' => null, 'name' => null],
 
     /*
     |--------------------------------------------------------------------------
+    | E-Mail Encryption Protocol
     | E-Mail Encryption Protocol
     |--------------------------------------------------------------------------
     |
