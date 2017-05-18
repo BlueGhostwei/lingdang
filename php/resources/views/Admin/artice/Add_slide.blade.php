@@ -66,7 +66,7 @@
                 var data = new FormData($('#upload_img')[0]);
                 $.ajax({
                     url: '{{url('upload')}}',
-                    type: 'POST',
+                    type: 'post',
                     data: data,
                     dataType: 'JSON',
                     cache: false,
@@ -78,7 +78,7 @@
                         $('input[name="img_Md5"]').val(ret.md5);
                         return false
                     } else {
-                        layer.msg('头像上传失败');
+                        layer.msg('上传失败');
                     }
                 });
             });

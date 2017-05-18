@@ -44,7 +44,7 @@ Route::group(['middleware' => 'guest'], function () {
         Route::get('user/Get_Token', 'UserController@GEt_token');
         Route::post('user/send_sms', ['as' => 'user.send_sms', 'uses' => 'Bell_userController@Send_sms']);
         //手机.邮箱用户登录
-        Route::get('user/user_login', 'Bell_userController@user_login');
+        Route::post('user/user_login', 'Bell_userController@user_login');
     });
 });
 
@@ -57,11 +57,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('user/User_Integration', ['as' => 'user.User_Integration', 'uses' => 'Bell_userController@User_Integration']);
         Route::get('user/Api_logo', ['as' => 'user.Api_logo', 'uses' => 'Apicontroller@Api_logo']);
         Route::get('user/add_friend', ['as' => 'user.add_friend', 'uses' => 'Bell_userController@add_friend']);
-        Route::get('user/daily_record', ['as' => 'user.daily_record', 'uses' => 'Bell_userController@daily_record']);
+        Route::get('user/daily_record', ['as' => 'user.daily_record', 'uses' => 'Apicontroller@daily_record']);
         Route::get('user/Get_friend_list', ['as' => 'user.Get_friend_list', 'uses' => 'Bell_userController@Get_friend_list']);
-
-
-
+        Route::get('user/Collection_diary', ['as' => 'user.Collection_diary', 'uses' => 'Bell_userController@Collection_diary']);//点赞
+        Route::get('user/User_Share', ['as' => 'user.User_Share', 'uses' => 'Apicontroller@User_Share']);//保存好友评论
+        Route::get('user/GetUserShare_list', ['as' => 'user.GetUserShare_list', 'uses' => 'Apicontroller@GetUserShare_list']);//查看动态详情
 
 
         // 需要登录状态和权限控制的路由

@@ -16,8 +16,9 @@ class CreateUserShareTable extends Migration
             //主键id
             $table->increments('id');
             $table->integer('user_id')->nullable()->commit('用户id');
-            $table->integer('pid')->nullable()->commit('评论回复，容器，回复评论回复');
-            $table->string('content',225)->nullable()->commit('评论内容');
+            $table->integer('userdynamics_id')->nullable()->index()->commit('动态id');
+            $table->integer('pid')->nullable()->commit('评论回复，容器，回复-回复');
+            $table->string('share_content',225)->nullable()->commit('评论内容');
             $table->string('share_pic',225)->nullable()->commit('评论图片');
             $table->timestamps();
         });

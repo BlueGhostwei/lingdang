@@ -10,9 +10,10 @@ class User_share extends Eloquent
     protected  $table="user_share";
 
     protected  $fillable=[
+        'userdynamics_id',
         'user_id',
         'pid',
-        'content',
+        'share_content',
         'share_pic'
     ];
 
@@ -20,11 +21,13 @@ class User_share extends Eloquent
         return [
             'create'=>[
                 "user_id"=>'required',
-                "content"=>'required|mix:1',
-                "pid"=>'required',
+                "share_content"=>'required',
+                'userdynamics_id'=>'required'
             ],
         ];
     }
+
+    
 
 
 }

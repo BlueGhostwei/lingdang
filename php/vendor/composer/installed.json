@@ -382,12 +382,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/sebastianbergmann/diff.git",
-            "reference": "66ae2274b7e50f8f9a93630f3c09c7468f4f7503"
+            "reference": "86ba64b90d6da250a75a734bf22db25232b7304c"
         },
         "dist": {
             "type": "zip",
-            "url": "https://files.phpcomposer.com/files/sebastianbergmann/diff/66ae2274b7e50f8f9a93630f3c09c7468f4f7503.zip",
-            "reference": "66ae2274b7e50f8f9a93630f3c09c7468f4f7503",
+            "url": "https://files.phpcomposer.com/files/sebastianbergmann/diff/86ba64b90d6da250a75a734bf22db25232b7304c.zip",
+            "reference": "86ba64b90d6da250a75a734bf22db25232b7304c",
             "shasum": ""
         },
         "require": {
@@ -396,7 +396,7 @@
         "require-dev": {
             "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.0"
         },
-        "time": "2017-05-16T03:19:44+00:00",
+        "time": "2017-05-16T12:08:37+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1757,64 +1757,6 @@
         ]
     },
     {
-        "name": "symfony/class-loader",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/symfony/class-loader.git",
-            "reference": "b0aff75bf18e4bbf37209235227e6e50a5aec8f5"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://files.phpcomposer.com/files/symfony/class-loader/b0aff75bf18e4bbf37209235227e6e50a5aec8f5.zip",
-            "reference": "b0aff75bf18e4bbf37209235227e6e50a5aec8f5",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.5.9"
-        },
-        "require-dev": {
-            "symfony/finder": "~2.8|~3.0",
-            "symfony/polyfill-apcu": "~1.1"
-        },
-        "suggest": {
-            "symfony/polyfill-apcu": "For using ApcClassLoader on HHVM"
-        },
-        "time": "2017-04-12T14:14:56+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "3.3-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Symfony\\Component\\ClassLoader\\": ""
-            },
-            "exclude-from-classmap": [
-                "/Tests/"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Fabien Potencier",
-                "email": "fabien@symfony.com"
-            },
-            {
-                "name": "Symfony Community",
-                "homepage": "https://symfony.com/contributors"
-            }
-        ],
-        "description": "Symfony ClassLoader Component",
-        "homepage": "https://symfony.com"
-    },
-    {
         "name": "barryvdh/reflection-docblock",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -2480,12 +2422,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/phpspec/prophecy.git",
-            "reference": "abe41cb27f4e4207c6f54a09272969fe55e0bbff"
+            "reference": "83a4e52aefb66e35c861c767da2e3e6abb9c0930"
         },
         "dist": {
             "type": "zip",
-            "url": "https://files.phpcomposer.com/files/phpspec/prophecy/abe41cb27f4e4207c6f54a09272969fe55e0bbff.zip",
-            "reference": "abe41cb27f4e4207c6f54a09272969fe55e0bbff",
+            "url": "https://files.phpcomposer.com/files/phpspec/prophecy/83a4e52aefb66e35c861c767da2e3e6abb9c0930.zip",
+            "reference": "83a4e52aefb66e35c861c767da2e3e6abb9c0930",
             "shasum": ""
         },
         "require": {
@@ -2499,7 +2441,7 @@
             "phpspec/phpspec": "^2.5|^3.2",
             "phpunit/phpunit": "^4.8 || ^5.6.5"
         },
-        "time": "2017-03-03T17:09:02+00:00",
+        "time": "2017-05-17T11:25:27+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -2641,63 +2583,6 @@
         "keywords": [
             "global state"
         ]
-    },
-    {
-        "name": "symfony/yaml",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/symfony/yaml.git",
-            "reference": "924d16e27b592d8bb8aa8ef531005a3f564f64e7"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://files.phpcomposer.com/files/symfony/yaml/924d16e27b592d8bb8aa8ef531005a3f564f64e7.zip",
-            "reference": "924d16e27b592d8bb8aa8ef531005a3f564f64e7",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.5.9"
-        },
-        "require-dev": {
-            "symfony/console": "~2.8|~3.0"
-        },
-        "suggest": {
-            "symfony/console": "For validating YAML files using the lint command"
-        },
-        "time": "2017-05-15T12:04:53+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "3.3-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Symfony\\Component\\Yaml\\": ""
-            },
-            "exclude-from-classmap": [
-                "/Tests/"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Fabien Potencier",
-                "email": "fabien@symfony.com"
-            },
-            {
-                "name": "Symfony Community",
-                "homepage": "https://symfony.com/contributors"
-            }
-        ],
-        "description": "Symfony Yaml Component",
-        "homepage": "https://symfony.com"
     },
     {
         "name": "phpunit/phpunit",
@@ -4398,5 +4283,120 @@
             "testing",
             "tests"
         ]
+    },
+    {
+        "name": "symfony/class-loader",
+        "version": "3.4.x-dev",
+        "version_normalized": "3.4.9999999.9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/class-loader.git",
+            "reference": "8c7ae3c4e3690b1397d70248d885c5089de45514"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://files.phpcomposer.com/files/symfony/class-loader/8c7ae3c4e3690b1397d70248d885c5089de45514.zip",
+            "reference": "8c7ae3c4e3690b1397d70248d885c5089de45514",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.5.9"
+        },
+        "require-dev": {
+            "symfony/finder": "~2.8|~3.0",
+            "symfony/polyfill-apcu": "~1.1"
+        },
+        "suggest": {
+            "symfony/polyfill-apcu": "For using ApcClassLoader on HHVM"
+        },
+        "time": "2017-05-17T16:21:40+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "3.4-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Symfony\\Component\\ClassLoader\\": ""
+            },
+            "exclude-from-classmap": [
+                "/Tests/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "https://symfony.com/contributors"
+            }
+        ],
+        "description": "Symfony ClassLoader Component",
+        "homepage": "https://symfony.com"
+    },
+    {
+        "name": "symfony/yaml",
+        "version": "3.4.x-dev",
+        "version_normalized": "3.4.9999999.9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/yaml.git",
+            "reference": "19248c8f75889448c79bd1184d6df0211b441de0"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://files.phpcomposer.com/files/symfony/yaml/19248c8f75889448c79bd1184d6df0211b441de0.zip",
+            "reference": "19248c8f75889448c79bd1184d6df0211b441de0",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.5.9"
+        },
+        "require-dev": {
+            "symfony/console": "~2.8|~3.0"
+        },
+        "suggest": {
+            "symfony/console": "For validating YAML files using the lint command"
+        },
+        "time": "2017-05-17T16:21:40+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "3.4-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Symfony\\Component\\Yaml\\": ""
+            },
+            "exclude-from-classmap": [
+                "/Tests/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "https://symfony.com/contributors"
+            }
+        ],
+        "description": "Symfony Yaml Component",
+        "homepage": "https://symfony.com"
     }
 ]

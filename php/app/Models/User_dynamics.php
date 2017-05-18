@@ -30,4 +30,5 @@ class User_dynamics extends Eloquent
             ],
         ];
     }
+
 }
