@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Input;
 use phpDocumentor\Reflection\Types\Null_;
 use Pusher;
 use Validator;
+use DB;
 use Auth;
 use App\Models\User_dynamics;
 use App\Http\Controllers\Controller;
@@ -140,32 +141,76 @@ class Apicontroller extends Controller
 
 
     /**
-     *
-     * 获取好友动态信息
+     * @return mixed
+     *  * 获取好友动态信息
      * 任何用户都可以请求此接口
      * 需要参数：动态id(userdynamics_id)
      * 分两部分，动态内容，评论部分
      * 另需统计参数：转发数，点赞数
-     *
      */
-    public function GetUserShare_list(){
-        $set_diary=User_dynamics::orderBy('id','desc')->paginate(10);
-        if($set_diary){
+    public function GetUserShare_list()
+    {
+        $set_diary = User_dynamics::orderBy('id', 'asc')->select('*')->offset(0)->limit(10)->get()->toArray();
+        if ($set_diary) {
             //获取评论信息
-          foreach ($set_diary as $ky =>$vy){
-              //处理图片
-              dd($vy->img_photo);
-              if($vy->img_photo!=null){
-
-
-              }
-              //获取每条动态的评论及评论回复
-              
-
-          }
-
+            foreach ($set_diary as $ky => $vy) {
+                $set_diary[$ky]['user_id'] = $this->get_user_info($vy['id']);
+                //处理图片
+                if (!empty($vy['img_photo'])) {
+                    $img = explode(',', $vy['img_photo']);
+                    $set_data = array();
+                    foreach ($img as $rst => $rvb) {
+                        $set_data[$rst] = env('assets') . '/' . $rvb;
+                    }
+                    $set_diary[$ky]['img_photo'] = $set_data;
+                }
+                $id = $vy['id'];
+                //获取点赞数
+                $set_collection_Favor = DB::select("select * from collection where userdynamics_id='.$id.' and type=2");
+                //获取转发
+                $set_collection_Forwar = DB::select("select * from collection where userdynamics_id='.$id.' and type=1");
+                $set_diary[$ky]['set_Favor'] = count($set_collection_Favor);
+                $set_diary[$ky]['set_Forwar'] = count($set_collection_Forwar);
+                //获取每条动态的评论及评论回复
+                $set_diary[$ky]['set_share'] = User_share::where(['userdynamics_id' => $vy['id'], 'pid' => null])->get()->toArray();
+                $set_diary[$ky]['set_share']['user_id']=$this->get_user_info($vy['id']);
+                if ($set_diary[$ky]['set_share']) {
+                    //数据拼接，获取下一级回复以区分不同等级
+                    $share_cate = $this->get_share_category($set_diary[$ky]['set_share'][$ky]['id']);
+                    if (strlen($share_cate) >= 4) {
+                        $exshare = explode(',', $share_cate);
+                        foreach ($exshare as $rg => $nm) {
+                            $result = User_share::where(['pid' => $nm, 'userdynamics_id' => $vy['id']])->get()->toArray();
+                            if (!empty($result)) {
+                                $result[$rg]['user_id'] = $this->get_user_info($result[0]['id']);
+                                $result[$rg]['pid'] = $this->get_user_info($result[0]['pid']);
+                            }
+                            $set_diary[$ky]['set_share'] = array_merge($set_diary[$ky]['set_share'], $result);
+                        }
+                    }
+                } else {
+                    //暂无评论
+                    $set_diary[$ky]['set_share'] = "";
+                }
+            }
         }
+        dd($set_diary);
+        return json_encode(['msg' => "请求成功", 'sta' => '1', 'data' => $set_diary]);
+    }
 
+
+    /**
+     * @param $category_id
+     * @return string
+     * 获取所有子集
+     */
+    public function get_share_category($category_id)
+    {
+        $category_ids = $category_id . ",";
+        $child_category = DB::select("select id from user_share where pid = '$category_id'");
+        foreach ($child_category as $key => $val)
+            $category_ids .= $this->get_category($val->id);
+        return $category_ids;
     }
 
 
@@ -197,7 +242,8 @@ class Apicontroller extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public
+    function show($id)
     {
         //
     }
@@ -208,7 +254,8 @@ class Apicontroller extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public
+    function edit($id)
     {
         //
     }
@@ -220,7 +267,8 @@ class Apicontroller extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public
+    function update(Request $request, $id)
     {
         //
     }
@@ -231,7 +279,8 @@ class Apicontroller extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public
+    function destroy($id)
     {
         //
     }

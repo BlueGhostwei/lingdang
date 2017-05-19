@@ -19,7 +19,7 @@ class CreateUsercollectionTable extends Migration
             //好友动态id
             $table->integer('userdynamics_id');
             //属性
-            $table->tinyInteger('type')->nullable()->commit('属性，1为转发，2位收藏');
+            $table->tinyInteger('type')->nullable()->commit('属性，1为转发，2位点赞');
             //自动维护更新时间
             $table->timestamps();
 

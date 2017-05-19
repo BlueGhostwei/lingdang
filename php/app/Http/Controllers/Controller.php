@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -10,6 +11,7 @@ use Image;
 use Input;
 use App\Models\Sort;
 use DB;
+use App\Models\User_share;
 
 abstract class Controller extends BaseController
 {
@@ -20,11 +22,12 @@ abstract class Controller extends BaseController
      * @return bool
      * 判断字符串是否有特殊字符
      */
-    public function unusual($str){
+    public function unusual($str)
+    {
         /*$myfile = fopen("logn.txt","w");
         fwrite($myfile,var_export(Input::all(),true));
         fclose($myfile);*/
-        return preg_match("/[\'.,:;*?~`!@#$%^&+=)(<>{}]|\]|\[|\/|\\\|\"|\|/",trim($str)) ? true : false;
+        return preg_match("/[\'.,:;*?~`!@#$%^&+=)(<>{}]|\]|\[|\/|\\\|\"|\|/", trim($str)) ? true : false;
     }
 
     /**
@@ -32,10 +35,25 @@ abstract class Controller extends BaseController
      * @return mixed
      *去除特殊字符
      */
-    public function replaceSpecialChar($strParam){
+    public function replaceSpecialChar($strParam)
+    {
         $regex = "/\/|\~|\!|\@|\#|\\$|\%|\^|\&|\*|\(|\)|\_|\+|\{|\}|\:|\<|\>|\?|\[|\]|\,|\.|\/|\;|\'|\`|\-|\=|\\\|\|/";
-        return preg_replace($regex,"",$strParam);
+        return preg_replace($regex, "", $strParam);
     }
+
+    /**
+     * @param $C_char
+     * @return bool
+     *
+     */
+    public function CheckEmptyString($C_char)
+    {
+        if (!is_string($C_char)) return false; //判断是否是字符串类型
+        if (empty($C_char)) return false; //判断是否已定义字符串
+        if ($C_char == '') return false; //判断字符串是否为空
+        return true;
+    }
+
     /**
      * @param $mobile
      * @return bool
@@ -54,27 +72,28 @@ abstract class Controller extends BaseController
      * @return int
      *  根据生日计算年龄
      */
-    public function calcAge($birth) {
+    public function calcAge($birth)
+    {
 
         $date = date_diff(date_create($birth), date_create(date('Y-m-d')));
-        return $date->y.'岁'.$date->m.'月'.$date->d.'天';
-      /*  $age = 0;
-        if(!empty($birthday)){
-            $age = strtotime($birthday);
-            if($age === false){
-                return 0;
-            }
+        return $date->y . '岁' . $date->m . '月' . $date->d . '天';
+        /*  $age = 0;
+          if(!empty($birthday)){
+              $age = strtotime($birthday);
+              if($age === false){
+                  return 0;
+              }
 
-            list($y1,$m1,$d1) = explode("-",date("Y-m-d", $age));
+              list($y1,$m1,$d1) = explode("-",date("Y-m-d", $age));
 
-            list($y2,$m2,$d2) = explode("-",date("Y-m-d"), time());
+              list($y2,$m2,$d2) = explode("-",date("Y-m-d"), time());
 
-            $age = $y2 - $y1;
-            if((int)($m2.$d2) < (int)($m1.$d1)){
-                $age -= 1;
-            }
-        }
-        return $age;*/
+              $age = $y2 - $y1;
+              if((int)($m2.$d2) < (int)($m1.$d1)){
+                  $age -= 1;
+              }
+          }
+          return $age;*/
     }
 
 
@@ -128,15 +147,41 @@ abstract class Controller extends BaseController
      * @copyright Copyright (c) 2016 lc.top all rights reserved.
      */
 
-    public function change_reurl($data,$size)
+    public function change_reurl($data, $size)
     {
-       foreach ($data as $k => $v){
-           $v -> re_img_url = resize_url($v -> img_url,$size);
-       }
+        foreach ($data as $k => $v) {
+            $v->re_img_url = resize_url($v->img_url, $size);
+        }
 
         return $data;
 
     }
+
+    /**
+     * @param int $parent_id
+     * @param array $result
+     * @return array
+     *
+     */
+    public function getCommlist($parent_id = 0, &$result = array())
+    {
+        $arr = User_share::where("pid", $parent_id)->orderBy("id", 'desc')->get()->toArray();
+        if (empty($arr)) {
+            return array();
+        }
+        foreach ($arr as $cm) {
+            $thisArr =& $result[];
+            $cm["children"] = $this->getCommlist($cm["id"], $thisArr);
+            $thisArr = $cm;
+        }
+        return $result;
+    }
+
+    /**
+     * @param $category_id
+     * @return string
+     *
+     */
     public function get_category($category_id)
     {
         $category_ids = $category_id . ",";
@@ -151,9 +196,10 @@ abstract class Controller extends BaseController
      * @return bool
      * 验证地址是否合法
      */
-    function check_url($url){
+    function check_url($url)
+    {
 
-        if(!preg_match('/http:\/\/[\w.]+[\w\/]*[\w.]*\??[\w=&\+\%]*/is',$url)){
+        if (!preg_match('/http:\/\/[\w.]+[\w\/]*[\w.]*\??[\w=&\+\%]*/is', $url)) {
 
             return false;
 
@@ -163,8 +209,9 @@ abstract class Controller extends BaseController
 
     }
 
-    public function get_sort_data(){
-        $sort = Sort::where(['pid'=>'0','type'=>'0'])->select('id', 'pid', 'name')->orderBy('id', 'asc')->orderBy('num', 'asc')->get()->toArray();
+    public function get_sort_data()
+    {
+        $sort = Sort::where(['pid' => '0', 'type' => '0'])->select('id', 'pid', 'name')->orderBy('id', 'asc')->orderBy('num', 'asc')->get()->toArray();
         if (!empty($sort)) {
             foreach ($sort as $ky => $vy) {
                 $rst = $this->get_category($vy['id']);
@@ -186,6 +233,20 @@ abstract class Controller extends BaseController
         }
         return $sort;
     }
+
+    /**
+     *获取用户头像
+     */
+    public function get_user_info($id)
+    {
+        $rst = User::where('id',$id)->select('id','nickname','avatar')->get()->toArray();
+        if(!empty( $rst)){
+            return $rst;
+        }else{
+            return "";
+        }
+    }
+
 
 
 
