@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use Auth;
 use Input;
+use Illuminate\Support\Facades\Redis;
 use phpDocumentor\Reflection\Types\Null_;
 use Redirect;
 
 use Response;
 use App\Models\User;
 use App\Http\Requests;
+use spec\PhpSpec\Wrapper\Subject\Expectation\DispatcherDecoratorSpec;
 use Validator;
 use App\Models\SendSMS;
 use App\Models\AclUser;
@@ -405,8 +407,8 @@ class UserController extends Controller
     {
         $username = Input::get('username');
         $password = Input::get('password');
-        // dd($password);
         $remember = Input::get('remember', false);
+        //dd($remember);
         $field = isEmail($username) ? 'email' : 'name';
         $redirect = urldecode(Input::get('redirect', '/'));
         $data['id'] = User::where(array(
@@ -442,6 +444,10 @@ class UserController extends Controller
         return Redirect::route('user.login');
     }
 
+    /**
+     * @return string
+     *
+     */
     public function m_getLogout()
     {
         $callback = Input::get('callback');
@@ -464,7 +470,6 @@ class UserController extends Controller
     public function search()
     {
         $keyword = Input::get('keyword');
-
         return User::where('name', 'like', $keyword . '%')->limit(10)->get()->toJson();
     }
 
@@ -485,7 +490,6 @@ class UserController extends Controller
         if ($user->id == Auth::id()) {
             return Response::json(['state' => 0, 'message' => '你不能锁定自己!']);
         }
-
         $user->lock = User::LOCK;
         $user->save();
         return Response::json(['state' => 1, 'message' => '锁定成功']);

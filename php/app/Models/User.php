@@ -49,6 +49,7 @@ class User extends Eloquent implements AuthenticatableContract, CanResetPassword
         'type',
         'password',
         'email',
+        "weight",
         'avatar',
         'role',
         'nickname',
@@ -57,7 +58,7 @@ class User extends Eloquent implements AuthenticatableContract, CanResetPassword
         'wechat',
         'height',
         'birthday',
-        'bady_age',
+        'signature',
         'location',
         'qq',
     ];

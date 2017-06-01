@@ -14,7 +14,7 @@ use App\Models\Collection;
 use App\Models\User_dynamics;
 use Illuminate\Support\Facades\Redis;
 use App\Http\Controllers\Controller;
-use Request;
+use Illuminate\Http\Request;
 
 class Bell_userController extends Controller
 {
@@ -23,9 +23,9 @@ class Bell_userController extends Controller
     /**
      * @param Request $request
      * @return mixed
-     * 添加好友
+     * 添加关注
      */
-    public function add_friend(Request $request)
+    public function add_attention(Request $request)
     {
         $attention_userid = Input::get('attention_userid');
         $set_attention_userid = Userattention::where(['user_id' => Auth::id(), 'attention_userid' => $attention_userid])->get();
@@ -43,7 +43,7 @@ class Bell_userController extends Controller
     
 
     /**
-     *获取好友列表
+     *获取关注列表动态
      */
     public function Get_friend_list()
     {
@@ -87,7 +87,6 @@ class Bell_userController extends Controller
             return json_encode(['sta' => $rst['sta'], 'msg' => $rst['msg'], 'data' => ''], JSON_UNESCAPED_UNICODE);
         }
     }
-
     /**
      *
      * 宝贝信息录入
@@ -105,11 +104,13 @@ class Bell_userController extends Controller
      * 'location',地址
      * 身高体重， 男女，生日，性别,是否提醒生日
      */
-    public function baby_info()
+    public function baby_info(Request $request)
     {
+        //dd($request->nickname);
+        //dd($request->all());
         $user_id = Auth::id();
-        $bady = User::where('id', $user_id)->first();
-        $data['location'] = Input::get('location');
+        $bady = User::find($user_id);
+       /* $data['location'] = Input::get('location');
         $data['avatar'] = Input::get('avatar');
         $data['phone'] = Input::get('mobile');
         $data['birthday'] = Input::get('birthday');
@@ -117,20 +118,13 @@ class Bell_userController extends Controller
         $data['height'] = trim(Input::get('height'));
         $data['nickname'] = Input::get('nickname');
         $data['gender'] = Input::get('gender');
-        $signature = Input::get('signature');
-        $data['bady_age'] = Controller::calcAge($data['birthday']);//格式如：1994-09-09
+        $signature = Input::get('signature');*/
+       /* $data['birthday'] = Input::get('birthday');*/
+        //$data['bady_age'] = Controller::calcAge($data['birthday']);//格式如：1994-09-09
+       // dd($request->all());
         if ($bady) {
-            DB::beginTransaction();
-            try {
-                User::where('id', Auth::id())->update($data);
-                Bell_user::where('user_id', Auth::id())->update(['signature' => $signature]);
-                DB::commit();
-                // all good
-            } catch (\Exception $e) {
-                DB::rollback();
-                return json_encode(['msg' => $e->getMessage(), 'sta' => 0, 'data' => '']);
-                // something went wron
-            }
+            $bady->update($request->all());
+
         } else {
             return json_encode(['sta' => '0', 'msg' => '请求失败', 'data' => ""]);
         }
@@ -158,7 +152,7 @@ class Bell_userController extends Controller
             $flush = Integration::leftJoin('bell_user', function ($join) {
                 $join->on('bell_user.user_id', '=', 'integration.user_id');
             })->where('integration.user_id', $user_id)->select("*")->limit(1)->orderBy('integration.id', 'desc')->get()->toArray();
-            $set_bell_user = Bell_user::where('id', $user_id)->first();
+            $set_bell_user = Bell_user::where('user_id', $user_id)->first();
             if (empty($flush)) {
                 //更新积分
                 Bell_user::where('user_id', $user_id)->update(['integral' => 2, 'sign_sta' => '1']);
@@ -166,6 +160,7 @@ class Bell_userController extends Controller
             } else {
                 foreach ($flush as $ky => $rs) {
                     $old_time = date("Y-m-d", strtotime($rs['sign_time']));
+                   // dd($this_time == $old_time);
                     if ($this_time == $old_time) {
                         $set_rst[$ky] = $old_time;
                     } else {
@@ -180,7 +175,7 @@ class Bell_userController extends Controller
                                 Bell_user::where('user_id', $user_id)->update(['sign_sta' => $set_bell_user->sign_sta + 1, 'integral' => $set_bell_user->integral + 2]);
                                 Integration::create(['user_id' => $user_id, 'sign_time' => date('Y-m-d H:i:s', time())]);
                             } else {
-                                Bell_user::where('user_id', $user_id)->update(['sign_sta' => 1]);
+                                Bell_user::where('user_id', $user_id)->update(['sign_sta' => 1,'integral' => $set_bell_user->integral + 2]);
                                 Integration::create(['user_id' => $user_id, 'sign_time' => date('Y-m-d H:i:s', time())]);
                             }
                             //中间逻辑代码 DB::commit();
@@ -188,17 +183,21 @@ class Bell_userController extends Controller
                             DB::rollBack();
                             //接收异常处理并回滚 DB::rollBack();
                         }
-
                     }
                 }
             }
         }
         //根据上面的结果来查询这个月有几天是签到过得。
-        $All_in = DB::select("select sign_time from integration where user_id =" . Auth::id() . " AND strcmp(date_format(sign_time,'%Y-%m'),'" . date('Y-m', time()) . "') =  0");
+        //$All_in = DB::select("select sign_time from integration where user_id =" . Auth::id() . " AND strcmp(date_format(sign_time,'%Y-%m'),'" . date('Y-m', time()) . "') =  0");
+        $All_in = DB::select("select sign_time from integration where user_id =" . Auth::id());
+        $bell_user = Bell_user::where('user_id', Auth::id())->first();
         if (!$All_in) {
-            return json_encode(['msg' => '本月暂无签到记录', 'sta' => '0', 'data' => ""]);
+            return json_encode(['msg' => '请求成功', 'sta' => '1', 'data' => [
+                'time' =>[],
+                'num' => $bell_user->sign_sta,
+                'integral' => $bell_user->integral
+            ]]);
         } else {
-            $bell_user = Bell_user::where('user_id', Auth::id())->first();
             $ret = array();
             foreach ($All_in as $ky => $vy) {
                 $ret[$ky] = $vy->sign_time;
@@ -208,7 +207,7 @@ class Bell_userController extends Controller
                 'num' => $bell_user->sign_sta,
                 'integral' => $bell_user->integral
             ];
-            return json_encode(['msg' => '签到成功', 'sta' => '1', 'data' => $data,]);
+            return json_encode(['msg' => '签到成功', 'sta' => '1', 'data' => $data]);
         }
 
     }
@@ -284,7 +283,7 @@ class Bell_userController extends Controller
     {
         $username = Input::get('name');
         $password = Input::get('password');
-        $remember = Input::get('remember', false);
+        $remember = Input::get('remember', true);
         $field = isEmail($username) ? 'email' : 'name';
         $redirect = urldecode(Input::get('redirect', '/'));
         $data['id'] = User::where(array(
@@ -296,15 +295,27 @@ class Bell_userController extends Controller
             $id_data = $data['id']->toArray();
             $data['id'] = $id_data['0']['id'];
             $rst = Auth::attempt([$field => $username, $field => $username, 'password' => $password], $remember);
+
             if ($rst == false) {
                 return json_encode(['msg' => "用户名或者密码错误", 'sta' => 0, 'data' => '']);
             }
+            $dynmics=User_dynamics::where('user_id',Auth::id())->count();
+            //获取用户关注好友个数Userattention
+            $attention=Userattention::where('user_id',Auth::id())->count();
+            //获取关注用户粉丝个数
+            $Fans=Userattention::where('attention_userid',Auth::id())->count();
+
+            //记录登陆状态
+            Redis::set($username.'_token',Input::get('_token'));
             $data = ([
                 'id' => $data['id'],
                 'rst' => $rst,
                 'username' => $username,
                 'password' => $password,
                 'redirect' => $redirect,
+                'dynmics'=>$dynmics,
+                'attention'=>$attention,
+                'fans'=>$Fans,
             ]);
             return json_encode(['msg' => '登录成功', 'sta' => '1', 'data' => $data]);
         } else {

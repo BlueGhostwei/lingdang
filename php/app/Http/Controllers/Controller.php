@@ -209,6 +209,9 @@ abstract class Controller extends BaseController
 
     }
 
+    /**
+     * @return array
+     */
     public function get_sort_data()
     {
         $sort = Sort::where(['pid' => '0', 'type' => '0'])->select('id', 'pid', 'name')->orderBy('id', 'asc')->orderBy('num', 'asc')->get()->toArray();
@@ -241,7 +244,7 @@ abstract class Controller extends BaseController
     {
         $rst = User::where('id',$id)->select('id','nickname','avatar')->get()->toArray();
         if(!empty( $rst)){
-            return $rst;
+            return $rst[0];
         }else{
             return "";
         }

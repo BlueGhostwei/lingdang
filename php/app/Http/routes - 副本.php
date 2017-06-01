@@ -1,25 +1,6 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| 应用路由
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
-/*Route::group(['namespace' => 'Home'], function () {
-    //前台页面路由开始
-    Route::get('/', ['as' => 'home.index', 'uses' => 'HomeController@index']);
-//验证码
-    Route::get('yanzheng/test',['as'=>'captcha.test','uses'=>'Admin\CaptchaController@index']);
-//生成
-    Route::get('yanzheng/mews',['as'=>'captcha.mews','uses'=>'Admin\CaptchaController@mews']);
-//验证验证码
-    Route::any('yanzheng/cpt',['as'=>'captcha.cpt','uses'=>'Admin\CaptchaController@cpt']);
-});*/
+
 
 // 游客状态下的路由
 Route::group(['middleware' => 'guest'], function () {
@@ -27,7 +8,7 @@ Route::group(['middleware' => 'guest'], function () {
         // 登录注册
         Route::post('user/sign_up', ['as' => 'user.sign_up', 'uses' => 'Bell_userController@sign_up']);
         Route::get('Admin/user/login', ['as' => 'user.login', 'uses' => 'UserController@getLogin']);
-        Route::post('Admin/user/login', 'UserController@postLogin');
+        Route::post('/user/login', 'UserController@postLogin');
         Route::get('/user/register', ['as' => 'user.register', 'uses' => 'UserController@getRegister']);
         Route::post('/user/register', 'UserController@postRegister');
         Route::get('/user/register/step2', ['as' => 'user.register.step2', 'uses' => 'UserController@getRegisterStep2']);
@@ -35,7 +16,7 @@ Route::group(['middleware' => 'guest'], function () {
         Route::get('/user/register/step3', ['as' => 'user.register.step3', 'uses' => 'UserController@getRegisterStep3']);
         Route::post('/user/register/step3', 'UserController@postRegisterStep3');
         // 找回密码
-        Route::post('user/findPass', ['as' =>'user.findPass', 'uses' => 'Bell_userController@findPass']);
+        Route::post('user/findPass', ['as' => 'user.findPass', 'uses' => 'Bell_userController@findPass']);
         Route::get('password/email', ['as' => 'password.email', 'uses' => 'Auth\PasswordController@getEmail']);
         Route::post('password/email', 'Auth\PasswordController@postEmail');
         Route::get('password/reset/{token}', ['as' => 'password.reset', 'uses' => 'Auth\PasswordController@getReset']);
@@ -45,8 +26,6 @@ Route::group(['middleware' => 'guest'], function () {
         Route::post('user/send_sms', ['as' => 'user.send_sms', 'uses' => 'Bell_userController@Send_sms']);
         //手机.邮箱用户登录
         Route::post('user/user_login', 'Bell_userController@user_login');
-		Route::get('user/Api_logo', ['as' => 'user.Api_logo', 'uses' => 'Apicontroller@Api_logo']);
-        Route::get('check_user_login',"Apicontroller@check_user_login");
     });
 });
 
@@ -55,18 +34,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['namespace' => 'Admin'], function () {
         Route::get('/', ['as' => 'admin.dashboard', 'uses' => 'DashboardController@index']);
         //ios登陆接口
-        Route::get('user/baby_info', ['as' => 'user.baby_info', 'uses' => 'Bell_userController@baby_info']);
-        Route::get('user/User_Integration', ['as' => 'user.User_Integration', 'uses' => 'Bell_userController@User_Integration']);//用户签到
-        Route::get('user/UserInfo', ['as' => 'user.UserInfo', 'uses' => 'Apicontroller@UserInfo']);
-        Route::get('user/add_friend', ['as' => 'user.add_friend', 'uses' => 'Bell_userController@add_friend']);
+        Route::post('user/baby_info', ['as' => 'user.baby_info', 'uses' => 'Bell_userController@baby_info']);
+        Route::get('user/User_Integration', ['as' => 'user.User_Integration', 'uses' => 'Bell_userController@User_Integration']);
+        Route::get('user/Api_logo', ['as' => 'user.Api_logo', 'uses' => 'Apicontroller@Api_logo']);
+        Route::get('user/add_attention', ['as' => 'user.add_attention', 'uses' => 'Bell_userController@add_attention']);
         Route::get('user/daily_record', ['as' => 'user.daily_record', 'uses' => 'Apicontroller@daily_record']);
-        Route::post('user/Get_friend_list', ['as' => 'user.Get_friend_list', 'uses' => 'Bell_userController@Get_friend_list']);
-        Route::get('user/Collection_diary', ['as' => 'user.Collection_diary', 'uses' => 'Apicontroller@Collection_diary']);//点赞
-        Route::post('user/User_Share', ['as' => 'user.User_Share', 'uses' => 'Apicontroller@User_Share']);//保存好友动态
-        Route::post('user/GetUserShare', ['as' => 'user.GetUserShare', 'uses' => 'Apicontroller@GetUserShare']);//查看动态详情
-        Route::get('user/api_logout', ['as' => 'user.api_logout', 'uses' => 'Apicontroller@api_logout']);//退出接口
-		Route::get('user/GetUserShare_list', ['as' => 'user.GetUserShare_list', 'uses' => 'Apicontroller@GetUserShare_list']);//获取动态列表
-
+        Route::get('user/Get_friend_list', ['as' => 'user.Get_friend_list', 'uses' => 'Bell_userController@Get_friend_list']);
+        Route::get('user/Collection_diary', ['as' => 'user.Collection_diary', 'uses' => 'Bell_userController@Collection_diary']);//点赞
+        Route::get('user/User_Share', ['as' => 'user.User_Share', 'uses' => 'Apicontroller@User_Share']);//保存好友评论
+        Route::get('user/GetUserShare_list', ['as' => 'user.GetUserShare_list', 'uses' => 'Apicontroller@GetUserShare_list']);//查看动态详情
 
 
         // 需要登录状态和权限控制的路由
