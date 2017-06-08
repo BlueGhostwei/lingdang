@@ -28,30 +28,35 @@ class Bell_userController extends Controller
     public function add_attention(Request $request)
     {
         $attention_userid = Input::get('attention_userid');
-        $set_attention_userid = Userattention::where(['user_id' => Auth::id(), 'attention_userid' => $attention_userid])->get();
-        if (!$set_attention_userid) {
-            $Userattention = new Userattention();
-            Validator::make($request->all(), $Userattention->rules()['create']);
-            $Userattention->create($request->only($Userattention->getFillable()));
-            return json_encode(['msg' => '关注成功', 'sta' => '1', 'data' => '']);
-        } else {
-            return json_encode(['msg' => '不能重复关注同一用户', 'sta' => '1', 'data' => '']);
+        $find_user=User::find($attention_userid);
+        if($find_user){
+            $set_attention_userid = Userattention::where(['user_id' => Auth::id(), 'attention_userid' => $attention_userid])->get()->toArray();
+            if (empty($set_attention_userid)) {
+                $Userattention = new Userattention();
+                Validator::make($request->all(), $Userattention->rules()['create']);
+                $Userattention->create($request->only($Userattention->getFillable()));
+                return json_encode(['msg' => '关注成功', 'sta' => '1', 'data' => '']);
+            } else {
+                Userattention::where(['user_id' => Auth::id(), 'attention_userid' => $attention_userid])->delete();
+                return json_encode(['msg' => '取消关注成功', 'sta' => '1', 'data' => '']);
+            }
         }
-
     }
 
-    
+
 
     /**
      *获取关注列表动态
      */
     public function Get_friend_list()
     {
-        $user_friend = Userattention::where('user_id', Auth::id())->join('user', 'userattention.attention_userid', '=', 'user.id')->select('user.id', 'user.avatar')->get()->toArray();
+        $user_friend = Userattention::where('user_id', Auth::id())
+            ->join('user', 'userattention.attention_userid', '=', 'user.id')
+            ->select('user.id', 'user.avatar','user.nickname','user.signature')->get()->toArray();
         //获取好友列表
         foreach ($user_friend as $ky => $vy) {
             if ($vy['avatar'] != '') {
-                $user_friend[$ky]['avatar'] = url('/' . $vy['avatar']);
+                $user_friend[$ky]['avatar'] =md52url($vy['avatar']);
             }
         }
         return json_encode(['msg' => '请求成功', 'sta' => '1', 'data' => $user_friend]);
@@ -106,8 +111,6 @@ class Bell_userController extends Controller
      */
     public function baby_info(Request $request)
     {
-        //dd($request->nickname);
-        //dd($request->all());
         $user_id = Auth::id();
         $bady = User::find($user_id);
        /* $data['location'] = Input::get('location');
@@ -120,11 +123,8 @@ class Bell_userController extends Controller
         $data['gender'] = Input::get('gender');
         $signature = Input::get('signature');*/
        /* $data['birthday'] = Input::get('birthday');*/
-        //$data['bady_age'] = Controller::calcAge($data['birthday']);//格式如：1994-09-09
-       // dd($request->all());
         if ($bady) {
             $bady->update($request->all());
-
         } else {
             return json_encode(['sta' => '0', 'msg' => '请求失败', 'data' => ""]);
         }
@@ -304,9 +304,9 @@ class Bell_userController extends Controller
             $attention=Userattention::where('user_id',Auth::id())->count();
             //获取关注用户粉丝个数
             $Fans=Userattention::where('attention_userid',Auth::id())->count();
-
             //记录登陆状态
-            Redis::set($username.'_token',Input::get('_token'));
+            $arr=['token'=>Input::get('_token'),'time'=>time()];
+            Redis::set($username.'_token',json_encode($arr));
             $data = ([
                 'id' => $data['id'],
                 'rst' => $rst,

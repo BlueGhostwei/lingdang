@@ -18,15 +18,20 @@ class User_dynamics extends Eloquent
      */
     protected  $fillable=[
         'user_id',
-        'centent',
+        'content',
         'img_photo',
         'remind_friend',
+        'Authority',
+        'comment_num',
+        'send_out_num',
+        'like_num'
+
     ];
 
     public function rules(){
         return [
             'create'=>[
-                'centent'=>'required',
+                'content'=>'required',
             ],
         ];
     }

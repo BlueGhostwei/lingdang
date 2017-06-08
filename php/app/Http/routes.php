@@ -42,11 +42,19 @@ Route::group(['middleware' => 'guest'], function () {
         Route::post('password/reset', ['as' => 'password.reset', 'uses' => 'Auth\PasswordController@postReset']);
         //ios
         Route::get('user/Get_Token', 'UserController@GEt_token');
-        Route::post('user/send_sms', ['as' => 'user.send_sms', 'uses' => 'Bell_userController@Send_sms']);
+        Route::get('user/send_sms', ['as' => 'user.send_sms', 'uses' => 'Bell_userController@Send_sms']);
         //手机.邮箱用户登录
         Route::post('user/user_login', 'Bell_userController@user_login');
 		Route::get('user/Api_logo', ['as' => 'user.Api_logo', 'uses' => 'Apicontroller@Api_logo']);
+
         Route::get('check_user_login',"Apicontroller@check_user_login");
+        Route::get('user/check_login',"Apicontroller@check_login");
+
+        //ios
+        Route::get('user/HomeData', ['as' => 'user.HomeData', 'uses' => 'Apicontroller@HomeData']);//首页数据
+
+
+
     });
 });
 
@@ -58,14 +66,16 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('user/baby_info', ['as' => 'user.baby_info', 'uses' => 'Bell_userController@baby_info']);
         Route::get('user/User_Integration', ['as' => 'user.User_Integration', 'uses' => 'Bell_userController@User_Integration']);//用户签到
         Route::get('user/UserInfo', ['as' => 'user.UserInfo', 'uses' => 'Apicontroller@UserInfo']);
-        Route::get('user/add_friend', ['as' => 'user.add_friend', 'uses' => 'Bell_userController@add_friend']);
-        Route::get('user/daily_record', ['as' => 'user.daily_record', 'uses' => 'Apicontroller@daily_record']);
-        Route::post('user/Get_friend_list', ['as' => 'user.Get_friend_list', 'uses' => 'Bell_userController@Get_friend_list']);
+        Route::get('user/add_friend', ['as' => 'user.add_friend', 'uses' => 'Bell_userController@add_attention']);
+        Route::get('user/daily_record', ['as' => 'user.daily_record', 'uses' => 'Apicontroller@daily_record']);//发表日记
+        Route::post('user/Get_friend_list', ['as' => 'user.Get_friend_list', 'uses' => 'Bell_userController@Get_friend_list']);//好友列表
         Route::get('user/Collection_diary', ['as' => 'user.Collection_diary', 'uses' => 'Apicontroller@Collection_diary']);//点赞
-        Route::post('user/User_Share', ['as' => 'user.User_Share', 'uses' => 'Apicontroller@User_Share']);//保存好友动态
+        Route::get('user/User_Share', ['as' => 'user.User_Share', 'uses' => 'Apicontroller@User_Share']);//保存好友动态
         Route::post('user/GetUserShare', ['as' => 'user.GetUserShare', 'uses' => 'Apicontroller@GetUserShare']);//查看动态详情
         Route::get('user/api_logout', ['as' => 'user.api_logout', 'uses' => 'Apicontroller@api_logout']);//退出接口
 		Route::get('user/GetUserShare_list', ['as' => 'user.GetUserShare_list', 'uses' => 'Apicontroller@GetUserShare_list']);//获取动态列表
+		Route::get('user/GetFansList', ['as' => 'user.GetFansList', 'uses' => 'Apicontroller@GetFansList']);//用户粉丝列表
+		Route::get('user/HomeData', ['as' => 'user.HomeData', 'uses' => 'Apicontroller@HomeData']);//用户粉丝列表
 
 
 

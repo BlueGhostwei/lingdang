@@ -244,6 +244,13 @@ abstract class Controller extends BaseController
     {
         $rst = User::where('id',$id)->select('id','nickname','avatar')->get()->toArray();
         if(!empty( $rst)){
+			foreach($rst as $key=>&$rvb){
+				if($rst[$key]['avatar']){
+                    $rst[$key]['avatar']=md52url($rvb);
+				}else{
+                    $rst[$key]['avatar']="";
+				}
+			}
             return $rst[0];
         }else{
             return "";
