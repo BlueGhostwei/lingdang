@@ -157,7 +157,6 @@
                                                                value="{{ isset($user) ? '' : old('password') }}"
                                                                class="password form-control" placeholder="请输入密码">
                                                         {{--@if (isset($user))
-
                                                         @else
                                                             @if ($errors->has('password'))
                                                                 <label class="error">

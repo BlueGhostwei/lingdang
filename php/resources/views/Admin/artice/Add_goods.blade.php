@@ -392,7 +392,7 @@
                         <script type="text/javascript">
                             var editor = new wangEditor('texDiv');
                             // 上传图片
-                            editor.config.uploadImgUrl = '/upload';
+                            editor.config.uploadImgUrl ="{{route('user.Pic_upload')}}";
 
                             // 配置自定义参数
                             editor.config.uploadParams = {
@@ -434,19 +434,19 @@
     <!--图片上传-->
     <script>
         var options = {
-            url: "{{url('upload')}}",
+            url: "{{url('Pic_upload')}}",
             type: "post",
             data: {return_type: "string"},
             enctype: 'multipart/form-data',
             success: function (ret) {
-                console.log(ret)
+                console.log(ret.data);
                 if (typeof(ret) == "string") {
                     ret = JSON.parse(ret);
                 }
                 if (ret.sta == "1") {
                     layer.msg('文件上传成功');
-                    $('input[name="upfile_1"]').val(ret.md5);
-                    $("#uppic_1").attr("src", ret.url);
+                    $('input[name="upfile_1"]').val(ret.data.md5);
+                    $("#uppic_1").attr("src", ret.data.url);
                 } else {
                     layer.msg(ret.msg);
                 }
@@ -471,17 +471,19 @@
         });
 
         var options2 = {
-            url: "{{url('upload')}}",
+            url: "{{url('Pic_upload')}}",
             type: "post",
             data: {return_type: "string"},
             enctype: 'multipart/form-data',
             success: function (ret) {
                 console.log(ret)
+                debugger
                 if (typeof(ret) == "string") {
                     ret = JSON.parse(ret);
                 }
                 if (ret.sta == "1") {
                     if ($("#uppic_2 img[data=" + ret.md5 + "]").length < 1) {
+                        debugger
                         layer.msg('文件上传成功');
                         $('input[name="upfile_2"]').val(ret.md5);
                         var img = '<img data="' + ret.md5 + '" src="' + ret.url + '" style="width:auto; height: 80px; margin: 5px;">';

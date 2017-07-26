@@ -77,17 +77,13 @@ class UploadController extends Controller
         }else{
             $file=$Editfile;
         }
-        //dd($file,$file->isValid());
-
-//		if (!$file || !$file->isValid()) return Response::json(array('sta' => 0, 'msg' => '无效的文件'));
+        //if (!$file || !$file->isValid()) return Response::json(array('sta' => 0, 'msg' => '无效的文件'));
 		if (!$file || !$file->isValid()) return json_encode(array('sta' => 0, 'msg' => '无效的文件'));
 
         // 文件类型
-        $mimeType = explode('/', $file->getMimeType());
-
-
+        $mimeType = explode('/', $file->getClientMimeType());
         if (!$mimeType || count($mimeType) != 2) {
-//			return Response::json(array('sta' => 0, 'msg' => '不允许的文件类型'));
+        //return Response::json(array('sta' => 0, 'msg' => '不允许的文件类型'));
 			return json_encode(array('sta' => 0, 'msg' => '不允许的文件类型'));
         }
 
@@ -163,11 +159,7 @@ class UploadController extends Controller
                 $fileType = $mimeType[1];
                 break;
         }
-
         $fileTypeKey = array_search($fileType, $this->fileType);
-
-
-
         if (!$fileType || !$fileTypeKey) {
 //			return Response::json(array('sta' => 0, 'msg' => '不允许的文件类型'));
             return json_encode(array('sta' => 0, 'msg' => '不允许的文件类型'));
@@ -201,7 +193,6 @@ class UploadController extends Controller
 
         if($resize){
             $resize_img = resize_img($md5,$resize,true);
-
             File::put(config_path('rebate.php'), sprintf("<?php%s%sreturn %s;%s", PHP_EOL, PHP_EOL, var_export($resize, true), PHP_EOL));
 			return json_encode([
                 'sta' => 1,

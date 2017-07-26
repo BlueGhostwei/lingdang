@@ -15,8 +15,7 @@ class CreateUsercollectionTable extends Migration
         Schema::create('collection', function (Blueprint $table) {
             $table->increments('id');
             //用户id
-            $table->integer('user_id');
-            //好友动态id
+            $table->integer('user_id');  //好友动态id
             $table->integer('userdynamics_id');
             //属性
             $table->tinyInteger('type')->nullable()->commit('属性，1为转发，2位点赞');

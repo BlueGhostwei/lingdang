@@ -17,14 +17,19 @@ class Message_record extends Eloquent
      */
     protected $fillable=[
         'user_id',
+        'remind_name',
         'record_type',
         'record_status',
+        'record_content',
+        'puser_id',
+        'share_id',
+        'reply_id',
+        'userdynamics_id'
     ];
 
     public function rules(){
         return [
           'create'=>[
-              'user_id'=>'required',
               'userdynamics_id'=>'required',
           ],
         ];

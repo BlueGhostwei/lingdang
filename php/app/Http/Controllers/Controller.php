@@ -192,6 +192,32 @@ abstract class Controller extends BaseController
     }
 
     /**
+     * @param $category_id
+     * @return string
+     *
+     */
+     public function get_share_category($category_id)
+    {
+        $category_ids = $category_id . ",";
+        $child_category = DB::select("select id from user_share where pid = '$category_id'");
+        foreach ($child_category as $key => $val)
+            $category_ids .= $this->get_category($val->id);
+        return $category_ids;
+    }
+
+    /**
+     * @param $id
+     *获取用户昵称
+     */
+    public function get_nackname($id){
+        $rst=User::where('id',$id)->select('nickname')->first();
+        return $rst->nickname;
+    }
+
+
+
+
+    /**
      * @param $url
      * @return bool
      * 验证地址是否合法
@@ -244,13 +270,17 @@ abstract class Controller extends BaseController
     {
         $rst = User::where('id',$id)->select('id','nickname','avatar')->get()->toArray();
         if(!empty( $rst)){
-			foreach($rst as $key=>&$rvb){
-				if($rst[$key]['avatar']){
-                    $rst[$key]['avatar']=md52url($rvb);
-				}else{
+            foreach($rst as $key=>$rvb){
+                if($rst[$key]['avatar']){
+                    $rst[$key]['avatar']=md52url($rst[$key]['avatar']);
+                }else{
                     $rst[$key]['avatar']="";
-				}
-			}
+                }
+
+                if(empty($rst[$key]['nickname'])){
+                    $rst[$key]['nickname']="";
+                }
+            }
             return $rst[0];
         }else{
             return "";

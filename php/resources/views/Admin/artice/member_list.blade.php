@@ -47,19 +47,21 @@
                             <th>账户余额</th>
                             <th style="width: 130px;">管理操作</th>
                         </tr>
-                        <tr class="Alist_main">
                             @if(isset($member_list) && count($member_list)!='')
                                 @foreach($member_list as $key =>$vay)
+                                <tr class="Alist_main">
                                     <td class="IMar_list" />{{$vay['id']}}</td>
                                     <td>{{$vay['name']}}</td>
                                     <td>{{$vay['nickname']}}</td>
                                     <td>{{$vay['phone']}}</td>
                                     <td>{{$vay['email']}}</td>
                                     <td>{{$vay['location']}}</td>
-                                    <td><font color="red">￥228.00</font></td>
+                                    <td><font color="red">￥0.0</font></td>
                                     <td><a href="">修改 </a>|<a href=""> 删除</a></td>
+                                </tr>
                                 @endforeach
                                 @else
+                            <tr class="Alist_main">
                                 <td class="IMar_list" />1</td>
                                 <td>铃铛</td>
                                 <td>铃铛宝贝</td>
@@ -68,8 +70,9 @@
                                 <td>广州市海珠区怡安路财京公馆515室</td>
                                 <td><font color="red">￥228.00</font></td>
                                 <td><a href="">修改 </a>|<a href=""> 删除</a></td>
+                            </tr>
                             @endif
-                        </tr>
+
                     </table>
                 </form>
             </div>

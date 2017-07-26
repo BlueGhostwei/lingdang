@@ -17,15 +17,16 @@ class User_dynamics extends Eloquent
      * 动态
      */
     protected  $fillable=[
+        'pid',
         'user_id',
         'content',
         'img_photo',
+        'topic',
         'remind_friend',
         'Authority',
         'comment_num',
         'send_out_num',
         'like_num'
-
     ];
 
     public function rules(){
@@ -34,6 +35,10 @@ class User_dynamics extends Eloquent
                 'content'=>'required',
             ],
         ];
+    }
+    public function GET_data()
+    {
+        return $this->hasMany(\App\Models\Forward::class,'userdynamics_id');
     }
 
 }

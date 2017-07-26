@@ -219,13 +219,11 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //dd(Input::all());
         $id = Input::get('id');
         $user = User::find($id);
         if ($user) {
             $data = $request->all();
             if (!empty($data['password_confirmation']) && !empty($data['password'])) {
-                //dd(12341);
                 if ($data['password_confirmation'] != $data['password']) {
                     return json_encode(['sta' => 0, 'msg' => '两次密码不一致', 'data' => '']);
                 }

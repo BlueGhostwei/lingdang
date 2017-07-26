@@ -65,7 +65,7 @@
                         </div>
                     </div>
                 @endif
-                @if(isset($goods_list))
+                   @if(isset($goods_list))
                         <div style="text-align: center"> {!! $goods_list->render() !!}</div>
                     @endif
             </div>
