@@ -6,12 +6,13 @@ use App\Models\Attributes;
 use App\Models\Brand;
 use App\Models\Coupon;
 use App\Models\Goods;
+use App\Models\Shopping;
 use App\Models\Goods_param;
 use App\Models\Gcollection;
 use App\Models\Goods_standard;
 use App\Models\Order;
 use App\Models\Sort;
-use Illuminate\Support\Facades\Auth;
+use Auth;
 use Input;
 use Illuminate\Http\Request;
 use DB;
@@ -126,7 +127,6 @@ class GoodsController extends Controller
         $specif=Input::get("specif");
         $scount=Input::get("scount");
         $brand_id=Input::get("brand_id");
-        //$code=Input::get("code");
         $code = $this->make_order($user_id);
         if(!$user_id)
         {
@@ -183,17 +183,8 @@ class GoodsController extends Controller
         //dd($arrs);
 
         if(!$attd){
-
-
             return json_encode(['msg'=>'暂无改规格商品','data'=>['stock'=>0,'price'=>0],'sta'=>'0']);
         }
-
-//            if($scount>$attd["stock"])
-//            {
-//                $shop->scount=$attd["stock"];
-//            }
-        //  $shop->code=$code;
-
         $gshop=Shopping::where("gid",$gid)->where("specif","=",$specif)->where("brand_id","=",$brand_id)->where("user_id","=",$user_id)->first();
         $count=$gshop["scount"];
         if($gshop){
@@ -201,12 +192,6 @@ class GoodsController extends Controller
             $counts=$count+$scount;
             $stupdates=Shopping::where('sid',"=",$sid)
                 ->update(['scount' => $counts]);
-//            if($stupdates)
-//            {
-//                $attd["stock"]=$attd["stock"]-$scount;
-//               $stupdates=Goods_standard::where('attributes_id',"=",$arrs)
-//                ->update(['stock' =>  $attd["stock"]]);
-//            }
             if($stupdates){
                 return json_encode(['msg'=>'添加购物车成功','data'=>['collists'=>1],'sta'=>'1']);
             }else {
@@ -216,10 +201,6 @@ class GoodsController extends Controller
         else
         {
             $shop=$shop->save();
-            //$attd["stock"]=$attd["stock"]-$scount;
-            //$stupdate=Goods_standard::where('attributes_id',"=",$arrs)
-            //->update(['stock' => $attd["stock"]]);
-            // $shops=Shopping::where("gid","=",$gid)->first();
             if($shop){
                 return json_encode(['msg'=>'添加购物车成功','data'=>['collists'=>1],'sta'=>'1']);
             }else {
