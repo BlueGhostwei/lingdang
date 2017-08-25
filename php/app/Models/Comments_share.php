@@ -4,9 +4,6 @@ namespace App\Models;
 use Eloquent;
 class Comments_share extends Eloquent
 {
-    /**
-     * 评论点赞表
-    */
     protected $table="comment_share";
 
     protected $fillable=[

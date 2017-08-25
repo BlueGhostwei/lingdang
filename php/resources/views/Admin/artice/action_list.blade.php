@@ -54,11 +54,11 @@
                     {{csrf_field()}}
                     @foreach($actice_data as $k=>$v)
                         <tr class="Alist_main">
-                            <td  style="height: 30px;">{{$v['id']}} </td>
-                            <td>{{$v['title']}}</td>
-                            <td>{{$v['created_at']}}</td>
-                            <td>{{get_srot_name($v['sort_id'])}}</td>
-                            <td>{{$v['writer']}}</td>
+                            <td  style="height: 30px;">{{$v["id"]}} </td>
+                            <td>{{$v["title"]}}</td>
+                            <td>{{$v["created_at"]}}</td>
+                            <td>{{get_srot_name($v["sort_id"])}}</td>
+                            <td>{{$v["writer"]}}</td>
                             <td><a href="{{route('artice.artice_list_show',$v['id'])}}">查看 </a>|<span class="actice_dele" data_id="{{$v['id']}}"> 删除</span></td>
                         </tr>
                         @endforeach

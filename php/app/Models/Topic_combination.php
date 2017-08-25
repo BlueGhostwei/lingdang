@@ -15,9 +15,7 @@ class Topic_combination extends Eloquent
      * userdynamics_id 动态id
      */
     protected $fillable=[
-        'user_id',
         'topic_name',
-        'topic_photo',
         'read_amount'
     ];
 }

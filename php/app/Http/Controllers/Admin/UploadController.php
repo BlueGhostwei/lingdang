@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 use Input, Response, Config,Image,File;
 use App\Http\Controllers\Controller;
-use App\Models\Image_pic;
 
 /**
  * 文件上传类, 支持普通上传, base64编码上传, 远程下载
@@ -69,21 +68,35 @@ class UploadController extends Controller
      */
     public function index()
     {
+        //dd(Input::all());
+		
         // 有效文件
         $key = Input::get('fileKey', 'file');
         $Editfile=Input::file('wangEditorH5File');
         if($Editfile==null){
-            $file = Input::file($key);
+            $file = Input::file('file');
         }else{
             $file=$Editfile;
         }
-        //if (!$file || !$file->isValid()) return Response::json(array('sta' => 0, 'msg' => '无效的文件'));
+		//$_FILES["file"]
+		
+		
+		
+		$myfile = fopen("lognpic.txt","w");
+        fwrite($myfile,var_export($file,true));
+        fclose($myfile);
+        //dd($file,$file->isValid());
+		
+		
+
+//		if (!$file || !$file->isValid()) return Response::json(array('sta' => 0, 'msg' => '无效的文件'));
 		if (!$file || !$file->isValid()) return json_encode(array('sta' => 0, 'msg' => '无效的文件'));
 
         // 文件类型
         $mimeType = explode('/', $file->getClientMimeType());
+		
         if (!$mimeType || count($mimeType) != 2) {
-        //return Response::json(array('sta' => 0, 'msg' => '不允许的文件类型'));
+//			return Response::json(array('sta' => 0, 'msg' => '不允许的文件类型'));
 			return json_encode(array('sta' => 0, 'msg' => '不允许的文件类型'));
         }
 
@@ -159,7 +172,11 @@ class UploadController extends Controller
                 $fileType = $mimeType[1];
                 break;
         }
+
         $fileTypeKey = array_search($fileType, $this->fileType);
+
+
+
         if (!$fileType || !$fileTypeKey) {
 //			return Response::json(array('sta' => 0, 'msg' => '不允许的文件类型'));
             return json_encode(array('sta' => 0, 'msg' => '不允许的文件类型'));
@@ -171,11 +188,13 @@ class UploadController extends Controller
 			return json_encode(array('sta' => 0, 'msg' => '文件大小不能超过: '.sizeFormat($this->allowMaxSize)));
         }
 
-
+              
         // 是否已经上传过
 
         $md5 = md5_file($file->getRealPath());
 
+	
+		
         //dd($file->getRealPath(),$md5,$file->getSize());
         $md5 = $md5.$fileTypeKey;
 
@@ -193,6 +212,11 @@ class UploadController extends Controller
 
         if($resize){
             $resize_img = resize_img($md5,$resize,true);
+
+			$myfile = fopen("resize_img.txt","w");
+             fwrite($myfile,var_export($resize_img,true));
+            fclose($myfile); 
+		 
             File::put(config_path('rebate.php'), sprintf("<?php%s%sreturn %s;%s", PHP_EOL, PHP_EOL, var_export($resize, true), PHP_EOL));
 			return json_encode([
                 'sta' => 1,
@@ -235,13 +259,17 @@ class UploadController extends Controller
             mkdir(iconv("UTF-8", "GBK", dirname($path)),0777,true);
         }
         file_put_contents($path, $image);
-       // $img_txt = Image::make($path);
+        $img_txt = Image::make($path);
         return json_encode([
             'md5' => basename($path),
             'sta' => 1,
             'msg' =>'上传成功',
             'url' => env('assets').'/'.$path
         ]);
+
+
+
+
 
     }
 
@@ -255,8 +283,6 @@ class UploadController extends Controller
     public function encode()
     {
         // todo
-       //$img_pic=new Image_pic();
-       //$base64_str = $img_pic->base_img();
         $base64_str = Input::get('base64');
         $image = base64_decode($base64_str);
         $png_url = "lcover".time().".jpg";
@@ -265,7 +291,6 @@ class UploadController extends Controller
             mkdir(iconv("UTF-8", "GBK", dirname($path)),0777,true);
         }
         file_put_contents($path, $image);
-       // $img_txt = Image::make($path);
         //压缩图片
         $resize = Input::get('resize');
         if($resize){
@@ -278,56 +303,15 @@ class UploadController extends Controller
                 'resize_img' => $resize_img
             ]);
         }
+		
         return json_encode([
-            'img_path' => $path,
             'sta' => 1,
+			'img_path' => $path,
             'msg' =>'上传成功',
             'url' => env('assets').'/'.$path
         ]);
 
-
-
-    }
-
-    public  function base64imgsave(){
-
-        $setimg=New Image_pic();
-        $img=$setimg->base_img();
-
-        //文件夹日期
-        $ymd = date("Ymd");
-
-        //图片路径地址
-        $basedir = 'upload/base64/'.$ymd.'';
-        $fullpath = $basedir;
-        if(!is_dir($fullpath)){
-            mkdir($fullpath,0777,true);
-        }
-        $types = empty($types)? array('jpg', 'gif', 'png', 'jpeg'):$types;
-        $img = str_replace(array('_','-'), array('/','+'), $img);
-        $b64img = substr($img, 0,100);
-        if(preg_match('/^(data:\s*image\/(\w+);base64,)/', $b64img, $matches)){
-            $type = $matches[2];
-            if(!in_array($type, $types)){
-                return json_encode(['sta'=>1,'msg'=>'图片格式不正确，只支持 jpg、gif、png、jpeg哦！','data'=>'']);
-            }
-            $img = str_replace($matches[1], '', $img);
-            $img = base64_decode($img);
-            $photo = '/'.md5(date('YmdHis').rand(1000, 9999)).'.'.$type;
-            file_put_contents($fullpath.$photo, $img);
-            $ary['sta'] = 1;
-            $ary['msg'] = '保存图片成功';
-            $ary['url'] = $basedir.$photo;
-
-            return $ary;
-
-        }
-
-        $ary['sta'] = 0;
-        $ary['msg'] = '请选择要上传的图片';
-
-        return $ary;
-
+        
 
     }
 

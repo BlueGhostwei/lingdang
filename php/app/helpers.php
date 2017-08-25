@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Arr;
 use App\Models\Sort;
+use App\Models\Attributes;
 
 /**
  * 修改角色权限时, 判断是否选中某个功能
@@ -295,11 +296,15 @@ function child_sort($id,$child){
     }
     return "";
 }
-
+/**
+*
+*修改商品
+*
+*/
 function get_brand($id){
-    $sql = "select * from brand where instr(concat(',',sort_id,','),',$id,')<>0 order by brand_num DESC ";
-    $rst = DB::select($sql);
-    return $rst;
+
+
+    
 }
 
 /**
@@ -328,42 +333,19 @@ function mkdir_dirname($path){
 //图片压缩
 function resize_img($img,$new_with=200,$md5=true)
 {
-
-    /*if (Input::get('new_with') != NULL) {
-        $new_with = Input::get('new_with');
-    }*/
     if($md5==true){
         $old_url = md52url($img);//取出地址
     }else{
         $old_url = $img;
     }
     if ($old_url != NULL) {
-        //取出最后数组进行命名
-        //$url = explode('/', $old_url);
-        //$last_arr_num = count($url) - 1;
-        //$last_arr_val = 'resize_' . $new_with . '_' . $url[$last_arr_num];
-        //$url[$last_arr_num] = $last_arr_val;
-
-        //去掉头部路由,取出public下地址
-        //$del_arr_num = count($url) - 3;
-        //$path_arr = array_slice($url, -$del_arr_num);
-        //$path = implode('/', $path_arr);
         $host_url = parse_url(dirname($old_url).'/resize_' . $new_with . '_' .basename($old_url));
         if($host_url['host'] == 'lsadmin.umallushop.com'){
             $path =   str_replace('http://lsadmin.umallushop.com/','',dirname($old_url).'/resize_' . $new_with . '_' .basename($old_url));
         }else{
             $path = str_replace(url('/').'/','',dirname($old_url).'/resize_' . $new_with . '_' .basename($old_url));
         }
-        //原来图片路径
-        //$yuan_url = explode('/',$old_url);
-        //$old_del_arr_num = count($yuan_url) - 3;
-        //$old_path_arr = array_slice($yuan_url, -$old_del_arr_num);
-        //$old_path = implode('/', $old_path_arr);
         $old_path = $img_url = str_replace(url('/').'/','',$old_url);
-
-        //dd($old_url,$path,$old_path,basename($old_url),dirname($old_url).'/resize_' . $new_with . '_' .basename($old_url));
-
-        //dd($old_path,$old_del_arr_num,$old_path_arr,$old_url);
         //原图大小
         if(getimagesize($old_url)){
             $old_img_size = getimagesize($old_url);
@@ -371,44 +353,12 @@ function resize_img($img,$new_with=200,$md5=true)
                 $old_width = $old_img_size['0'];
                 $old_height = $old_img_size['1'];
                 $new_height = ($old_height * $new_with) / $old_width;
-
-                //判断是否为空保存图片
-
-                //重组url
-                //$url_head_arr = array_slice($url, 0, 3);
-                //$url_head = implode('/', $url_head_arr);
-                //$new_url = $url_head . '/' . $path;
                 $new_url = dirname($old_url).'/resize_' . $new_with . '_' .basename($old_url);
                 //判断图片是否存在
                 if (!file_exists($path)) {
-                    //读取文件夹下所有名
-                    //$data_img = array();
-                    //searchDir(pathinfo($path, PATHINFO_DIRNAME), $data_img);
-                    //图片压缩优化，判断当单张图片压缩超过100张时删除压缩图重新动态压缩
-                    //如果该文件量大于100，侧删除压缩图
-                    //if (count($data_img) > 100) {
-                        //正则匹配压缩图
-                        //$zhengze = '([a-z]+\_[0-9]+\_[a-fA-F0-9]+\.(jpg|gif|png|bmp|psd|zip|rar|7z|tar|txt|pdf|csv|doc|docx|ppt|pptx|xls|xlsx))';
-                        //拿出匹配压缩图
-                        //$del_img = array();
-                        //foreach ($data_img as $k => $v) {
-                        //    preg_match($zhengze, $v, $result);
-                        //    $del_img[] = $result;
-                        //}
-                        //判断是否存在压缩图并删除本地压缩图
-                        //foreach ($del_img as $k => $v) {
-                         //   if (count($v) != 0) {
-                                //拿出图片本地路径
-                         //       $real_pathinfo = pathinfo($path, PATHINFO_DIRNAME);
-                                //删除操作
-                         //       unlink($real_pathinfo . '/' . $v[0]);
-                         //   }
-                        //}
-                    //}
-                    //保存图片
+
                     Image::make($old_path)->resize($new_with, $new_height)->save($path);
                 }
-                //dd(file_exists($path));
                 return $new_url;
             } else {
                 return $old_url;
@@ -693,10 +643,6 @@ function resize_url($img='',$new_with=''){
 
 }
 
-
-
-
-
 function get_val($arr_data, $obj = '')
 {
     if (is_array($arr_data)) {
@@ -709,6 +655,8 @@ function get_val($arr_data, $obj = '')
         return '请确认$arr_data参数为数组';
     }
 }
+
+
 
 
 

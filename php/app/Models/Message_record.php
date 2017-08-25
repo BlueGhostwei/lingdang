@@ -22,8 +22,8 @@ class Message_record extends Eloquent
         'record_status',
         'record_content',
         'puser_id',
-        'share_id',
-        'reply_id',
+		'share_id',
+		'reply_id',
         'userdynamics_id'
     ];
 

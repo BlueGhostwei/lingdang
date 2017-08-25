@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Collection;
 use App\Models\Comments_share;
-use App\Models\Forward;
+use App\Models\Sort;
 use App\Models\User;
 use App\Models\User_share;
 use Illuminate\Http\Request;
@@ -14,6 +14,7 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 use Input;
 use App\Models\Userattention;
+use phpDocumentor\Reflection\Types\Object_;
 use Validator;
 use DB;
 use App\Models\Topic_combination;
@@ -31,11 +32,9 @@ class Apicontroller extends Controller
      */
     public function reminders_share()
     {
+
         $user_id = Input::get('user_id') ?: Auth::id();
-        $page = Input::get('page');
-        if ($page && $page <= 1) {
-            $page = 1;
-        }
+        $page =$this->SetPage();
         $type = Input::get('type');
         $rst = Message_record::where(['user_id' => $user_id, 'record_type' => 3, 'record_status' => '0'])
             ->orWhere(['puser_id' => $user_id])
@@ -44,18 +43,20 @@ class Apicontroller extends Controller
             /**事件执行者user_id,是否为当前用户，状态为3或者为4*/
             $share_data = Message_record::where(['record_type' => 3, 'puser_id' => $user_id, 'record_status' => '1'])
                 ->where('user_id', '<>', $user_id)
-                ->offset(($page - 1))->limit(10)
+                ->offset($page)->limit(10)
                 ->orderBy('id', 'desc')->get()->toArray();
+
         } elseif ($type == "1") {//我关注的人
             $share_data = Message_record::where(['message_record.puser_id' => $user_id, 'message_record.record_type' => '3', 'message_record.record_status' => '1'])
                 ->join('userattention', 'message_record.user_id', '=', 'userattention.user_id')
                 ->where('message_record.puser_id', $user_id)
                 ->select('message_record.*')
-                ->offset(($page - 1))->limit(10)
+                ->offset($page)->limit(10)
                 ->orderBy('message_record.id', 'desc')->get()->toArray();
+            //dd($share_data);
         } elseif ($type == "2") {//自己评论的，包括自己评论自己
             $share_data = Message_record::where(['user_id' => $user_id, 'record_status' => '1', 'record_type' => 3])
-                ->offset(($page - 1))->limit(10)
+                ->offset($page)->limit(10)
                 ->orderBy('id', 'desc')->get()->toArray();
         }
         if (!empty($share_data)) {
@@ -114,10 +115,7 @@ class Apicontroller extends Controller
     {
         $user_id = Input::get('user_id');
         $Set_userInfo = User::find($user_id);
-        $page = Input::get('page');
-        if ($page && $page <= 1) {
-            $page = 1;
-        }
+       $page=$this->SetPage();
         if (!$Set_userInfo) {
             return json_encode(['sta' => '0', 'msg' => '请求失败', 'data' => ""]);
         }
@@ -130,7 +128,8 @@ class Apicontroller extends Controller
             'record_type' => "1",
             'record_status' => '1',
             'remind_name' => $user_id])
-            ->offset(($page - 1))->limit(10)->orderBy('id', 'desc')->get()->toArray();
+            ->paginate()
+            ->offset($page)->limit(10)->orderBy('id', 'desc')->get()->toArray();
         //dd($user_praise);
         foreach ($user_praise as $key => $vey) {
             //获取用户信息
@@ -496,7 +495,7 @@ class Apicontroller extends Controller
                 if ($mn != $share_id) {
                     $rst = User_share::select('*')->where('id', $mn)->get()->toArray();
                     if (!empty($rst)) {
-                        $rst[0]['share_user_info'] = $this->get_user_info($rst[0]['user_id']);
+                        $rst[0]['share_user_info'] = $this->get_user_info($rst[0]['user_id'])?:new Object_();
                         $set_diary[] = $rst[0];
                     } else {
                         $set_diary[] = [];
@@ -509,16 +508,14 @@ class Apicontroller extends Controller
 
     /**
      * @return mixed
-     * 窗外的雨太落寂，夜太痴迷，唏嘘兮兮
+     *
      * 指定动态的所有评论
      */
     public function SetUserdynamics_share()
     {
         $page = Input::get("page");
         $id = Input::get('userdynamics_id');
-        $id = "90";
         $user_id = Input::get('user_id') ?: Auth::id();
-        $user_id = 16;
         $Get_dynamics = User_dynamics::find($id);//查询动态
         if (!$Get_dynamics) {
             return json_encode(['sta' => "0", 'msg' => '动态不存在，或用户已删除', 'data' => '']);
@@ -542,8 +539,8 @@ class Apicontroller extends Controller
                 if ($vsy['pid'] == null) {
                     $set_diary[$ksy]['pid'] = "";
                 }
-                $set_diary[$ksy]['share_user_info'] = $this->get_user_info($vsy['user_id']);
-                $set_diary[$ksy]['share_puser_info'] = $this->get_user_info($vsy['pid']);
+                $set_diary[$ksy]['share_user_info'] = $this->get_user_info($vsy['user_id'])?:new Object_();
+                $set_diary[$ksy]['share_puser_info'] = $this->get_user_info($vsy['pid'])?:new Object_();
                 $get_category = $this->get_share_category($vsy['id']);
                 if (count(explode(',', $get_category)) >= 3) {
                     $child = substr($get_category, 0, strlen($get_category) - 1);
@@ -562,7 +559,7 @@ class Apicontroller extends Controller
                                 if ($rst[0]['pid'] == null) {
                                     $rst[0]['pid'] = "";
                                 }
-                                $rst[0]['share_user_info'] = $this->get_user_info($rst[0]['user_id']);
+                                $rst[0]['share_user_info'] = $this->get_user_info($rst[0]['user_id'])?:new Object_();
                                 $rst[0]['selflaud'] = Collection::where(['userdynamics_id' => $mn, "user_id" => $user_id, 'type' => '2'])->count();
                                 $set_diary[$ksy]['child'][] = $rst[0];
                             } else {
@@ -580,6 +577,26 @@ class Apicontroller extends Controller
         }
         return json_encode(['sta' => "1", 'msg' => "请求成功", 'data' => $set_diary]);
     }
+    /**
+     * 热门动态
+     * 热门话题（加##的话题达到1万阅读量可上热门话题栏） 
+     * hot_topic
+     */
+    public function  hot_topic(){
+
+        $sql='SELECT * FROM topic_combination where DATE_SUB(CURDATE(), INTERVAL 7 DAY) <= date(created_at)  ORDER  BY read_amount DESC limit 10';
+        $combination=DB::select($sql);
+        if(empty($combination)){
+            $sql='SELECT * FROM topic_combination ORDER BY read_amount DESC limit 10 ';
+            $combination=DB::select($sql);
+        }
+        if(!empty($combination)){
+            foreach ($combination as $k=>&$v){
+                $v->topic_photo=$v->topic_photo?:'';
+            }
+        }
+        return json_encode(['sta' => '1', 'msg' => "请求成功", 'data' => $combination]);
+    }
 
     /**
      * @return mixed
@@ -588,12 +605,8 @@ class Apicontroller extends Controller
     public function HomeData()
     {
         $user_id = Input::get('user_id') ?: Auth::id();
-
         $data['photo'] = Photo::orderBy('number', 'asc')->get()->toArray();
-        $page = Input::get('page');
-        if (empty($page) || $page <= 1) {
-            $page = 1;
-        }
+        $page=$this->SetPage();
         if (!empty($data['photo'])) {
             foreach ($data['photo'] as $ky => $rs) {
                 $data['photo'][$ky]['img_Md5'] = md52url($rs['img_Md5']);
@@ -619,7 +632,7 @@ class Apicontroller extends Controller
                 ->groupBy('userdynamics.id')
                 ->orderBy('updated_at', 'desc')
                 ->orderBy('count_num', 'desc')
-                ->offset(($page - 1) * 10)
+                ->offset($page)
                 ->limit(10)->get()->toArray();
             $data['Popular_dynamic'] = $this->Dataprocess($data['Popular_dynamic'], $user_id);
             //所关注用户的动态_
@@ -630,9 +643,8 @@ class Apicontroller extends Controller
                 ->groupBy('userdynamics.id')
                 ->orderBy('updated_at', 'desc')
                 ->orderBy('count_num', 'desc')
-                ->offset(($page - 1) * 10)->limit(10)->get()->toArray();
+                ->offset($page)->limit(10)->get()->toArray();
             $data['dynamics'] = $this->Dataprocess($data['dynamics'], $user_id);
-
         } else {
             /**未登录数据处理*/
             $data['Popular_dynamic'] = User_dynamics::select( 'userdynamics.*', DB::raw('userdynamics.comment_num+userdynamics.send_out_num+userdynamics.like_num as count_num'))
@@ -643,7 +655,7 @@ class Apicontroller extends Controller
                 ->orderBy('count_num', 'desc')
                 ->orderBy('id', 'desc')
                 ->groupBy('id')
-                ->offset(($page - 1) * 10)
+                ->offset($page)
                 ->limit(10)->get()->toArray();
             $data['Popular_dynamic'] = $this->Dataprocess($data['Popular_dynamic']);
             $data['dynamics'] = [];
@@ -754,9 +766,10 @@ class Apicontroller extends Controller
         $user_id = $get_id ?: Auth::id();
         foreach ($set_diary as $ky => $vy) {
            if($vy['pid']!="0"){
-               $set_diary[$ky]['forward']=$this->SetDynamic($vy['pid'],$user_id);
+               $set_diary[$ky]['forward']=$this->SetDynamic($vy['pid'],$user_id)?:new Object_();
            }else{
-               $set_diary[$ky]['forward']=[];
+               $set_diary[$ky]['forward']=new Object_();
+
            }
             if (empty($set_diary[$ky]['topic'])) {
                 $set_diary[$ky]['topic'] = "";
@@ -823,16 +836,21 @@ class Apicontroller extends Controller
     public function daily_record()
     {
         $data['pid'] = Input::get('pid') ?: "0";
-        $data['pid'] = "101";
         $data['user_id'] = Input::get('user_id') ?: Auth::id();
         $data['content'] = Input::get('content');
         $img_photo = Input::get('img_photo');
+        $data['remind_friend'] = Input::get('remind_friend');
+
+      /*  $data['content']= "Pic1";
+        $img_photo = "2cf29eb6db998924b13274d755bd26cd002";
+        $data['remind_friend'] = "";
+        $data['user_id'] = 16;*/
         if (!empty($img_photo)) {
-            $data['img_photo'] = implode(',', $img_photo);
+            $data['img_photo'] = $img_photo;
         } else {
             $data['img_photo'] = $img_photo;
         }
-        $data['remind_friend'] = Input::get('remind_friend');
+
         if ($data['pid'] == "0") {
             if (empty($data['content']) && empty($data['img_photo']) && empty($data['remind_friend']) && empty($data['topic'])) {
                 return json_encode(['msg' => '请求失败,参数错误', 'sta' => '0', 'data' => '']);
@@ -883,7 +901,7 @@ class Apicontroller extends Controller
             $message_record['record_content'] = '';
             $message_record['record_status'] = '0';
             $rst = Message_record::create($message_record);
-            dd($rst);
+
         }
 
         //返回状态
@@ -896,13 +914,11 @@ class Apicontroller extends Controller
      */
     public function Collection_diary()
     {
+
+       //file_get_contents(var_export(Input::all(),true),'collection.txt');
         $diary_data = New Collection();
         $diary_data->type = "2";
-        if (Input::get('user_id')) {
-            $diary_data->user_id = Input::get('user_id');
-        } else {
-            $diary_data->user_id = Auth::id();
-        }
+        $diary_data->user_id = Input::get('user_id')?:Auth::id();
         $diary_data->userdynamics_id = Input::get('userdynamics_id');
         if (empty($diary_data->userdynamics_id)) {
             return json_encode(['sta' => '0', 'msg' => "请选择点赞动态", 'data' => '']);
@@ -934,7 +950,8 @@ class Apicontroller extends Controller
                 $message_record['puser_id'] = "";//点赞，评论所需的用户id
                 $message_record['record_content'] = '';
                 $message_record['record_status'] = '0';
-                Message_record::create($message_record);
+                $result=Message_record::create($message_record);
+
             }
             $like_num_count = Collection::where(['userdynamics_id' => $diary_data->userdynamics_id, 'type' => '2'])->count();
             $rgd = $dynamics->update(['like_num' => $like_num_count]);
@@ -974,7 +991,7 @@ class Apicontroller extends Controller
         $forward_content = Input::get('forward_content');
         $get_user_dynamics = User_dynamics::where('id', $userdynamics_id)->get()->toArray();
         if ($get_user_dynamics) {
-            Forward::create(['user_id' => $user_id, 'userdynamics_id' => $userdynamics_id, 'forward_content' => $forward_content]);
+
             //事务处理，消息通知
             $get_dynamics_userId = User_dynamics::find($userdynamics_id)->user_id;
             $message_record['user_id'] = $user_id;
@@ -1016,7 +1033,7 @@ class Apicontroller extends Controller
             $data['pid'] = '';
         }
         if (is_array($request->share_pic)) {
-            $data['share_pic'] = implode(',', $request->share_pic);
+            $data['share_pic'] =  $request->share_pic;
         } else {
             $data['share_pic'] = $request->share_pic;
         }

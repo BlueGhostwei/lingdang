@@ -154,7 +154,10 @@ return [
          * Develop Service Providers
          */
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
-
+        //加载支付宝
+        Latrell\Alipay\AlipayServiceProvider::class,
+        //微信支付
+        Overtrue\LaravelWechat\ServiceProvider::class,
 
     ],
 
@@ -209,6 +212,8 @@ return [
          */
         'Image' => Intervention\Image\Facades\Image::class,
         'Captcha' => Mews\Captcha\Facades\Captcha::class,
+        //微信支付
+        'Wechat' => Overtrue\LaravelWechat\Facade::class,
 
 
     ],

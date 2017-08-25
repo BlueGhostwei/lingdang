@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit51e963884e942b1d3766b7414c12bfb6
+class ComposerStaticInit2504071ee10256eb99303ffcc316ffab
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -65,6 +65,11 @@ class ComposerStaticInit51e963884e942b1d3766b7414c12bfb6
             'Predis\\' => 7,
             'PhpParser\\' => 10,
         ),
+        'O' => 
+        array (
+            'Overtrue\\Wechat\\' => 16,
+            'Overtrue\\LaravelWechat\\' => 23,
+        ),
         'M' => 
         array (
             'Monolog\\' => 8,
@@ -73,6 +78,7 @@ class ComposerStaticInit51e963884e942b1d3766b7414c12bfb6
         'L' => 
         array (
             'League\\Flysystem\\' => 17,
+            'Latrell\\Alipay\\' => 15,
         ),
         'I' => 
         array (
@@ -90,6 +96,7 @@ class ComposerStaticInit51e963884e942b1d3766b7414c12bfb6
         'D' => 
         array (
             'Doctrine\\Instantiator\\' => 22,
+            'Doctrine\\Common\\Lexer\\' => 22,
             'Doctrine\\Common\\Cache\\' => 22,
             'Doctrine\\Common\\Annotations\\' => 28,
             'Doctrine\\Common\\' => 16,
@@ -221,6 +228,14 @@ class ComposerStaticInit51e963884e942b1d3766b7414c12bfb6
         array (
             0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
         ),
+        'Overtrue\\Wechat\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/overtrue/wechat/src/Wechat',
+        ),
+        'Overtrue\\LaravelWechat\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/overtrue/laravel-wechat/src',
+        ),
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
@@ -232,6 +247,10 @@ class ComposerStaticInit51e963884e942b1d3766b7414c12bfb6
         'League\\Flysystem\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/flysystem/src',
+        ),
+        'Latrell\\Alipay\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/latrell/alipay/src/Latrell/Alipay',
         ),
         'Intervention\\Image\\' => 
         array (
@@ -252,6 +271,10 @@ class ComposerStaticInit51e963884e942b1d3766b7414c12bfb6
         'Doctrine\\Instantiator\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator',
+        ),
+        'Doctrine\\Common\\Lexer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/lexer/lib/Doctrine/Common/Lexer',
         ),
         'Doctrine\\Common\\Cache\\' => 
         array (
@@ -327,10 +350,6 @@ class ComposerStaticInit51e963884e942b1d3766b7414c12bfb6
             array (
                 0 => __DIR__ . '/..' . '/doctrine/dbal/lib',
             ),
-            'Doctrine\\Common\\Lexer\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/doctrine/lexer/lib',
-            ),
             'Doctrine\\Common\\Inflector\\' => 
             array (
                 0 => __DIR__ . '/..' . '/doctrine/inflector/lib',
@@ -360,20 +379,26 @@ class ComposerStaticInit51e963884e942b1d3766b7414c12bfb6
         'CreateActiceTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_12_174747_create_actice_table.php',
         'CreateActionTable' => __DIR__ . '/../..' . '/database/migrations/2016_03_08_185447_create_action_table.php',
         'CreateAddBellTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_11_111214_create_add_bell_table.php',
+        'CreateAttributesTable' => __DIR__ . '/../..' . '/database/migrations/2017_08_03_160109_create_attributes_table.php',
         'CreateBellUserTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_30_084014_create_bell_user_table.php',
         'CreateBrandTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_10_151016_create_brand_table.php',
         'CreateCommentTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_10_093915_create_comment_table.php',
         'CreateCommentsShareTable' => __DIR__ . '/../..' . '/database/migrations/2017_06_13_172336_create_comments_share_table.php',
-        'CreateForwardTable' => __DIR__ . '/../..' . '/database/migrations/2017_07_18_110749_create_forward_table.php',
+        'CreateCouponTable' => __DIR__ . '/../..' . '/database/migrations/2017_08_24_203447_create_Coupon_table.php',
+        'CreateDgoodsTable' => __DIR__ . '/../..' . '/database/migrations/2017_07_21_101208_create_dgoods_table.php',
+        'CreateGoodsParamTable' => __DIR__ . '/../..' . '/database/migrations/2017_08_15_093219_create_goods_param_table.php',
+        'CreateGoodsStandardTable' => __DIR__ . '/../..' . '/database/migrations/2017_08_14_182923_create_goods_standard_table.php',
         'CreateGoodsTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_17_104823_create_goods_table.php',
         'CreateIntegrationTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_29_114748_create_integration_table.php',
         'CreateMessageRecordTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_22_152450_create_message_record_table.php',
+        'CreateOrderTalbe' => __DIR__ . '/../..' . '/database/migrations/2017_08_19_103742_create_order_talbe.php',
         'CreatePhotoTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_11_155144_create_photo_table.php',
         'CreateSortTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_05_143221_create_sort_table.php',
-        'CreateTopicCombinationTable' => __DIR__ . '/../..' . '/database/migrations/2017_06_26_160334_create_topic_combination_table.php',
+        'CreateUpdateAttributeTable' => __DIR__ . '/../..' . '/database/migrations/2017_08_05_122009_create_update_attribute_table.php',
+        'CreateUpdateGoodsTable' => __DIR__ . '/../..' . '/database/migrations/2017_08_14_105245_create_update_goods_table.php',
+        'CreateUpdateSortTable' => __DIR__ . '/../..' . '/database/migrations/2017_08_07_171401_create_update_sort_table.php',
         'CreateUserDynamicsTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_03_095913_create_user_dynamics_table.php',
         'CreateUserHistoryTable' => __DIR__ . '/../..' . '/database/migrations/2016_03_09_005619_create_user_history_table.php',
-        'CreateUserRecipeTable' => __DIR__ . '/../..' . '/database/migrations/2017_07_22_170630_create_userRecipe_table.php',
         'CreateUserShareTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_17_170912_create_user_share_table.php',
         'CreateUserTable' => __DIR__ . '/../..' . '/database/migrations/2016_03_09_010752_create_user_table.php',
         'CreateUserattentionTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_02_154642_create_userattention_table.php',
@@ -900,10 +925,10 @@ class ComposerStaticInit51e963884e942b1d3766b7414c12bfb6
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit51e963884e942b1d3766b7414c12bfb6::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit51e963884e942b1d3766b7414c12bfb6::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit51e963884e942b1d3766b7414c12bfb6::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit51e963884e942b1d3766b7414c12bfb6::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit2504071ee10256eb99303ffcc316ffab::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit2504071ee10256eb99303ffcc316ffab::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit2504071ee10256eb99303ffcc316ffab::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit2504071ee10256eb99303ffcc316ffab::$classMap;
 
         }, null, ClassLoader::class);
     }

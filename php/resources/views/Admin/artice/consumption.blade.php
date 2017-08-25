@@ -24,6 +24,18 @@
             <form method="post" action="">
             <table width=""  cellspacing="0" cellpadding="0" style="float: right; margin-right: 30px;">
                 <tr>
+                    <td>            
+                        <select name="cateid">
+                            <option>用户名</option>
+                            <option>订单号</option>
+                            <option>商品名称</option>
+                        </select>           
+                    </td>
+                    <td>            
+                        <select name="cateid">
+                            <option>时间排序</option>
+                        </select>           
+                    </td>
                     <td align="right">关键字：</td>
                     <td><input type="text" value="" class="Iar_list" /></td> 
                     <td><input type="submit" name="dosubmit" class="button" value="搜 索"></td>

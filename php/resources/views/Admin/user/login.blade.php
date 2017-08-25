@@ -18,7 +18,7 @@
 
         <div style="text-align: center;font-size: 20px;color: #808080;font-weight: bold">铃铛APP后台管理系统</div>
         <form action="{{ route('user.login') }}" method="post" class="form-signin">
-            {{ csrf_field() }}
+            {!!csrf_field()!!}
             <input type="text" name="username" id="inputEmail" class="form-control floatlabel " value="" placeholder="用户名或邮箱" required autofocus >
             <input type="password" name="password" id="inputPassword" class="form-control floatlabel " value="" placeholder="密码" required >
             <div id="remember" class="checkbox">

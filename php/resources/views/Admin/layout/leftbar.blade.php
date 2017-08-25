@@ -33,10 +33,13 @@
                 <ul>
                     <li><a href="{{ route('goods.Add_goods') }}">添加商品</a></li>
                     <li><a href="{{ route('goods.goods_list') }}">商品列表</a></li>
+					<li><a href="{{ route('artice.M_properties') }}">商品属性</a></li>
                     <li><a href="{{ route('artice.goods') }}">商品分类</a></li>
                     <li><a href="{{ route('artice.Add_brand') }}">添加品牌</a></li>
                     <li><a href="{{ route('brand.brand_list') }}">品牌列表</a></li>
                     <li><a href="{{ route('artice.order') }}">订单列表</a></li>
+                    <li><a href="{{ route('goods.GoodsCouponList') }}">优惠券列表</a></li>
+                    <li><a href="{{ route('goods.GoodsCoupon') }}">优惠券添加</a></li>
 
                 </ul>
             </li>
@@ -47,7 +50,7 @@
                 </a>
                 <ul>
                     <li><a href="{{ route('artice.Add_slide') }}">添加幻灯片</a></li>
-                    <li><a href="{{ route('photo.slide') }}">幻灯管理</a></li>
+                    <li><a href="{{ route('photo.slide') }}">幻灯片管理</a></li>
                 </ul>
             </li>
             <li>

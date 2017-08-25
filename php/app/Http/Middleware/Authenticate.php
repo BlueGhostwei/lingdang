@@ -37,14 +37,16 @@ class Authenticate
      */
     public function handle($request, Closure $next)
     {
+		
+		
         if ($this->auth->guest()) {
-            if(Input::get('ssuser')){
-                return $next($request);
-            }
-
+			
+			if(Input::get('ssuser')){
+				 return $next($request);
+			}
+					
             return redirect()->route('user.login')->withErrors('请先登录');
         }
-       
         return $next($request);
         /*
         if ($this->auth->guest()) {

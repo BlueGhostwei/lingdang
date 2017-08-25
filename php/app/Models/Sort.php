@@ -18,9 +18,14 @@ class Sort extends Eloquent
      */
     protected  $fillable=[
         'pid',
+        'img_path',
+        'content',
         'name',
         'num',
-        'id_str'
+        'id_str',
+		'type',
+        'simg'
+		
     ];
 
 
@@ -31,7 +36,7 @@ class Sort extends Eloquent
     public function rules()
     {
         return [
-            'create' => [
+              'create' => [
                 'name' => "required|min:2|max:10|unique:".$this->getTable(),
                 'pid' => 'required|min:1',
              ],
@@ -39,6 +44,9 @@ class Sort extends Eloquent
                 'name'=>"required|min:2|max:10",
             ]
             ];
+    }
+    public  function GetSortName(){
+        return $this->belongsTo(Attributes::class ,'sort_id');
     }
 
 }

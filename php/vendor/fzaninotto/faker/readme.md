@@ -935,6 +935,15 @@ echo $faker->bankAccountNumber;  // '51915734310'
 echo $faker->bankRoutingNumber;  // '212240302'
 ```
 
+### `Faker\Provider\en_US\Person`
+
+```php
+<?php
+
+// Generates a random Social Security Number
+echo $faker->ssn; // '123-45-6789'
+```
+
 ### `Faker\Provider\en_ZA\Company`
 
 ```php
@@ -1070,6 +1079,15 @@ echo $faker->siren; // 082 250 104
 
 // Generates a random SIRET number
 echo $faker->siret; // 347 355 708 00224
+```
+
+### `Faker\Provider\fr_FR\Payment`
+
+```php
+<?php
+
+// Generates a random VAT
+echo $faker->vat; // FR 12 123 456 789
 ```
 
 ### `Faker\Provider\fr_FR\Person`

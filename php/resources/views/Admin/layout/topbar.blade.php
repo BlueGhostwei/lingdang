@@ -19,7 +19,7 @@
             </div>
             <div class="col-md-6 responsive-fix">
                 <div class="top-aside-right">
-                    <div class="user-nav" style="   margin-right: 0">
+                    <div class="user-nav" style="margin-right: 0">
                         <ul>
                             <li class="dropdown">
                                 <a data-toggle="dropdown" href="#" class="clearfix dropdown-toggle waves-effect waves-block waves-classic">

@@ -31,7 +31,6 @@ class Userattention extends Eloquent
           'create'=>[
               'user_id'=>'required',
               'attention_userid'=>'required',
-              'status'=>'required'
           ],
         ];
     }

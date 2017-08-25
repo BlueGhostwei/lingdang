@@ -3,22 +3,94 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\AclUser;
+use App\Models\Goods;
 use App\Models\Sort;
 use Faker\Provider\Image;
 use Hamcrest\Type\IsNumeric;
+use Redirect;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Redirect;
 use App\Models\Brand, App\Models\Photo;
 use Input;
 use Validator;
 use Auth;
 use App\Models\Actice;
+use App\Models\Attributes;
 
 class ArticeControll extends Controller
 {
 
+
+    public function ProductFormat()
+    {
+        $sort_id = Input::get('sort_id');
+        $attribute_id = Input::get('attribute_id');
+        $Getformat = Input::get('format');
+        $type = Input::get('type');
+        if ($type && $type = "update") {
+            $result_M=Attributes::where(['sort_id'=>$sort_id,'pid'=>$attribute_id])->get()->toArray();
+            if(!empty($result_M)){
+                $arr_format=explode(',',$Getformat);
+                foreach ($result_M as $key =>$vel){
+                   if(!in_array($vel['arr_name'],$arr_format)){
+                       Attributes::where('id',$vel['id'])->delete();
+                   }
+                }
+            }
+        }
+        if (empty($sort_id) || empty($attribute_id)) {
+            return Redirect::back()->with('errr_msg',"请求失败");
+        }
+        if (is_string($Getformat)) {
+            $format = explode(',', $Getformat);
+        } else {
+            $format = preg_split('/\r\n/', $Getformat);
+        }
+        $store_num = Input::get('store_num');
+        if (!empty($format)) {
+            foreach ($format as $key => $value) {
+                if (!empty($value)) {
+                  //查找分类规格
+                    $rst=Attributes::where(['sort_id'=>$sort_id,'pid'=>$attribute_id,'arr_name'=>"$value"])->get()->toArray();
+                    if(empty($rst)){
+                       Attributes::create([
+                           'pid' => $attribute_id,
+                           'sort_id' => $sort_id,
+                           'store_num' => $store_num,
+                           'arr_name' => $value
+                       ]);
+                   }
+                }
+            }
+        } else {
+            Attributes::create([
+                'pid' => $attribute_id,
+                'sort_id' => $sort_id,
+                'store_num' => $store_num,
+                'arr_name' => "",
+            ]);
+        }
+        return Redirect::route('artice.M_properties')->with('保存成功');
+    }
+
+
+    public function SaveAttributes(Request $request)
+    {
+      //dd(Input::all());
+        $arributes = new Attributes();
+        $validate = Validator::make($request->all(), $arributes->rules()['create']);
+        $messages = $validate->messages();
+        if ($validate->fails()) {
+            $msg = $messages->toArray();
+            foreach ($msg as $k => $v) {
+                return Redirect::back()->with("添加失败");
+            }
+        }
+        $arributes->create($request->only($arributes->getFillable()));
+        return Redirect::route('artice.M_properties')->with('添加成功');
+
+    }
 
     /**
      * 文章处理开始
@@ -63,12 +135,13 @@ class ArticeControll extends Controller
             return Redirect::back()->withErrors(['sort_name' => "分类名称不能为空"]);
         }
         $rst = $sort->where('name', $data['name'])->select('id')->get()->toArray();
-        if ($rst) { 
+        if ($rst) {
             return Redirect::back()->withErrors(['sort_name' => "该分类名称已被占用"])->withInput();
         }
 
         $data['pid'] = "0";
         $data['id_str'] = '';
+        $data['simg'] = trim(Input::get('file1'));
         $rst = $sort->create($data);
         if ($rst) {
             return Redirect()->route('artice.A_fenlei');
@@ -139,7 +212,8 @@ class ArticeControll extends Controller
             'title.required' => '请输入文章标题',
             'title.unique' => '该文章标题已被占用',
             'content.required' => '文章内容不能为空',
-            'content.min' => '文章内容至少20个字符'
+            'content.min' => '文章内容至少20个字符',
+            'aimg' => '缩略图必填'
         ];
         $validator = Validator::make($request->all(), $actice->rules()['create'], $msg);
         if ($validator->failed()) {
@@ -185,6 +259,87 @@ class ArticeControll extends Controller
             return Redirect::back()->withErrors('请求失败，请刷新页面重试');
         }
     }
+
+
+    public function artice_home()
+    {
+        //广告栏 sort_id=22
+        $class_sort = Actice::where('sort_id', 22)->orderBy('id', 'asc')->get()->toArray();
+//        if(!$class_sort)
+//        {
+//            return json_encode(['msg' => '请求失败', 'data' => '', 'sta' => '0']);
+//        }
+        for ($i = 0; $i < count($class_sort); $i++) {
+            $class_sort[$i]["content"] = htmlspecialchars(str_replace(array("\r\n", "\r", "\n"), "", $class_sort[$i]["content"]));
+
+        }
+
+        //穿搭课堂 sort_id=23
+        $classroom = Actice::where('sort_id', 23)->orderBy('id', 'asc')->get()->toArray();
+//        if(!$classroom)
+//        {
+//            return json_encode(['msg' => '请求失败', 'data' => '', 'sta' => '0']);
+//        }
+        for ($j = 0; $j < count($classroom); $j++) {
+            $classroom[$j]["content"] = htmlspecialchars(str_replace(array("\r\n", "\r", "\n"), "", $class_sort[$j]["content"]));
+
+        }
+        //精选专题 sort_id=24
+        $selected = goods::where('sort_id', 24)->orderBy('id', 'asc')->get()->toArray();
+//        if(!$selected)
+//        {
+//            return json_encode(['msg' => '请求失败', 'data' => '', 'sta' => '0']);
+//        }
+        for ($h = 0; $h < count($selected); $h++) {
+            $selected[$h]["content"] = htmlspecialchars(str_replace(array("\r\n", "\r", "\n"), "", $selected[$h]["content"]));
+            $selected[$h]["aimg"] = md52url($class_sort[$h]["aimg"]);
+            $plan = $selected[$h]["plan"];
+            $plans = explode(',', $plan);
+            $plangs = array();
+            for ($z = 0; $z < count($plans); $z++) {
+                $plangs[] = md52url($plans[$z]);
+            }
+            $selected[$h]["plan"] = $plangs;
+        }
+        $home = array();
+        $home['class_sort'] = $class_sort;
+        $home['classroom'] = $classroom;
+        $home['selected'] = $selected;
+        if ($home) {
+            return json_encode(['msg' => '请求成功', 'data' => $home, 'sta' => '1']);
+        } else {
+            return json_encode(['msg' => '请求失败', 'data' => '', 'sta' => '0']);
+        }
+
+
+    }
+
+    /*
+ * 广告或者活动详细信息
+     * 广告活动详细接口：域名+/artice/artice_detailed
+     * 请求方式：get
+     *传入aid(传入的内容id)
+     * ：返回:所属用户（user_id）所属分类（sort_id）缩略图（aimg），作者（writer），标题(title),内容(content)
+     *返回参数格式json如下
+     *{"msg":"请求成功","sta":"1","data":""}
+*/
+    public function artice_detailed()
+    {
+        $aid = trim(Input::get('aid'));
+        $class_sort = Actice::where("id", "=", "$aid")->orderBy('id', 'asc')->first();
+        if (!$class_sort) {
+            return json_encode(['msg' => '请求失败', 'data' => '', 'sta' => '0']);
+        }
+        $class_sort["content"] = htmlspecialchars(str_replace(array("\r\n", "\r", "\n"), "", $class_sort["content"]));
+        $class_sort["aimg"] = md52url($class_sort["aimg"]);
+
+        if ($class_sort) {
+            return json_encode(['msg' => '请求成功', 'data' => $class_sort, 'sta' => '1']);
+        } else {
+            return json_encode(['msg' => '请求失败', 'data' => '', 'sta' => '0']);
+        }
+    }
+
 
     /**
      * @param Request $request
@@ -436,7 +591,16 @@ class ArticeControll extends Controller
      */
 
 
-    
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function goods_list()
+    {
+
+        return view('Admin.artice.goods_list');
+    }
 
 
     /**
@@ -469,6 +633,12 @@ class ArticeControll extends Controller
     public function Add_subtopic($id)
     {
         $sort = Sort::where(['type' => '0', 'pid' => "0"])->select('id', 'pid', 'name')->orderBy('id', 'asc')->get()->toArray();
+        //查询二级分类
+        if (!empty($sort)) {
+            foreach ($sort as $key => &$vel) {
+                $sort[$key]['child'] = Sort::where('pid', $vel['id'])->select('id', 'name', 'img_path', 'content')->get()->toArray();
+            }
+        }
         return view('Admin.artice.Add_subtopic', ['sort' => $sort, 'id' => $id]);
     }
 

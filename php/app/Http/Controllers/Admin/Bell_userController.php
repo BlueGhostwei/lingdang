@@ -6,7 +6,6 @@ use Redirect;
 use Response;
 use App\Models\Userattention;
 use App\Models\User;
-use App\Models\Message_record;
 use DB, App\Models\Integration, Input, App\Models\SendSMS;
 use Validator, Auth, App\Models\Bell_user;
 use App\Http\Requests;
@@ -16,10 +15,18 @@ use App\Models\User_dynamics;
 use Illuminate\Support\Facades\Redis;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Message_record;
 
 class Bell_userController extends Controller
 {
+
+
     /**
+     * @param Request $request
+     * @return mixed
+     * 添加好友
+     */
+     /**
      * @param Request $request
      * @return mixed
      * 添加关注
@@ -27,23 +34,24 @@ class Bell_userController extends Controller
      */
     public function add_attention(Request $request)
     {
-        $user_id = Input::get('user_id') ?: Auth::id();
+        $user_id=Input::get('user_id')?:Auth::id();
+        $userdynamics_id=Input::get('userdynamics_id');
         $attention_userid = Input::get('attention_userid');
-        $find_user = User::find($attention_userid);
-        if ($find_user) {
+        $find_user=User::find($attention_userid);
+        if($find_user){
             $set_attention_userid = Userattention::where(['user_id' => $user_id, 'attention_userid' => $attention_userid])->get()->toArray();
             if (empty($set_attention_userid)) {
                 $Userattention = new Userattention();
                 Validator::make($request->all(), $Userattention->rules()['create']);
                 $Userattention->create($request->only($Userattention->getFillable()));
                 //消息日志
-                $message_record['user_id'] = $user_id;
-                $message_record['remind_name'] = $attention_userid;
-                $message_record['userdynamics_id'] = "";
-                $message_record['record_type'] = "6";
-                $message_record['puser_id'] = '';
-                $message_record['record_content'] = '';
-                $message_record['record_status'] = '0';
+                $message_record['user_id']=$user_id;
+                $message_record['remind_name']=$attention_userid;
+                $message_record['userdynamics_id']="";
+                $message_record['record_type']="6";
+                $message_record['puser_id']='';
+                $message_record['record_content']='';
+                $message_record['record_status']='0';
                 Message_record::create($message_record);
                 return json_encode(['msg' => '关注成功', 'sta' => '1', 'data' => '']);
             } else {
@@ -52,25 +60,28 @@ class Bell_userController extends Controller
             }
         }
     }
+    
 
-
+    /**
+     *获取好友列表
+     */
     /**
      *获取关注列表动态
      */
     public function Get_friend_list()
     {
 
-        $user_id = Input::get('user_id');
-        if (empty($user_id)) {
-            $user_id = Auth::id();
+        $user_id=Input::get('user_id');
+        if(empty($user_id)){
+            $user_id=Auth::id();
         }
-        $user_friend = Userattention::where('user_id', $user_id)
+        $user_friend = Userattention::where('user_id',$user_id)
             ->join('user', 'userattention.attention_userid', '=', 'user.id')
-            ->select('user.id', 'user.avatar', 'user.nickname', 'user.signature')->get()->toArray();
+            ->select('user.id', 'user.avatar','user.nickname','user.signature')->get()->toArray();
         //获取好友列表
         foreach ($user_friend as $ky => $vy) {
             if ($vy['avatar'] != '') {
-                $user_friend[$ky]['avatar'] = md52url($vy['avatar']);
+                $user_friend[$ky]['avatar'] =md52url($vy['avatar']);
             }
         }
         return json_encode(['msg' => '请求成功', 'sta' => '1', 'data' => $user_friend]);
@@ -92,6 +103,16 @@ class Bell_userController extends Controller
      */
     public function Send_sms()
     {
+		
+	 	$myfile = fopen("sms_send.txt","w");
+         fwrite($myfile,var_export(Input::all(),true));
+         fclose($myfile);
+		
+		
+	     /*
+		 return json_encode(['sta' => '1', 'msg' => '测试成功', 'data' => ""], JSON_UNESCAPED_UNICODE);*/
+		
+		
         $mobile = Input::get('mobile');
         $type = Input::get('type');
         $sendsms = new SendSMS();
@@ -126,29 +147,25 @@ class Bell_userController extends Controller
      */
     public function baby_info(Request $request)
     {
-        if (Input::get('user_id')) {
-            $user_id = Input::get('user_id');
-        } else {
-            $user_id = Auth::id();
-        }
+        $user_id=Input::get('user_id')?:Auth::id();
         $bady = User::find($user_id);
-        //判断用户昵称是否重复
-        if (!empty($request->nickname)) {
-            $rst = User::where('nickname', $request->nickname)->where('id', '!=', $user_id)->count();
-            if ($rst) {
+		if(!empty($request->nickname)){
+           $rst=User::where('nickname',$request->nickname)->where('id','!=',$user_id)->count();
+            if($rst){
                 return json_encode(['sta' => '0', 'msg' => '请求失败,昵称已被占用', 'data' => ""]);
             }
         }
-        /* $data['location'] = Input::get('location');
-         $data['avatar'] = Input::get('avatar');
-         $data['phone'] = Input::get('mobile');
-         $data['birthday'] = Input::get('birthday');
-         $data['wechat'] = trim(Input::get('wechat'));
-         $data['height'] = trim(Input::get('height'));
-         $data['nickname'] = Input::get('nickname');
-         $data['gender'] = Input::get('gender');
-         $signature = Input::get('signature');*/
-        /* $data['birthday'] = Input::get('birthday');*/
+       /* $data['location'] = Input::get('location');
+        $data['avatar'] = Input::get('avatar');
+        $data['phone'] = Input::get('mobile');
+        $data['birthday'] = Input::get('birthday');
+        $data['wechat'] = trim(Input::get('wechat'));
+        $data['height'] = trim(Input::get('height'));
+        $data['nickname'] = Input::get('nickname');
+        $data['gender'] = Input::get('gender');
+        $signature = Input::get('signature');*/
+       /* $data['birthday'] = Input::get('birthday');*/
+        //$data['bady_age'] = Controller::calcAge($data['birthday']);//格式如：1994-09-09
         if ($bady) {
             $bady->update($request->all());
         } else {
@@ -157,7 +174,80 @@ class Bell_userController extends Controller
         return json_encode(['sta' => '1', 'msg' => '请求成功', 'data' => ""]);
     }
 
+	
+	    /*
+     获取宝贝资料
+         *
+         * 宝贝资料接口：域名+/user/bady_data
+         * 请求方式：get
+         * ：返回：宝贝的名字（bname）宝贝的签名（bsignature），宝贝的图片（bimg），性别(bgender)，生日（birthday），
+     * 身高（bheight）体重（bweight） 是否提醒过生日（remind）
+         *返回参数格式json如下
+         *{"msg":"请求成功","sta":"1","data":""}
+     * 图片键名：file
+     *
 
+    */
+
+    public  function  bady_data()
+    {
+        $user_id=Auth::id();
+        $BabyInfo = Bell_user::where('user_id', $user_id)->first();
+        if(!$BabyInfo){
+            return json_encode(['msg' => '请求失败', 'data' => '', 'sta' => '0']);
+        }
+        $babys = [];
+        $babys["bname"] = trim(Input::get('bname'));
+        if(Input::get('bimg')) {
+            $babys["bimg"] = Input::get('bimg');
+        }
+        $babys["signature"] = trim(Input::get('signature'));
+        $babys["bgender"] = trim(Input::get('bgender'));
+        $babys["bheight"] = trim(Input::get('bheight'));
+        $babys["bweight"] = trim(Input::get('bweight'));
+        $babys["remind"] = trim(Input::get('remind'));
+        $babys["birthday"] = trim(Input::get('birthday'));
+        foreach ($babys as $k => $v) {
+            if ($v) {
+                $baby = Bell_user::where('user_id', $user_id)->update([$k=>$v]);
+              if($baby) {
+                  return json_encode(['msg' => '请求成功', 'data' => $baby, 'sta' => '1']);
+              }
+            }else
+            {
+                return json_encode(['msg' => '请求失败', 'data' => '', 'sta' => '0']);
+            }
+
+        }
+
+    }
+
+	/*
+         获取宝贝资料
+             *
+             * 宝贝资料接口：域名+/user/bady_data
+     * 宝贝的名字（bname）宝贝的签名（bsignature），宝贝的图片（bimg），性别(bgender)，生日（birthday），
+     * 身高（bheight）体重（bweight） 是否提醒过生日（remind）
+             * 请求方式：get
+     * */
+
+
+        public function  bady_list()
+        {
+            $user_id=Auth::id();
+            $badylist=Bell_user::where('user_id', $user_id)->select("bname","signature","bimg","bgender","birthday","bheight","bweight","remind")->first();
+			$badylist['bimg']=md52url($badylist['bimg']);
+	
+            if ($badylist) {
+                return json_encode(['msg' => '请求成功', 'data' => $badylist, 'sta' => '1']);
+            } else {
+                return json_encode(['msg' => '请求失败', 'data' => '', 'sta' => '0']);
+            }
+
+
+        }
+
+	
     /**
      *这里需要单独存一个表，积分放到用户表
      *签到，验证（登陆状态）
@@ -168,6 +258,8 @@ class Bell_userController extends Controller
      */
     public function User_Integration()
     {
+		
+		
         //获取当前时间。
         $user_id = Input::get('user_id');
         $this_time = date('Y-m-d', time());
@@ -178,7 +270,8 @@ class Bell_userController extends Controller
             $flush = Integration::leftJoin('bell_user', function ($join) {
                 $join->on('bell_user.user_id', '=', 'integration.user_id');
             })->where('integration.user_id', $user_id)->select("*")->limit(1)->orderBy('integration.id', 'desc')->get()->toArray();
-            $set_bell_user = Bell_user::where('user_id', $user_id)->first();
+              $set_bell_user = Bell_user::where('user_id', $user_id)->first();
+			                 
             if (empty($flush)) {
                 //更新积分
                 Bell_user::where('user_id', $user_id)->update(['integral' => 2, 'sign_sta' => '1']);
@@ -186,7 +279,6 @@ class Bell_userController extends Controller
             } else {
                 foreach ($flush as $ky => $rs) {
                     $old_time = date("Y-m-d", strtotime($rs['sign_time']));
-                    // dd($this_time == $old_time);
                     if ($this_time == $old_time) {
                         $set_rst[$ky] = $old_time;
                     } else {
@@ -198,10 +290,12 @@ class Bell_userController extends Controller
                         DB::beginTransaction();
                         try {
                             if ($get_old_time == date('Y-m-d', strtotime("$this_time-1 day"))) {
+							
                                 Bell_user::where('user_id', $user_id)->update(['sign_sta' => $set_bell_user->sign_sta + 1, 'integral' => $set_bell_user->integral + 2]);
                                 Integration::create(['user_id' => $user_id, 'sign_time' => date('Y-m-d H:i:s', time())]);
                             } else {
-                                Bell_user::where('user_id', $user_id)->update(['sign_sta' => 1, 'integral' => $set_bell_user->integral + 2]);
+								
+                                Bell_user::where('user_id', $user_id)->update(['sign_sta' => 1,'integral' => $set_bell_user->integral + 2]);
                                 Integration::create(['user_id' => $user_id, 'sign_time' => date('Y-m-d H:i:s', time())]);
                             }
                             //中间逻辑代码 DB::commit();
@@ -209,17 +303,18 @@ class Bell_userController extends Controller
                             DB::rollBack();
                             //接收异常处理并回滚 DB::rollBack();
                         }
+
                     }
                 }
             }
         }
         //根据上面的结果来查询这个月有几天是签到过得。
         //$All_in = DB::select("select sign_time from integration where user_id =" . Auth::id() . " AND strcmp(date_format(sign_time,'%Y-%m'),'" . date('Y-m', time()) . "') =  0");
-        $All_in = DB::select("select sign_time from integration where user_id =" . Auth::id());
+         $All_in = DB::select("select sign_time from integration where user_id =" . Auth::id());
         $bell_user = Bell_user::where('user_id', Auth::id())->first();
         if (!$All_in) {
             return json_encode(['msg' => '请求成功', 'sta' => '1', 'data' => [
-                'time' => [],
+                'time' =>[],
                 'num' => $bell_user->sign_sta,
                 'integral' => $bell_user->integral
             ]]);
@@ -272,11 +367,11 @@ class Bell_userController extends Controller
                 if ($data['name'] != $send_num['user_mobile']) {
                     return json_encode(['msg' => "验证用户不一致！", 'sta' => "0", 'data' => ''], JSON_UNESCAPED_UNICODE);
                 }
-                if (empty(Input::get('nickname'))) {
+				if(empty(Input::get('nickname'))){
                     return json_encode(['msg' => "昵称不能为空", 'sta' => "0", 'data' => ''], JSON_UNESCAPED_UNICODE);
                 }
-                $set_nickname = User::where('nickname', Input::get('nickname'))->count();
-                if ($set_nickname) {
+				$set_nickname=User::where('nickname',Input::get('nickname'))->count();
+                if($set_nickname){
                     return json_encode(['msg' => "该昵称已被占用", 'sta' => "0", 'data' => ''], JSON_UNESCAPED_UNICODE);
                 }
                 $user = new User();
@@ -303,6 +398,8 @@ class Bell_userController extends Controller
                 return json_encode(['msg' => "验证码错误", 'sta' => "0", 'data' => '']);
             }
         }
+
+
     }
 
 
@@ -312,6 +409,13 @@ class Bell_userController extends Controller
      */
     public function user_login()
     {
+		
+		
+		 /*$myfile = fopen("user_log.txt","w");
+         fwrite($myfile,var_export(Input::all(),true));
+         fclose($myfile);*/
+		 // return json_encode(['msg' => '登录成功', 'sta' => '1', 'data' => ""]);
+		
         $username = Input::get('name');
         $password = Input::get('password');
         $remember = Input::get('remember', true);
@@ -329,23 +433,27 @@ class Bell_userController extends Controller
             if ($rst == false) {
                 return json_encode(['msg' => "用户名或者密码错误", 'sta' => 0, 'data' => '']);
             }
-            $dynmics = User_dynamics::where('user_id', Auth::id())->count();
+			
+			$dynmics=User_dynamics::where('user_id',Auth::id())->count();
             //获取用户关注好友个数Userattention
-            $attention = Userattention::where('user_id', Auth::id())->count();
+            $attention=Userattention::where('user_id',Auth::id())->count();
             //获取关注用户粉丝个数
-            $Fans = Userattention::where('attention_userid', Auth::id())->count();
+            $Fans=Userattention::where('attention_userid',Auth::id())->count();
+
             //记录登陆状态
-            $arr = ['token' => Input::get('_token'), 'time' => time()];
-            Redis::set($username . '_token', json_encode($arr));
+            $arr=['token'=>Input::get('_token'),'time'=>time()];
+            Redis::set($username.'_token',json_encode($arr));
             $data = ([
                 'id' => $data['id'],
                 'rst' => $rst,
                 'username' => $username,
                 'password' => $password,
                 'redirect' => $redirect,
-                'dynmics' => $dynmics,
-                'attention' => $attention,
-                'fans' => $Fans,
+                'dynmics'=>$dynmics,
+                'attention'=>$attention,
+                'fans'=>$Fans,
+
+
             ]);
             return json_encode(['msg' => '登录成功', 'sta' => '1', 'data' => $data]);
         } else {

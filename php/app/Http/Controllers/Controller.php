@@ -12,11 +12,23 @@ use Input;
 use App\Models\Sort;
 use DB;
 use App\Models\User_share;
+use phpDocumentor\Reflection\Types\Object_;
 
 abstract class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+
+
+    //请求分页
+    public function SetPage()
+    {
+        $page = Input::get('page') ?: 0;
+        if ($page && $page > 0) {
+            $page = ($page-1) * 10;
+        }
+        return $page;
+    }
     /**
      * @param $str
      * @return bool
@@ -24,9 +36,6 @@ abstract class Controller extends BaseController
      */
     public function unusual($str)
     {
-        /*$myfile = fopen("logn.txt","w");
-        fwrite($myfile,var_export(Input::all(),true));
-        fclose($myfile);*/
         return preg_match("/[\'.,:;*?~`!@#$%^&+=)(<>{}]|\]|\[|\/|\\\|\"|\|/", trim($str)) ? true : false;
     }
 
@@ -106,15 +115,8 @@ abstract class Controller extends BaseController
      * @author  kino <735745089@qq.com>
      * @copyright Copyright (c) 2016 lc.top all rights reserved.
      */
-
     public function dencrypt($string, $isEncrypt = true, $key = KEY_SPACE)
     {
-
-
-        /*if (!isset($string{0}) || !isset($key{0})) {
-            return false;
-        }*/
-
         $dynKey = $isEncrypt ? hash('sha1', microtime(true)) : substr($string, 0, 40);
         $fixedKey = hash('sha1', $key);
 
@@ -213,10 +215,6 @@ abstract class Controller extends BaseController
         $rst=User::where('id',$id)->select('nickname')->first();
         return $rst->nickname;
     }
-
-
-
-
     /**
      * @param $url
      * @return bool
@@ -282,11 +280,16 @@ abstract class Controller extends BaseController
                 }
             }
             return $rst[0];
-        }else{
-            return "";
         }
     }
 
+    public function make_order($user_id)
+    {
+        return mt_rand(15,99)
+        . sprintf('%010d',time() - 946656000)
+        . sprintf('%03d', (float) microtime() * 1000)
+        . sprintf('%03d', (int) $user_id % 1000);
+    }
 
 
 

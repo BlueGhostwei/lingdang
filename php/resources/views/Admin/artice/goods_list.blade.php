@@ -6,8 +6,7 @@
 
     @endsection
     @section('content')
-            <!--<div class="main-container">goods_list
-
+            <!--<div class="main-container">
         <div class="container-fluid">
             @include('Admin.layout.breadcrumb', [
                 'title' => '添加文章',
@@ -24,7 +23,14 @@
             <div class="Alist" style="background: #e9eaea">
                 <form method="post" action="">
                     <table width="" cellspacing="0" cellpadding="0" style="float: right; margin-right: 30px;">
-                        <tr>
+						<tr>
+							<td>
+								<select  name="cateid"  onchange="">
+									<option value="0">请选择属性</option>
+										<option value="">直购商品</option>
+										<option value="">积分商品</option>
+								</select>
+							</td>
                             <td align="right">关键字：</td>
                             <td><input type="text" value="" class="Iar_list"/></td>
                             <td><input type="submit" name="dosubmit" class="button" value="搜 索"></td>
@@ -42,12 +48,16 @@
                             <div class="GoodsML_head"><font color="red">¥{{$v['price']}}</font><span>已兑换/总库存：<font
                                             color="red">0/{{$v['inventory']}}</font></span>
                             </div>
-                            <div class="GoodsML_head">{{$v['goods_title']}}</div>
+                            <div class="GoodsML_head">
+								<p style="float:left;line-height: 30px;text-overflow:ellipsis; overflow:hidden;white-space:nowrap; width:125px">{{$v['goods_title']}}</p>
+								<a class="delete_goods" data_id="{{$v['id']}}">删除</a>
+								<a href="{{route('goods.show',$v['id'])}}">查看详情</a>
+							</div>
                             <div class="Gbottom">
-                                <div class="jifen"><a href="">加入积分商城</a></div>
+                                <!--<div class="jifen"><a href="">加入积分商城</a></div>
                                 <div class="zhigou"><a href="">加入直购商城</a></div>
-                                <a href="{{route('goods.show',$v['id'])}}">查看详情</a>
-                                <a class="delete_goods" data_id="{{$v['id']}}">删除</a>
+								<div class="miandan"><a href="">免单</a></div>-->
+                                
                             </div>  
                         </div>
                     @endforeach
@@ -58,14 +68,15 @@
                                         color="red">0/50</font></span></div>
                         <div class="GoodsML_head">功能实木婴儿餐椅儿童餐椅 宝宝餐桌椅 可爱小熊坐垫</div>
                         <div class="Gbottom">
-                            <div class="jifen"><a href="">加入积分商城</a></div>
+                            <!--<div class="jifen"><a href="">加入积分商城</a></div>
                             <div class="zhigou"><a href="">加入直购商城</a></div>
+							<div class="miandan"><a href="">免单</a></div>-->
                             <a href="">查看详情</a>
                             <a href="">删除</a>
                         </div>
                     </div>
                 @endif
-                   @if(isset($goods_list))
+                @if(isset($goods_list))
                         <div style="text-align: center"> {!! $goods_list->render() !!}</div>
                     @endif
             </div>

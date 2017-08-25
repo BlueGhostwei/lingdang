@@ -18,7 +18,7 @@
      </div>-->
 
 <div class="Iartice">
-    <div class="IAhead"><strong style="padding-right: 10px;">订单管理</strong><a href="{{ route('artice.order') }}">订单列表</a>|<a href="{{ route('artice.order') }}">已发货</a>|<a href="{{ route('artice.order') }}">未发货</a>|<a href="{{ route('artice.order') }}">已完成</a>|<a href="{{ route('artice.order') }}">已作废</a>|<a href="{{ route('artice.order') }}">待收货</a>|</div>
+    <div class="IAhead"><strong style="padding-right: 10px;">订单管理</strong><a href="{{ route('artice.order') }}">订单列表</a>|<a href="{{ route('artice.B_dingdan_completelist') }}">已完成</a>|<a href="{{ route('artice.B_dingdan_deliverylist') }}">已发货</a>|<a href="{{ route('artice.B_dingdan_Nodeliverylist') }}">未发货</a>|<a href="{{ route('artice.B_dingdan_backlist') }}">退单</a>|</div>
     <div class="IAMAIN_list">
         <div class="Alist">
             <form method="post" action="">
@@ -45,31 +45,37 @@
         </div>
 
         <div class="Alist">
-            <form method="post" action="">
-            <table width="100%"  cellspacing="0" cellpadding="0" >
-                <tr class="Alist_head">
-                    <th style="width: 80px;">排序</th>
-                    <th>订单号</th>
-                    <th>商品标题</th>
-                    <th>购买用户</th>
-                    <th>购买总价</th>
-                    <th>购买日期</th>
-                    <th>订单状态</th>
-                    <th>操作</th>
-                </tr>
-                <tr class="Alist_main">
-                    <td class="IMar_list" />1</td>
-                    <td>255561ljnojo</td>
-                    <td>童装上衣</td>
-                    <td>13711174990</td>
-                    <td><font color="red">￥228.00</font></td>
-                    <td>2017-3-30 20:12</td>
-                    <td>已付款,未发货,未完成</td>
-                    <td><a href="{{ route('artice.order_XQ') }}"">详情</a></td>
-                </tr>
-            </table>
-            </form>
-        </div>
+                <form method="post" action="">
+                    <table width="100%" cellspacing="0" cellpadding="0">
+                        <tr class="Alist_head">
+                        	<th style="width: 150px;">订单号</th>
+                            <th>商品标题</th>  
+                            <th style="width: 120px;">商品类型</th>
+                            <th style="width: 150px;">购买用户</th>
+                            <th style="width: 100px;">购买总价</th>
+                            <th style="width: 180px;">购买日期</th>
+                            <th style="max-width: 250px;">收货地址</th>
+                            <th style="width: 100px;">订单状态</th>
+                            <th>备注</th>
+                            <th style="width: 100px;">管理操作</th>
+                        </tr>
+                        
+                        <tr class="Alist_main">
+                            <td class="IMar_list"/>1dfs5654445</td>
+                            <td>安徽省-蚌埠市-禹会区</td>
+                            <td>直购系列</td>
+                            <td>1171801173</td>
+                            <td><font color="red">￥0.0</font></td>
+                            <td>2017-07-19</td>
+                            <td>安徽省-蚌埠市-禹会区</td>
+                            <td>已完成</td>
+                            <td>如果是退单的退单原因</td>
+                            <td><a href="{{ route('artice.B_dingdan_read') }}">查看</a></td>
+                        </tr>
+                        
+                    </table>
+                </form>
+            </div>
     </div>
 </div>
 

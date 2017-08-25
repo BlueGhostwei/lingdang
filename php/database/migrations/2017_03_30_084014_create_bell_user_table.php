@@ -21,6 +21,7 @@ class CreateBellUserTable extends Migration
             $table->integer('user_id')->index()->commit('用户id');
             $table->tinyInteger('remind')->default(0)->commit('是否提醒生日,0为是，1为否，默认为0');
             $table->string('integral')->default(0)->commit('积分');
+            $table->string('signature',225)->nullable()->commit('个性签名');
             $table->string('fans',225)->default(0)->commit('粉丝量');
             $table->string('attention',225)->default(0)->commit('关注量');
             $table->timestamps();

@@ -4,21 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use Auth;
 use Input;
-use Illuminate\Support\Facades\Redis;
 use phpDocumentor\Reflection\Types\Null_;
 use Redirect;
-
 use Response;
 use App\Models\User;
 use App\Http\Requests;
-use spec\PhpSpec\Wrapper\Subject\Expectation\DispatcherDecoratorSpec;
 use Validator;
 use App\Models\SendSMS;
 use App\Models\AclUser;
 use App\Models\AclRole;
 use App\Models\AclResource;
 use Illuminate\Http\Request;
-use App\Models\Image_pic;
 use App\Http\Controllers\Controller;
 
 /**
@@ -31,24 +27,11 @@ use App\Http\Controllers\Controller;
  */
 class UserController extends Controller
 {
-    
 
-
-
-
-
-
-
-
-    /**
-     * @return mixed
-     *
-     */
-    public function GEt_token()
-    {
-        return json_encode(['msg' => '请求成功', 'sta' => '1', 'data' => csrf_token()]);
+    public function GEt_token(){
+        return json_encode(['msg'=>'请求成功','sta'=>'1','data'=>csrf_token()]);
     }
-
+    
     /**
      * 用户列表, 排除已经删除的
      *
@@ -60,7 +43,8 @@ class UserController extends Controller
 
         $keyword = Input::get('keyword');
         if ($keyword) {
-            $user = $user->where('id', $keyword)->orWhere('name', 'like', "%$keyword%")->orWhere('email', 'like', "%$keyword%")->orWhere('real_name', 'like', "%$keyword%");
+            $user = $user->where('id', $keyword)->orWhere('name', 'like', "%$keyword%")
+                    ->orWhere('email', 'like', "%$keyword%")->orWhere('real_name', 'like', "%$keyword%");
         }
 
         $user = $user->paginate(10)->appends(['keyword' => $keyword]);
@@ -179,7 +163,7 @@ class UserController extends Controller
             }
         }*/
         $user->create($request->only($user->getFillable()));
-        $data = $user->where('name', $data['name'])->update(['created_by' => Auth::id()]);
+        $data = $user->where('name',$data['name'])->update(['created_by' => Auth::id()]);
 
         if ($data) {
             return json_encode(['sta' => 1, 'msg' => '请求成功', 'data' => '']);
@@ -219,17 +203,19 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //dd(Input::all());
         $id = Input::get('id');
         $user = User::find($id);
         if ($user) {
             $data = $request->all();
             if (!empty($data['password_confirmation']) && !empty($data['password'])) {
+                //dd(12341);
                 if ($data['password_confirmation'] != $data['password']) {
                     return json_encode(['sta' => 0, 'msg' => '两次密码不一致', 'data' => '']);
                 }
             }
             $user->update($request->only($user->getFillable()));
-            if ($user) {
+            if($user){
                 return json_encode(['sta' => 1, 'msg' => '请求成功', 'data' => '']);
             }
         } else {
@@ -405,14 +391,14 @@ class UserController extends Controller
     {
         $username = Input::get('username');
         $password = Input::get('password');
+       // dd($password);
         $remember = Input::get('remember', false);
-        //dd($remember);
         $field = isEmail($username) ? 'email' : 'name';
         $redirect = urldecode(Input::get('redirect', '/'));
         $data['id'] = User::where(array(
             'name' => $username,
             'deleted_at' => NULL,
-            'type' => NULL
+            'type'=>NULL
         ))->get();
         if (count($data['id']->toArray()) > 0) {
             $id_data = $data['id']->toArray();
@@ -442,10 +428,6 @@ class UserController extends Controller
         return Redirect::route('user.login');
     }
 
-    /**
-     * @return string
-     *
-     */
     public function m_getLogout()
     {
         $callback = Input::get('callback');
@@ -468,6 +450,7 @@ class UserController extends Controller
     public function search()
     {
         $keyword = Input::get('keyword');
+
         return User::where('name', 'like', $keyword . '%')->limit(10)->get()->toJson();
     }
 
@@ -488,6 +471,7 @@ class UserController extends Controller
         if ($user->id == Auth::id()) {
             return Response::json(['state' => 0, 'message' => '你不能锁定自己!']);
         }
+
         $user->lock = User::LOCK;
         $user->save();
         return Response::json(['state' => 1, 'message' => '锁定成功']);

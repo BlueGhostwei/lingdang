@@ -73,7 +73,8 @@ input[type="checkbox"]{width: 13px; height: 13px;}
 .xORder tr{ border-bottom: 1px dashed #ccc }
 
 
-
+.describe{width: 55%;height: 70px;}
+.specifications{width: 45%;height: 100px;}
 
 .clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
 .clearfix{display:inline-table; float: left;}/* Hides from IE-mac \*/
@@ -101,15 +102,49 @@ input[type="checkbox"]{width: 13px; height: 13px;}
 .plus-tag-add a.plus{background-position:-289px -99px;}
 
 .Goodslist{ width: 100%; height: auto;padding-top: 20px; float:left;}
-.GoodsLmain{ width:17%; height: auto; float: left; margin:0 1%; margin-bottom: 10px;}
-.GoodsLmain img{ width: 100%; height: auto; }
+.GoodsLmain{ width:17%; height: 341px; float: left; margin:1.5% 1%;}
+.GoodsLmain img{ width: 100%;height:250px; border:1px solid #eee;}
 .GoodsML_head{ line-height: 20px; font-size: 12px; text-align:left; width: 100%;float: left; padding-top: 5px;}
 .GoodsML_head span{ float: right; padding-right: 5px;  }
 .Gbottom{ width: 100%; float: left; height: auto; margin-top: 15px; }
-.Gbottom a{ width: auto; padding: 0 15px; line-height: 2em; font-size: 0.7em; text-align: center; border: 1px solid #eee; float: left;}
+.Gbottom a{ width: auto; padding: 0 10px; line-height: 2em; font-size: 0.7em; text-align: center; border: 1px solid #eee; float: left;}
 .zhigou a{color:#ff0000;display: none;}
 .jifen a{}
 
 .stext{ width: 100px; }
 
 .asnt{ width: 180px; }
+
+.describe{ width: 75%; height:70px; }
+.dd_read_img{ width:72%; height:auto; margin:20px 0% 20px 12%;; float:left; border:1px solid #ccc;}
+.dd_read_img img{ width:100%; height:auto;}
+.dd_read_right{ margin-top:20px; float:left;width:85%;}
+.read_top{ width:98%; height:auto; float:left; background:#eee; margin-bottom:30px; padding:2%;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -75,7 +75,7 @@
                     title:false,
                 }, function(){
                     $.ajax({
-                        url: "{{'sort.destroy'}}",
+                        url: "{{'flgl'}}",
                         data: {
                             'id': id,
                             '_token': _token

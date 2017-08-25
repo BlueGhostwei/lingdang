@@ -38,15 +38,13 @@ class CreateUserTable extends Migration
             //昵称
             $table->string('nickname', 30)->nullable();
 
-            $table->string('weight',10)->nullable()->commit('体重');
+            $table->string('weight',10)->nullable()->commit('身高');
 
-            $table->string('height',10)->nullable()->commit('身高');
+            $table->string('height',10)->nullable()->commit('体重');
 
-           // $table->integer('bady_age')->nullable()->commit('年龄');
+            $table->integer('bady_age')->nullable()->commit('年龄');
 
             $table->string('location',50)->nullable()->commit('地址');
-
-            $table->string('signature',225)->nullable()->commit('个性签名');
 
             $table->date('birthday')->nullable()->commit('生日');
             // 性别 0女, 1男

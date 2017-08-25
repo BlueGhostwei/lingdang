@@ -20,7 +20,8 @@ class Actice extends Eloquent
         'sort_id',
         'writer',
         'title',
-        'content'
+        'content',
+		'aimg'
     ];
 
     /**
@@ -33,13 +34,15 @@ class Actice extends Eloquent
                 'sort_id'=>'required',
                 'writer'=>'required|min:2',
                 'title'=>"required|min:5|unique:".$this->getTable(),
-                'content'=>'required|min:20'
+                'content'=>'required|min:20',
+				'aimg'=>'required'
             ],
             'update'=>[
                 'sort_id'=>'required',
                 'writer'=>'required|min:2',
                 'title'=>"required|min:5",
-                'content'=>'required|min:20'
+                'content'=>'required|min:20',
+				'aimg'=>'required'
             ]
         ];
     }

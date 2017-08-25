@@ -16,7 +16,7 @@ class CreateUserattentionTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->commit('用户id');
             $table->integer('attention_userid')->commit('被关注的用户id');
-            $table->tinyInteger('status')->default(0)->commit('状态');
+            $table->tinyInteger('status')->commit('状态');
             //自动维护时间
             $table->timestamps();
         });

@@ -31,16 +31,63 @@
                     <td><input  type="text"  value="" class="Iar_list"><i>*不填写默认为原密码</i></td>
                 </tr>
                 <tr>
-                    <td align="right" width="120">头像：</td>
-                    <td>
-                        <input type="text" name="" class="Iar_inputt">
-                        <input type="button" class="button" value="上传图片"/>
-                    </td>
-                </tr> 
-                <tr>
-                    <td align="right"></td>
-                    <td><img src="{{url('images/z_add.png')}}" style="width:auto; height: 80px; margin: 5px 0;"></td>
-                </tr>
+                        <td align="right"><font color="red">*</font>缩略图：</td>
+                        <td>
+							<div class="" style="position:relative;">
+								<form method="get" action="xznetwork" name="textfile">
+						   <input type="file" name="file" id="doc" multiple="multiple" style="width:450px;" onchange="javascript:setImagePreview();">
+						</form>
+							</div>
+						</td>
+                    </tr>
+					<tr>
+						<td align="right"></td>
+						<td>							
+							<img id="preview" src="{{isset($set_goods)?md52url($set_goods->Thumbnails):url('images/z_add.png')}}" width="100" height="100" style="display: block;" />
+						</td>
+					</tr>
+					
+					
+					<script type="text/javascript">
+            //下面用于图片上传预览功能
+            function setImagePreview(avalue) {
+            //input
+                var docObj = document.getElementById("doc");
+//img
+                var imgObjPreview = document.getElementById("preview");
+                //div
+                var divs = document.getElementById("localImag");
+                if (docObj.files && docObj.files[0]) {
+                    //火狐下，直接设img属性
+                    imgObjPreview.style.display = 'block';
+                    imgObjPreview.style.width = '100px';
+                    imgObjPreview.style.height = '100px';
+                    //imgObjPreview.src = docObj.files[0].getAsDataURL();
+                    //火狐7以上版本不能用上面的getAsDataURL()方式获取，需要一下方式
+                   imgObjPreview.src = window.URL.createObjectURL(docObj.files[0]);
+                } else {
+                    //IE下，使用滤镜
+                    docObj.select();
+                    var imgSrc = document.selection.createRange().text;
+                    var localImagId = document.getElementById("localImag");
+                    //必须设置初始大小
+                    localImagId.style.width = "100px";
+                    localImagId.style.height = "100px";
+                    //图片异常的捕捉，防止用户修改后缀来伪造图片
+                    try {
+                        localImagId.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+                        localImagId.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = imgSrc;
+                    } catch(e) {
+                        alert("您上传的图片格式不正确，请重新选择!");
+                        return false;
+                    }
+                    imgObjPreview.style.display = 'none';
+                    document.selection.empty();
+                }
+                return true;
+            }
+        </script>
+		
                 <tr>
                     <td align="right">昵称：</td>
                     <td><input  type="text"  value="" class="Iar_list"></td>

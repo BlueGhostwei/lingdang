@@ -45,16 +45,16 @@ class User extends Eloquent implements AuthenticatableContract, CanResetPassword
      * @var array
      */
     protected $fillable = [
-        'name',
+         'name',
         'type',
         'password',
         'email',
-        "weight",
         'avatar',
         'role',
         'nickname',
         'gender',
         'phone',
+		 "weight",
         'wechat',
         'height',
         'birthday',
@@ -113,7 +113,6 @@ class User extends Eloquent implements AuthenticatableContract, CanResetPassword
             'create' => [
                 'name' => "required|min:3|max:100|unique:".$this->getTable(),
                 'password' => 'required|confirmed:confirm_password',
-             
             ],
             'update' => [
                 'name' => "required|min:3|max:100|unique:".$this->getTable().",name,".$this->id,
