@@ -108,11 +108,8 @@ Route::group(['middleware' => 'auth'], function () {
        Route::get('/gclass/index', ['as' => 'gclass.index', 'uses' => 'ClassificationController@index']);//商品一级分类列表
 	   Route::get('/gclass/queryclass', ['as' => 'gclass.querysclass', 'uses' => 'ClassificationController@queryclass']);//获取商品的信息
 	   Route::get('/gclass/commodity', ['as' => 'gclass.commodity', 'uses' => 'ClassificationController@commodity']);//获取商品详情信息
-
-        
         Route::get('goods/jsfengoods_list', ['as' => 'goods.jsfengoods_list', 'uses' => 'SortController@jsfengoods_list']);
 
-        Route::get('goods/youhuijuan', ['as' => 'goods.youhuijuan', 'uses' => 'SortController@youhuijuan']);// 优惠券
 
 
 
@@ -219,8 +216,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('goods/coupon_show', ['as' => 'goods.coupon_show', 'uses' => 'GoodsController@coupon_show']);
         Route::post('goods/GoodsCouponUpdate', ['as' => 'goods.GoodsCouponUpdate', 'uses' => 'GoodsController@GoodsCouponUpdate']);
         Route::get('goods/coupon_dele', ['as' => 'goods.coupon_dele', 'uses' => 'GoodsController@coupon_dele']);
-
-
+        //购物车
+        Route::get('goods/shoplist', ['as' => 'goods.shoplist', 'uses' => 'GoodsController@shoplist']);//商品列表
+        Route::get('goods/delshop', ['as' => 'goods.delshop', 'uses' => 'GoodsController@delshop']);//删除购物车
+        Route::get('goods/shopping', ['as' => 'goods.shopping', 'uses' => 'GoodsController@shopping']);//添加购物车
         //地址管理
         Route::get('/gclass/address', ['as' => 'gclass.address', 'uses' => 'ClassificationController@address']);//添加地址管理
         Route::get('/gclass/ressdel', ['as' => 'gclass.ressdel', 'uses' => 'ClassificationController@ressdel']);//删除地址管理

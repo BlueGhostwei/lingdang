@@ -25,13 +25,7 @@ use App\Http\Controllers\Controller;
 
 class GoodsController extends Controller
 {
-
-
-
-
-
-
-
+    
     /**
      * @param Request $request
      * @return mixed
@@ -180,11 +174,12 @@ class GoodsController extends Controller
         $attd = Goods_standard::where("goods_id", "=", $gid)
             ->where("attributes_id", "=",$arrs)
             ->select("price", "stock")->first();
-        //dd($arrs);
+        //dd($attd);
 
         if(!$attd){
             return json_encode(['msg'=>'暂无改规格商品','data'=>['stock'=>0,'price'=>0],'sta'=>'0']);
         }
+        //判断同一用户购买同一件商品
         $gshop=Shopping::where("gid",$gid)->where("specif","=",$specif)->where("brand_id","=",$brand_id)->where("user_id","=",$user_id)->first();
         $count=$gshop["scount"];
         if($gshop){

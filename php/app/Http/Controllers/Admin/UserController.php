@@ -77,9 +77,7 @@ class UserController extends Controller
         if ($keyword) {
             $user = $user->where('id', $keyword)->orWhere('name', $keyword)->orWhere('email', $keyword);
         }
-
         $user = $user->paginate(10);
-
         return view('Admin/user.trash', [
             'keyword' => $keyword,
             'user' => $user
@@ -99,12 +97,9 @@ class UserController extends Controller
         $user = User::whereNotNull('deleted_at')->find($id);
 
         $rst = User::where('id', $id)->update(['deleted_at' => NULL]);
-        //dd($rst);
         if (!$user) {
             return Response::json(['state' => 0, 'message' => '用户已彻底删除, 不可恢复.']);
         }
-
-        //$user->restore();
         if ($rst) {
             return Response::json(['state' => 1, 'message' => '用户状态已经正常.']);
         } else {
