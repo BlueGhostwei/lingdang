@@ -283,6 +283,11 @@ abstract class Controller extends BaseController
         }
     }
 
+    /**
+     * @param $user_id
+     * @return string
+     * 订单号生成
+     */
     public function make_order($user_id)
     {
         return mt_rand(15,99)
