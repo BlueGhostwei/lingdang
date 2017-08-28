@@ -204,10 +204,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('goods/coupon_show', ['as' => 'goods.coupon_show', 'uses' => 'GoodsController@coupon_show']);
         Route::post('goods/GoodsCouponUpdate', ['as' => 'goods.GoodsCouponUpdate', 'uses' => 'GoodsController@GoodsCouponUpdate']);
         Route::get('goods/coupon_dele', ['as' => 'goods.coupon_dele', 'uses' => 'GoodsController@coupon_dele']);
-        //购物车
-        Route::get('goods/shoplist', ['as' => 'goods.shoplist', 'uses' => 'GoodsController@shoplist']);//商品列表
-        Route::get('goods/delshop', ['as' => 'goods.delshop', 'uses' => 'GoodsController@delshop']);//删除购物车
-        Route::get('goods/shopping', ['as' => 'goods.shopping', 'uses' => 'GoodsController@shopping']);//添加购物车
+
         //地址管理
         Route::get('/gclass/address', ['as' => 'gclass.address', 'uses' => 'ClassificationController@address']);//添加地址管理
         Route::get('/gclass/ressdel', ['as' => 'gclass.ressdel', 'uses' => 'ClassificationController@ressdel']);//删除地址管理
@@ -217,6 +214,11 @@ Route::group(['middleware' => 'auth'], function () {
         //积分商城
         Route::get('goods/PointsMall', ['as' => 'goods.PointsMall', 'uses' => 'GoodsController@PointsMall']);//积分商城列表
         Route::get('goods/FreeChargeGoods', ['as' => 'goods.FreeChargeGoods', 'uses' => 'GoodsController@FreeChargeGoods']);//免单活动商城列表
+        //购物车
+        Route::get('goods/shoplist', ['as' => 'goods.shoplist', 'uses' => 'GoodsController@shoplist']);//商品列表
+        Route::get('goods/delshop', ['as' => 'goods.delshop', 'uses' => 'GoodsController@delshop']);//删除购物车
+        Route::get('goods/shopping', ['as' => 'goods.shopping', 'uses' => 'GoodsController@shopping']);//添加购物车
+        //订单管理
         Route::get('order/GenerateOrder', ['as' => 'order.GenerateOrder', 'uses' => 'OrderController@GenerateOrder']);//生成订单
         Route::get('order/OrderList', ['as' => 'order.OrderList', 'uses' => 'OrderController@OrderList']);//生成订单列表
         Route::get('order/order_infomation', ['as' => 'order.order_infomation', 'uses' => 'OrderController@order_infomation']);//订单详情（含商品）

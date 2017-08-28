@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2017-08-21 12:17:58
+-- Generation Time: 2017-08-28 08:33:20
 -- 服务器版本： 5.7.9
 -- PHP Version: 7.0.0
 
@@ -330,6 +330,32 @@ CREATE TABLE IF NOT EXISTS `comment_share` (
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `coupon`
+--
+
+DROP TABLE IF EXISTS `coupon`;
+CREATE TABLE IF NOT EXISTS `coupon` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `money` int(11) NOT NULL,
+  `condition` int(11) NOT NULL,
+  `createnum` int(11) NOT NULL,
+  `type` tinyint(4) DEFAULT '0',
+  `send_start_time` timestamp NULL DEFAULT NULL,
+  `send_end_time` timestamp NULL DEFAULT NULL,
+  `use_start_time` timestamp NULL DEFAULT NULL,
+  `use_end_time` timestamp NULL DEFAULT NULL,
+  `release` int(11) NOT NULL DEFAULT '0',
+  `used` int(11) NOT NULL DEFAULT '0',
+  `status` tinyint(4) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `dgoods`
 --
 
@@ -399,7 +425,7 @@ INSERT INTO `goods` (`id`, `sort_id`, `brand_id`, `goods_sort`, `goods_title`, `
 (13, 2, 6, 1, 'sfasfasfa', '3f3589a9d52eec0bc4f163392851ae07001', '3f3589a9d52eec0bc4f163392851ae07001', NULL, 2323, 'sdfasfa', '', '', '\n                                \n                                                                    <p>232323</p>\n                                                            <p><br></p>', 0, '2017-08-15 07:46:05', '2017-08-15 07:46:05', 500, 1, 0, 0),
 (14, 2, 6, 1, '陶展', '6af40b1e77691d04a8bc237405f280b5001', '6af40b1e77691d04a8bc237405f280b5001', NULL, 232, '', '', '', '\n                                \n                                                                    <p>23232323</p>\n                                                            <p><br></p>', 0, '2017-08-15 08:41:42', '2017-08-15 08:41:42', 232, 1, 232, 1),
 (15, 2, 6, 1, '阿萨德', '6af40b1e77691d04a8bc237405f280b5001', '3f3589a9d52eec0bc4f163392851ae07001', NULL, 232, '阿斯顿发射点发', '', '', '\n                                \n                                                                    <p>2323</p>', 0, '2017-08-15 09:01:47', '2017-08-15 09:01:47', 23, 1, 2, 1),
-(16, 2, 6, 1, 'sdfas', '3f3589a9d52eec0bc4f163392851ae07001', 'f7b41b1ded73aa9253cb218db4e429ba001', NULL, 2332, 'asdfasd', '', '', '\n                                \n                                                                    <p>2323232322223223</p>\n                                                            <p><br></p>', 0, '2017-08-18 03:26:18', '2017-08-18 03:26:18', 0, 0, 0, 0);
+(16, 2, 6, 1, 'sdfas', '3f3589a9d52eec0bc4f163392851ae07001', 'f7b41b1ded73aa9253cb218db4e429ba001,f7b41b1ded73aa9253cb218db4e429ba001,f7b41b1ded73aa9253cb218db4e429ba001,f7b41b1ded73aa9253cb218db4e429ba001', NULL, 2332, 'asdfasd', '', '', '\n                                \n                                                                    <p>2323232322223223</p>\n                                                            <p><br></p>', 0, '2017-08-18 03:26:18', '2017-08-18 03:26:18', 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -430,38 +456,6 @@ INSERT INTO `goods_param` (`goods_id`, `key`, `vel`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `goods_specif`
---
-
-DROP TABLE IF EXISTS `goods_specif`;
-CREATE TABLE IF NOT EXISTS `goods_specif` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `gid` int(11) NOT NULL,
-  `color` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `size` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `cloth` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `origin` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `gprice` int(11) NOT NULL,
-  `inventory` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- 转存表中的数据 `goods_specif`
---
-
-INSERT INTO `goods_specif` (`id`, `gid`, `color`, `size`, `cloth`, `origin`, `gprice`, `inventory`, `created_at`, `updated_at`) VALUES
-(1, 4, '白', 'm', '棉', '广州', 20, 20, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(3, 4, '白', 'xm', '丝', '上海', 60, 60, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(4, 4, '蓝', 'm', '布', '北京', 60, 60, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(6, 4, '红', 'x', '棉', '上海', 30, 30, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(7, 4, '白', 'ml', '布', '广州', 60, 30, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-
--- --------------------------------------------------------
-
---
 -- 表的结构 `goods_standard`
 --
 
@@ -471,34 +465,28 @@ CREATE TABLE IF NOT EXISTS `goods_standard` (
   `attributes_id` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `price` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `stock` int(11) DEFAULT NULL,
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
   KEY `goods_standard_goods_id_index` (`goods_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- 转存表中的数据 `goods_standard`
 --
 
-INSERT INTO `goods_standard` (`goods_id`, `attributes_id`, `price`, `stock`) VALUES
-(104, '37,9', '341', 12),
-(104, '37,10', '02', 2),
-(104, '37,9', '341', 12),
-(104, '37,10', '02', 2),
-(14, '37,9', '232', 23),
-(14, '26,9', '23', 23),
-(15, '37,9', '023', 23),
-(15, '37,10', '023', 23),
-(16, '37,9', '23', 22),
-(16, '37,10', '23', 22),
-(16, '26,9', '23', 2),
-(16, '26,10', '023', 23),
-(NULL, '37,9', '02342', 232),
-(NULL, '37,10', '2', 232),
-(NULL, '26,9', '23', 232),
-(NULL, '26,10', '023', 23),
-(NULL, '37,9', '02342', 232),
-(NULL, '37,10', '2', 232),
-(NULL, '26,9', '23', 232),
-(NULL, '26,10', '023', 23);
+INSERT INTO `goods_standard` (`goods_id`, `attributes_id`, `price`, `stock`, `id`) VALUES
+(104, '37,9', '341', 12, 1),
+(104, '37,10', '02', 2, 2),
+(104, '37,9', '341', 12, 3),
+(104, '37,10', '02', 2, 4),
+(14, '37,9', '232', 440, 5),
+(14, '26,9', '23', 23, 6),
+(15, '37,9', '023', 23, 7),
+(15, '37,10', '023', 23, 8),
+(16, '37,9', '23', 13, 9),
+(16, '37,10', '23', 22, 10),
+(16, '26,9', '23', 2, 11),
+(16, '26,10', '023', 23, 12);
 
 -- --------------------------------------------------------
 
@@ -573,7 +561,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=96 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=117 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- 转存表中的数据 `migrations`
@@ -608,8 +596,13 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (88, '2017_08_14_105245_create_update_goods_table', 11),
 (91, '2017_08_14_182923_create_goods_standard_table', 12),
 (92, '2017_08_15_093219_create_goods_param_table', 13),
-(94, '2017_08_19_103742_create_order_talbe', 14),
-(95, '2017_07_21_101208_create_dgoods_table', 15);
+(114, '2017_08_19_103742_create_order_talbe', 20),
+(95, '2017_07_21_101208_create_dgoods_table', 15),
+(98, '2017_08_17_070019_create_site_table', 17),
+(99, '2017_08_21_050559_create_shopping_table', 17),
+(100, '2017_08_24_203447_create_Coupon_table', 17),
+(103, '2017_08_26_143223_create_update_goods_standard_table', 19),
+(116, '2017_08_26_173117_create_order_info_table', 21);
 
 -- --------------------------------------------------------
 
@@ -620,24 +613,33 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 DROP TABLE IF EXISTS `order`;
 CREATE TABLE IF NOT EXISTS `order` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `order_id` int(11) NOT NULL,
+  `order_id` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_id` int(11) NOT NULL,
   `order_price` int(11) NOT NULL,
-  `goods_id` int(11) NOT NULL,
-  `goods_name` int(11) NOT NULL,
-  `goods_description` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remark` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` int(11) DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
   UNIQUE KEY `order_order_id_unique` (`order_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
 
 --
--- 转存表中的数据 `order`
+-- 表的结构 `order_goods_info`
 --
 
-INSERT INTO `order` (`id`, `order_id`, `user_id`, `order_price`, `goods_id`, `goods_name`, `goods_description`, `created_at`, `updated_at`) VALUES
-(1, 2147483647, 1, 133, 16, 0, '', '2017-08-19 03:07:15', '2017-08-19 03:07:15');
+DROP TABLE IF EXISTS `order_goods_info`;
+CREATE TABLE IF NOT EXISTS `order_goods_info` (
+  `order_id` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `goods_id` int(11) NOT NULL,
+  `specif` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `brand_id` int(11) NOT NULL,
+  `goods_num` int(11) NOT NULL DEFAULT '0',
+  `goods_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -4238,6 +4240,49 @@ INSERT INTO `region` (`id`, `pid`, `type`, `code`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `shopping`
+--
+
+DROP TABLE IF EXISTS `shopping`;
+CREATE TABLE IF NOT EXISTS `shopping` (
+  `sid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `gid` int(11) NOT NULL,
+  `scount` int(11) NOT NULL,
+  `code` int(11) NOT NULL,
+  `brand_id` int(11) NOT NULL,
+  `specif` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`sid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `site`
+--
+
+DROP TABLE IF EXISTS `site`;
+CREATE TABLE IF NOT EXISTS `site` (
+  `sid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `consignee` varchar(80) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `area` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `street` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `district` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `scene` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `scontent` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sdefault` int(11) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`sid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `sort`
 --
 
@@ -4299,15 +4344,14 @@ CREATE TABLE IF NOT EXISTS `topic_combination` (
 --
 
 INSERT INTO `topic_combination` (`id`, `user_id`, `topic_photo`, `topic_name`, `read_amount`, `created_at`, `updated_at`) VALUES
-(1, 0, NULL, '#12343#', 27, '2017-06-27 03:37:48', '2017-07-06 02:10:41'),
-(2, 0, NULL, NULL, 4, '2017-06-27 06:46:47', '2017-06-27 07:06:23'),
+(1, 0, NULL, '#12343#', 27, '2017-08-23 03:37:48', '2017-07-06 02:10:41'),
 (3, 0, NULL, '#1234#', 6, '2017-06-27 06:55:03', '2017-07-06 02:10:39'),
 (4, 0, NULL, '123', 11, '2017-06-27 07:20:14', '2017-06-27 08:43:16'),
 (5, 0, NULL, '#???????#', 1, '2017-06-27 08:36:06', '2017-06-27 08:36:06'),
 (6, 0, NULL, '#吧啦老K#', 2, '2017-07-04 03:03:15', '2017-07-04 03:03:41'),
 (7, 0, NULL, '#勃#', 1, '2017-07-04 06:44:38', '2017-07-04 06:44:38'),
 (8, 0, NULL, '#根本交话费好好干#', 1, '2017-07-04 06:44:40', '2017-07-04 06:44:40'),
-(9, 0, NULL, '#哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈还#', 7, '2017-07-06 02:10:45', '2017-07-17 04:18:57');
+(9, 0, NULL, '#哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈还#', 7, '2017-08-23 02:10:45', '2017-07-17 04:18:57');
 
 -- --------------------------------------------------------
 
@@ -4353,7 +4397,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `email`, `password`, `type`, `email_validate`, `avatar`, `nickname`, `weight`, `height`, `location`, `signature`, `birthday`, `gender`, `phone`, `wechat`, `qq`, `role`, `lock`, `remember_token`, `created_by`, `remarks`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, '13226431320', '1987105819@qq.com', '$2y$10$zMMW.sy93A.IYGWxf5NL2OqpTlDbIJ9M4nMf3NeScbL1.cC7Vk8pi', NULL, 0, 'd273b62aaafd38837f3f4481ad4f0f94001', '鲍勃', NULL, '120', '广州番禺', 'Shirley_Chen', '2014-09-09', 1, '13226431320', '35', NULL, 0, 0, 'kVvAgAGa2wtXt6iSVjMH3cXcScqTEvFaMC8iRfqn13rgvSbCqbDhxriJlymy', 0, NULL, '2017-04-24 16:00:00', '2017-08-02 09:16:50', NULL),
+(1, '13226431320', '1987105819@qq.com', '$2y$10$zMMW.sy93A.IYGWxf5NL2OqpTlDbIJ9M4nMf3NeScbL1.cC7Vk8pi', NULL, 0, 'd273b62aaafd38837f3f4481ad4f0f94001', '鲍勃', NULL, '120', '广州番禺', 'Shirley_Chen', '2014-09-09', 1, '13226431320', '35', NULL, 0, 0, 'cvzp6gdaY2RTP5PlwiaauYgiLUyVCuMcufSkBgPF36IJmJkqBzJUFigvtBIh', 0, NULL, '2017-04-24 16:00:00', '2017-08-24 12:16:06', NULL),
 (18, '18814121642', NULL, '$2y$10$zMMW.sy93A.IYGWxf5NL2OqpTlDbIJ9M4nMf3NeScbL1.cC7Vk8pi', '1', 0, '32a21a7caeb3714f8395a503dc862b3d001', '程序猿', '200', '584', '上海 徐汇区', '态度决定一切', '0000-00-00', 0, NULL, NULL, NULL, 3, 0, 'PVuMmJM9ScfVFctFB9FKj6OiNMHbewXMfZMg0jI6RRzkXqdOk59WKWu68S3a', 0, NULL, '2017-06-06 06:11:56', '2017-07-19 06:25:16', NULL),
 (16, '13265134316', NULL, '$2y$10$gsrgwhyys.6QoPo60d34AuZd363G3T88Bu0hKjRPPlYbnVuz/F1sW', '1', 0, 'd273b62aaafd38837f3f4481ad4f0f94001', '123', '200', '200', NULL, '可口可乐了 尝试输入English', '2017-05-31', 1, NULL, NULL, NULL, 3, 0, 'MsxKhQlc41qL7L97geUWmiWq3uIKvwMi9zUtLP6b3UqUOSiNg6cykrGKCMPn', 0, NULL, '2017-05-18 09:43:52', '2017-07-06 08:35:44', NULL),
 (17, '13640230348', NULL, '$2y$10$7QHXGjaDtzvHkp7r35zZTeLRlsMKkNhMH8LUZafSUAc0HFB4E2ewS', '1', 0, '9e9da74074b94ad04e8c11d05ec8b1ba001', 'CaiCaiWhoamI', '200', '200', '    安徽省-蚌埠市-禹会区', 'How cute am I', '2017-06-08', 1, NULL, NULL, NULL, 3, 0, 'rwwsiAyZC7rY67UJMCArlCB4RXBvD57yiGB6u2WB0rDFrT7Yma8811ep9y1X', 0, NULL, '2017-06-02 03:21:29', '2017-06-08 07:13:22', NULL);
@@ -4491,7 +4535,7 @@ CREATE TABLE IF NOT EXISTS `user_history` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1507 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=1523 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- 转存表中的数据 `user_history`
@@ -6007,7 +6051,23 @@ INSERT INTO `user_history` (`id`, `user_id`, `name`, `ip`, `user_agent`, `create
 (1503, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-21 01:11:14', '2017-08-21 01:11:14'),
 (1504, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-21 07:52:01', '2017-08-21 07:52:01'),
 (1505, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-21 07:52:04', '2017-08-21 07:52:04'),
-(1506, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-21 11:23:52', '2017-08-21 11:23:52');
+(1506, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-21 11:23:52', '2017-08-21 11:23:52'),
+(1507, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-24 01:31:54', '2017-08-24 01:31:54'),
+(1508, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-24 03:39:08', '2017-08-24 03:39:08'),
+(1509, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-24 05:58:31', '2017-08-24 05:58:31'),
+(1510, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-24 09:12:00', '2017-08-24 09:12:00'),
+(1511, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-24 12:12:55', '2017-08-24 12:12:55'),
+(1512, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-24 12:16:22', '2017-08-24 12:16:22'),
+(1513, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-24 12:16:35', '2017-08-24 12:16:35'),
+(1514, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-25 01:21:47', '2017-08-25 01:21:47'),
+(1515, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-25 10:15:16', '2017-08-25 10:15:16'),
+(1516, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-26 01:19:20', '2017-08-26 01:19:20'),
+(1517, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-26 01:19:21', '2017-08-26 01:19:21'),
+(1518, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-26 05:49:12', '2017-08-26 05:49:12'),
+(1519, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-26 08:15:09', '2017-08-26 08:15:09'),
+(1520, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-27 01:40:54', '2017-08-27 01:40:54'),
+(1521, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-28 02:57:40', '2017-08-28 02:57:40'),
+(1522, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-28 05:09:37', '2017-08-28 05:09:37');
 
 -- --------------------------------------------------------
 
