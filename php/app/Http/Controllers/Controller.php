@@ -296,6 +296,15 @@ abstract class Controller extends BaseController
         . sprintf('%03d', (int) $user_id % 1000);
     }
 
+    /**
+     * @param $content
+     * @return mixed
+     * 去除文章HTML文本格式
+     */
+    public function ContentProcess($content){
+        return trim(htmlspecialchars(str_replace(array("\r\n", "\r", "\n"), "", strip_tags($content))));
+    }
+
 
 
 }

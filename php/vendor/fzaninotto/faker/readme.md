@@ -1051,6 +1051,24 @@ echo $faker->vat;           // "BE 0123456789" - Belgian Value Added Tax number
 echo $faker->vat(false);    // "BE0123456789" - unspaced Belgian Value Added Tax number
 ```
 
+### `Faker\Provider\es_VE\Person`
+
+```php
+<?php
+
+// Generate a Cédula de identidad number, you can pass one argument to add separator
+echo $faker->nationalId; // 'V11223344'
+```
+
+### `Faker\Provider\es_VE\Company`
+
+```php
+<?php
+
+// Generates a R.I.F. number, you can pass one argument to add separators
+echo $faker->taxpayerIdentificationNumber; // 'J1234567891'
+```
+
 ### `Faker\Provider\fr_FR\Address`
 
 ```php
@@ -1274,6 +1292,14 @@ echo $faker->vat(false);    // "BE0123456789" - unspaced Belgian Value Added Tax
 
 echo $faker->vat; // "NL123456789B01" - Dutch Value Added Tax number
 echo $faker->btw; // "NL123456789B01" - Dutch Value Added Tax number (alias)
+```
+
+### `Faker\Provider\nl_NL\Person`
+
+```php
+<?php
+
+echo $faker->idNumber; // "111222333" - Dutch Personal identification number (BSN)
 ```
 
 ### `Faker\Provider\no_NO\Payment`

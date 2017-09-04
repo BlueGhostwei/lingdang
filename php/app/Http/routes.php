@@ -66,7 +66,7 @@ Route::group(['middleware' => 'auth'], function () {
         //支付接口(支付宝)
         Route::any('alipay/payment', ['as' => 'alipay.payment', 'uses' => 'PaymentController@webNotify']);//异步通知页面路径。
         Route::any('alipay/webReturn', ['as' => 'alipay.webReturn', 'uses' => 'PaymentController@webReturn']);//同步通知页面路径。
-        Route::any('alipay/mobile_alipay', ['as' => 'alipay.mobile_alipay', 'uses' => 'PaymentController@mobile_alipay']);//手机支付请求
+        Route::any('alipay/AlipayMobile', ['as' => 'alipay.AlipayMobile', 'uses' => 'OrderController@AlipayMobile']);//手机支付请求
         Route::any('alipay/alipayNotify', ['as' => 'alipay.alipayNotify', 'uses' => 'PaymentController@alipayNotify']);//手机支付异步通知
         //支付接口(微信)
 

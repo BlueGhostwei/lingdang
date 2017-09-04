@@ -68,8 +68,13 @@ class GoodsController extends Controller
     /**
      * @return mixed
      * 商品优惠券列表
+     * 全部，已付款，未付款
+     * 已付款（已支付未发货，已发货未收货，已发货已收货）
+     * 订单状态，0为未支付，1已支付待发货，2已支付已发货,3已发货已收货,4退货'
      */
     public function GoodsCouponList(){
+     $type=Input::get('type');
+
      $coupon=Coupon::orderBy('id','desc')->paginate(10);
      $count_num=Coupon::count('id');
      return view('Admin.goods.coupon_list',['coupon'=>$coupon,'count_num'=>$count_num]);

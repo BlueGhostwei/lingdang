@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.2
+-- version 4.0.6-rc1
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: 2017-08-28 08:33:20
--- 服务器版本： 5.7.9
--- PHP Version: 7.0.0
+-- 主机: localhost
+-- 生成日期: 2017-09-04 11:09:33
+-- 服务器版本: 5.6.14
+-- PHP 版本: 5.6.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,10 +14,10 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
--- Database: `new_lingdang`
+-- 数据库: `lingdang`
 --
 
 -- --------------------------------------------------------
@@ -26,13 +26,12 @@ SET time_zone = "+00:00";
 -- 表的结构 `acl_resource`
 --
 
-DROP TABLE IF EXISTS `acl_resource`;
 CREATE TABLE IF NOT EXISTS `acl_resource` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `action` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -40,13 +39,12 @@ CREATE TABLE IF NOT EXISTS `acl_resource` (
 -- 表的结构 `acl_role`
 --
 
-DROP TABLE IF EXISTS `acl_role`;
 CREATE TABLE IF NOT EXISTS `acl_role` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `role` tinyint(4) NOT NULL,
   `resource` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=28 ;
 
 --
 -- 转存表中的数据 `acl_role`
@@ -87,14 +85,13 @@ INSERT INTO `acl_role` (`id`, `role`, `resource`) VALUES
 -- 表的结构 `acl_user`
 --
 
-DROP TABLE IF EXISTS `acl_user`;
 CREATE TABLE IF NOT EXISTS `acl_user` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `acl_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
 -- 转存表中的数据 `acl_user`
@@ -113,9 +110,8 @@ INSERT INTO `acl_user` (`id`, `acl_name`, `created_at`, `updated_at`) VALUES
 -- 表的结构 `actice`
 --
 
-DROP TABLE IF EXISTS `actice`;
 CREATE TABLE IF NOT EXISTS `actice` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `sort_id` int(11) NOT NULL,
   `writer` char(20) COLLATE utf8_unicode_ci NOT NULL,
@@ -125,17 +121,20 @@ CREATE TABLE IF NOT EXISTS `actice` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=14 ;
 
 --
 -- 转存表中的数据 `actice`
 --
 
 INSERT INTO `actice` (`id`, `user_id`, `sort_id`, `writer`, `title`, `content`, `aimg`, `created_at`, `updated_at`) VALUES
-(3, 1, 22, '广告', '广告', '\n                                    \n                                                                            <p>广告广告广告广告</p>\n                                                                    <p><br></p>', 'blob:http://lingdang.laba.tw/ae66faa9-e0d6-4d8f-b0a0-2da67c79aad1', '2017-07-25 07:09:23', '2017-07-25 07:09:23'),
-(4, 1, 22, '活动', '活动', '\n                                    \n                                                                            <p>活动活动活动活动</p>\n                                                                    <p><br></p>', 'blob:http://lingdang.laba.tw/4894b5ae-3b67-4e4b-a651-e47cac639c4d', '2017-07-25 07:09:46', '2017-07-25 07:09:46'),
-(5, 1, 23, '客养', '客养', '\n                                    \n                                                                            <p>客养客养客养</p>\n                                                                    <p><br></p>', 'blob:http://lingdang.laba.tw/804c8fc7-5102-4bb2-a79a-805ea4fc90a4', '2017-07-25 07:10:08', '2017-07-25 07:10:08'),
-(6, 1, 23, '标题', '标题', '\n                                    \n                                                                            <p>标题</p>\n                                                                    <p><br></p>', 'blob:http://lingdang.laba.tw/f06c8109-ad0e-48ce-a783-3427c0d647f9', '2017-07-25 07:10:26', '2017-07-25 07:10:26');
+(12, 1, 22, '666', '6666', '\n                                    \n                                                                            <p>666</p>', '2b214cb052c1f7770fd40c52d6fd9ef0001', '2017-08-21 02:42:27', '2017-08-21 02:42:27'),
+(13, 1, 31, '888', '888', '\n                                    \n                                                                            <p>888</p>\n                                                                    <p><br></p>', '589f5fc2b56944953cfc3dd147630de2001', '2017-08-21 02:42:51', '2017-08-21 02:42:51'),
+(7, 1, 28, '天真', '系统日志', '\n                                    \n                                                                            <p>66666</p>\n                                                                    <p><br></p>', '98ae56674dae9a48343be2d7ca4f10ee001', '2017-08-17 01:48:33', '2017-08-17 01:48:33'),
+(8, 1, 28, '系统', '文章', '\n                                    \n                                                                            <p>66666</p>\n                                                                    <p><br></p>', '8233fa2ee06faea5c3ccc28c84de4963001', '2017-08-17 01:53:30', '2017-08-17 01:53:30'),
+(9, 1, 28, '系统', '系统消息', '\n                                    \n                                                                            <p>65656</p><p>54125</p>\n                                                                    <p><br></p>', '8233fa2ee06faea5c3ccc28c84de4963001', '2017-08-17 02:27:27', '2017-08-17 02:27:27'),
+(10, 1, 28, '444', '444', '\n                                    \n                                                                            <p>444</p>\n                                                                    <p><br></p>', '8233fa2ee06faea5c3ccc28c84de4963001', '2017-08-17 02:28:10', '2017-08-17 02:28:10'),
+(11, 1, 28, '444', '444', '\n                                    \n                                                                            <p>444</p>\n                                                                    <p><br></p>', 'a684273301e1f3e07277c194f031a229001', '2017-08-17 02:28:25', '2017-08-17 02:28:25');
 
 -- --------------------------------------------------------
 
@@ -143,9 +142,8 @@ INSERT INTO `actice` (`id`, `user_id`, `sort_id`, `writer`, `title`, `content`, 
 -- 表的结构 `action`
 --
 
-DROP TABLE IF EXISTS `action`;
 CREATE TABLE IF NOT EXISTS `action` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `model` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `result_id` int(11) NOT NULL DEFAULT '0',
   `user_id` int(11) NOT NULL DEFAULT '0',
@@ -154,7 +152,34 @@ CREATE TABLE IF NOT EXISTS `action` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `anchor`
+--
+
+CREATE TABLE IF NOT EXISTS `anchor` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `room_id` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `themename` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  `number` int(11) NOT NULL,
+  `like` int(11) NOT NULL,
+  `keyword` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  `whether` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+
+--
+-- 转存表中的数据 `anchor`
+--
+
+INSERT INTO `anchor` (`id`, `user_id`, `room_id`, `themename`, `number`, `like`, `keyword`, `whether`, `created_at`, `updated_at`) VALUES
+(1, 0, '', '', 0, 0, '', 0, '2017-09-04 03:01:46', '2017-09-04 03:01:46');
 
 -- --------------------------------------------------------
 
@@ -162,9 +187,8 @@ CREATE TABLE IF NOT EXISTS `action` (
 -- 表的结构 `attributes`
 --
 
-DROP TABLE IF EXISTS `attributes`;
 CREATE TABLE IF NOT EXISTS `attributes` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `pid` int(11) NOT NULL DEFAULT '0',
   `sort_id` int(11) NOT NULL,
   `arr_name` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -172,26 +196,47 @@ CREATE TABLE IF NOT EXISTS `attributes` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=102 ;
 
 --
 -- 转存表中的数据 `attributes`
 --
 
 INSERT INTO `attributes` (`id`, `pid`, `sort_id`, `arr_name`, `store_num`, `created_at`, `updated_at`) VALUES
-(1, 0, 2, '尺寸', 23, '2017-08-03 08:53:13', '2017-08-03 08:53:13'),
-(2, 0, 2, '颜色', 0, '2017-08-03 09:04:17', '2017-08-03 09:04:17'),
-(9, 2, 2, '白', 2, '2017-08-05 05:09:51', '2017-08-05 05:09:51'),
-(10, 2, 2, '红', 2, '2017-08-05 05:09:51', '2017-08-05 05:09:51'),
-(37, 1, 2, 'xl', 0, '2017-08-07 08:27:36', '2017-08-07 08:27:36'),
-(36, 2, 2, '黄', 0, '2017-08-07 08:23:23', '2017-08-07 08:23:23'),
-(26, 1, 2, 'x', 0, '2017-08-05 10:32:00', '2017-08-05 10:32:00'),
-(25, 1, 2, 'm', 0, '2017-08-05 10:32:00', '2017-08-05 10:32:00'),
-(24, 1, 2, 'l', 0, '2017-08-05 10:32:00', '2017-08-05 10:32:00'),
 (38, 0, 3, '材质', 1, '2017-08-08 02:31:40', '2017-08-08 02:31:40'),
-(39, 0, 4, 'ya', 0, '2017-08-16 03:16:48', '2017-08-16 03:16:48'),
-(40, 39, 4, '1', NULL, '2017-08-16 03:17:53', '2017-08-16 03:17:53'),
-(41, 39, 4, '2', NULL, '2017-08-16 03:17:53', '2017-08-16 03:17:53');
+(40, 0, 3, '颜色', 0, '2017-08-16 08:38:34', '2017-08-16 08:38:34'),
+(41, 0, 3, '尺寸', 0, '2017-08-16 08:39:33', '2017-08-16 08:39:33'),
+(49, 40, 3, '白', NULL, '2017-08-16 08:50:33', '2017-08-16 08:50:33'),
+(45, 41, 3, 'x', NULL, '2017-08-16 08:49:42', '2017-08-16 08:49:42'),
+(46, 41, 3, 'l', NULL, '2017-08-16 08:49:42', '2017-08-16 08:49:42'),
+(47, 41, 3, 'xl', NULL, '2017-08-16 08:49:42', '2017-08-16 08:49:42'),
+(50, 40, 3, '红 ', NULL, '2017-08-16 08:50:33', '2017-08-16 08:50:33'),
+(51, 38, 3, '棉', NULL, '2017-08-16 08:50:52', '2017-08-16 08:50:52'),
+(52, 38, 3, '布', NULL, '2017-08-16 08:50:52', '2017-08-16 08:50:52'),
+(68, 0, 5, '颜色', 0, '2017-08-25 06:33:59', '2017-08-25 06:33:59'),
+(54, 0, 4, '尺寸', 0, '2017-08-16 09:24:52', '2017-08-16 09:24:52'),
+(55, 0, 4, '颜色', 0, '2017-08-16 09:25:09', '2017-08-16 09:25:09'),
+(56, 54, 4, 'x', NULL, '2017-08-16 09:25:39', '2017-08-16 09:25:39'),
+(57, 54, 4, 'xm', NULL, '2017-08-16 09:25:39', '2017-08-16 09:25:39'),
+(58, 54, 4, 'l', NULL, '2017-08-16 09:25:39', '2017-08-16 09:25:39'),
+(59, 55, 4, '白', NULL, '2017-08-16 09:26:07', '2017-08-16 09:26:07'),
+(60, 55, 4, '蓝', NULL, '2017-08-16 09:26:07', '2017-08-16 09:26:07'),
+(61, 55, 4, '红', NULL, '2017-08-16 09:26:07', '2017-08-16 09:26:07'),
+(64, 0, 41, '颜色', 0, '2017-08-21 12:01:10', '2017-08-21 12:01:10'),
+(65, 64, 41, '白', NULL, '2017-08-21 12:01:20', '2017-08-21 12:01:20'),
+(66, 0, 40, '尺寸', 0, '2017-08-21 12:01:29', '2017-08-21 12:01:29'),
+(67, 66, 40, 'x', NULL, '2017-08-21 12:01:39', '2017-08-21 12:01:39'),
+(69, 68, 5, '白', NULL, '2017-08-25 06:34:24', '2017-08-25 06:34:24'),
+(70, 68, 5, '蓝', NULL, '2017-08-25 06:34:24', '2017-08-25 06:34:24'),
+(71, 68, 5, '红', NULL, '2017-08-25 06:34:24', '2017-08-25 06:34:24'),
+(72, 0, 5, '尺码', 0, '2017-08-25 06:34:38', '2017-08-25 06:34:38'),
+(74, 72, 5, 'x', NULL, '2017-08-25 06:39:59', '2017-08-25 06:39:59'),
+(75, 72, 5, 'm', NULL, '2017-08-25 06:39:59', '2017-08-25 06:39:59'),
+(76, 72, 5, 'xl', NULL, '2017-08-25 06:39:59', '2017-08-25 06:39:59'),
+(77, 0, 6, '颜色', 0, '2017-08-26 01:47:01', '2017-08-26 01:47:01'),
+(78, 77, 6, '白', NULL, '2017-08-26 01:47:30', '2017-08-26 01:47:30'),
+(79, 77, 6, '红', NULL, '2017-08-26 01:47:30', '2017-08-26 01:47:30'),
+(80, 77, 6, '蓝', NULL, '2017-08-26 01:47:30', '2017-08-26 01:47:30');
 
 -- --------------------------------------------------------
 
@@ -199,9 +244,8 @@ INSERT INTO `attributes` (`id`, `pid`, `sort_id`, `arr_name`, `store_num`, `crea
 -- 表的结构 `bell_user`
 --
 
-DROP TABLE IF EXISTS `bell_user`;
 CREATE TABLE IF NOT EXISTS `bell_user` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `bname` varchar(20) COLLATE utf8_unicode_ci DEFAULT '宝贝',
   `bimg` varchar(200) COLLATE utf8_unicode_ci DEFAULT '2cf29eb6db998924b13274d755bd26cd002',
@@ -218,18 +262,17 @@ CREATE TABLE IF NOT EXISTS `bell_user` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
   KEY `bell_user_user_id_index` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=44 ;
 
 --
 -- 转存表中的数据 `bell_user`
 --
 
 INSERT INTO `bell_user` (`id`, `user_id`, `bname`, `bimg`, `signature`, `bgender`, `birthday`, `bheight`, `bweight`, `remind`, `integral`, `fans`, `attention`, `created_at`, `updated_at`) VALUES
-(1, 1, '田震', '2cf29eb6db998924b13274d755bd26cd002', '田震666', '男', '2009-02-11', '55', '55', 1, '4', '0', '0', '2017-05-10 16:00:00', '2017-07-27 10:20:53'),
+(1, 1, '田震', '2cf29eb6db998924b13274d755bd26cd002', '田震666', '男', '2009-02-11', '55', '55', 1, '4', '0', '0', '2017-05-10 16:00:00', '2017-08-28 07:28:20'),
 (2, 2, '宝贝', '2cf29eb6db998924b13274d755bd26cd002', '宝贝', '男', '2016-01-07', '100', '20', 1, '0', '0', '0', '2017-05-10 16:00:00', '2017-05-10 16:00:00'),
-(3, 16, 'BabyName', '2cf29eb6db998924b13274d755bd26cd002', 'BabyName', '女', '2017-07-02', '50', '10', 0, '4', '0', '0', '2017-05-18 09:43:52', '2017-07-28 02:06:46'),
-(5, 18, '女娃娃', '2cf29eb6db998924b13274d755bd26cd002', '宝贝', '女', '2017-07-04', '60', '10', 0, '0', '0', '0', '2017-06-06 06:11:56', '2017-06-06 06:11:56'),
-(8, 17, '宝贝', '2cf29eb6db998924b13274d755bd26cd002', '宝贝', '男', '2017-07-07', '50', '15', 0, '0', '0', '0', '2017-06-02 03:21:29', '2017-06-02 03:21:29');
+(3, 16, '哈哈哈好奇怪', '2cf29eb6db998924b13274d755bd26cd002', 'BabyName', '女', '2017-07-03', '13', '62', 0, '4', '0', '0', '2017-05-18 09:43:52', '2017-08-29 03:52:35'),
+(43, 18, 'ppsspp死老K了家里是', '2cf29eb6db998924b13274d755bd26cd002', '天天快乐', '女', '1997-06-24', '145', '50', 1, '0', '0', '0', '0000-00-00 00:00:00', '2017-09-02 04:48:54');
 
 -- --------------------------------------------------------
 
@@ -237,29 +280,34 @@ INSERT INTO `bell_user` (`id`, `user_id`, `bname`, `bimg`, `signature`, `bgender
 -- 表的结构 `brand`
 --
 
-DROP TABLE IF EXISTS `brand`;
 CREATE TABLE IF NOT EXISTS `brand` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
   `sort_id` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `brand_name` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `brand_num` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=19 ;
 
 --
 -- 转存表中的数据 `brand`
 --
 
 INSERT INTO `brand` (`id`, `user_id`, `sort_id`, `brand_name`, `brand_num`) VALUES
-(1, 1, '1', '41243', 0),
+(14, 1, '24,41', '蓝米', 0),
 (2, 1, '1', '鸿星尔克', 0),
 (3, 1, '3', '耐克', 0),
 (4, 1, '3,4', '特步', 0),
 (5, 1, '24', '小米', 0),
 (6, 1, '2', '香克斯', 0),
 (7, 1, '5', '俏美姿', 0),
-(8, 1, '2,3,1,4,5', 'asd', 0);
+(8, 1, '5', '红星', 0),
+(12, 1, '41,40', '黑米', 0),
+(13, 1, '41,40', '白米', 0),
+(15, 1, '41', '小兵', 0),
+(16, 1, '40', '大兵', 0),
+(17, 1, '4', '李宁', 0),
+(18, 1, '6', '中国', 0);
 
 -- --------------------------------------------------------
 
@@ -267,16 +315,15 @@ INSERT INTO `brand` (`id`, `user_id`, `sort_id`, `brand_name`, `brand_num`) VALU
 -- 表的结构 `collection`
 --
 
-DROP TABLE IF EXISTS `collection`;
 CREATE TABLE IF NOT EXISTS `collection` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `userdynamics_id` int(11) NOT NULL,
   `type` tinyint(4) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=12 ;
 
 --
 -- 转存表中的数据 `collection`
@@ -290,7 +337,7 @@ INSERT INTO `collection` (`id`, `user_id`, `userdynamics_id`, `type`, `created_a
 (5, 16, 94, 2, '2017-07-18 08:55:12', '2017-07-18 08:55:12'),
 (6, 16, 40, 2, '2017-07-18 10:43:01', '2017-07-18 10:43:01'),
 (7, 16, 38, 2, '2017-07-18 10:43:02', '2017-07-18 10:43:02'),
-(8, 18, 101, 2, '2017-07-20 06:12:18', '2017-07-20 06:12:18'),
+(11, 18, 95, 2, '2017-08-28 10:06:54', '2017-08-28 10:06:54'),
 (10, 1, 22, 2, '2017-08-11 09:02:01', '2017-08-11 09:02:01');
 
 -- --------------------------------------------------------
@@ -299,16 +346,15 @@ INSERT INTO `collection` (`id`, `user_id`, `userdynamics_id`, `type`, `created_a
 -- 表的结构 `comment`
 --
 
-DROP TABLE IF EXISTS `comment`;
 CREATE TABLE IF NOT EXISTS `comment` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `dynamics` int(11) DEFAULT NULL,
   `dynamics_content` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
   `remind_friend` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -316,16 +362,15 @@ CREATE TABLE IF NOT EXISTS `comment` (
 -- 表的结构 `comment_share`
 --
 
-DROP TABLE IF EXISTS `comment_share`;
 CREATE TABLE IF NOT EXISTS `comment_share` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `userdynamics_id` int(11) NOT NULL,
   `comment_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -333,9 +378,8 @@ CREATE TABLE IF NOT EXISTS `comment_share` (
 -- 表的结构 `coupon`
 --
 
-DROP TABLE IF EXISTS `coupon`;
 CREATE TABLE IF NOT EXISTS `coupon` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `money` int(11) NOT NULL,
   `condition` int(11) NOT NULL,
@@ -351,7 +395,7 @@ CREATE TABLE IF NOT EXISTS `coupon` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -359,20 +403,70 @@ CREATE TABLE IF NOT EXISTS `coupon` (
 -- 表的结构 `dgoods`
 --
 
-DROP TABLE IF EXISTS `dgoods`;
 CREATE TABLE IF NOT EXISTS `dgoods` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `gid` int(11) NOT NULL,
   `uid` int(11) NOT NULL,
-  `dsize` int(11) NOT NULL,
-  `dcolor` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `dimg` varchar(400) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `dcount` int(11) NOT NULL,
-  `dcontent` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `oid` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `dimg` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `specif` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `dcontent` text COLLATE utf8_unicode_ci,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=72 ;
+
+--
+-- 转存表中的数据 `dgoods`
+--
+
+INSERT INTO `dgoods` (`id`, `gid`, `uid`, `oid`, `dimg`, `specif`, `dcontent`, `created_at`, `updated_at`) VALUES
+(1, 4, 1, '0', '589f5fc2b56944953cfc3dd147630de2001', '', '666', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(2, 4, 1, '0', '81d7bafe9af5bf6722b7b58c941a07d4001,589f5fc2b56944953cfc3dd147630de2001', '', '888', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(10, 30, 18, '0', '589f5fc2b56944953cfc3dd147630de2001', '', '6666', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(11, 30, 16, '0', '589f5fc2b56944953cfc3dd147630de2001', '', '2222', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(13, 30, 1, '0', '589f5fc2b56944953cfc3dd147630de2001', '', '666', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(70, 35, 16, '860557488207100016', '1f1b4eb291c97c0ff1fa9a9b4140f8c0002', '白', '', '2017-09-03 03:16:47', '2017-09-03 03:16:47'),
+(71, 35, 16, '860557488207100016', '1f1b4eb291c97c0ff1fa9a9b4140f8c0002', '蓝', '', '2017-09-03 03:16:47', '2017-09-03 03:16:47');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `gcollection`
+--
+
+CREATE TABLE IF NOT EXISTS `gcollection` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `usersid` int(11) DEFAULT NULL,
+  `goodid` int(11) NOT NULL,
+  `type` varchar(400) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=105 ;
+
+--
+-- 转存表中的数据 `gcollection`
+--
+
+INSERT INTO `gcollection` (`id`, `usersid`, `goodid`, `type`, `created_at`, `updated_at`) VALUES
+(44, 1, 20, '1', '2017-08-17 02:53:24', '2017-08-17 02:53:24'),
+(76, 16, 4, '1', '2017-08-27 04:15:44', '2017-08-27 04:15:44'),
+(46, 18, 1, '1', '2017-08-17 03:41:54', '2017-08-17 03:41:54'),
+(45, 1, 19, '1', '2017-08-17 02:53:41', '2017-08-17 02:53:41'),
+(47, 16, 30, '1', '2017-08-24 06:16:03', '2017-08-24 06:16:03'),
+(51, 1, 29, '1', '2017-08-25 08:39:40', '2017-08-25 08:39:40'),
+(52, 1, 27, '1', '2017-08-25 08:39:44', '2017-08-25 08:39:44'),
+(82, 18, 29, '1', '2017-08-27 06:19:58', '2017-08-27 06:19:58'),
+(54, 1, 33, '1', '2017-08-25 08:39:49', '2017-08-25 08:39:49'),
+(58, 16, 28, '1', '2017-08-25 08:46:57', '2017-08-25 08:46:57'),
+(81, 18, 28, '1', '2017-08-27 06:19:57', '2017-08-27 06:19:57'),
+(75, 16, 34, '1', '2017-08-27 04:15:40', '2017-08-27 04:15:40'),
+(79, 18, 27, '1', '2017-08-27 05:57:43', '2017-08-27 05:57:43'),
+(83, 17, 31, '1', '2017-08-27 06:59:19', '2017-08-27 06:59:19'),
+(94, 17, 29, '1', '2017-09-01 03:42:56', '2017-09-01 03:42:56'),
+(86, 18, 20, '1', '2017-08-30 11:32:26', '2017-08-30 11:32:26');
 
 -- --------------------------------------------------------
 
@@ -380,20 +474,16 @@ CREATE TABLE IF NOT EXISTS `dgoods` (
 -- 表的结构 `goods`
 --
 
-DROP TABLE IF EXISTS `goods`;
 CREATE TABLE IF NOT EXISTS `goods` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `sort_id` int(11) DEFAULT NULL,
   `brand_id` int(11) DEFAULT NULL,
   `goods_sort` tinyint(4) NOT NULL DEFAULT '0',
   `goods_title` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Thumbnails` varchar(35) COLLATE utf8_unicode_ci DEFAULT NULL,
   `plan` varchar(400) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `price` double(8,2) DEFAULT NULL,
   `inventory` int(11) NOT NULL,
   `Size_reference` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `para1_name` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `para1_value` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `content` longtext COLLATE utf8_unicode_ci,
   `recommend` tinyint(4) NOT NULL DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -403,29 +493,47 @@ CREATE TABLE IF NOT EXISTS `goods` (
   `FreeCharge_num` int(11) NOT NULL DEFAULT '0',
   `FreeCharge` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=36 ;
 
 --
 -- 转存表中的数据 `goods`
 --
 
-INSERT INTO `goods` (`id`, `sort_id`, `brand_id`, `goods_sort`, `goods_title`, `Thumbnails`, `plan`, `price`, `inventory`, `Size_reference`, `para1_name`, `para1_value`, `content`, `recommend`, `created_at`, `updated_at`, `jf_price`, `jf_exchange`, `FreeCharge_num`, `FreeCharge`) VALUES
-(1, 1, 2, 1, '安腾', 'e107ad8359d615c07cf67db9386e83f6001', '589f5fc2b56944953cfc3dd147630de2001', 20.00, 0, '80,90', '', '', '                                \r\n                                                                    <p>666</p>\r\n                                                            <p><br></p>', 0, '2017-07-19 10:03:09', '2017-07-19 10:03:09', NULL, 0, 0, 0),
-(2, 1, 2, 0, '安腾网络科技', '81d7bafe9af5bf6722b7b58c941a07d4001', '81d7bafe9af5bf6722b7b58c941a07d4001,589f5fc2b56944953cfc3dd147630de2001', 66.00, 0, '90', '', '', '                                \r\n                                                                    <p>请输入内容...</p>\r\n                                                            <p>666</p>', 0, '2017-07-20 02:18:05', '2017-07-20 02:18:05', NULL, 0, 0, 0),
-(3, 3, 3, 1, '安腾耐克', '3c7de67124a0ece525327814a8336e11001', '81d7bafe9af5bf6722b7b58c941a07d4001', 20.00, 0, '50', '', '', '\n                                \n                                                                    <p>请输入内容...</p>\n                                                            <p>666</p>', 0, '2017-07-20 02:33:41', '2017-07-20 02:33:41', NULL, 0, 0, 0),
-(4, 7, 2, 1, '耐克', '3c7de67124a0ece525327814a8336e11001', '7c3acf75aa71a145884ab2313eef6f2a001,81d7bafe9af5bf6722b7b58c941a07d4001', 20.00, 50, '30', '', '', '                                \r\n                                                                    <p>666</p>\r\n                                                            <p><br></p>', 0, '2017-07-20 02:44:06', '2017-07-20 02:44:06', NULL, 0, 0, 0),
-(5, 4, 4, 0, '特步', '7c3acf75aa71a145884ab2313eef6f2a001', '78d1d23ead5236cbd000f9511ecb41ba001,d834599f46122969ee0141b9b2005edc001', 50.00, 0, '50', '', '', '                                \r\n                                                                    <p>50</p>\r\n                                                            <p><br></p>', 0, '2017-07-20 03:08:26', '2017-07-20 03:08:26', NULL, 0, 0, 0),
-(6, 1, 1, 0, '666', '9e17f5922c1ec8de3eb325dbdd1a2daf001', 'c4bb286b88c3e0f9ec19ff789350a331001', 60.00, 0, '80,90', '', '', '\n                                \n                                                                    <p>请输入内容...</p>\n                                                            <p>666</p>', 0, '2017-07-22 03:24:49', '2017-07-22 03:24:49', NULL, 0, 0, 0),
-(7, 1, 2, 0, '66', '904ae562ce483ac2ae9084adc8a44c82001', 'f5a9a3e7ae26eebcdaf299554c4c7cf3001', 20.00, 0, '20', '', '', '\n                                \n                                                                    <p>请输入内容...</p>\n                                                            <p>222</p>', 0, '2017-07-22 03:27:19', '2017-07-22 03:27:19', NULL, 0, 0, 0),
-(8, 1, 2, 1, '6666', 'a9a0ec0bcf615d56799bc6661dac4414001', 'ca679875a0b43d5394608cd43e7fa157001', 66.00, 0, '66', '', '', '\n                                \n                                                                    <p>请输入内容...</p>\n                                                            <p>66</p>', 0, '2017-07-22 03:28:49', '2017-07-22 03:28:49', NULL, 0, 0, 0),
-(9, 1, 2, 1, '66666', 'a9a0ec0bcf615d56799bc6661dac4414001', 'ca679875a0b43d5394608cd43e7fa157001', 66.00, 0, '66', '', '', '\n                                \n                                                                    <p>请输入内容...</p>\n                                                            <p>66</p>', 0, '2017-07-22 03:29:17', '2017-07-22 03:29:17', NULL, 0, 0, 0),
-(10, 2, 6, 1, '测试小标题', '3f3589a9d52eec0bc4f163392851ae07001', '3f3589a9d52eec0bc4f163392851ae07001', NULL, 123, '234123', '', '', '\n                                \n                                                                    <p>34124</p>', 0, '2017-08-14 03:26:36', '2017-08-14 03:26:36', 0, 0, 0, 0),
-(11, 2, 6, 1, '41234', '3f3589a9d52eec0bc4f163392851ae07001', '', NULL, 23, '423423', '', '', '\n                                \n                                                                    <p>232323</p>', 0, '2017-08-15 02:37:02', '2017-08-15 02:37:02', 0, 1, 0, 1),
-(12, 2, 6, 1, '测试商品1231', 'f7b41b1ded73aa9253cb218db4e429ba001', '6af40b1e77691d04a8bc237405f280b5001', NULL, 23, '大师傅', '', '', '\n                                \n                                                                    <p>2323</p>', 0, '2017-08-15 02:55:10', '2017-08-15 02:55:10', 0, 0, 0, 1),
-(13, 2, 6, 1, 'sfasfasfa', '3f3589a9d52eec0bc4f163392851ae07001', '3f3589a9d52eec0bc4f163392851ae07001', NULL, 2323, 'sdfasfa', '', '', '\n                                \n                                                                    <p>232323</p>\n                                                            <p><br></p>', 0, '2017-08-15 07:46:05', '2017-08-15 07:46:05', 500, 1, 0, 0),
-(14, 2, 6, 1, '陶展', '6af40b1e77691d04a8bc237405f280b5001', '6af40b1e77691d04a8bc237405f280b5001', NULL, 232, '', '', '', '\n                                \n                                                                    <p>23232323</p>\n                                                            <p><br></p>', 0, '2017-08-15 08:41:42', '2017-08-15 08:41:42', 232, 1, 232, 1),
-(15, 2, 6, 1, '阿萨德', '6af40b1e77691d04a8bc237405f280b5001', '3f3589a9d52eec0bc4f163392851ae07001', NULL, 232, '阿斯顿发射点发', '', '', '\n                                \n                                                                    <p>2323</p>', 0, '2017-08-15 09:01:47', '2017-08-15 09:01:47', 23, 1, 2, 1),
-(16, 2, 6, 1, 'sdfas', '3f3589a9d52eec0bc4f163392851ae07001', 'f7b41b1ded73aa9253cb218db4e429ba001,f7b41b1ded73aa9253cb218db4e429ba001,f7b41b1ded73aa9253cb218db4e429ba001,f7b41b1ded73aa9253cb218db4e429ba001', NULL, 2332, 'asdfasd', '', '', '\n                                \n                                                                    <p>2323232322223223</p>\n                                                            <p><br></p>', 0, '2017-08-18 03:26:18', '2017-08-18 03:26:18', 0, 0, 0, 0);
+INSERT INTO `goods` (`id`, `sort_id`, `brand_id`, `goods_sort`, `goods_title`, `Thumbnails`, `plan`, `inventory`, `Size_reference`, `content`, `recommend`, `created_at`, `updated_at`, `jf_price`, `jf_exchange`, `FreeCharge_num`, `FreeCharge`) VALUES
+(1, 1, 2, 1, '安腾', 'e107ad8359d615c07cf67db9386e83f6001', '589f5fc2b56944953cfc3dd147630de2001', 0, '80,90', '                                \r\n                                                                    <p>666</p>\r\n                                                            <p><br></p>', 0, '2017-07-19 10:03:09', '2017-07-19 10:03:09', NULL, 0, 0, 0),
+(2, 1, 2, 0, '安腾网络科技', '81d7bafe9af5bf6722b7b58c941a07d4001', '81d7bafe9af5bf6722b7b58c941a07d4001,589f5fc2b56944953cfc3dd147630de2001', 0, '90', '                                \r\n                                                                    <p>请输入内容...</p>\r\n                                                            <p>666</p>', 0, '2017-07-20 02:18:05', '2017-07-20 02:18:05', NULL, 0, 0, 0),
+(3, 3, 3, 1, '安腾耐克', '3c7de67124a0ece525327814a8336e11001', '81d7bafe9af5bf6722b7b58c941a07d4001', 0, '50', '\n                                \n                                                                    <p>请输入内容...</p>\n                                                            <p>666</p>', 0, '2017-07-20 02:33:41', '2017-07-20 02:33:41', NULL, 0, 0, 0),
+(4, 7, 2, 1, '耐克', '3c7de67124a0ece525327814a8336e11001', '7c3acf75aa71a145884ab2313eef6f2a001,81d7bafe9af5bf6722b7b58c941a07d4001', 50, '30', '                                \r\n                                                                    <p>666</p>\r\n                                                            <p><br></p>', 0, '2017-07-20 02:44:06', '2017-07-20 02:44:06', NULL, 0, 0, 0),
+(5, 4, 4, 1, '特步', '7c3acf75aa71a145884ab2313eef6f2a001', '78d1d23ead5236cbd000f9511ecb41ba001,d834599f46122969ee0141b9b2005edc001', 85, '50,60', '\n                                \n                                                                \n                                                                    <p>50</p>\n                                                            <p><br></p>\n                                                            \n                                                            ', 0, '2017-07-20 03:08:26', '2017-08-16 09:28:14', 0, 0, 0, 0),
+(6, 1, 1, 0, '666', '9e17f5922c1ec8de3eb325dbdd1a2daf001', 'c4bb286b88c3e0f9ec19ff789350a331001', 0, '80,90', '\n                                \n                                                                    <p>请输入内容...</p>\n                                                            <p>666</p>', 0, '2017-07-22 03:24:49', '2017-07-22 03:24:49', NULL, 0, 0, 0),
+(7, 1, 2, 0, '66', '904ae562ce483ac2ae9084adc8a44c82001', 'f5a9a3e7ae26eebcdaf299554c4c7cf3001', 0, '20', '\n                                \n                                                                    <p>请输入内容...</p>\n                                                            <p>222</p>', 0, '2017-07-22 03:27:19', '2017-07-22 03:27:19', NULL, 0, 0, 0),
+(8, 1, 2, 1, '6666', 'a9a0ec0bcf615d56799bc6661dac4414001', 'ca679875a0b43d5394608cd43e7fa157001', 0, '66', '\n                                \n                                                                    <p>请输入内容...</p>\n                                                            <p>66</p>', 0, '2017-07-22 03:28:49', '2017-07-22 03:28:49', NULL, 0, 0, 0),
+(9, 1, 2, 1, '66666', 'a9a0ec0bcf615d56799bc6661dac4414001', 'ca679875a0b43d5394608cd43e7fa157001', 0, '66', '\n                                \n                                                                    <p>请输入内容...</p>\n                                                            <p>66</p>', 0, '2017-07-22 03:29:17', '2017-07-22 03:29:17', NULL, 0, 0, 0),
+(10, 2, 6, 1, '测试小标题', '3f3589a9d52eec0bc4f163392851ae07001', '3f3589a9d52eec0bc4f163392851ae07001', 123, '234123', '\n                                \n                                                                    <p>34124</p>', 0, '2017-08-14 03:26:36', '2017-08-14 03:26:36', 0, 0, 0, 0),
+(11, 2, 6, 1, '41234', '3f3589a9d52eec0bc4f163392851ae07001', '3f3589a9d52eec0bc4f163392851ae07001', 23, '423423', '\n                                \n                                                                    <p>232323</p>', 0, '2017-08-15 02:37:02', '2017-08-15 02:37:02', 0, 1, 0, 1),
+(12, 2, 6, 1, '测试商品1231', 'f7b41b1ded73aa9253cb218db4e429ba001', '6af40b1e77691d04a8bc237405f280b5001', 23, '大师傅', '\n                                \n                                                                    <p>2323</p>', 0, '2017-08-15 02:55:10', '2017-08-15 02:55:10', 0, 0, 0, 1),
+(13, 2, 6, 1, 'sfasfasfa', '3f3589a9d52eec0bc4f163392851ae07001', '3f3589a9d52eec0bc4f163392851ae07001', 2323, 'sdfasfa', '\n                                \n                                                                    <p>232323</p>\n                                                            <p><br></p>', 0, '2017-08-15 07:46:05', '2017-08-15 07:46:05', 500, 1, 0, 0),
+(14, 2, 6, 1, '陶展', '6af40b1e77691d04a8bc237405f280b5001', '6af40b1e77691d04a8bc237405f280b5001', 232, '', '\n                                \n                                                                    <p>23232323</p>\n                                                            <p><br></p>', 0, '2017-08-15 08:41:42', '2017-08-15 08:41:42', 232, 1, 232, 1),
+(15, 2, 6, 1, '阿萨德', '6af40b1e77691d04a8bc237405f280b5001', '3f3589a9d52eec0bc4f163392851ae07001', 232, '阿斯顿发射点发', '\n                                \n                                                                    <p>2323</p>', 0, '2017-08-15 09:01:47', '2017-08-15 09:01:47', 23, 1, 2, 1),
+(16, 2, 6, 1, 'asdfa', '6af40b1e77691d04a8bc237405f280b5001', '3f3589a9d52eec0bc4f163392851ae07001', 2323, 'asdfasd', '\n                                \n                                                                    <p>asdfa</p>\n                                                            <p>sdfas</p>', 0, '2017-08-15 11:57:06', '2017-08-15 11:57:06', 0, 1, 0, 1),
+(17, 2, 6, 1, '7777', '8233fa2ee06faea5c3ccc28c84de4963001', 'a684273301e1f3e07277c194f031a229001,8233fa2ee06faea5c3ccc28c84de4963001', 60, '666', '\n                                \n                                                                    <p>60</p>\n                                                            <p><br></p>', 0, '2017-08-16 03:27:11', '2017-08-16 03:27:11', 20, 1, 20, 1),
+(19, 2, 6, 1, '8787', '3fbc627310a44050b105751505a90ef0001', 'd9eaa0cf0635d656537dce0b0397b47b001,4902ea6bfa79353d66a2ff7762b4ccae001', 898, '80,90,100', '\n                                \n                                                                    <p>78987</p>\n                                                            <p><br></p>', 0, '2017-08-16 06:26:25', '2017-08-16 06:26:25', 0, 0, 0, 0),
+(20, 3, 4, 1, '9999', '4902ea6bfa79353d66a2ff7762b4ccae001', 'a684273301e1f3e07277c194f031a229001,d9eaa0cf0635d656537dce0b0397b47b001', 60, '80，90，100', '\n                                \n                                                                    <p>8012313</p>', 0, '2017-08-16 08:53:03', '2017-08-16 08:53:03', 0, 0, 0, 0),
+(21, 3, 3, 0, '66666888', '4429a41fce225658b0deb1194e00ef77001', 'a684273301e1f3e07277c194f031a229001,8233fa2ee06faea5c3ccc28c84de4963001', 88, '80,90', '\n                                \n                                                                    <p>888</p>', 0, '2017-08-16 11:03:35', '2017-08-16 11:03:35', 0, 0, 0, 0),
+(22, 4, 4, 1, '123456', '4429a41fce225658b0deb1194e00ef77001', '8233fa2ee06faea5c3ccc28c84de4963001', 120, '66,70,80', '\n                                \n                                \n                                \n                                                                    <p>120</p>\n                                                            <p><br></p>\n                                                            \n                                                            ', 0, '2017-08-17 07:38:15', '2017-08-19 07:00:41', 0, 0, 0, 0),
+(23, 24, 5, 1, '8888', '2b214cb052c1f7770fd40c52d6fd9ef0001', '7c3acf75aa71a145884ab2313eef6f2a001', 66, '66', '\n                                \n                                                                    <p>66</p>\n                                                            <p><br></p>', 0, '2017-08-21 02:44:42', '2017-08-21 02:44:42', 0, 0, 0, 0),
+(24, 24, 5, 1, '9898', '9a6be0fa670c46da36ebee7c69cf200c002', '9a6be0fa670c46da36ebee7c69cf200c002', 60, '80', '\n                                \n                                                                    <p>123123</p>', 0, '2017-08-21 06:38:12', '2017-08-21 06:38:12', 0, 0, 0, 0),
+(25, 3, 3, 0, '99999', '9a6be0fa670c46da36ebee7c69cf200c002', '9a6be0fa670c46da36ebee7c69cf200c002', 234, '90', '\n                                \n                                                                    <p>324</p>', 0, '2017-08-21 07:59:08', '2017-08-21 07:59:08', 0, 0, 0, 0),
+(26, 24, 14, 1, '123123', '3fbc627310a44050b105751505a90ef0001', '4902ea6bfa79353d66a2ff7762b4ccae001', 1231231, '123', '\n                                \n                                                                    <p>231231</p>\n                                                            <p><br></p>', 0, '2017-08-21 09:31:26', '2017-08-21 09:31:26', 0, 0, 0, 0),
+(27, 41, 15, 1, '789879', '3fbc627310a44050b105751505a90ef0001', '4902ea6bfa79353d66a2ff7762b4ccae001', 789, '789789', '\n                                \n                                                                    <p>879</p>\n                                                            <p><br></p>', 0, '2017-08-21 12:02:12', '2017-08-21 12:02:12', 0, 0, 0, 0),
+(28, 40, 12, 1, '123123123', '4902ea6bfa79353d66a2ff7762b4ccae001', '4902ea6bfa79353d66a2ff7762b4ccae001', 123123, '21312', '\n                                \n                                                                    <p>123</p>', 0, '2017-08-21 12:18:00', '2017-08-21 12:18:00', 0, 0, 0, 0),
+(29, 40, 12, 1, '789789', '4902ea6bfa79353d66a2ff7762b4ccae001', '4902ea6bfa79353d66a2ff7762b4ccae001', 789, '789', '\n                                \n                                                                    <p>789</p>\n                                                            <p><br></p>', 0, '2017-08-21 12:22:00', '2017-08-21 12:22:00', 0, 0, 0, 0),
+(30, 4, 4, 1, '彬哥', '4902ea6bfa79353d66a2ff7762b4ccae001', 'd9eaa0cf0635d656537dce0b0397b47b001', 2000, '60,70,80', '\n                                \n                                                                    <p>6666</p>', 0, '2017-08-24 04:15:17', '2017-08-24 04:15:17', 0, 0, 0, 0),
+(31, 4, 4, 1, '兵哥叫斌哥', '4902ea6bfa79353d66a2ff7762b4ccae001', '3fbc627310a44050b105751505a90ef0001', 100, '600,60', '\n                                \n                                                                    <p>666</p>', 0, '2017-08-24 07:39:03', '2017-08-24 07:39:03', 0, 0, 0, 0),
+(32, 5, 7, 1, '斌哥哥 威武', '4902ea6bfa79353d66a2ff7762b4ccae001', '3fbc627310a44050b105751505a90ef0001', 60, '60,90', '\n                                \n                                                                    <p>6666</p>\n                                                            <p><br></p>', 0, '2017-08-25 06:41:14', '2017-08-25 06:41:14', 0, 0, 0, 0),
+(33, 4, 17, 1, '我爱斌哥', 'c81b1ee079c7160cb8238d6f3aa8014c001', '589f5fc2b56944953cfc3dd147630de2001', 50, '60,70,80,90', '\n                                \n                                                                    <p>520</p>\n                                                            <p><br></p>', 0, '2017-08-25 07:10:59', '2017-08-25 07:10:59', 0, 0, 0, 0),
+(34, 3, 3, 1, '6655266', '2b214cb052c1f7770fd40c52d6fd9ef0001', '81d7bafe9af5bf6722b7b58c941a07d4001', 60, '80,90', '\n                                \n                                                                    <p>80</p>\n                                                            <p><br></p>', 0, '2017-08-26 01:40:21', '2017-08-26 01:40:21', 0, 0, 0, 0),
+(35, 6, 18, 1, '12312332432', '2b214cb052c1f7770fd40c52d6fd9ef0001', '3c7de67124a0ece525327814a8336e11001', 32423, '80', '\n                                \n                                                                    <p>234</p>\n                                                            <p><br></p>', 0, '2017-08-26 01:49:19', '2017-08-26 01:49:19', 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -433,7 +541,6 @@ INSERT INTO `goods` (`id`, `sort_id`, `brand_id`, `goods_sort`, `goods_title`, `
 -- 表的结构 `goods_param`
 --
 
-DROP TABLE IF EXISTS `goods_param`;
 CREATE TABLE IF NOT EXISTS `goods_param` (
   `goods_id` int(11) NOT NULL,
   `key` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -450,8 +557,65 @@ INSERT INTO `goods_param` (`goods_id`, `key`, `vel`) VALUES
 (12, '之战', '2342'),
 (15, '无敌', '232'),
 (15, '无敌2', '23'),
-(16, 'asdfa', 'asd'),
-(16, 'asd', 'ads');
+(16, 'fa', 'asdf'),
+(16, 'asdf', 'asdf'),
+(17, '颜色', '白'),
+(17, '尺码', 'x'),
+(18, '颜色', '白'),
+(19, '颜色', '白'),
+(19, '场地', '广州'),
+(20, '颜色', '白'),
+(20, '产地', '广州'),
+(20, '是否包邮', '否'),
+(21, '颜色', '白'),
+(21, '产地', '广州'),
+(21, '是否免邮', '否'),
+(22, '颜色', '白'),
+(22, '产地', '上海'),
+(23, '颜色', '白'),
+(25, '颜色', '白'),
+(26, '123123', '21312'),
+(27, '789', '789'),
+(28, '3123', '12312'),
+(29, '789', '789'),
+(30, '是否包邮', '否'),
+(30, '场地', '广州'),
+(31, '场地', '广周'),
+(31, '是否包邮', '否'),
+(31, '是否耐穿', '是'),
+(32, '是否包邮', '是'),
+(33, '场地', '广');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `goods_specif`
+--
+
+CREATE TABLE IF NOT EXISTS `goods_specif` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `gid` int(11) NOT NULL,
+  `color` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `size` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `cloth` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `origin` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `gprice` int(11) NOT NULL,
+  `inventory` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
+
+--
+-- 转存表中的数据 `goods_specif`
+--
+
+INSERT INTO `goods_specif` (`id`, `gid`, `color`, `size`, `cloth`, `origin`, `gprice`, `inventory`, `created_at`, `updated_at`) VALUES
+(1, 4, '白', 'm', '棉', '广州', 20, 20, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(3, 4, '白', 'xm', '丝', '上海', 60, 60, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(4, 4, '蓝', 'm', '布', '北京', 60, 60, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(6, 4, '红', 'x', '棉', '上海', 30, 30, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(7, 4, '白', 'ml', '布', '广州', 60, 30, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -459,34 +623,42 @@ INSERT INTO `goods_param` (`goods_id`, `key`, `vel`) VALUES
 -- 表的结构 `goods_standard`
 --
 
-DROP TABLE IF EXISTS `goods_standard`;
 CREATE TABLE IF NOT EXISTS `goods_standard` (
   `goods_id` int(11) DEFAULT NULL,
   `attributes_id` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `price` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `stock` int(11) DEFAULT NULL,
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`),
   KEY `goods_standard_goods_id_index` (`goods_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- 转存表中的数据 `goods_standard`
 --
 
-INSERT INTO `goods_standard` (`goods_id`, `attributes_id`, `price`, `stock`, `id`) VALUES
-(104, '37,9', '341', 12, 1),
-(104, '37,10', '02', 2, 2),
-(104, '37,9', '341', 12, 3),
-(104, '37,10', '02', 2, 4),
-(14, '37,9', '232', 440, 5),
-(14, '26,9', '23', 23, 6),
-(15, '37,9', '023', 23, 7),
-(15, '37,10', '023', 23, 8),
-(16, '37,9', '23', 13, 9),
-(16, '37,10', '23', 22, 10),
-(16, '26,9', '23', 2, 11),
-(16, '26,10', '023', 23, 12);
+INSERT INTO `goods_standard` (`goods_id`, `attributes_id`, `price`, `stock`) VALUES
+(31, '56,59', '1', 0),
+(31, '56,60', '2', 0),
+(31, '57,59', '3', 0),
+(31, '57,60', '4', 0),
+(32, '69,74', '20', 1),
+(32, '69,75', '1', 2),
+(32, '70,74', '2', 0),
+(32, '70,75', '3', 0),
+(33, '56,59', '1', 0),
+(33, '56,60', '2', 0),
+(33, '57,59', '3', 7),
+(33, '57,60', '4', 0),
+(34, '51,49,45', '1', 1),
+(34, '51,49,46', '2', 2),
+(34, '51,50,45', '3', 34),
+(34, '51,50,46', '4', 5),
+(34, '52,49,45', '5', 6),
+(34, '52,49,46', '6', 7),
+(34, '52,50,45', '7', 8),
+(34, '52,50,46', '8', 9),
+(35, '78', '23', 209),
+(35, '79', '213', 330),
+(35, '80', '21', 446);
 
 -- --------------------------------------------------------
 
@@ -494,13 +666,12 @@ INSERT INTO `goods_standard` (`goods_id`, `attributes_id`, `price`, `stock`, `id
 -- 表的结构 `integration`
 --
 
-DROP TABLE IF EXISTS `integration`;
 CREATE TABLE IF NOT EXISTS `integration` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `sign_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=12 ;
 
 --
 -- 转存表中的数据 `integration`
@@ -518,9 +689,8 @@ INSERT INTO `integration` (`id`, `user_id`, `sign_time`) VALUES
 -- 表的结构 `message_record`
 --
 
-DROP TABLE IF EXISTS `message_record`;
 CREATE TABLE IF NOT EXISTS `message_record` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `remind_name` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `userdynamics_id` int(11) NOT NULL,
@@ -536,18 +706,33 @@ CREATE TABLE IF NOT EXISTS `message_record` (
   KEY `message_record_user_id_index` (`user_id`),
   KEY `message_record_userdynamics_id_index` (`userdynamics_id`),
   KEY `message_record_puser_id_index` (`puser_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=22 ;
 
 --
 -- 转存表中的数据 `message_record`
 --
 
 INSERT INTO `message_record` (`id`, `user_id`, `remind_name`, `userdynamics_id`, `record_type`, `puser_id`, `share_id`, `reply_id`, `record_content`, `record_status`, `created_at`, `updated_at`) VALUES
-(1, 1, '', 96, 3, 18, 38, NULL, '', 1, '2017-08-10 09:57:41', '2017-08-10 10:01:56'),
+(1, 1, '', 96, 3, 18, 38, NULL, '', 1, '2017-08-10 09:57:41', '2017-09-02 04:49:58'),
 (2, 16, '程序猿', 104, 0, 0, NULL, NULL, '', 0, '2017-08-10 10:48:54', '2017-08-10 10:48:54'),
 (3, 1, '16', 22, 1, 0, NULL, NULL, '', 1, '2017-08-11 08:58:27', '2017-08-11 09:11:25'),
 (4, 1, '16', 22, 1, 0, NULL, NULL, '', 1, '2017-08-11 09:02:01', '2017-08-11 09:11:25'),
-(5, 1, '', 104, 3, 16, 39, NULL, '', 1, '2017-08-11 09:24:52', '2017-08-11 09:26:51');
+(5, 1, '', 104, 3, 16, 39, NULL, '', 1, '2017-08-11 09:24:52', '2017-08-11 09:26:51'),
+(6, 18, '16', 0, 6, 0, NULL, NULL, '', 0, '2017-08-16 01:59:03', '2017-08-16 01:59:03'),
+(16, 18, '16', 0, 6, 0, NULL, NULL, '', 0, '2017-08-16 02:58:46', '2017-08-16 02:58:46'),
+(8, 18, '16', 0, 6, 0, NULL, NULL, '', 0, '2017-08-16 02:34:21', '2017-08-16 02:34:21'),
+(9, 18, '16', 0, 6, 0, NULL, NULL, '', 0, '2017-08-16 02:34:33', '2017-08-16 02:34:33'),
+(10, 18, '18', 0, 6, 0, NULL, NULL, '', 0, '2017-08-16 02:35:04', '2017-08-16 02:35:04'),
+(11, 18, '16', 0, 6, 0, NULL, NULL, '', 0, '2017-08-16 02:35:08', '2017-08-16 02:35:08'),
+(12, 18, '18', 0, 6, 0, NULL, NULL, '', 0, '2017-08-16 02:35:11', '2017-08-16 02:35:11'),
+(13, 18, '18', 0, 6, 0, NULL, NULL, '', 0, '2017-08-16 02:35:13', '2017-08-16 02:35:13'),
+(14, 18, '18', 0, 6, 0, NULL, NULL, '', 0, '2017-08-16 02:35:15', '2017-08-16 02:35:15'),
+(15, 18, '', 106, 3, 18, 40, NULL, '', 1, '2017-08-16 02:57:38', '2017-09-02 04:49:58'),
+(17, 18, '18', 0, 6, 0, NULL, NULL, '', 0, '2017-08-16 06:28:27', '2017-08-16 06:28:27'),
+(18, 18, NULL, 95, 1, 0, NULL, NULL, '以点赞', 1, '2017-08-28 10:06:54', '2017-08-28 10:06:54'),
+(19, 18, '16', 0, 6, 0, NULL, NULL, '', 0, '2017-08-29 08:34:45', '2017-08-29 08:34:45'),
+(20, 18, '18', 0, 6, 0, NULL, NULL, '', 0, '2017-08-29 08:35:00', '2017-08-29 08:35:00'),
+(21, 18, '18', 0, 6, 0, NULL, NULL, '', 0, '2017-08-29 08:35:02', '2017-08-29 08:35:02');
 
 -- --------------------------------------------------------
 
@@ -555,13 +740,12 @@ INSERT INTO `message_record` (`id`, `user_id`, `remind_name`, `userdynamics_id`,
 -- 表的结构 `migrations`
 --
 
-DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE IF NOT EXISTS `migrations` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=117 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=129 ;
 
 --
 -- 转存表中的数据 `migrations`
@@ -596,13 +780,13 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (88, '2017_08_14_105245_create_update_goods_table', 11),
 (91, '2017_08_14_182923_create_goods_standard_table', 12),
 (92, '2017_08_15_093219_create_goods_param_table', 13),
-(114, '2017_08_19_103742_create_order_talbe', 20),
-(95, '2017_07_21_101208_create_dgoods_table', 15),
-(98, '2017_08_17_070019_create_site_table', 17),
-(99, '2017_08_21_050559_create_shopping_table', 17),
-(100, '2017_08_24_203447_create_Coupon_table', 17),
-(103, '2017_08_26_143223_create_update_goods_standard_table', 19),
-(116, '2017_08_26_173117_create_order_info_table', 21);
+(121, '2017_07_21_101208_create_dgoods_table', 14),
+(100, '2017_08_10_101116_create_gcollection_table', 15),
+(101, '2017_08_17_070019_create_site_table', 16),
+(123, '2017_08_21_050559_create_shopping_table', 17),
+(128, '2017_08_26_173117_create_order_info_table', 20),
+(125, '2017_08_24_203447_create_Coupon_table', 19),
+(127, '2017_08_19_103742_create_order_talbe', 20);
 
 -- --------------------------------------------------------
 
@@ -610,20 +794,31 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- 表的结构 `order`
 --
 
-DROP TABLE IF EXISTS `order`;
 CREATE TABLE IF NOT EXISTS `order` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `order_id` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_id` int(11) NOT NULL,
   `order_price` int(11) NOT NULL,
   `remark` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `address` int(11) DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT '0',
+  `eval` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
   UNIQUE KEY `order_order_id_unique` (`order_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=13 ;
+
+--
+-- 转存表中的数据 `order`
+--
+
+INSERT INTO `order` (`id`, `order_id`, `user_id`, `order_price`, `remark`, `address`, `status`, `eval`, `created_at`, `updated_at`) VALUES
+(9, '610557496262314016', 16, 1, NULL, 792, 0, 0, '2017-08-31 04:04:22', '2017-08-31 04:04:22'),
+(7, '860557488207100016', 16, 88, NULL, 792, 3, 1, '2017-08-31 01:50:07', '2017-09-04 02:51:01'),
+(8, '350557496180898016', 16, 449, NULL, 792, 0, 0, '2017-08-31 04:03:00', '2017-09-04 01:28:41'),
+(11, '780557708483691018', 18, 1082, NULL, 837, 0, 0, '2017-09-02 15:01:23', '2017-09-04 01:29:04'),
+(12, '920557835117386018', 18, 234, NULL, 836, 0, 0, '2017-09-04 02:11:57', '2017-09-04 02:11:57');
 
 -- --------------------------------------------------------
 
@@ -631,15 +826,29 @@ CREATE TABLE IF NOT EXISTS `order` (
 -- 表的结构 `order_goods_info`
 --
 
-DROP TABLE IF EXISTS `order_goods_info`;
 CREATE TABLE IF NOT EXISTS `order_goods_info` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `goods_id` int(11) NOT NULL,
   `specif` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `brand_id` int(11) NOT NULL,
+  `geval` int(11) NOT NULL,
   `goods_num` int(11) NOT NULL DEFAULT '0',
-  `goods_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `goods_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=16 ;
+
+--
+-- 转存表中的数据 `order_goods_info`
+--
+
+INSERT INTO `order_goods_info` (`id`, `order_id`, `goods_id`, `specif`, `brand_id`, `geval`, `goods_num`, `goods_name`) VALUES
+(9, '860557488207100016', 35, '78', 18, 1, 3, '12312332432'),
+(10, '860557488207100016', 35, '80', 18, 1, 2, '12312332432'),
+(11, '350557496180898016', 35, '79', 18, 0, 2, '12312332432'),
+(12, '610557496262314016', 33, '56,59', 17, 0, 1, '我爱斌哥'),
+(14, '780557708483691018', 35, '78', 18, 0, 11, '12312332432'),
+(15, '920557835117386018', 35, '80', 18, 0, 1, '12312332432');
 
 -- --------------------------------------------------------
 
@@ -647,9 +856,8 @@ CREATE TABLE IF NOT EXISTS `order_goods_info` (
 -- 表的结构 `pgoods`
 --
 
-DROP TABLE IF EXISTS `pgoods`;
 CREATE TABLE IF NOT EXISTS `pgoods` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `gid` int(20) DEFAULT NULL,
   `sname` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
   `attribute` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -657,7 +865,7 @@ CREATE TABLE IF NOT EXISTS `pgoods` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=23 ;
 
 --
 -- 转存表中的数据 `pgoods`
@@ -678,9 +886,8 @@ INSERT INTO `pgoods` (`id`, `gid`, `sname`, `attribute`, `pgood`, `created_at`, 
 -- 表的结构 `photo`
 --
 
-DROP TABLE IF EXISTS `photo`;
 CREATE TABLE IF NOT EXISTS `photo` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `file_name` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `img_Md5` varchar(35) COLLATE utf8_unicode_ci DEFAULT NULL,
   `line` varchar(225) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -688,7 +895,7 @@ CREATE TABLE IF NOT EXISTS `photo` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
 -- 转存表中的数据 `photo`
@@ -705,9 +912,8 @@ INSERT INTO `photo` (`id`, `file_name`, `img_Md5`, `line`, `number`, `created_at
 -- 表的结构 `region`
 --
 
-DROP TABLE IF EXISTS `region`;
 CREATE TABLE IF NOT EXISTS `region` (
-  `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
   `pid` smallint(5) NOT NULL DEFAULT '0',
   `type` tinyint(1) DEFAULT '0' COMMENT '类型，0:省；1:市; 2: 区',
   `code` char(6) NOT NULL,
@@ -715,7 +921,7 @@ CREATE TABLE IF NOT EXISTS `region` (
   PRIMARY KEY (`id`),
   KEY `pid` (`pid`),
   KEY `type` (`type`)
-) ENGINE=MyISAM AUTO_INCREMENT=3513 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3513 ;
 
 --
 -- 转存表中的数据 `region`
@@ -2073,7 +2279,8 @@ INSERT INTO `region` (`id`, `pid`, `type`, `code`, `name`) VALUES
 (1349, 1341, 2, '350881', '漳平市'),
 (1350, 1257, 1, '350900', '宁德市'),
 (1351, 1350, 2, '350901', '市辖区'),
-(1352, 1350, 2, '350902', '蕉城区'),
+(1352, 1350, 2, '350902', '蕉城区');
+INSERT INTO `region` (`id`, `pid`, `type`, `code`, `name`) VALUES
 (1353, 1350, 2, '350921', '霞浦县'),
 (1354, 1350, 2, '350922', '古田县'),
 (1355, 1350, 2, '350923', '屏南县'),
@@ -2344,8 +2551,7 @@ INSERT INTO `region` (`id`, `pid`, `type`, `code`, `name`) VALUES
 (1620, 1613, 2, '371425', '齐河县'),
 (1621, 1613, 2, '371426', '平原县'),
 (1622, 1613, 2, '371427', '夏津县'),
-(1623, 1613, 2, '371428', '武城县');
-INSERT INTO `region` (`id`, `pid`, `type`, `code`, `name`) VALUES
+(1623, 1613, 2, '371428', '武城县'),
 (1624, 1613, 2, '371481', '乐陵市'),
 (1625, 1613, 2, '371482', '禹城市'),
 (1626, 1484, 1, '371500', '聊城市'),
@@ -3372,7 +3578,8 @@ INSERT INTO `region` (`id`, `pid`, `type`, `code`, `name`) VALUES
 (2647, 2643, 2, '511722', '宣汉县'),
 (2648, 2643, 2, '511723', '开江县'),
 (2649, 2643, 2, '511724', '大竹县'),
-(2650, 2643, 2, '511725', '渠县'),
+(2650, 2643, 2, '511725', '渠县');
+INSERT INTO `region` (`id`, `pid`, `type`, `code`, `name`) VALUES
 (2651, 2643, 2, '511781', '万源市'),
 (2652, 2503, 1, '511800', '雅安市'),
 (2653, 2652, 2, '511801', '市辖区'),
@@ -3889,8 +4096,7 @@ INSERT INTO `region` (`id`, `pid`, `type`, `code`, `name`) VALUES
 (3164, 3159, 2, '610823', '横山县'),
 (3165, 3159, 2, '610824', '靖边县'),
 (3166, 3159, 2, '610825', '定边县'),
-(3167, 3159, 2, '610826', '绥德县');
-INSERT INTO `region` (`id`, `pid`, `type`, `code`, `name`) VALUES
+(3167, 3159, 2, '610826', '绥德县'),
 (3168, 3159, 2, '610827', '米脂县'),
 (3169, 3159, 2, '610828', '佳县'),
 (3170, 3159, 2, '610829', '吴堡县'),
@@ -4240,22 +4446,55 @@ INSERT INTO `region` (`id`, `pid`, `type`, `code`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `room`
+--
+
+CREATE TABLE IF NOT EXISTS `room` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `cid` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  `rid` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `rname` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  `rtmpPullUrl` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `msg` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  `ctime` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  `status` int(11) NOT NULL,
+  `type` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+
+--
+-- 转存表中的数据 `room`
+--
+
+INSERT INTO `room` (`id`, `cid`, `rid`, `rname`, `rtmpPullUrl`, `msg`, `ctime`, `status`, `type`, `created_at`, `updated_at`) VALUES
+(1, '', '', '', '', '', '', 0, 0, '2017-09-04 03:05:30', '2017-09-04 03:05:30');
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `shopping`
 --
 
-DROP TABLE IF EXISTS `shopping`;
 CREATE TABLE IF NOT EXISTS `shopping` (
-  `sid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `sid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `gid` int(11) NOT NULL,
-  `scount` int(11) NOT NULL,
-  `code` int(11) NOT NULL,
-  `brand_id` int(11) NOT NULL,
-  `specif` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `specif` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `scount` int(11) NOT NULL,
+  `brand_id` int(11) NOT NULL,
   PRIMARY KEY (`sid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=24 ;
+
+--
+-- 转存表中的数据 `shopping`
+--
+
+INSERT INTO `shopping` (`sid`, `user_id`, `gid`, `created_at`, `updated_at`, `specif`, `scount`, `brand_id`) VALUES
+(23, 16, 35, '2017-09-04 02:50:25', '2017-09-04 02:50:25', '红', 1, 18);
 
 -- --------------------------------------------------------
 
@@ -4263,22 +4502,34 @@ CREATE TABLE IF NOT EXISTS `shopping` (
 -- 表的结构 `site`
 --
 
-DROP TABLE IF EXISTS `site`;
 CREATE TABLE IF NOT EXISTS `site` (
-  `sid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `consignee` varchar(80) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `area` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `street` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `district` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `scene` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `scontent` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sdefault` int(11) DEFAULT NULL,
+  `sid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `consignee` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
+  `phone` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
+  `area` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `street` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  `district` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `scene` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `scontent` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `sdefault` int(11) DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `user_id` int(10) NOT NULL,
   PRIMARY KEY (`sid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=838 ;
+
+--
+-- 转存表中的数据 `site`
+--
+
+INSERT INTO `site` (`sid`, `consignee`, `phone`, `area`, `street`, `district`, `scene`, `scontent`, `sdefault`, `created_at`, `updated_at`, `user_id`) VALUES
+(790, '1234567788', '1234567788', '\\U5185\\U8499\\U53e4\\U81ea\\U6cbb\\U533a', '"666"', '"\\U56de\\U6c11\\U533a"', '"\\U65b0\\U534e\\U897f\\U8def\\U529', '"1yuiuyi"', 1, '2017-08-19 03:38:19', '2017-08-19 03:38:19', 1),
+(792, '1234567788', '12345', '广东省', '广州市', '从化区', '街口街道', 'Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, ', 1, '2017-08-19 05:52:39', '2017-08-19 07:38:56', 16),
+(836, '哈哈哈哈', '444', '辽宁省', '丹东市', '东港市', '十字街镇', '好好好', 1, '2017-08-29 07:56:49', '2017-09-02 15:01:04', 18),
+(837, '‘’好', '111', '辽宁省', '丹东市', '凤城市', '蓝旗镇', '好好好', 0, '2017-08-29 07:58:27', '2017-09-02 15:01:04', 18),
+(829, '来来来', '555', '辽宁省', '本溪市', '本溪满族自治县', '连山关镇', '来来来', 0, '2017-08-28 06:44:35', '2017-08-30 02:59:36', 17),
+(830, '么么', '55', '内蒙古自治区', '通辽市', '库伦旗', '先进苏木', '看看', 0, '2017-08-28 06:44:56', '2017-08-30 02:59:37', 17),
+(831, '666', '666', '北京市', '市辖区', '西城区', '西长安街街道办事处', '666', 0, '2017-08-28 06:46:36', '2017-08-30 02:59:36', 17);
 
 -- --------------------------------------------------------
 
@@ -4286,9 +4537,8 @@ CREATE TABLE IF NOT EXISTS `site` (
 -- 表的结构 `sort`
 --
 
-DROP TABLE IF EXISTS `sort`;
 CREATE TABLE IF NOT EXISTS `sort` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `pid` int(11) DEFAULT NULL,
   `name` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
   `id_str` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -4301,7 +4551,7 @@ CREATE TABLE IF NOT EXISTS `sort` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `sort_name_unique` (`name`),
   KEY `sort_pid_index` (`pid`)
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=42 ;
 
 --
 -- 转存表中的数据 `sort`
@@ -4309,17 +4559,19 @@ CREATE TABLE IF NOT EXISTS `sort` (
 
 INSERT INTO `sort` (`id`, `pid`, `name`, `id_str`, `num`, `type`, `img_path`, `content`, `created_at`, `updated_at`) VALUES
 (1, 0, '安腾沙发', '', 0, 0, '', '', '2017-07-17 06:32:11', '2017-07-17 06:32:11'),
-(2, 1, '沙发套枕', '1', 0, 0, '3f3589a9d52eec0bc4f163392851ae07001', '   asdf', '2017-07-17 06:32:29', '2017-08-07 10:16:10'),
 (3, 0, '裙子', '', 0, 0, '', '', '2017-07-19 09:57:24', '2017-07-19 09:57:24'),
 (4, 0, '裤子', '', 0, 0, '', '', '2017-07-19 09:57:33', '2017-07-19 09:57:33'),
 (5, 0, '上衣', '', 0, 0, '', '', '2017-07-19 09:57:44', '2017-07-19 09:57:44'),
 (6, 0, '测试', '', 1, 0, '', '', '2017-07-20 02:43:09', '2017-07-20 02:43:09'),
 (8, 0, '广告', '', 1, 0, '', '', '2017-07-24 06:55:46', '2017-07-24 06:55:46'),
 (22, 0, '广告活动栏', '', 0, 1, '3f3589a9d52eec0bc4f163392851ae07001', '', '2017-07-25 07:08:08', '2017-07-25 07:08:08'),
-(24, 0, '精选主题', '', 0, 0, '3f3589a9d52eec0bc4f163392851ae07001', '', '2017-07-25 07:11:18', '2017-07-25 07:11:18'),
-(23, 0, '穿搭课堂', '', 0, 1, '3f3589a9d52eec0bc4f163392851ae07001', '', '2017-07-25 07:08:57', '2017-07-25 07:08:57'),
+(24, 0, '精选专题', '', 0, 0, '3f3589a9d52eec0bc4f163392851ae07001', '', '2017-07-25 07:11:18', '2017-08-21 02:47:52'),
+(28, 0, '系统日志', '', 0, 1, 'a684273301e1f3e07277c194f031a229001', '', '2017-08-16 01:24:09', '2017-08-16 01:24:09'),
 (25, 3, '连衣裙', '3', 0, 0, '3f3589a9d52eec0bc4f163392851ae07001', '', '2017-08-02 09:34:20', '2017-08-02 09:34:20'),
-(27, 3, '超短裙', '3', 2, 0, '3f3589a9d52eec0bc4f163392851ae07001', '', '2017-08-03 07:39:50', '2017-08-03 07:39:50');
+(27, 3, '超短裙', '3', 2, 0, '3f3589a9d52eec0bc4f163392851ae07001', '', '2017-08-03 07:39:50', '2017-08-03 07:39:50'),
+(31, 0, '穿搭课堂', '', 0, 1, '3f3589a9d52eec0bc4f163392851ae07001', '', '2017-08-21 02:42:08', '2017-08-21 02:42:08'),
+(41, 24, '精选', '24', 0, 0, 'd9eaa0cf0635d656537dce0b0397b47b001', '666', '2017-08-21 09:10:02', '2017-08-21 11:59:58'),
+(40, 24, '主题', '24', 0, 0, '4902ea6bfa79353d66a2ff7762b4ccae001', '', '2017-08-21 09:09:38', '2017-08-21 09:09:38');
 
 -- --------------------------------------------------------
 
@@ -4327,9 +4579,8 @@ INSERT INTO `sort` (`id`, `pid`, `name`, `id_str`, `num`, `type`, `img_path`, `c
 -- 表的结构 `topic_combination`
 --
 
-DROP TABLE IF EXISTS `topic_combination`;
 CREATE TABLE IF NOT EXISTS `topic_combination` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `topic_photo` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `topic_name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -4337,21 +4588,22 @@ CREATE TABLE IF NOT EXISTS `topic_combination` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=10 ;
 
 --
 -- 转存表中的数据 `topic_combination`
 --
 
 INSERT INTO `topic_combination` (`id`, `user_id`, `topic_photo`, `topic_name`, `read_amount`, `created_at`, `updated_at`) VALUES
-(1, 0, NULL, '#12343#', 27, '2017-08-23 03:37:48', '2017-07-06 02:10:41'),
+(1, 0, NULL, '#12343#', 27, '2017-06-27 03:37:48', '2017-07-06 02:10:41'),
+(2, 0, NULL, NULL, 4, '2017-06-27 06:46:47', '2017-06-27 07:06:23'),
 (3, 0, NULL, '#1234#', 6, '2017-06-27 06:55:03', '2017-07-06 02:10:39'),
 (4, 0, NULL, '123', 11, '2017-06-27 07:20:14', '2017-06-27 08:43:16'),
 (5, 0, NULL, '#???????#', 1, '2017-06-27 08:36:06', '2017-06-27 08:36:06'),
 (6, 0, NULL, '#吧啦老K#', 2, '2017-07-04 03:03:15', '2017-07-04 03:03:41'),
 (7, 0, NULL, '#勃#', 1, '2017-07-04 06:44:38', '2017-07-04 06:44:38'),
 (8, 0, NULL, '#根本交话费好好干#', 1, '2017-07-04 06:44:40', '2017-07-04 06:44:40'),
-(9, 0, NULL, '#哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈还#', 7, '2017-08-23 02:10:45', '2017-07-17 04:18:57');
+(9, 0, NULL, '#哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈还#', 8, '2017-07-06 02:10:45', '2017-08-19 06:57:54');
 
 -- --------------------------------------------------------
 
@@ -4359,14 +4611,13 @@ INSERT INTO `topic_combination` (`id`, `user_id`, `topic_photo`, `topic_name`, `
 -- 表的结构 `user`
 --
 
-DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `password` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
   `type` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `email_validate` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
+  `email_validate` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `avatar` char(35) COLLATE utf8_unicode_ci DEFAULT NULL,
   `nickname` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
   `weight` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -4381,7 +4632,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `role` tinyint(4) NOT NULL DEFAULT '1',
   `lock` tinyint(4) NOT NULL DEFAULT '0',
   `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `created_by` int(10) UNSIGNED NOT NULL,
+  `created_by` int(10) unsigned NOT NULL,
   `remarks` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -4390,15 +4641,15 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `user_name_unique` (`name`),
   KEY `user_role_index` (`role`),
   KEY `user_lock_index` (`lock`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=19 ;
 
 --
 -- 转存表中的数据 `user`
 --
 
 INSERT INTO `user` (`id`, `name`, `email`, `password`, `type`, `email_validate`, `avatar`, `nickname`, `weight`, `height`, `location`, `signature`, `birthday`, `gender`, `phone`, `wechat`, `qq`, `role`, `lock`, `remember_token`, `created_by`, `remarks`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, '13226431320', '1987105819@qq.com', '$2y$10$zMMW.sy93A.IYGWxf5NL2OqpTlDbIJ9M4nMf3NeScbL1.cC7Vk8pi', NULL, 0, 'd273b62aaafd38837f3f4481ad4f0f94001', '鲍勃', NULL, '120', '广州番禺', 'Shirley_Chen', '2014-09-09', 1, '13226431320', '35', NULL, 0, 0, 'cvzp6gdaY2RTP5PlwiaauYgiLUyVCuMcufSkBgPF36IJmJkqBzJUFigvtBIh', 0, NULL, '2017-04-24 16:00:00', '2017-08-24 12:16:06', NULL),
-(18, '18814121642', NULL, '$2y$10$zMMW.sy93A.IYGWxf5NL2OqpTlDbIJ9M4nMf3NeScbL1.cC7Vk8pi', '1', 0, '32a21a7caeb3714f8395a503dc862b3d001', '程序猿', '200', '584', '上海 徐汇区', '态度决定一切', '0000-00-00', 0, NULL, NULL, NULL, 3, 0, 'PVuMmJM9ScfVFctFB9FKj6OiNMHbewXMfZMg0jI6RRzkXqdOk59WKWu68S3a', 0, NULL, '2017-06-06 06:11:56', '2017-07-19 06:25:16', NULL),
+(1, '13226431320', '1987105819@qq.com', '$2y$10$zMMW.sy93A.IYGWxf5NL2OqpTlDbIJ9M4nMf3NeScbL1.cC7Vk8pi', NULL, 0, 'd273b62aaafd38837f3f4481ad4f0f94001', '鲍勃', NULL, '120', '广州番禺', 'Shirley_Chen', '2014-09-09', 1, '13226431320', '35', NULL, 0, 0, 'kVvAgAGa2wtXt6iSVjMH3cXcScqTEvFaMC8iRfqn13rgvSbCqbDhxriJlymy', 0, NULL, '2017-04-24 16:00:00', '2017-08-02 09:16:50', NULL),
+(18, '18814121642', NULL, '$2y$10$zMMW.sy93A.IYGWxf5NL2OqpTlDbIJ9M4nMf3NeScbL1.cC7Vk8pi', '1', 0, '32a21a7caeb3714f8395a503dc862b3d001', '程序猿', '200', '584', '上海 徐汇区', '态度决定一切', '0000-00-00', 0, NULL, NULL, NULL, 3, 0, 'PVuMmJM9ScfVFctFB9FKj6OiNMHbewXMfZMg0jI6RRzkXqdOk59WKWu68S3a', 0, NULL, '2017-06-06 06:11:56', '2017-09-03 02:30:06', NULL),
 (16, '13265134316', NULL, '$2y$10$gsrgwhyys.6QoPo60d34AuZd363G3T88Bu0hKjRPPlYbnVuz/F1sW', '1', 0, 'd273b62aaafd38837f3f4481ad4f0f94001', '123', '200', '200', NULL, '可口可乐了 尝试输入English', '2017-05-31', 1, NULL, NULL, NULL, 3, 0, 'MsxKhQlc41qL7L97geUWmiWq3uIKvwMi9zUtLP6b3UqUOSiNg6cykrGKCMPn', 0, NULL, '2017-05-18 09:43:52', '2017-07-06 08:35:44', NULL),
 (17, '13640230348', NULL, '$2y$10$7QHXGjaDtzvHkp7r35zZTeLRlsMKkNhMH8LUZafSUAc0HFB4E2ewS', '1', 0, '9e9da74074b94ad04e8c11d05ec8b1ba001', 'CaiCaiWhoamI', '200', '200', '    安徽省-蚌埠市-禹会区', 'How cute am I', '2017-06-08', 1, NULL, NULL, NULL, 3, 0, 'rwwsiAyZC7rY67UJMCArlCB4RXBvD57yiGB6u2WB0rDFrT7Yma8811ep9y1X', 0, NULL, '2017-06-02 03:21:29', '2017-06-08 07:13:22', NULL);
 
@@ -4408,16 +4659,15 @@ INSERT INTO `user` (`id`, `name`, `email`, `password`, `type`, `email_validate`,
 -- 表的结构 `userattention`
 --
 
-DROP TABLE IF EXISTS `userattention`;
 CREATE TABLE IF NOT EXISTS `userattention` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `attention_userid` int(11) NOT NULL,
   `status` tinyint(4) DEFAULT '1',
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=34 ;
 
 --
 -- 转存表中的数据 `userattention`
@@ -4425,9 +4675,10 @@ CREATE TABLE IF NOT EXISTS `userattention` (
 
 INSERT INTO `userattention` (`id`, `user_id`, `attention_userid`, `status`, `created_at`, `updated_at`) VALUES
 (16, 18, 17, 1, '2017-07-20 06:10:19', '2017-07-20 06:10:19'),
-(15, 18, 16, 1, '2017-07-19 07:57:25', '2017-07-19 07:57:25'),
+(31, 18, 16, 0, '2017-08-29 08:34:45', '2017-08-29 08:34:45'),
 (4, 17, 18, 1, '2017-07-17 05:54:43', '2017-07-17 05:54:43'),
-(20, 16, 18, 1, '2017-07-25 10:48:46', '2017-07-25 10:48:46');
+(20, 16, 18, 1, '2017-07-25 10:48:46', '2017-07-25 10:48:46'),
+(33, 18, 18, 0, '2017-08-29 08:35:02', '2017-08-29 08:35:02');
 
 -- --------------------------------------------------------
 
@@ -4435,9 +4686,8 @@ INSERT INTO `userattention` (`id`, `user_id`, `attention_userid`, `status`, `cre
 -- 表的结构 `userdynamics`
 --
 
-DROP TABLE IF EXISTS `userdynamics`;
 CREATE TABLE IF NOT EXISTS `userdynamics` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `pid` int(11) DEFAULT '0',
   `user_id` int(11) NOT NULL,
   `img_photo` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -4454,7 +4704,7 @@ CREATE TABLE IF NOT EXISTS `userdynamics` (
   KEY `comment_num` (`comment_num`),
   KEY `Authority` (`Authority`),
   KEY `topic` (`topic`)
-) ENGINE=MyISAM AUTO_INCREMENT=105 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=107 ;
 
 --
 -- 转存表中的数据 `userdynamics`
@@ -4487,11 +4737,9 @@ INSERT INTO `userdynamics` (`id`, `pid`, `user_id`, `img_photo`, `topic`, `remin
 (31, 0, 16, NULL, '#12343#', '@鲍勃', '#12343#@鲍勃 ', 0, 0, 0, 0, '2017-06-23 06:15:58', '2017-06-23 06:15:58'),
 (32, 0, 16, NULL, '#1234#,#i=o#', '', '#1234#hduhsjshjdh#i=o#hduhudhu', 0, 0, 0, 0, '2017-06-23 06:40:14', '2017-06-23 06:40:14'),
 (97, 0, 18, '', '', '', '阿狸好好好好', 0, 0, 0, 0, '2017-07-19 02:39:06', '2017-07-19 02:39:06'),
-(98, 0, 18, '', '', '', '‘’‘’‘’', 0, 5, 0, 0, '2017-07-19 03:25:13', '2017-07-21 02:37:21'),
 (99, 0, 18, '', '', '', '其实', 0, 0, 0, 0, '2017-07-19 03:58:14', '2017-07-19 03:58:14'),
 (100, 0, 18, '', '', '', '      1 2 3', 0, 0, 0, 0, '2017-07-20 03:30:46', '2017-07-20 03:30:46'),
 (38, 0, 16, NULL, '#1234#', '', '#1234#', 0, 0, 0, 1, '2017-06-23 07:44:46', '2017-07-18 10:43:02'),
-(101, 0, 18, '', '', '', '1\n2\n3', 0, 0, 0, 1, '2017-07-20 03:38:58', '2017-07-20 06:12:18'),
 (40, 0, 16, NULL, '#12343#', '', '#12343#', 0, 0, 0, 1, '2017-06-23 08:54:17', '2017-07-18 10:43:01'),
 (93, 0, 18, '', '', '', '吃早餐', 0, 0, 0, 1, '2017-07-13 01:08:40', '2017-07-18 06:31:33'),
 (96, 0, 18, '', '', '', '哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈还', 0, 1, 0, 0, '2017-07-19 02:36:18', '2017-08-10 09:57:41'),
@@ -4508,7 +4756,7 @@ INSERT INTO `userdynamics` (`id`, `pid`, `user_id`, `img_photo`, `topic`, `remin
 (77, 0, 18, '', '', '@小明', '发翻条动态先???', 0, 9, 0, 1, '2017-07-04 07:59:38', '2017-07-18 08:02:44'),
 (78, 0, 18, '', '', '@小明', '#哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈还# ', 0, 0, 0, 0, '2017-07-06 02:09:52', '2017-07-06 02:09:52'),
 (79, 0, 18, '', '', '@小明', '评论我', 0, 0, 0, 0, '2017-07-06 03:16:03', '2017-07-07 03:43:07'),
-(95, 0, 18, '', '', '@程序猿', '‘’‘’‘@程序猿 ', 0, 0, 0, 0, '2017-07-18 08:13:35', '2017-07-18 08:13:35'),
+(95, 0, 18, '', '', '@程序猿', '‘’‘’‘@程序猿 ', 0, 0, 0, 1, '2017-07-18 08:13:35', '2017-08-28 10:06:54'),
 (90, 0, 18, '', '', '', '牛逼', 0, 0, 0, 1, '2017-07-10 10:01:25', '2017-07-18 07:55:16'),
 (88, 0, 18, '', '', '', '??????', 0, 0, 0, 0, '2017-07-06 13:53:54', '2017-07-12 03:07:18'),
 (89, 0, 18, '', '', '', '啦啦啦', 0, 0, 0, 0, '2017-07-07 01:44:26', '2017-07-07 03:42:49'),
@@ -4517,7 +4765,9 @@ INSERT INTO `userdynamics` (`id`, `pid`, `user_id`, `img_photo`, `topic`, `remin
 (65, 0, 16, NULL, NULL, '', '', 0, 0, 0, 0, '2017-07-01 10:31:05', '2017-07-01 10:31:05'),
 (102, 98, 16, NULL, NULL, '', 'ZhuanFadiyitiao', 0, 0, 0, 0, '2017-07-25 08:07:52', '2017-07-25 08:07:52'),
 (103, 0, 16, '2cf29eb6db998924b13274d755bd26cd002', NULL, '', 'Pic1', 0, 0, 0, 0, '2017-08-10 03:50:51', '2017-08-10 03:50:51'),
-(104, 0, 16, '5c5a34de86f7d9361f6d4bc9ce51a98d002', NULL, '@程序猿', '1313', 0, 1, 0, 0, '2017-08-10 10:48:54', '2017-08-11 09:24:52');
+(104, 0, 16, '5c5a34de86f7d9361f6d4bc9ce51a98d002', NULL, '@程序猿', '1313', 0, 1, 0, 0, '2017-08-10 10:48:54', '2017-08-11 09:24:52'),
+(105, 22, 18, '', '', '', '你明明ing哦哦', 0, 0, 0, 0, '2017-08-16 02:38:15', '2017-08-16 02:38:15'),
+(106, 9, 18, '', '', '', '急急急MiGo???', 0, 1, 0, 0, '2017-08-16 02:56:38', '2017-08-16 02:57:38');
 
 -- --------------------------------------------------------
 
@@ -4525,17 +4775,16 @@ INSERT INTO `userdynamics` (`id`, `pid`, `user_id`, `img_photo`, `topic`, `remin
 -- 表的结构 `user_history`
 --
 
-DROP TABLE IF EXISTS `user_history`;
 CREATE TABLE IF NOT EXISTS `user_history` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `user_id` int(10) UNSIGNED NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned NOT NULL,
   `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `ip` int(10) UNSIGNED NOT NULL,
+  `ip` int(10) unsigned NOT NULL,
   `user_agent` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1523 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1949 ;
 
 --
 -- 转存表中的数据 `user_history`
@@ -6040,34 +6289,461 @@ INSERT INTO `user_history` (`id`, `user_id`, `name`, `ip`, `user_agent`, `create
 (1492, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-14 10:57:08', '2017-08-14 10:57:08'),
 (1493, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-15 01:28:08', '2017-08-15 01:28:08'),
 (1494, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-15 05:23:17', '2017-08-15 05:23:17'),
-(1495, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-16 01:49:11', '2017-08-16 01:49:11'),
-(1496, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-16 11:59:05', '2017-08-16 11:59:05'),
-(1497, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-18 02:28:25', '2017-08-18 02:28:25'),
-(1498, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-18 02:32:10', '2017-08-18 02:32:10'),
-(1499, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-18 06:05:28', '2017-08-18 06:05:28'),
-(1500, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-19 02:16:11', '2017-08-19 02:16:11'),
-(1501, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-19 06:14:22', '2017-08-19 06:14:22'),
-(1502, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-19 08:44:35', '2017-08-19 08:44:35'),
-(1503, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-21 01:11:14', '2017-08-21 01:11:14'),
-(1504, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-21 07:52:01', '2017-08-21 07:52:01'),
-(1505, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-21 07:52:04', '2017-08-21 07:52:04'),
-(1506, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-21 11:23:52', '2017-08-21 11:23:52'),
-(1507, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-24 01:31:54', '2017-08-24 01:31:54'),
-(1508, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-24 03:39:08', '2017-08-24 03:39:08'),
-(1509, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-24 05:58:31', '2017-08-24 05:58:31'),
-(1510, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-24 09:12:00', '2017-08-24 09:12:00'),
-(1511, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-24 12:12:55', '2017-08-24 12:12:55'),
-(1512, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-24 12:16:22', '2017-08-24 12:16:22'),
-(1513, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-24 12:16:35', '2017-08-24 12:16:35'),
-(1514, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-25 01:21:47', '2017-08-25 01:21:47'),
-(1515, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-25 10:15:16', '2017-08-25 10:15:16'),
-(1516, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-26 01:19:20', '2017-08-26 01:19:20'),
-(1517, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-26 01:19:21', '2017-08-26 01:19:21'),
-(1518, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-26 05:49:12', '2017-08-26 05:49:12'),
-(1519, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-26 08:15:09', '2017-08-26 08:15:09'),
-(1520, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-27 01:40:54', '2017-08-27 01:40:54'),
-(1521, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-28 02:57:40', '2017-08-28 02:57:40'),
-(1522, 1, '13226431320', 2130706433, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-28 05:09:37', '2017-08-28 05:09:37');
+(1495, 1, '13226431320', 1900258310, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-15 11:56:14', '2017-08-15 11:56:14'),
+(1496, 1, '13226431320', 1039280650, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-15 12:39:00', '2017-08-15 12:39:00'),
+(1497, 16, '13265134316', 1900258310, 'LingDang/1.0 (iPhone; iOS 10.2; Scale/3.00)', '2017-08-16 01:18:28', '2017-08-16 01:18:28'),
+(1498, 1, '13226431320', 1900258310, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36', '2017-08-16 01:18:52', '2017-08-16 01:18:52'),
+(1499, 18, '18814121642', 1900258310, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-16 01:29:30', '2017-08-16 01:29:30'),
+(1500, 18, '18814121642', 1900258310, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-16 01:39:56', '2017-08-16 01:39:56'),
+(1501, 18, '18814121642', 1900258310, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-16 01:52:08', '2017-08-16 01:52:08'),
+(1502, 18, '18814121642', 1900258310, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-16 01:54:11', '2017-08-16 01:54:11'),
+(1503, 18, '18814121642', 1900258310, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-16 01:59:22', '2017-08-16 01:59:22'),
+(1504, 1, '13226431320', 1900258310, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', '2017-08-16 01:59:33', '2017-08-16 01:59:33'),
+(1505, 18, '18814121642', 1900258310, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-16 02:01:06', '2017-08-16 02:01:06'),
+(1506, 1, '13226431320', 1900258310, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-16 02:07:38', '2017-08-16 02:07:38'),
+(1507, 18, '18814121642', 1900258310, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-16 02:09:55', '2017-08-16 02:09:55'),
+(1508, 1, '13226431320', 1039280650, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-16 02:23:01', '2017-08-16 02:23:01'),
+(1509, 18, '18814121642', 1900258310, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-16 02:27:02', '2017-08-16 02:27:02'),
+(1510, 18, '18814121642', 1900258310, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-16 02:27:33', '2017-08-16 02:27:33'),
+(1511, 18, '18814121642', 1900258310, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-16 02:36:54', '2017-08-16 02:36:54'),
+(1512, 18, '18814121642', 1900258310, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-16 02:38:00', '2017-08-16 02:38:00'),
+(1513, 18, '18814121642', 1900258310, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-16 02:38:52', '2017-08-16 02:38:52'),
+(1514, 18, '18814121642', 1900258310, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-16 02:56:10', '2017-08-16 02:56:10'),
+(1515, 18, '18814121642', 1900258310, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-16 02:59:09', '2017-08-16 02:59:09'),
+(1516, 18, '18814121642', 1900258310, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-16 02:59:19', '2017-08-16 02:59:19'),
+(1517, 18, '18814121642', 1900258310, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-16 03:10:40', '2017-08-16 03:10:40'),
+(1518, 16, '13265134316', 1900258310, 'LingDang/1.0 (iPhone; iOS 10.2; Scale/3.00)', '2017-08-16 05:51:40', '2017-08-16 05:51:40'),
+(1519, 16, '13265134316', 1900258310, 'LingDang/1.0 (iPhone; iOS 10.2; Scale/3.00)', '2017-08-16 05:52:54', '2017-08-16 05:52:54'),
+(1520, 1, '13226431320', 1900258310, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', '2017-08-16 05:53:49', '2017-08-16 05:53:49'),
+(1521, 18, '18814121642', 1900258310, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-16 06:16:02', '2017-08-16 06:16:02'),
+(1522, 18, '18814121642', 1900258310, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-16 06:28:11', '2017-08-16 06:28:11'),
+(1523, 18, '18814121642', 1900258310, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-16 06:52:35', '2017-08-16 06:52:35'),
+(1524, 18, '18814121642', 1900258310, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-16 06:54:37', '2017-08-16 06:54:37'),
+(1525, 18, '18814121642', 1900258310, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-16 07:09:51', '2017-08-16 07:09:51'),
+(1526, 18, '18814121642', 1900258310, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-16 07:12:03', '2017-08-16 07:12:03'),
+(1527, 18, '18814121642', 1900258310, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-16 07:15:24', '2017-08-16 07:15:24'),
+(1528, 18, '18814121642', 1900258310, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-16 07:20:35', '2017-08-16 07:20:35'),
+(1529, 1, '13226431320', 1900258310, 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36', '2017-08-16 07:20:59', '2017-08-16 07:20:59'),
+(1530, 18, '18814121642', 1900258310, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-16 07:28:28', '2017-08-16 07:28:28'),
+(1531, 18, '18814121642', 1900258310, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-16 07:30:04', '2017-08-16 07:30:04'),
+(1532, 18, '18814121642', 1900258310, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-16 07:35:51', '2017-08-16 07:35:51'),
+(1533, 18, '18814121642', 1900258310, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-16 07:50:54', '2017-08-16 07:50:54'),
+(1534, 18, '18814121642', 1900258310, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-16 07:56:40', '2017-08-16 07:56:40'),
+(1535, 1, '13226431320', 1900258310, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-16 08:23:23', '2017-08-16 08:23:23'),
+(1536, 1, '13226431320', 1039280650, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-16 09:04:48', '2017-08-16 09:04:48'),
+(1537, 18, '18814121642', 1900258310, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-16 09:05:01', '2017-08-16 09:05:01'),
+(1538, 18, '18814121642', 1900258310, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-16 09:38:11', '2017-08-16 09:38:11'),
+(1539, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-16 10:13:40', '2017-08-16 10:13:40'),
+(1540, 16, '13265134316', 1900258498, 'LingDang/1.0 (iPhone; iOS 8.2; Scale/2.00)', '2017-08-16 11:51:04', '2017-08-16 11:51:04'),
+(1541, 16, '13265134316', 1900258498, 'LingDang/1.0 (iPhone; iOS 8.2; Scale/2.00)', '2017-08-16 11:53:38', '2017-08-16 11:53:38'),
+(1542, 18, '18814121642', 2005000427, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-16 17:27:19', '2017-08-16 17:27:19'),
+(1543, 18, '18814121642', 0, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-17 00:51:05', '2017-08-17 00:51:05'),
+(1544, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-17 01:34:17', '2017-08-17 01:34:17'),
+(1545, 1, '13226431320', 1900258498, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', '2017-08-17 01:46:47', '2017-08-17 01:46:47'),
+(1546, 16, '13265134316', 1900258498, 'LingDang/1.0 (iPhone; iOS 8.2; Scale/2.00)', '2017-08-17 01:52:17', '2017-08-17 01:52:17'),
+(1547, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-17 01:59:33', '2017-08-17 01:59:33'),
+(1548, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-17 02:42:03', '2017-08-17 02:42:03'),
+(1549, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-17 02:51:01', '2017-08-17 02:51:01'),
+(1550, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-17 02:51:38', '2017-08-17 02:51:38'),
+(1551, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-17 02:52:04', '2017-08-17 02:52:04'),
+(1552, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-17 02:54:12', '2017-08-17 02:54:12'),
+(1553, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-17 02:58:29', '2017-08-17 02:58:29'),
+(1554, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-17 02:59:45', '2017-08-17 02:59:45'),
+(1555, 18, '18814121642', 1992168688, 'Mozilla/5.0 (compatible; MSIE 5.01; Windows NT 5.1)', '2017-08-17 03:28:47', '2017-08-17 03:28:47'),
+(1556, 18, '18814121642', 1992168688, 'Mozilla/5.0 (compatible; MSIE 5.01; Windows NT 5.1)', '2017-08-17 03:30:27', '2017-08-17 03:30:27'),
+(1557, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-17 03:31:07', '2017-08-17 03:31:07'),
+(1558, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-17 03:34:48', '2017-08-17 03:34:48'),
+(1559, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-17 03:40:16', '2017-08-17 03:40:16'),
+(1560, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-17 03:48:24', '2017-08-17 03:48:24'),
+(1561, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-17 03:50:54', '2017-08-17 03:50:54'),
+(1562, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-17 05:52:24', '2017-08-17 05:52:24'),
+(1563, 1, '13226431320', 1900258498, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', '2017-08-17 06:00:09', '2017-08-17 06:00:09'),
+(1564, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-17 06:19:18', '2017-08-17 06:19:18'),
+(1565, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-17 06:21:20', '2017-08-17 06:21:20'),
+(1566, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-17 06:44:43', '2017-08-17 06:44:43'),
+(1567, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-17 06:49:50', '2017-08-17 06:49:50'),
+(1568, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-17 06:50:11', '2017-08-17 06:50:11'),
+(1569, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-17 06:51:06', '2017-08-17 06:51:06'),
+(1570, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-17 10:38:56', '2017-08-17 10:38:56'),
+(1571, 18, '18814121642', 0, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-17 13:19:16', '2017-08-17 13:19:16'),
+(1572, 1, '13226431320', 1900258498, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', '2017-08-18 01:37:00', '2017-08-18 01:37:00'),
+(1573, 16, '13265134316', 1900258498, 'LingDang/1.0 (iPhone; iOS 8.2; Scale/2.00)', '2017-08-18 02:23:52', '2017-08-18 02:23:52'),
+(1574, 1, '13226431320', 1900258498, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-18 02:47:54', '2017-08-18 02:47:54'),
+(1575, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-18 03:12:02', '2017-08-18 03:12:02'),
+(1576, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-18 03:22:22', '2017-08-18 03:22:22'),
+(1577, 16, '13265134316', 1900258498, 'LingDang/1.0 (iPhone; iOS 8.2; Scale/2.00)', '2017-08-18 03:35:26', '2017-08-18 03:35:26'),
+(1578, 16, '13265134316', 1900258498, 'LingDang/1.0 (iPhone; iOS 8.2; Scale/2.00)', '2017-08-18 06:17:06', '2017-08-18 06:17:06'),
+(1579, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-18 07:33:38', '2017-08-18 07:33:38'),
+(1580, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-18 07:37:35', '2017-08-18 07:37:35'),
+(1581, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-18 07:43:46', '2017-08-18 07:43:46'),
+(1582, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-18 07:44:27', '2017-08-18 07:44:27'),
+(1583, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-18 07:45:05', '2017-08-18 07:45:05'),
+(1584, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-18 07:48:50', '2017-08-18 07:48:50'),
+(1585, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-18 08:01:34', '2017-08-18 08:01:34'),
+(1586, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-18 08:02:27', '2017-08-18 08:02:27'),
+(1587, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-18 08:04:13', '2017-08-18 08:04:13'),
+(1588, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-18 08:04:49', '2017-08-18 08:04:49'),
+(1589, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-18 08:06:30', '2017-08-18 08:06:30'),
+(1590, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-18 08:09:04', '2017-08-18 08:09:04'),
+(1591, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-18 08:10:55', '2017-08-18 08:10:55'),
+(1592, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-18 08:12:57', '2017-08-18 08:12:57'),
+(1593, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-18 08:15:44', '2017-08-18 08:15:44'),
+(1594, 1, '13226431320', 1900258498, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', '2017-08-18 09:00:22', '2017-08-18 09:00:22'),
+(1595, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-18 09:46:06', '2017-08-18 09:46:06'),
+(1596, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-18 09:48:30', '2017-08-18 09:48:30'),
+(1597, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-18 09:52:33', '2017-08-18 09:52:33'),
+(1598, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-18 09:59:43', '2017-08-18 09:59:43'),
+(1599, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-18 10:59:53', '2017-08-18 10:59:53'),
+(1600, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-18 11:05:57', '2017-08-18 11:05:57'),
+(1601, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-18 11:51:56', '2017-08-18 11:51:56'),
+(1602, 16, '13265134316', 1900258498, 'LingDang/1.0 (iPhone; iOS 8.2; Scale/2.00)', '2017-08-18 11:58:55', '2017-08-18 11:58:55'),
+(1603, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-18 12:17:03', '2017-08-18 12:17:03'),
+(1604, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-18 12:27:21', '2017-08-18 12:27:21'),
+(1605, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-18 12:30:00', '2017-08-18 12:30:00'),
+(1606, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-18 12:32:53', '2017-08-18 12:32:53'),
+(1607, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-18 12:41:07', '2017-08-18 12:41:07'),
+(1608, 16, '13265134316', 1900258498, 'LingDang/1.0 (iPhone; iOS 8.2; Scale/2.00)', '2017-08-18 12:54:06', '2017-08-18 12:54:06'),
+(1609, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-18 12:57:21', '2017-08-18 12:57:21'),
+(1610, 16, '13265134316', 1900258498, 'LingDang/1.0 (iPhone; iOS 8.2; Scale/2.00)', '2017-08-18 12:59:10', '2017-08-18 12:59:10'),
+(1611, 1, '13226431320', 1900258498, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', '2017-08-18 12:59:11', '2017-08-18 12:59:11'),
+(1612, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-18 13:07:35', '2017-08-18 13:07:35'),
+(1613, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-18 13:12:16', '2017-08-18 13:12:16'),
+(1614, 16, '13265134316', 1971867436, 'LingDang/1.0 (iPhone; iOS 8.2; Scale/2.00)', '2017-08-19 01:41:35', '2017-08-19 01:41:35'),
+(1615, 16, '13265134316', 1971867436, 'LingDang/1.0 (iPhone; iOS 8.2; Scale/2.00)', '2017-08-19 01:45:18', '2017-08-19 01:45:18'),
+(1616, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-19 02:13:37', '2017-08-19 02:13:37'),
+(1617, 1, '13226431320', 1900258498, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', '2017-08-19 02:24:35', '2017-08-19 02:24:35'),
+(1618, 1, '13226431320', 1900258498, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-19 02:27:52', '2017-08-19 02:27:52'),
+(1619, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-19 02:57:59', '2017-08-19 02:57:59'),
+(1620, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-19 03:00:39', '2017-08-19 03:00:39'),
+(1621, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-19 03:02:37', '2017-08-19 03:02:37'),
+(1622, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-19 03:05:26', '2017-08-19 03:05:26'),
+(1623, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-19 03:08:55', '2017-08-19 03:08:55'),
+(1624, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-19 03:12:39', '2017-08-19 03:12:39'),
+(1625, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-19 03:22:19', '2017-08-19 03:22:19'),
+(1626, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-19 03:40:06', '2017-08-19 03:40:06'),
+(1627, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-19 03:49:26', '2017-08-19 03:49:26'),
+(1628, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-19 03:51:02', '2017-08-19 03:51:02'),
+(1629, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-19 03:57:26', '2017-08-19 03:57:26'),
+(1630, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-19 04:04:34', '2017-08-19 04:04:34'),
+(1631, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-19 04:06:59', '2017-08-19 04:06:59'),
+(1632, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-19 04:09:33', '2017-08-19 04:09:33'),
+(1633, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-19 04:09:58', '2017-08-19 04:09:58'),
+(1634, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-19 04:11:27', '2017-08-19 04:11:27'),
+(1635, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-19 04:18:40', '2017-08-19 04:18:40'),
+(1636, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-19 05:45:11', '2017-08-19 05:45:11'),
+(1637, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-19 06:29:32', '2017-08-19 06:29:32'),
+(1638, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-19 06:56:59', '2017-08-19 06:56:59'),
+(1639, 1, '13226431320', 1900258498, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', '2017-08-19 07:00:01', '2017-08-19 07:00:01'),
+(1640, 18, '18814121642', 1900258498, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-19 07:04:33', '2017-08-19 07:04:33'),
+(1641, 16, '13265134316', 1900258498, 'LingDang/1.0 (iPhone; iOS 10.2; Scale/3.00)', '2017-08-19 07:37:55', '2017-08-19 07:37:55'),
+(1642, 18, '18814121642', 2005001122, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-19 16:37:05', '2017-08-19 16:37:05'),
+(1643, 1, '13226431320', 1900258661, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', '2017-08-21 01:16:02', '2017-08-21 01:16:02'),
+(1644, 16, '13265134316', 1900258661, 'LingDang/1.0 (iPhone; iOS 10.2; Scale/3.00)', '2017-08-21 01:21:51', '2017-08-21 01:21:51'),
+(1645, 18, '18814121642', 1900258661, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-21 03:08:51', '2017-08-21 03:08:51'),
+(1646, 18, '18814121642', 1900258661, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-21 03:19:20', '2017-08-21 03:19:20'),
+(1647, 18, '18814121642', 1900258661, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-21 03:29:49', '2017-08-21 03:29:49'),
+(1648, 18, '18814121642', 1900258661, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-21 03:30:30', '2017-08-21 03:30:30'),
+(1649, 18, '18814121642', 1900258661, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-21 03:32:48', '2017-08-21 03:32:48'),
+(1650, 18, '18814121642', 1900258661, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-21 03:38:05', '2017-08-21 03:38:05'),
+(1651, 18, '18814121642', 1900258661, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-21 04:03:53', '2017-08-21 04:03:53'),
+(1652, 18, '18814121642', 1900258661, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-21 04:04:19', '2017-08-21 04:04:19'),
+(1653, 18, '18814121642', 1900258661, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-21 06:05:25', '2017-08-21 06:05:25'),
+(1654, 18, '18814121642', 1900258661, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-21 06:25:38', '2017-08-21 06:25:38'),
+(1655, 1, '13226431320', 1039280869, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-21 07:25:44', '2017-08-21 07:25:44'),
+(1656, 18, '18814121642', 1900258314, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-21 07:48:24', '2017-08-21 07:48:24'),
+(1657, 18, '18814121642', 1900258314, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-21 08:15:54', '2017-08-21 08:15:54'),
+(1658, 18, '18814121642', 1900258314, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-21 08:16:45', '2017-08-21 08:16:45'),
+(1659, 1, '13226431320', 1900258314, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-21 08:17:51', '2017-08-21 08:17:51'),
+(1660, 18, '18814121642', 1900258314, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-21 08:19:14', '2017-08-21 08:19:14'),
+(1661, 18, '18814121642', 1900258314, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-21 09:34:57', '2017-08-21 09:34:57'),
+(1662, 18, '18814121642', 1900258314, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-21 12:43:15', '2017-08-21 12:43:15'),
+(1663, 1, '13226431320', 1039280720, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-22 10:37:05', '2017-08-22 10:37:05'),
+(1664, 1, '13226431320', 1039280720, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-23 00:07:45', '2017-08-23 00:07:45'),
+(1665, 1, '13226431320', 1903104269, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', '2017-08-24 00:50:41', '2017-08-24 00:50:41'),
+(1666, 18, '18814121642', 1903104269, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-24 01:17:17', '2017-08-24 01:17:17'),
+(1667, 16, '13265134316', 1903104269, 'LingDang/1.0 (iPhone; iOS 10.2; Scale/3.00)', '2017-08-24 01:28:39', '2017-08-24 01:28:39'),
+(1668, 1, '13226431320', 1903104269, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-24 01:29:44', '2017-08-24 01:29:44'),
+(1669, 18, '18814121642', 1903104269, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-24 01:41:26', '2017-08-24 01:41:26'),
+(1670, 18, '18814121642', 1903104269, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-24 01:43:03', '2017-08-24 01:43:03'),
+(1671, 18, '18814121642', 1903104269, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-24 01:44:37', '2017-08-24 01:44:37'),
+(1672, 18, '18814121642', 1903104269, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-24 01:50:10', '2017-08-24 01:50:10'),
+(1673, 18, '18814121642', 1903104269, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-24 01:53:06', '2017-08-24 01:53:06'),
+(1674, 18, '18814121642', 1903104269, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-24 01:55:10', '2017-08-24 01:55:10'),
+(1675, 18, '18814121642', 1903104269, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-24 02:01:29', '2017-08-24 02:01:29'),
+(1676, 18, '18814121642', 1903104269, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-24 02:01:50', '2017-08-24 02:01:50'),
+(1677, 18, '18814121642', 1903104269, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-24 02:15:42', '2017-08-24 02:15:42'),
+(1678, 18, '18814121642', 1903104269, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-24 02:23:12', '2017-08-24 02:23:12'),
+(1679, 18, '18814121642', 1903104269, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-24 02:34:44', '2017-08-24 02:34:44'),
+(1680, 18, '18814121642', 1903104269, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-24 02:37:00', '2017-08-24 02:37:00'),
+(1681, 18, '18814121642', 1903104269, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-24 03:57:46', '2017-08-24 03:57:46'),
+(1682, 16, '13265134316', 1903104269, 'LingDang/1.0 (iPhone; iOS 8.2; Scale/2.00)', '2017-08-24 06:04:15', '2017-08-24 06:04:15'),
+(1683, 18, '18814121642', 1903104269, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-24 06:05:04', '2017-08-24 06:05:04'),
+(1684, 18, '18814121642', 1903104269, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-24 07:00:46', '2017-08-24 07:00:46'),
+(1685, 18, '18814121642', 1903104269, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-24 07:15:24', '2017-08-24 07:15:24'),
+(1686, 16, '13265134316', 1903104269, 'LingDang/1.0 (iPhone; iOS 10.2; Scale/3.00)', '2017-08-24 07:22:24', '2017-08-24 07:22:24'),
+(1687, 18, '18814121642', 1903104269, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-24 07:56:29', '2017-08-24 07:56:29'),
+(1688, 18, '18814121642', 1903104269, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-24 07:57:33', '2017-08-24 07:57:33'),
+(1689, 18, '18814121642', 1903104269, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-24 08:13:43', '2017-08-24 08:13:43'),
+(1690, 18, '18814121642', 1903104269, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-24 08:31:31', '2017-08-24 08:31:31'),
+(1691, 1, '13226431320', 1903104269, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-24 10:00:50', '2017-08-24 10:00:50'),
+(1692, 16, '13265134316', 1903104269, 'LingDang/1.0 (iPhone; iOS 10.2; Scale/3.00)', '2017-08-25 01:27:57', '2017-08-25 01:27:57'),
+(1693, 1, '13226431320', 1903104269, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', '2017-08-25 02:04:54', '2017-08-25 02:04:54'),
+(1694, 16, '13265134316', 1971855444, 'LingDang/1.0 (iPhone; iOS 8.2; Scale/2.00)', '2017-08-25 02:09:59', '2017-08-25 02:09:59'),
+(1695, 18, '18814121642', 1903104269, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-25 06:10:40', '2017-08-25 06:10:40'),
+(1696, 1, '13226431320', 1903104269, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', '2017-08-25 06:15:20', '2017-08-25 06:15:20'),
+(1697, 18, '18814121642', 1903104269, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-25 06:26:35', '2017-08-25 06:26:35'),
+(1698, 18, '18814121642', 1903104269, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-25 06:40:43', '2017-08-25 06:40:43'),
+(1699, 18, '18814121642', 1903104269, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-25 06:48:48', '2017-08-25 06:48:48'),
+(1700, 18, '18814121642', 1903104269, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-25 07:04:38', '2017-08-25 07:04:38'),
+(1701, 1, '13226431320', 1903104269, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-25 07:09:07', '2017-08-25 07:09:07'),
+(1702, 18, '18814121642', 1903104269, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-25 07:14:37', '2017-08-25 07:14:37'),
+(1703, 18, '18814121642', 1903104269, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-25 07:20:03', '2017-08-25 07:20:03'),
+(1704, 16, '13265134316', 1903104269, 'LingDang/1.0 (iPhone; iOS 10.2; Scale/3.00)', '2017-08-25 07:20:28', '2017-08-25 07:20:28'),
+(1705, 18, '18814121642', 1903104625, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-25 07:54:06', '2017-08-25 07:54:06'),
+(1706, 18, '18814121642', 1903104625, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-25 07:58:09', '2017-08-25 07:58:09'),
+(1707, 18, '18814121642', 1903104625, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-25 08:33:45', '2017-08-25 08:33:45'),
+(1708, 18, '18814121642', 1903104625, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-25 08:35:15', '2017-08-25 08:35:15'),
+(1709, 18, '18814121642', 1903104625, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-25 08:40:17', '2017-08-25 08:40:17'),
+(1710, 18, '18814121642', 1903104625, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-25 10:31:10', '2017-08-25 10:31:10'),
+(1711, 18, '18814121642', 1903104625, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-25 10:32:09', '2017-08-25 10:32:09'),
+(1712, 16, '13265134316', 1903104625, 'LingDang/1.0 (iPhone; iOS 8.2; Scale/2.00)', '2017-08-25 11:27:13', '2017-08-25 11:27:13'),
+(1713, 16, '13265134316', 1903104625, 'LingDang/1.0 (iPhone; iOS 8.2; Scale/2.00)', '2017-08-25 11:27:14', '2017-08-25 11:27:14'),
+(1714, 18, '18814121642', 2032211203, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-25 12:10:21', '2017-08-25 12:10:21'),
+(1715, 18, '18814121642', 2032211203, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-25 17:22:49', '2017-08-25 17:22:49'),
+(1716, 16, '13265134316', 1903104625, 'LingDang/1.0 (iPhone; iOS 8.2; Scale/2.00)', '2017-08-26 01:23:19', '2017-08-26 01:23:19'),
+(1717, 16, '13265134316', 1903104625, 'LingDang/1.0 (iPhone; iOS 8.2; Scale/2.00)', '2017-08-26 01:23:32', '2017-08-26 01:23:32'),
+(1718, 1, '13226431320', 1903104625, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', '2017-08-26 01:25:24', '2017-08-26 01:25:24'),
+(1719, 18, '18814121642', 1903104625, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-26 02:11:23', '2017-08-26 02:11:23'),
+(1720, 18, '18814121642', 1903104625, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-26 02:40:59', '2017-08-26 02:40:59'),
+(1721, 18, '18814121642', 1903104625, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-26 04:15:52', '2017-08-26 04:15:52'),
+(1722, 18, '18814121642', 1903104625, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-26 04:16:13', '2017-08-26 04:16:13'),
+(1723, 1, '13226431320', 1903104625, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36', '2017-08-26 06:05:07', '2017-08-26 06:05:07'),
+(1724, 18, '18814121642', 1903104625, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-27 01:26:33', '2017-08-27 01:26:33'),
+(1725, 18, '18814121642', 1903104625, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-27 01:27:52', '2017-08-27 01:27:52'),
+(1726, 1, '13226431320', 1903104625, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', '2017-08-27 01:39:56', '2017-08-27 01:39:56'),
+(1727, 18, '18814121642', 1903104625, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-27 01:45:13', '2017-08-27 01:45:13'),
+(1728, 16, '13265134316', 1903104625, 'LingDang/1.0 (iPhone; iOS 8.2; Scale/2.00)', '2017-08-27 01:46:33', '2017-08-27 01:46:33');
+INSERT INTO `user_history` (`id`, `user_id`, `name`, `ip`, `user_agent`, `created_at`, `updated_at`) VALUES
+(1729, 18, '18814121642', 1903104625, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-27 01:53:23', '2017-08-27 01:53:23'),
+(1730, 18, '18814121642', 1903104625, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-27 02:02:38', '2017-08-27 02:02:38'),
+(1731, 18, '18814121642', 1903104625, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-27 02:07:43', '2017-08-27 02:07:43'),
+(1732, 18, '18814121642', 1903104625, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-27 02:44:53', '2017-08-27 02:44:53'),
+(1733, 18, '18814121642', 1903104625, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-27 03:04:41', '2017-08-27 03:04:41'),
+(1734, 18, '18814121642', 1903104625, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-27 03:05:48', '2017-08-27 03:05:48'),
+(1735, 18, '18814121642', 1903104625, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-27 03:08:18', '2017-08-27 03:08:18'),
+(1736, 18, '18814121642', 1903104625, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-27 03:09:23', '2017-08-27 03:09:23'),
+(1737, 18, '18814121642', 1903104625, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-27 04:02:26', '2017-08-27 04:02:26'),
+(1738, 18, '18814121642', 1903104625, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-27 05:55:32', '2017-08-27 05:55:32'),
+(1739, 18, '18814121642', 1903104625, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-27 05:57:26', '2017-08-27 05:57:26'),
+(1740, 18, '18814121642', 1903104625, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-27 06:19:39', '2017-08-27 06:19:39'),
+(1741, 17, '13640230348', 1885367573, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-27 06:58:15', '2017-08-27 06:58:15'),
+(1742, 18, '18814121642', 1971857734, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-27 08:10:18', '2017-08-27 08:10:18'),
+(1743, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-27 09:11:15', '2017-08-27 09:11:15'),
+(1744, 1, '13226431320', 1900258455, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', '2017-08-27 09:34:46', '2017-08-27 09:34:46'),
+(1745, 17, '13640230348', 1885367573, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-27 09:38:24', '2017-08-27 09:38:24'),
+(1746, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-27 10:01:56', '2017-08-27 10:01:56'),
+(1747, 1, '13226431320', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-27 11:16:20', '2017-08-27 11:16:20'),
+(1748, 1, '13226431320', 1900258455, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', '2017-08-28 01:33:37', '2017-08-28 01:33:37'),
+(1749, 16, '13265134316', 1900258455, 'LingDang/1.0 (iPhone; iOS 8.2; Scale/2.00)', '2017-08-28 01:56:16', '2017-08-28 01:56:16'),
+(1750, 16, '13265134316', 1900258455, 'LingDang/1.0 (iPhone; iOS 8.2; Scale/2.00)', '2017-08-28 01:56:17', '2017-08-28 01:56:17'),
+(1751, 16, '13265134316', 1900258455, 'LingDang/1.0 (iPhone; iOS 8.2; Scale/2.00)', '2017-08-28 01:59:38', '2017-08-28 01:59:38'),
+(1752, 16, '13265134316', 1900258455, 'LingDang/1.0 (iPhone; iOS 8.2; Scale/2.00)', '2017-08-28 02:00:59', '2017-08-28 02:00:59'),
+(1753, 16, '13265134316', 1900258455, 'LingDang/1.0 (iPhone; iOS 8.2; Scale/2.00)', '2017-08-28 02:07:47', '2017-08-28 02:07:47'),
+(1754, 1, '13226431320', 1900258455, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-28 03:02:48', '2017-08-28 03:02:48'),
+(1755, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 03:02:54', '2017-08-28 03:02:54'),
+(1756, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 03:48:26', '2017-08-28 03:48:26'),
+(1757, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 03:50:31', '2017-08-28 03:50:31'),
+(1758, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 03:51:20', '2017-08-28 03:51:20'),
+(1759, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 03:51:32', '2017-08-28 03:51:32'),
+(1760, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 03:53:11', '2017-08-28 03:53:11'),
+(1761, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 03:55:52', '2017-08-28 03:55:52'),
+(1762, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 03:58:36', '2017-08-28 03:58:36'),
+(1763, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 03:59:51', '2017-08-28 03:59:51'),
+(1764, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 04:00:28', '2017-08-28 04:00:28'),
+(1765, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 04:04:46', '2017-08-28 04:04:46'),
+(1766, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 04:14:57', '2017-08-28 04:14:57'),
+(1767, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 04:15:24', '2017-08-28 04:15:24'),
+(1768, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 04:15:53', '2017-08-28 04:15:53'),
+(1769, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 04:17:30', '2017-08-28 04:17:30'),
+(1770, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 04:18:51', '2017-08-28 04:18:51'),
+(1771, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 04:21:30', '2017-08-28 04:21:30'),
+(1772, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 04:22:59', '2017-08-28 04:22:59'),
+(1773, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 04:23:38', '2017-08-28 04:23:38'),
+(1774, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 04:26:50', '2017-08-28 04:26:50'),
+(1775, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 04:28:08', '2017-08-28 04:28:08'),
+(1776, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 05:54:01', '2017-08-28 05:54:01'),
+(1777, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 05:57:04', '2017-08-28 05:57:04'),
+(1778, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 05:58:14', '2017-08-28 05:58:14'),
+(1779, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 05:59:10', '2017-08-28 05:59:10'),
+(1780, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 06:03:45', '2017-08-28 06:03:45'),
+(1781, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 06:05:05', '2017-08-28 06:05:05'),
+(1782, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 06:07:09', '2017-08-28 06:07:09'),
+(1783, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 06:07:34', '2017-08-28 06:07:34'),
+(1784, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 06:08:14', '2017-08-28 06:08:14'),
+(1785, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 06:16:55', '2017-08-28 06:16:55'),
+(1786, 1, '13226431320', 1900258455, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', '2017-08-28 06:17:00', '2017-08-28 06:17:00'),
+(1787, 17, '13640230348', 1885385519, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 06:21:20', '2017-08-28 06:21:20'),
+(1788, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 06:29:01', '2017-08-28 06:29:01'),
+(1789, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 06:30:43', '2017-08-28 06:30:43'),
+(1790, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 06:48:10', '2017-08-28 06:48:10'),
+(1791, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 06:52:51', '2017-08-28 06:52:51'),
+(1792, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 07:02:30', '2017-08-28 07:02:30'),
+(1793, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 07:02:54', '2017-08-28 07:02:54'),
+(1794, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 07:12:37', '2017-08-28 07:12:37'),
+(1795, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 07:13:25', '2017-08-28 07:13:25'),
+(1796, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 07:19:41', '2017-08-28 07:19:41'),
+(1797, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 07:31:10', '2017-08-28 07:31:10'),
+(1798, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 07:48:07', '2017-08-28 07:48:07'),
+(1799, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 07:51:15', '2017-08-28 07:51:15'),
+(1800, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 07:58:41', '2017-08-28 07:58:41'),
+(1801, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 08:02:34', '2017-08-28 08:02:34'),
+(1802, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 08:24:25', '2017-08-28 08:24:25'),
+(1803, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 08:25:51', '2017-08-28 08:25:51'),
+(1804, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 08:27:34', '2017-08-28 08:27:34'),
+(1805, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 08:31:56', '2017-08-28 08:31:56'),
+(1806, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 08:33:22', '2017-08-28 08:33:22'),
+(1807, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 08:36:29', '2017-08-28 08:36:29'),
+(1808, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 08:37:14', '2017-08-28 08:37:14'),
+(1809, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 08:38:06', '2017-08-28 08:38:06'),
+(1810, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 08:41:43', '2017-08-28 08:41:43'),
+(1811, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 08:45:45', '2017-08-28 08:45:45'),
+(1812, 17, '13640230348', 1885385519, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 08:58:42', '2017-08-28 08:58:42'),
+(1813, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 09:38:18', '2017-08-28 09:38:18'),
+(1814, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 09:58:18', '2017-08-28 09:58:18'),
+(1815, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 10:03:12', '2017-08-28 10:03:12'),
+(1816, 18, '18814121642', 0, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 11:00:20', '2017-08-28 11:00:20'),
+(1817, 17, '13640230348', 1903128287, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-28 12:11:49', '2017-08-28 12:11:49'),
+(1818, 1, '13226431320', 1900258455, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', '2017-08-29 01:13:40', '2017-08-29 01:13:40'),
+(1819, 16, '13265134316', 1900258455, 'LingDang/1.0 (iPhone; iOS 8.2; Scale/2.00)', '2017-08-29 01:14:19', '2017-08-29 01:14:19'),
+(1820, 16, '13265134316', 1900258455, 'LingDang/1.0 (iPhone; iOS 8.2; Scale/2.00)', '2017-08-29 01:22:13', '2017-08-29 01:22:13'),
+(1821, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-29 01:38:20', '2017-08-29 01:38:20'),
+(1822, 17, '13640230348', 1885372448, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-29 02:32:13', '2017-08-29 02:32:13'),
+(1823, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-29 03:00:44', '2017-08-29 03:00:44'),
+(1824, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-29 04:00:47', '2017-08-29 04:00:47'),
+(1825, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-29 04:04:53', '2017-08-29 04:04:53'),
+(1826, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-29 06:00:07', '2017-08-29 06:00:07'),
+(1827, 1, '13226431320', 1900258455, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', '2017-08-29 06:21:14', '2017-08-29 06:21:14'),
+(1828, 16, '13265134316', 1900258455, 'LingDang/1.0 (iPhone; iOS 8.2; Scale/2.00)', '2017-08-29 06:37:26', '2017-08-29 06:37:26'),
+(1829, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-29 07:56:20', '2017-08-29 07:56:20'),
+(1830, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-29 07:57:31', '2017-08-29 07:57:31'),
+(1831, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-29 07:59:42', '2017-08-29 07:59:42'),
+(1832, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-29 09:20:23', '2017-08-29 09:20:23'),
+(1833, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-29 09:23:12', '2017-08-29 09:23:12'),
+(1834, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-29 09:26:16', '2017-08-29 09:26:16'),
+(1835, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-29 09:53:20', '2017-08-29 09:53:20'),
+(1836, 1, '13226431320', 1900258455, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-29 09:55:09', '2017-08-29 09:55:09'),
+(1837, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-29 09:56:14', '2017-08-29 09:56:14'),
+(1838, 1, '13226431320', 1900258455, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', '2017-08-29 10:06:04', '2017-08-29 10:06:04'),
+(1839, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-29 10:26:02', '2017-08-29 10:26:02'),
+(1840, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-29 10:36:16', '2017-08-29 10:36:16'),
+(1841, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 00:58:56', '2017-08-30 00:58:56'),
+(1842, 16, '13265134316', 1900258455, 'LingDang/1.0 (iPhone; iOS 8.2; Scale/2.00)', '2017-08-30 01:22:45', '2017-08-30 01:22:45'),
+(1843, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 01:28:29', '2017-08-30 01:28:29'),
+(1844, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 01:30:34', '2017-08-30 01:30:34'),
+(1845, 1, '13226431320', 1900258455, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', '2017-08-30 02:10:38', '2017-08-30 02:10:38'),
+(1846, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 02:24:49', '2017-08-30 02:24:49'),
+(1847, 17, '13640230348', 1885348104, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 02:59:17', '2017-08-30 02:59:17'),
+(1848, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 03:18:30', '2017-08-30 03:18:30'),
+(1849, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 03:23:00', '2017-08-30 03:23:00'),
+(1850, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 03:42:12', '2017-08-30 03:42:12'),
+(1851, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 04:00:42', '2017-08-30 04:00:42'),
+(1852, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 04:02:26', '2017-08-30 04:02:26'),
+(1853, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 04:05:31', '2017-08-30 04:05:31'),
+(1854, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 04:06:32', '2017-08-30 04:06:32'),
+(1855, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 04:07:40', '2017-08-30 04:07:40'),
+(1856, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 04:08:53', '2017-08-30 04:08:53'),
+(1857, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 04:10:29', '2017-08-30 04:10:29'),
+(1858, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 04:13:01', '2017-08-30 04:13:01'),
+(1859, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 05:59:10', '2017-08-30 05:59:10'),
+(1860, 1, '13226431320', 1900258455, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', '2017-08-30 06:07:51', '2017-08-30 06:07:51'),
+(1861, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 06:10:34', '2017-08-30 06:10:34'),
+(1862, 16, '13265134316', 1900258455, 'LingDang/1.0 (iPhone; iOS 8.2; Scale/2.00)', '2017-08-30 06:16:16', '2017-08-30 06:16:16'),
+(1863, 1, '13226431320', 1900258455, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', '2017-08-30 06:19:27', '2017-08-30 06:19:27'),
+(1864, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 08:06:51', '2017-08-30 08:06:51'),
+(1865, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 08:10:27', '2017-08-30 08:10:27'),
+(1866, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 08:11:50', '2017-08-30 08:11:50'),
+(1867, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 08:12:45', '2017-08-30 08:12:45'),
+(1868, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 08:14:07', '2017-08-30 08:14:07'),
+(1869, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 08:16:02', '2017-08-30 08:16:02'),
+(1870, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 08:18:04', '2017-08-30 08:18:04'),
+(1871, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 08:18:37', '2017-08-30 08:18:37'),
+(1872, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 08:20:19', '2017-08-30 08:20:19'),
+(1873, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 08:22:16', '2017-08-30 08:22:16'),
+(1874, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 08:24:01', '2017-08-30 08:24:01'),
+(1875, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 08:25:08', '2017-08-30 08:25:08'),
+(1876, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 08:31:53', '2017-08-30 08:31:53'),
+(1877, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 08:40:55', '2017-08-30 08:40:55'),
+(1878, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 08:41:37', '2017-08-30 08:41:37'),
+(1879, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 08:47:40', '2017-08-30 08:47:40'),
+(1880, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 08:48:06', '2017-08-30 08:48:06'),
+(1881, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 08:52:08', '2017-08-30 08:52:08'),
+(1882, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 09:16:58', '2017-08-30 09:16:58'),
+(1883, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 09:29:34', '2017-08-30 09:29:34'),
+(1884, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 09:31:54', '2017-08-30 09:31:54'),
+(1885, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 10:54:32', '2017-08-30 10:54:32'),
+(1886, 1, '13226431320', 1900258455, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', '2017-08-30 12:41:30', '2017-08-30 12:41:30'),
+(1887, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-30 12:53:58', '2017-08-30 12:53:58'),
+(1888, 16, '13265134316', 1900258455, 'LingDang/1.0 (iPhone; iOS 8.2; Scale/2.00)', '2017-08-31 01:18:43', '2017-08-31 01:18:43'),
+(1889, 16, '13265134316', 1900258455, 'LingDang/1.0 (iPhone; iOS 8.2; Scale/2.00)', '2017-08-31 01:21:59', '2017-08-31 01:21:59'),
+(1890, 16, '13265134316', 1900258455, 'LingDang/1.0 (iPhone; iOS 8.2; Scale/2.00)', '2017-08-31 01:22:42', '2017-08-31 01:22:42'),
+(1891, 1, '13226431320', 1900258455, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', '2017-08-31 01:30:49', '2017-08-31 01:30:49'),
+(1892, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-31 01:33:56', '2017-08-31 01:33:56'),
+(1893, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-31 01:38:35', '2017-08-31 01:38:35'),
+(1894, 17, '13640230348', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-31 02:02:18', '2017-08-31 02:02:18'),
+(1895, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-31 02:28:11', '2017-08-31 02:28:11'),
+(1896, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-31 02:38:56', '2017-08-31 02:38:56'),
+(1897, 18, '18814121642', 1900258455, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-31 02:50:29', '2017-08-31 02:50:29'),
+(1898, 1, '13226431320', 1900258455, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', '2017-08-31 04:00:28', '2017-08-31 04:00:28'),
+(1899, 16, '13265134316', 1900258455, 'LingDang/1.0 (iPhone; iOS 8.2; Scale/2.00)', '2017-08-31 06:30:41', '2017-08-31 06:30:41'),
+(1900, 16, '13265134316', 1900258455, 'LingDang/1.0 (iPhone; iOS 8.2; Scale/2.00)', '2017-08-31 06:30:41', '2017-08-31 06:30:41'),
+(1901, 16, '13265134316', 1900258455, 'LingDang/1.0 (iPhone; iOS 8.2; Scale/2.00)', '2017-08-31 06:31:06', '2017-08-31 06:31:06'),
+(1902, 1, '13226431320', 1900258455, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', '2017-08-31 06:34:59', '2017-08-31 06:34:59'),
+(1903, 18, '18814121642', 1947671217, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-31 07:39:20', '2017-08-31 07:39:20'),
+(1904, 16, '13265134316', 1903104558, 'LingDang/1.0 (iPhone; iOS 8.2; Scale/2.00)', '2017-08-31 08:53:19', '2017-08-31 08:53:19'),
+(1905, 18, '18814121642', 1947671217, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-08-31 10:17:08', '2017-08-31 10:17:08'),
+(1906, 18, '18814121642', 1903104558, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-09-01 01:23:54', '2017-09-01 01:23:54'),
+(1907, 16, '13265134316', 1903104558, 'LingDang/1.0 (iPhone; iOS 8.2; Scale/2.00)', '2017-09-01 01:25:22', '2017-09-01 01:25:22'),
+(1908, 1, '13226431320', 1903104558, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', '2017-09-01 01:41:39', '2017-09-01 01:41:39'),
+(1909, 18, '18814121642', 1903104558, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-09-01 03:05:29', '2017-09-01 03:05:29'),
+(1910, 18, '18814121642', 1903104558, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-09-01 03:08:15', '2017-09-01 03:08:15'),
+(1911, 18, '18814121642', 1903104558, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-09-01 03:12:18', '2017-09-01 03:12:18'),
+(1912, 18, '18814121642', 1903104558, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-09-01 03:17:42', '2017-09-01 03:17:42'),
+(1913, 18, '18814121642', 1903104558, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-09-01 03:56:08', '2017-09-01 03:56:08'),
+(1914, 18, '18814121642', 1903104558, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-09-01 06:11:57', '2017-09-01 06:11:57'),
+(1915, 18, '18814121642', 1903104558, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-09-01 06:36:32', '2017-09-01 06:36:32'),
+(1916, 18, '18814121642', 1903104558, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-09-01 06:37:49', '2017-09-01 06:37:49'),
+(1917, 18, '18814121642', 1903104558, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-09-01 06:43:58', '2017-09-01 06:43:58'),
+(1918, 18, '18814121642', 1903104558, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-09-01 07:01:54', '2017-09-01 07:01:54'),
+(1919, 18, '18814121642', 1903104558, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-09-01 07:05:57', '2017-09-01 07:05:57'),
+(1920, 18, '18814121642', 1903104558, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-09-01 07:06:49', '2017-09-01 07:06:49'),
+(1921, 18, '18814121642', 1903104558, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-09-01 07:27:03', '2017-09-01 07:27:03'),
+(1922, 18, '18814121642', 1903104558, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-09-01 07:29:11', '2017-09-01 07:29:11'),
+(1923, 1, '13226431320', 1903104558, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', '2017-09-01 08:23:00', '2017-09-01 08:23:00'),
+(1924, 18, '18814121642', 1903104558, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-09-01 09:59:18', '2017-09-01 09:59:18'),
+(1925, 18, '18814121642', 1903104558, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-09-01 10:01:55', '2017-09-01 10:01:55'),
+(1926, 18, '18814121642', 1903104558, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-09-01 10:45:39', '2017-09-01 10:45:39'),
+(1927, 18, '18814121642', 1903104558, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-09-01 10:45:58', '2017-09-01 10:45:58'),
+(1928, 18, '18814121642', 1903104558, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-09-01 10:46:57', '2017-09-01 10:46:57'),
+(1929, 18, '18814121642', 1903104558, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-09-01 10:56:13', '2017-09-01 10:56:13'),
+(1930, 18, '18814121642', 1903104558, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-09-01 10:57:32', '2017-09-01 10:57:32'),
+(1931, 18, '18814121642', 1903104558, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-09-01 10:59:06', '2017-09-01 10:59:06'),
+(1932, 18, '18814121642', 1903104558, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-09-01 11:01:50', '2017-09-01 11:01:50'),
+(1933, 18, '18814121642', 1903104558, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-09-01 11:03:56', '2017-09-01 11:03:56'),
+(1934, 18, '18814121642', 1903104558, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-09-01 11:06:30', '2017-09-01 11:06:30'),
+(1935, 18, '18814121642', 1903104558, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-09-01 11:07:18', '2017-09-01 11:07:18'),
+(1936, 18, '18814121642', 1903104558, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-09-01 11:07:56', '2017-09-01 11:07:56'),
+(1937, 18, '18814121642', 1903104558, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-09-01 11:09:19', '2017-09-01 11:09:19'),
+(1938, 1, '13226431320', 1903104558, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36', '2017-09-01 11:53:46', '2017-09-01 11:53:46'),
+(1939, 18, '18814121642', 1947671217, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-09-02 04:46:52', '2017-09-02 04:46:52'),
+(1940, 18, '18814121642', 2005001080, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-09-02 14:58:46', '2017-09-02 14:58:46'),
+(1941, 18, '18814121642', 2005001080, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-09-03 02:29:58', '2017-09-03 02:29:58'),
+(1942, 1, '13226431320', 1903128416, 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36', '2017-09-03 03:11:31', '2017-09-03 03:11:31'),
+(1943, 16, '13265134316', 1903104679, 'LingDang/1.0 (iPhone; iOS 8.2; Scale/2.00)', '2017-09-04 01:27:51', '2017-09-04 01:27:51'),
+(1944, 18, '18814121642', 1903104679, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-09-04 01:28:28', '2017-09-04 01:28:28'),
+(1945, 1, '13226431320', 1903104679, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', '2017-09-04 01:28:48', '2017-09-04 01:28:48'),
+(1946, 18, '18814121642', 1903104679, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-09-04 01:50:41', '2017-09-04 01:50:41'),
+(1947, 18, '18814121642', 1903104679, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-09-04 01:53:22', '2017-09-04 01:53:22'),
+(1948, 18, '18814121642', 1903104679, 'Dalvik/2.1.0 (Linux; U; Android 5.1; m1 metal Build/LMY47I)', '2017-09-04 02:11:25', '2017-09-04 02:11:25');
 
 -- --------------------------------------------------------
 
@@ -6075,9 +6751,8 @@ INSERT INTO `user_history` (`id`, `user_id`, `name`, `ip`, `user_agent`, `create
 -- 表的结构 `user_share`
 --
 
-DROP TABLE IF EXISTS `user_share`;
 CREATE TABLE IF NOT EXISTS `user_share` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
   `userdynamics_id` int(11) DEFAULT NULL,
   `pid` int(11) DEFAULT NULL,
@@ -6087,7 +6762,7 @@ CREATE TABLE IF NOT EXISTS `user_share` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
   KEY `user_share_userdynamics_id_index` (`userdynamics_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=41 ;
 
 --
 -- 转存表中的数据 `user_share`
@@ -6109,17 +6784,12 @@ INSERT INTO `user_share` (`id`, `user_id`, `userdynamics_id`, `pid`, `share_cont
 (13, 18, 94, NULL, '哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈还', '', '2017-07-19 03:13:10', '2017-07-19 03:13:10'),
 (14, 18, 94, NULL, '好几个', '', '2017-07-19 03:20:41', '2017-07-19 03:20:41'),
 (15, 18, 94, NULL, 'hi路V领里PS', '', '2017-07-19 03:24:55', '2017-07-19 03:24:55'),
-(16, 18, 98, NULL, '‘’‘’‘’', '', '2017-07-19 03:25:26', '2017-07-19 03:25:26'),
 (17, 18, 94, NULL, '啥时候', '', '2017-07-19 03:27:40', '2017-07-19 03:27:40'),
 (18, 18, 94, NULL, '呵呵哈哈哈', '', '2017-07-19 03:29:57', '2017-07-19 03:29:57'),
 (19, 18, 94, NULL, '‘’‘’‘’好好好', '', '2017-07-19 03:30:14', '2017-07-19 03:30:14'),
 (20, 18, 94, NULL, '熟睡谁谁谁', '', '2017-07-19 06:09:53', '2017-07-19 06:09:53'),
 (21, 18, 94, NULL, '‘’‘’‘’‘’‘’‘’‘’‘’‘’‘', '', '2017-07-19 06:11:43', '2017-07-19 06:11:43'),
-(22, 18, 98, 16, '呵呵哈哈哈', '', '2017-07-19 06:13:00', '2017-07-19 06:13:00'),
-(23, 18, 98, 16, '几个后悔好', '', '2017-07-19 06:17:33', '2017-07-19 06:17:33'),
-(24, 18, 98, 16, '哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈还', '', '2017-07-19 06:17:45', '2017-07-19 06:17:45'),
 (25, 18, 94, 21, '厉害', '', '2017-07-19 07:06:06', '2017-07-19 07:06:06'),
-(37, 18, 98, 24, '哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈还', '', '2017-07-21 02:37:21', '2017-07-21 02:37:21'),
 (27, 18, 94, 21, '好了了了了了了', '', '2017-07-19 07:36:09', '2017-07-19 07:36:09'),
 (28, 18, 94, 21, '啦啦啦', '', '2017-07-19 09:15:17', '2017-07-19 09:15:17'),
 (29, 18, 94, 21, '空军建军节', '', '2017-07-19 09:15:21', '2017-07-19 09:15:21'),
@@ -6131,7 +6801,8 @@ INSERT INTO `user_share` (`id`, `user_id`, `userdynamics_id`, `pid`, `share_cont
 (35, 18, 94, 21, '老K里hi', '', '2017-07-19 09:15:40', '2017-07-19 09:15:40'),
 (36, 18, 94, 21, '他了了了了了', '', '2017-07-19 09:15:53', '2017-07-19 09:15:53'),
 (38, 1, 96, 0, '嘿嘿', '', '2017-08-10 09:57:41', '2017-08-10 09:57:41'),
-(39, 1, 104, 0, '11313', NULL, '2017-08-11 09:24:52', '2017-08-11 09:24:52');
+(39, 1, 104, 0, '11313', NULL, '2017-08-11 09:24:52', '2017-08-11 09:24:52'),
+(40, 18, 106, 0, '呵呵哈哈哈', '', '2017-08-16 02:57:38', '2017-08-16 02:57:38');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

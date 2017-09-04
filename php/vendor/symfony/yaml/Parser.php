@@ -86,10 +86,6 @@ class Parser
             }
         }
 
-        if (Yaml::PARSE_KEYS_AS_STRINGS & $flags) {
-            @trigger_error('Using the Yaml::PARSE_KEYS_AS_STRINGS flag is deprecated since version 3.4 as it will be removed in 4.0. Quote your keys when they are evaluable instead.', E_USER_DEPRECATED);
-        }
-
         if (false === preg_match('//u', $value)) {
             throw new ParseException('The YAML value does not appear to be valid UTF-8.');
         }
@@ -212,7 +208,7 @@ class Parser
                     $this->refs[$isRef] = end($data);
                 }
             } elseif (
-                self::preg_match('#^(?P<key>(?:![^\s]++\s++)?(?:'.Inline::REGEX_QUOTED_STRING.'|(?:!?!php/const:)?[^ \'"\[\{!].*?)) *\:(\s++(?P<value>.+))?$#u', rtrim($this->currentLine), $values)
+                self::preg_match('#^(?P<key>'.Inline::REGEX_QUOTED_STRING.'|(?:!?!php/const:)?(?:![^\s]++\s++)?[^ \'"\[\{!].*?) *\:(\s++(?P<value>.+))?$#u', rtrim($this->currentLine), $values)
                 && (false === strpos($values['key'], ' #') || in_array($values['key'][0], array('"', "'")))
             ) {
                 if ($context && 'sequence' == $context) {
@@ -240,7 +236,7 @@ class Parser
                     throw $e;
                 }
 
-                if (!is_string($key) && !is_int($key)) {
+                if (!(Yaml::PARSE_KEYS_AS_STRINGS & $flags) && !is_string($key) && !is_int($key)) {
                     $keyType = is_numeric($key) ? 'numeric key' : 'non-string key';
                     @trigger_error(sprintf('Implicit casting of %s to string is deprecated since version 3.3 and will throw \Symfony\Component\Yaml\Exception\ParseException in 4.0. Quote your evaluable mapping keys instead.', $keyType), E_USER_DEPRECATED);
                 }
@@ -457,11 +453,9 @@ class Parser
     /**
      * Returns the current line number (takes the offset into account).
      *
-     * @internal
-     *
      * @return int The current line number
      */
-    public function getRealCurrentLineNb()
+    private function getRealCurrentLineNb()
     {
         $realCurrentLineNumber = $this->currentLineNb + $this->offset;
 
