@@ -619,7 +619,7 @@ class Apicontroller extends Controller
             ->orderBy('read_amount', 'desc')
             ->limit(10)
             ->get()->toArray();
-        $data['hot_topic'] = $topic_data ?: [];
+        $data['hot_topic'] = $topic_data ?: new Object_();
         //热门动态（热门动态：转发率，评论，点赞，其中一样在5个小时内高达200，24小时内高达3000的动态;
         /**点赞，转发统计 ，判断是否是好友动态，判断用户登录状态,添加转发动态*/
         if (Auth::check() == true || $user_id) {
