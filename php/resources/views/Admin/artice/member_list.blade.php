@@ -44,6 +44,8 @@
                             <th>手机</th>
                             <th>邮箱</th>
                             <th>地址</th>
+                            <th>是否为主播</th>
+
                             <th>账户余额</th>
                             <th style="width: 130px;">管理操作</th>
                         </tr>

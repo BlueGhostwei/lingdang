@@ -103,16 +103,6 @@ class Bell_userController extends Controller
      */
     public function Send_sms()
     {
-		
-	 	$myfile = fopen("sms_send.txt","w");
-         fwrite($myfile,var_export(Input::all(),true));
-         fclose($myfile);
-		
-		
-	     /*
-		 return json_encode(['sta' => '1', 'msg' => '测试成功', 'data' => ""], JSON_UNESCAPED_UNICODE);*/
-		
-		
         $mobile = Input::get('mobile');
         $type = Input::get('type');
         $sendsms = new SendSMS();
@@ -155,17 +145,6 @@ class Bell_userController extends Controller
                 return json_encode(['sta' => '0', 'msg' => '请求失败,昵称已被占用', 'data' => ""]);
             }
         }
-       /* $data['location'] = Input::get('location');
-        $data['avatar'] = Input::get('avatar');
-        $data['phone'] = Input::get('mobile');
-        $data['birthday'] = Input::get('birthday');
-        $data['wechat'] = trim(Input::get('wechat'));
-        $data['height'] = trim(Input::get('height'));
-        $data['nickname'] = Input::get('nickname');
-        $data['gender'] = Input::get('gender');
-        $signature = Input::get('signature');*/
-       /* $data['birthday'] = Input::get('birthday');*/
-        //$data['bady_age'] = Controller::calcAge($data['birthday']);//格式如：1994-09-09
         if ($bady) {
             $bady->update($request->all());
         } else {
@@ -235,7 +214,8 @@ class Bell_userController extends Controller
         public function  bady_list()
         {
             $user_id=Auth::id();
-            $badylist=Bell_user::where('user_id', $user_id)->select("bname","signature","bimg","bgender","birthday","bheight","bweight","remind")->first();
+            $badylist=Bell_user::where('user_id', $user_id)
+                ->select("bname","signature","bimg","bgender","birthday","bheight","bweight","remind")->first();
 			$badylist['bimg']=md52url($badylist['bimg']);
 	
             if ($badylist) {
@@ -243,8 +223,6 @@ class Bell_userController extends Controller
             } else {
                 return json_encode(['msg' => '请求失败', 'data' => '', 'sta' => '0']);
             }
-
-
         }
 
 	
@@ -409,39 +387,32 @@ class Bell_userController extends Controller
      */
     public function user_login()
     {
-		
-		
-		 /*$myfile = fopen("user_log.txt","w");
-         fwrite($myfile,var_export(Input::all(),true));
-         fclose($myfile);*/
-		 // return json_encode(['msg' => '登录成功', 'sta' => '1', 'data' => ""]);
-		
         $username = Input::get('name');
         $password = Input::get('password');
         $remember = Input::get('remember', true);
         $field = isEmail($username) ? 'email' : 'name';
         $redirect = urldecode(Input::get('redirect', '/'));
-        $data['id'] = User::where(array(
+        $data['id'] = User::where([
             'name' => $username,
             'deleted_at' => NULL,
             'type' => 1
-        ))->get();
+        ])->get();
         if (count($data['id']->toArray()) > 0) {
             $id_data = $data['id']->toArray();
             $data['id'] = $id_data['0']['id'];
+            $whether=$id_data["0"]["whether"];
             $rst = Auth::attempt([$field => $username, $field => $username, 'password' => $password], $remember);
             if ($rst == false) {
                 return json_encode(['msg' => "用户名或者密码错误", 'sta' => 0, 'data' => '']);
             }
-			
 			$dynmics=User_dynamics::where('user_id',Auth::id())->count();
             //获取用户关注好友个数Userattention
             $attention=Userattention::where('user_id',Auth::id())->count();
             //获取关注用户粉丝个数
             $Fans=Userattention::where('attention_userid',Auth::id())->count();
-
             //记录登陆状态
             $arr=['token'=>Input::get('_token'),'time'=>time()];
+
             Redis::set($username.'_token',json_encode($arr));
             $data = ([
                 'id' => $data['id'],
@@ -452,8 +423,7 @@ class Bell_userController extends Controller
                 'dynmics'=>$dynmics,
                 'attention'=>$attention,
                 'fans'=>$Fans,
-
-
+                'whether' => $whether
             ]);
             return json_encode(['msg' => '登录成功', 'sta' => '1', 'data' => $data]);
         } else {

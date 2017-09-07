@@ -446,7 +446,7 @@ class ComposerStaticInit2504071ee10256eb99303ffcc316ffab
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'App\\UserGallery\\Models' => __DIR__ . '/../..' . '/app/UserGallery/Models.php',
-        'App\\libs\\ServerAPI' => __DIR__ . '/../..' . '/app/libs/ServerAPI.php',
+        'App\\libs\\ServerAPI' => __DIR__ . '/../..',
         'Barryvdh\\LaravelIdeHelper\\Alias' => __DIR__ . '/..' . '/barryvdh/laravel-ide-helper/src/Alias.php',
         'Barryvdh\\LaravelIdeHelper\\Console\\GeneratorCommand' => __DIR__ . '/..' . '/barryvdh/laravel-ide-helper/src/Console/GeneratorCommand.php',
         'Barryvdh\\LaravelIdeHelper\\Console\\MetaCommand' => __DIR__ . '/..' . '/barryvdh/laravel-ide-helper/src/Console/MetaCommand.php',
