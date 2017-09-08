@@ -68,6 +68,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::any('alipay/webReturn', ['as' => 'alipay.webReturn', 'uses' => 'PaymentController@webReturn']);//同步通知页面路径。
         Route::any('alipay/AlipayMobile', ['as' => 'alipay.AlipayMobile', 'uses' => 'OrderController@AlipayMobile']);//手机支付请求
         Route::any('alipay/alipayNotify', ['as' => 'alipay.alipayNotify', 'uses' => 'PaymentController@alipayNotify']);//手机支付异步通知
+        // 查询物流
+        Route::any('alipay/GetLogistics', ['as' => 'alipay.GetLogistics', 'uses' => 'PaymentController@GetLogistics']);//手机支付异步通知
         //支付接口(微信)
 
 
@@ -100,7 +102,6 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('user/bady_list', ['as' => 'user.bady_list', 'uses' => 'Bell_userController@bady_list']);//获取宝贝的资料
         Route::get('user/my_mine', ['as' => 'user.my_mine', 'uses' => 'Apicontroller@my_mine']);//转发
         Route::get('/gclass/systems', ['as' => 'gclass.systems', 'uses' => 'ClassificationController@systems']);//系统消息
-
         //商品分类管理
        Route::get('/gclass/index', ['as' => 'gclass.index', 'uses' => 'ClassificationController@index']);//商品一级分类列表
 	   Route::get('/gclass/queryclass', ['as' => 'gclass.querysclass', 'uses' => 'ClassificationController@queryclass']);//获取商品的信息
