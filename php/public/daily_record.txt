@@ -1,0 +1,8 @@
+array (
+  'Authority' => '0',
+  '_token' => 'V2hvteWmntXgDPs1ERaXTGL8vHnAr1IybrCFwtOK',
+  'content' => 'shark哈哈哈哈哈哈',
+  'img_photo' => '4375ed8f73ae18b6d475f187bc4d826d002',
+  'remind_friend' => '',
+  'user_id' => '16',
+)

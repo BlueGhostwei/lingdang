@@ -77,10 +77,8 @@
 <!--Smart Resize-->
 <script src="/js/smart-resize.js?v={{ env('VERSION') }}"></script>
 {{--js调用参考, 不要去掉注释--}}
-<script style="{{url('js/layer/layer.js')}}" type="text/javascript"></script>
-
-
 <script src="/js/sea.js?v={{ env('VERSION') }}"></script>
+<script src="{{url('js/layer/layer.js')}}"></script>
 <script>
     seajs.config({
         dir_app : '/static/js/',

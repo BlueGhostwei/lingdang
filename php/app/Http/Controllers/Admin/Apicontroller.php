@@ -945,8 +945,7 @@ class Apicontroller extends Controller
                 ->select('user.id', 'user.avatar', 'user.nickname', 'user.signature')
                 ->where('user.id','<>',$user_id)
                 ->offset($page)->orderBy('id', 'desc')
-                ->limit(10)->get()->toArray();
-        //获取好友列表
+                ->limit(10)->get()->toArray();        //获取好友列表
         if ($UserFansList) {
             foreach ($UserFansList as $ky => &$vy) {
                 if (!empty($vy['avatar'])) {
@@ -958,6 +957,7 @@ class Apicontroller extends Controller
         } else {
             $UserFansList = [];
         }
+        dd($UserFansList);
         return json_encode(['sta' => "1", 'data' => $UserFansList, 'msg' => "请求成功"]);
     }
 
@@ -1279,10 +1279,7 @@ class Apicontroller extends Controller
             return json_encode(['sta' => '0', 'msg' => "请求失败", 'data' => '']);
         }
     }
-
-
     /**
-     *
      * 用户评论
      * 无限循环评论，用户回复评论，获取上级评论id作为此次回复的pid。
      * 评论消息通知；
@@ -1374,8 +1371,6 @@ class Apicontroller extends Controller
         //dd($set_diary);
         return json_encode(['msg' => "请求成功", 'sta' => '1', 'data' => $set_diary]);
     }
-
-
     /**
      * @param $category_id
      * @return string
@@ -1389,8 +1384,6 @@ class Apicontroller extends Controller
             $category_ids .= $this->get_category($val->id);
         return $category_ids;
     }
-
-
     /**
      * @return mixed
      *获取用户详细信息.
@@ -1418,12 +1411,17 @@ class Apicontroller extends Controller
         $data['fans'] = Userattention::where('attention_userid', $user_id)->count();
         return json_encode(["sta" => '1', 'msg' => '请求成功', 'data' => $data]);
     }
-
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+
+    public function api_logout(){
+        Auth::logout();
+        return json_encode(["sta" => '1', 'msg' => '退出成功', 'data' => ""]);
+    }
 
     public function create()
     {

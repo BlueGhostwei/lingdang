@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\AclUser;
 use App\Models\Goods;
+use App\Models\Order;
+use App\Models\Order_goods_info;
 use App\Models\Sort;
+use App\Models\User,App\Models\Site;
 use Faker\Provider\Image;
 use Hamcrest\Type\IsNumeric;
 use Redirect;
@@ -610,8 +613,39 @@ class ArticeControll extends Controller
      */
     public function order()
     {
-
-        return view('Admin.artice.order');
+        $orderList = Order::orderBy('id', 'desc')->paginate(10);
+        if ($orderList) {
+            foreach ($orderList as $key => &$vey) {
+                //查询用户名
+                $Setname = User::find($vey['user_id']);
+                if ($Setname) {
+                    $vey['username'] = $Setname->nickname ?: $Setname->name;
+                }
+                //查询物流地址
+                $GetUserSite = Site::where('sid', $vey['address'])->first();
+                if ($GetUserSite) {
+                    $vey['user_address'] = $GetUserSite->area . $GetUserSite->street . $GetUserSite->district . $GetUserSite->scene . $GetUserSite->scontent;
+                }
+                //获取商品名称
+                $OrerInfo = Order_goods_info::where('order_id', $vey['order_id'])->get()->toArray();
+                if ($OrerInfo) {
+                    foreach ($OrerInfo as $r => $t) {
+                        if (!empty($OrerInfo) && count($OrerInfo) > 3) {
+                            if (!empty($vey['goods_name'])) {
+                                $vey['goods_name'] = Goods::find($t['goods_id'])->goods_title . '等多件商品';
+                            }
+                        } else {
+                            if (isset($vey['goods_name']) && !empty($vey['goods_name'])) {
+                                $vey['goods_name'] = $vey['goods_name'] . '|' . Goods::find($t['goods_id'])->goods_title;
+                            } else {
+                                $vey['goods_name'] = Goods::find($t['goods_id'])->goods_title;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return view('Admin.artice.order', ['orderList' => $orderList]);
     }
 
     /**

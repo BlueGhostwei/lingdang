@@ -370,14 +370,13 @@ class Bell_userController extends Controller
                 if ($data) {
                     Redis::del('user_SMS_' . $data['name']);
                     Redis::del('user_Send_num_' . $data['name']);
+                    Auth::login($use_data);
                     return json_encode(['sta' => "1", 'msg' => '注册成功', 'data' => $use_data], JSON_UNESCAPED_UNICODE);
                 }
             } else {
                 return json_encode(['msg' => "验证码错误", 'sta' => "0", 'data' => '']);
             }
         }
-
-
     }
 
 
@@ -423,7 +422,8 @@ class Bell_userController extends Controller
                 'dynmics'=>$dynmics,
                 'attention'=>$attention,
                 'fans'=>$Fans,
-                'whether' => $whether
+                'whether' => $whether,
+                'nickname'=>$id_data[0]['nickname']
             ]);
             return json_encode(['msg' => '登录成功', 'sta' => '1', 'data' => $data]);
         } else {

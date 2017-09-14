@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Attributes;
 use App\Models\Brand;
+use App\Models\Order;
+use App\Models\Site;
 use Illuminate\Http\Request;
 use App\Models\Sort;
 use Input;
@@ -341,20 +343,61 @@ class SortController extends Controller
         return view('Admin.artice.B_dingdan_backlist', ['sort' => $sort]);
     }
 
+    /***
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function B_dingdan_read()
     {
-
-        $sort = $this->get_sort_data();
-        return view('Admin.artice.B_dingdan_read', ['sort' => $sort]);
+        $order_id=Input::get('order_id');
+        $setdata=Order::where('order_id',$order_id)->get()->toArray();
+        $result=$this->OrderInfo($setdata);
+        foreach ($result as $k =>&$v){
+            $v['payUser']=$this->get_user_info($v['user_id']);
+            //获取收货人信息addres
+            $v['site']=$this->Addressdata($v['address']);
+        }
+        return view('Admin.artice.B_dingdan_read',['orderInfo'=>$result]);
     }
 
+
+    /**
+     * @return string
+     * 更新订单状态
+     */
+    public function UpdateOrderType(){
+        $order_id=Input::get('order_id');
+        $order_type=Input::get('order_type');
+        $GetOrder=Order::where('order_id',$order_id)->first();
+        if($GetOrder){
+            if($GetOrder['status']=='0'){
+                return json_encode(['sta'=>'0','msg'=>"请求失败,订单未支付",'data'=>""]);
+            }
+        }else{
+            //判断订单状态，已完成的订单不能修改订单状态。
+            Order::where('order_id',$order_id)->update([
+               'status'=>$order_type
+            ]);
+        }
+        return json_encode(['sta'=>1,'msg'=>'请求成功','data'=>'']);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     */
     public function B_backlist_read()
     {
-
         $sort = $this->get_sort_data();
         return view('Admin.artice.B_backlist_read', ['sort' => $sort]);
     }
 
+    private function Addressdata($id){
+        $GetUserSite=Site::where('sid',$id)->first();
+        if ($GetUserSite) {
+            $GetUserSite['user_address'] = $GetUserSite->area . $GetUserSite->street . $GetUserSite->district . $GetUserSite->scene . $GetUserSite->scontent;
+        }
+        return $GetUserSite;
+    }
 
     /**
      * Remove the specified resource from storage.

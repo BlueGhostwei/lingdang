@@ -1,0 +1,7 @@
+Symfony\Component\HttpFoundation\File\UploadedFile::__set_state(array(
+   'test' => false,
+   'originalName' => 'p22137288.jpg',
+   'mimeType' => 'image/jpeg',
+   'size' => 72840,
+   'error' => 0,
+))

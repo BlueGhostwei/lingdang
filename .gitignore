@@ -1,7 +1,0 @@
-php/.env
-.idea/
-*.sql
-*.rar
-php/public/files/
-*.txt
-php/vendor/

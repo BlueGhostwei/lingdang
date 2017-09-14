@@ -6,8 +6,9 @@ use App\Http\Controllers\Admin\UploadController;
 use App\Models\User;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Arr;
-use App\Models\Sort;
+use App\Models\Sort,App\Models\Goods,App\Models\Brand;
 use App\Models\Attributes;
+
 
 /**
  * 修改角色权限时, 判断是否选中某个功能
@@ -453,10 +454,7 @@ function share_img($url,$type='weixin',$rep_id='')
     }else{
         return '';
     }
-
 }
-
-
 //微信内容多图片爬取
 function content_img($arr_url)
 {
@@ -653,6 +651,25 @@ function get_val($arr_data, $obj = '')
         return $data;
     } else {
         return '请确认$arr_data参数为数组';
+    }
+}
+//获取商品名称
+function GetGoodsName($id){
+ $goods=Goods::find($id);
+ if($goods){
+  return $goods['goods_title'];
+ }
+}
+function SortName($id){
+    if($id){
+        $result=Sort::find($id);
+        return $result->name;
+    }
+}
+function BrandName($Bid){
+    if($Bid){
+        $result=Brand::find($Bid);
+        return $result->brand_name;
     }
 }
 

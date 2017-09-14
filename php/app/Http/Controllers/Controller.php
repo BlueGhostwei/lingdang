@@ -12,6 +12,8 @@ use Input;
 use App\Models\Sort;
 use DB;
 use App\Models\User_share;
+use App\Models\Order;
+use App\Models\Order_goods_info,App\Models\Goods,App\Models\Goods_standard,App\Models\Attributes,App\Models\Dgoods;
 use phpDocumentor\Reflection\Types\Object_;
 
 abstract class Controller extends BaseController
@@ -266,7 +268,7 @@ abstract class Controller extends BaseController
      */
     public function get_user_info($id)
     {
-        $rst = User::where('id',$id)->select('id','nickname','avatar')->get()->toArray();
+        $rst = User::where('id',$id)->select('id','nickname','avatar','name')->get()->toArray();
         if(!empty( $rst)){
             foreach($rst as $key=>$rvb){
                 if($rst[$key]['avatar']){
@@ -303,6 +305,90 @@ abstract class Controller extends BaseController
      */
     public function ContentProcess($content){
         return trim(htmlspecialchars(str_replace(array("\r\n", "\r", "\n"), "", strip_tags($content))));
+    }
+
+    /**
+     * @param $DataList
+     * arr_name
+     * @return mixed
+     * 获取列表商品详情
+     */
+    protected function OrderInfo($DataList)
+    {
+        if ($DataList) {
+            foreach ($DataList as $k => &$vel) {
+                $vel['goods'] = Order_goods_info::where('order_id', $vel['order_id'])
+                    ->select('goods_id', 'specif', 'brand_id', 'goods_num', 'goods_name','geval')
+                    ->get()->toArray();
+                $vel['pay_count']=count($vel['goods']);
+                $vel['remark'] = $vel['remark'] ?: "";
+                foreach ($vel['goods'] as $r => &$v) {
+                    if ($v['specif'] != '') {
+                        $GetPrice=Goods_standard::where(['goods_id'=>$v['goods_id'],'attributes_id'=>$v['specif']])->first();
+                        $v['price']=$GetPrice->price;
+                        $v['stock']=$GetPrice->stock;
+                        $v['specif'] = $this->SpcifName($v['goods_id'], $v['specif']);
+                    }
+                    $v['goods_info'] = $this->Set_goods_data($v['goods_id']);
+                }
+            }
+            return $DataList;
+        }
+    }
+
+    /**
+     * 获取规格名称
+     */
+    private function SpcifName($id, $name)
+    {
+        $StrArr = explode(',', $name);
+        if (!empty($StrArr)) {
+            $GoodSort = Goods::find($id);
+            if ($GoodSort) {
+                $sort_name = "";
+                foreach ($StrArr as $key => $vey) {
+                    $Att = Attributes::where(['sort_id' => $GoodSort->sort_id, 'id' => $vey])->first();
+                    if ($sort_name != '') {
+                        $sort_name = $sort_name . ',' . $sort_name = $Att->arr_name;
+                    } else {
+                        $sort_name = $sort_name = $Att['arr_name'];
+                    }
+                }
+                return $sort_name;
+            }
+        }
+    }
+    /**
+     * @param $goods_id
+     * @return array|string
+     * 获取商品详情
+     */
+    private function Set_goods_data($goods_id)
+    {
+        $class_sort = Goods::where('id', $goods_id)->first()->toArray();
+        if (!$class_sort) {
+            $class_sort = "";
+        } else {
+            $goods_sort = Dgoods::where('gid', $goods_id)->orderBy('id', 'desc')->first();
+            if (!empty($goods_sort)) {
+                $goods_sort['dimg'] = md52url($goods_sort['dimg']);
+                $good_user = $this->get_user_info($goods_sort['uid']);
+                $good_user['avatar'] = md52url($good_user['avatar']);
+                $class_sort['good_sort'] =$goods_sort;
+                $class_sort['good_user'] =$good_user;
+            }
+            //处理商品详情信息strip_tags
+            $class_sort["content"] = $this->ContentProcess($class_sort["content"]);
+            $class_sort["Thumbnails"] = md52url($class_sort["Thumbnails"]);
+            $plan = $class_sort["plan"];
+            $plans = explode(',', $plan);
+            $plangs = array();
+            for ($i = 0; $i < count($plans); $i++) {
+                $plangs[] = md52url($plans[$i]);
+            }
+            $class_sort["plan"] = $plangs;
+        }
+        return $class_sort;
     }
 
 

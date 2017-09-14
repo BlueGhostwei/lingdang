@@ -43,20 +43,16 @@ Route::group(['middleware' => 'guest'], function () {
         //ios
         Route::get('user/Get_Token', 'UserController@GEt_token');
 
-
-        Route::post('user/send_sms', ['as' => 'user.send_sms', 'uses' => 'Bell_userController@Send_sms']);
+        Route::post('user/send_sms', ['as' => 'user.send_sms', 'uses' => 'Bell_userController@Send_sms']);//发送短信
         Route::get('user/HomeData', ['as' => 'user.HomeData', 'uses' => 'Apicontroller@HomeData']);//首页数据
 		Route::get('user/SetUserdynamics_share', ['as' => 'user.SetUserdynamics_share', 'uses' => 'Apicontroller@SetUserdynamics_share']);//获取动态评论
 		Route::get('user/share_Commented', ['as' => 'user.share_Commented', 'uses' => 'Apicontroller@share_Commented']);//获取评论详情
 		Route::get('user/praise_list', ['as' => 'user.praise_list', 'uses' => 'Apicontroller@praise_list']);//我的动态点赞列表
 		Route::get('user/Set_Topic', ['as' => 'user.Set_Topic', 'uses' => 'Apicontroller@Set_Topic']);//点击查看话题
-	
         //手机.邮箱用户登录
 		Route::get('user/Api_logo', ['as' => 'user.Api_logo', 'uses' => 'Apicontroller@Api_logo']);	
-		Route::get('user/user_login', ['as' => 'user.user_login', 'uses' => 'Bell_userController@user_login']);
+		Route::post('user/user_login', ['as' => 'user.user_login', 'uses' => 'Bell_userController@user_login']);
 		Route::get('check_user_login',"Apicontroller@check_user_login");//验证登录状态
-		
-		
     });
 });
 
@@ -67,19 +63,19 @@ Route::group(['middleware' => 'auth'], function () {
         Route::any('alipay/payment', ['as' => 'alipay.payment', 'uses' => 'PaymentController@webNotify']);//异步通知页面路径。
         Route::any('alipay/webReturn', ['as' => 'alipay.webReturn', 'uses' => 'PaymentController@webReturn']);//同步通知页面路径。
         Route::any('alipay/AlipayMobile', ['as' => 'alipay.AlipayMobile', 'uses' => 'OrderController@AlipayMobile']);//手机支付请求
+        Route::any('alipay/AliPayClient', ['as' => 'alipay.AliPayClient', 'uses' => 'OrderController@AliPayClient']);//ios支付请求
         Route::any('alipay/alipayNotify', ['as' => 'alipay.alipayNotify', 'uses' => 'PaymentController@alipayNotify']);//手机支付异步通知
+        Route::any('alipay/webpayment', ['as' => 'alipay.webpayment', 'uses' => 'PaymentController@webpayment']);//网页测试支付
         // 查询物流
         Route::any('alipay/GetLogistics', ['as' => 'alipay.GetLogistics', 'uses' => 'PaymentController@GetLogistics']);//手机支付异步通知
         //支付接口(微信)
-
-
         Route::get('/', ['as' => 'admin.dashboard', 'uses' => 'DashboardController@index']);
         //ios登陆接口
         Route::post('user/baby_info', ['as' => 'user.baby_info', 'uses' => 'Bell_userController@baby_info']);
         Route::get('user/User_Integration', ['as' => 'user.User_Integration', 'uses' => 'Bell_userController@User_Integration']);
         Route::get('user/UserInfo', ['as' => 'user.UserInfo', 'uses' => 'Apicontroller@UserInfo']);
         Route::post('user/add_friend', ['as' => 'user.add_friend', 'uses' => 'Bell_userController@add_attention']);
-        Route::get('user/daily_record', ['as' => 'user.daily_record', 'uses' => 'Apicontroller@daily_record']);//发表日记
+        Route::post('user/daily_record', ['as' => 'user.daily_record', 'uses' => 'Apicontroller@daily_record']);//发表日记
         Route::get('user/Get_friend_list', ['as' => 'user.Get_friend_list', 'uses' => 'Bell_userController@Get_friend_list']);
         Route::post('user/Collection_diary', ['as' => 'user.Collection_diary', 'uses' => 'Apicontroller@Collection_diary']);//点赞
         Route::get('user/User_Share', ['as' => 'user.User_Share', 'uses' => 'Apicontroller@User_Share']);//好友动态评论
@@ -103,9 +99,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('user/my_mine', ['as' => 'user.my_mine', 'uses' => 'Apicontroller@my_mine']);//转发
         Route::get('/gclass/systems', ['as' => 'gclass.systems', 'uses' => 'ClassificationController@systems']);//系统消息
         //商品分类管理
-       Route::get('/gclass/index', ['as' => 'gclass.index', 'uses' => 'ClassificationController@index']);//商品一级分类列表
-	   Route::get('/gclass/queryclass', ['as' => 'gclass.querysclass', 'uses' => 'ClassificationController@queryclass']);//获取商品的信息
-	   Route::get('/gclass/commodity', ['as' => 'gclass.commodity', 'uses' => 'ClassificationController@commodity']);//获取商品详情信息
+        Route::get('/gclass/index', ['as' => 'gclass.index', 'uses' => 'ClassificationController@index']);//商品一级分类列表
+	    Route::get('/gclass/queryclass', ['as' => 'gclass.querysclass', 'uses' => 'ClassificationController@queryclass']);//获取商品的信息
+	    Route::get('/gclass/commodity', ['as' => 'gclass.commodity', 'uses' => 'ClassificationController@commodity']);//获取商品详情信息
         Route::get('goods/jsfengoods_list', ['as' => 'goods.jsfengoods_list', 'uses' => 'SortController@jsfengoods_list']);
         Route::get('gclass/choose', ['as' => 'gclass.choose', 'uses' => 'ClassificationController@choose']);//商品列表
 
@@ -213,16 +209,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('sort/storeBrand', ['as' => 'sort.storeBrand', 'uses' => 'SortController@storeBrand']);//添加分类品牌
         Route::get('/goods/collection', ['as' => 'goods.collection', 'uses' => 'GoodsController@collection']);//商品收藏
         Route::get('/goods/colist', ['as' => 'goods.colist', 'uses' => 'GoodsController@colist']);//商品收藏列表
-
         Route::get('/goods/GoodsCouponList', ['as' => 'goods.GoodsCouponList', 'uses' => 'GoodsController@GoodsCouponList']);//商品优惠券列表
         Route::get('/goods/GoodsCoupon', ['as' => 'goods.GoodsCoupon', 'uses' => 'GoodsController@GoodsCoupon']);//商品优惠券添加
         Route::post('goods/GoodsCouponSave', ['as' => 'goods.GoodsCouponSave', 'uses' => 'GoodsController@GoodsCouponSave']);//创建优惠券
         Route::get('goods/coupon_show', ['as' => 'goods.coupon_show', 'uses' => 'GoodsController@coupon_show']);
         Route::post('goods/GoodsCouponUpdate', ['as' => 'goods.GoodsCouponUpdate', 'uses' => 'GoodsController@GoodsCouponUpdate']);
         Route::get('goods/coupon_dele', ['as' => 'goods.coupon_dele', 'uses' => 'GoodsController@coupon_dele']);
-
 		Route::get('/gclass/goods_hot', ['as' => 'gclass.goods_hot', 'uses' => 'ClassificationController@goods_hot']);//热卖推荐
-
         //地址管理
         Route::get('/gclass/address', ['as' => 'gclass.address', 'uses' => 'ClassificationController@address']);//添加地址管理
         Route::get('/gclass/ressdel', ['as' => 'gclass.ressdel', 'uses' => 'ClassificationController@ressdel']);//删除地址管理
@@ -260,9 +253,10 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('artice/B_dingdan_deliverylist', ['as' => 'artice.B_dingdan_deliverylist', 'uses' => 'SortController@B_dingdan_deliverylist']);
 		Route::get('artice/B_dingdan_Nodeliverylist', ['as' => 'artice.B_dingdan_Nodeliverylist', 'uses' => 'SortController@B_dingdan_Nodeliverylist']);
 		Route::get('artice/B_dingdan_backlist', ['as' => 'artice.B_dingdan_backlist', 'uses' => 'SortController@B_dingdan_backlist']);
-		Route::get('artice/B_dingdan_read', ['as' => 'artice.B_dingdan_read', 'uses' => 'SortController@B_dingdan_read']);
+		Route::get('artice/B_dingdan_read', ['as' => 'artice.B_dingdan_read', 'uses' => 'SortController@B_dingdan_read']);//订单详情
+		Route::get('artice/UpdateOrderType', ['as' => 'order.UpdateOrderType', 'uses' => 'SortController@UpdateOrderType']);//订单详情
 		Route::get('artice/B_backlist_read', ['as' => 'artice.B_backlist_read', 'uses' => 'SortController@B_backlist_read']);
-		/*
+		/**
 		 *直播 管理
 		 */
         Route::get('anchor/index', ['as' => 'anchor.index', 'uses' => 'AnchorController@index']);

@@ -154,8 +154,9 @@ return [
          * Develop Service Providers
          */
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
-        //支付宝
+        //手机支付宝
         Latrell\Alipay\AlipayServiceProvider::class,
+
 
 
     ],
@@ -172,7 +173,6 @@ return [
     */
 
     'aliases' => [
-
         'App'       => Illuminate\Support\Facades\App::class,
         'Artisan'   => Illuminate\Support\Facades\Artisan::class,
         'Auth'      => Illuminate\Support\Facades\Auth::class,
@@ -211,7 +211,6 @@ return [
          */
         'Image' => Intervention\Image\Facades\Image::class,
         'Captcha' => Mews\Captcha\Facades\Captcha::class,
-
     ],
 
 ];

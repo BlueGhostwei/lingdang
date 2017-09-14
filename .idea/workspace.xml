@@ -1,0 +1,1091 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="cdc35c7a-1676-43b3-8c17-a5a7cdc4cd84" name="Default" comment="" />
+    <ignored path="lingdang.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <ignored path=".idea/dataSources.local.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <expand />
+    <select />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="lingdang" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="PaymentController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/php/app/Http/Controllers/Admin/PaymentController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="483">
+              <caret line="27" column="45" lean-forward="true" selection-start-line="27" selection-start-column="45" selection-end-line="27" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Bell_userController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/php/app/Http/Controllers/Bell_userController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="569">
+              <caret line="410" column="79" lean-forward="true" selection-start-line="410" selection-start-column="79" selection-end-line="410" selection-end-column="79" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routes.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/php/app/Http/routes.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="324">
+              <caret line="85" column="116" lean-forward="true" selection-start-line="85" selection-start-column="116" selection-end-line="85" selection-end-column="116" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SortController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/php/app/Http/Controllers/Admin/SortController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="418">
+              <caret line="372" column="65" lean-forward="false" selection-start-line="372" selection-start-column="65" selection-end-line="372" selection-end-column="65" />
+              <folding>
+                <element signature="e#1222#2639#0#PHP" expanded="false" />
+                <element signature="e#2991#4074#0#PHP" expanded="false" />
+                <element signature="e#5250#6189#0#PHP" expanded="false" />
+                <element signature="e#7295#9177#0#PHP" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OrderController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/php/app/Http/Controllers/Admin/OrderController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="450">
+              <caret line="167" column="10" lean-forward="true" selection-start-line="167" selection-start-column="10" selection-end-line="167" selection-end-column="10" />
+              <folding>
+                <element signature="e#46#72#0#PHP" expanded="true" />
+                <element signature="e#1735#6440#0#PHP" expanded="false" />
+                <element signature="e#9223#10681#0#PHP" expanded="false" />
+                <element signature="e#10739#11991#0#PHP" expanded="false" />
+                <element signature="e#12272#15492#0#PHP" expanded="false" />
+                <element signature="e#15566#16250#0#PHP" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Apicontroller.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/php/app/Http/Controllers/Admin/Apicontroller.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="201">
+              <caret line="938" column="31" lean-forward="false" selection-start-line="938" selection-start-column="20" selection-end-line="938" selection-end-column="31" />
+              <folding>
+                <element signature="e#973#8166#0#PHP" expanded="false" />
+                <element signature="e#8171#9374#0#PHP" expanded="false" />
+                <element signature="e#9379#13606#0#PHP" expanded="false" />
+                <element signature="e#13647#17592#0#PHP" expanded="false" />
+                <element signature="e#17623#20314#0#PHP" expanded="false" />
+                <element signature="e#20336#21517#0#PHP" expanded="false" />
+                <element signature="e#21602#22843#0#PHP" expanded="false" />
+                <element signature="e#22952#24422#0#PHP" expanded="false" />
+                <element signature="e#24461#25250#0#PHP" expanded="false" />
+                <element signature="e#25337#25561#0#PHP" expanded="false" />
+                <element signature="e#25624#27405#0#PHP" expanded="false" />
+                <element signature="e#27490#30404#0#PHP" expanded="false" />
+                <element signature="e#30438#31498#0#PHP" expanded="false" />
+                <element signature="e#31560#32084#0#PHP" expanded="false" />
+                <element signature="e#32146#33298#0#PHP" expanded="false" />
+                <element signature="e#33370#36552#0#PHP" expanded="false" />
+                <element signature="e#36604#40142#0#PHP" expanded="false" />
+                <element signature="e#41231#42346#0#PHP" expanded="false" />
+                <element signature="e#42473#42771#0#PHP" expanded="false" />
+                <element signature="e#42777#43051#0#PHP" expanded="false" />
+                <element signature="e#43118#46293#0#PHP" expanded="false" />
+                <element signature="e#46351#50708#0#PHP" expanded="false" />
+                <element signature="e#50763#53458#0#PHP" expanded="false" />
+                <element signature="e#53562#53910#0#PHP" expanded="false" />
+                <element signature="e#54022#55589#0#PHP" expanded="false" />
+                <element signature="e#55753#58194#0#PHP" expanded="false" />
+                <element signature="e#58351#58993#0#PHP" expanded="false" />
+                <element signature="e#59077#59415#0#PHP" expanded="false" />
+                <marker date="1505384471482" expanded="true" signature="59214:59266" ph="select id fr... user_share" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="order.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/php/resources/views/Admin/artice/order.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="299">
+              <caret line="13" column="29" lean-forward="false" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
+              <folding>
+                <marker date="1505288409430" expanded="true" signature="291:440" ph="..." />
+                <marker date="1505288409430" expanded="true" signature="319:439" ph="..." />
+                <marker date="1505288409430" expanded="true" signature="378:425" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>getCr</find>
+      <find>getHttpResponsePOST</find>
+      <find>getResponse</find>
+      <find>AlipayTradeAppPayRequest</find>
+      <find>getPayPara</find>
+      <find>private_key_path</find>
+      <find>rsaCheckV1</find>
+      <find>$back_url</find>
+      <find>back_url</find>
+      <find>AlipayMobile</find>
+      <find>private_key</find>
+      <find>public_key</find>
+      <find>getSing</find>
+      <find>total_amount</find>
+      <find>webpayment</find>
+      <find>getPayLink</find>
+      <find>setBizContent</find>
+      <find>GetLogistics</find>
+      <find>artice/order</find>
+      <find>order</find>
+      <find>B_dingdan_backlist</find>
+      <find>B_dingdan_read</find>
+      <find>user_info</find>
+      <find>get_use</find>
+      <find>user/da</find>
+      <find>UserInfo</find>
+      <find>user/UserInfo</find>
+      <find>B_dingdan_re</find>
+      <find>关注</find>
+      <find>GetFansList</find>
+    </findStrings>
+    <replaceStrings>
+      <replace />
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/php/database/migrations/2017_08_26_173117_create_order_info_table.php" />
+        <option value="$PROJECT_DIR$/php/app/Http/Controllers/Admin/GoodsController.php" />
+        <option value="$PROJECT_DIR$/php/app/Alipay/wappay/pay.php" />
+        <option value="$PROJECT_DIR$/php/config/laravel-omnipay.php" />
+        <option value="$PROJECT_DIR$/php/public/Alipay/aop/request/AlipayTradeWapPayRequest.php" />
+        <option value="$PROJECT_DIR$/php/public/Alipay/wappay/service/AlipayTradeService.php" />
+        <option value="$PROJECT_DIR$/php/config/key/cehsi.php" />
+        <option value="$PROJECT_DIR$/php/config/key/private_keyp.pem" />
+        <option value="$PROJECT_DIR$/php/config/key/public_key.pem" />
+        <option value="$PROJECT_DIR$/php/config/latrell-alipay-mobile.php" />
+        <option value="$PROJECT_DIR$/php/app/Models/Order_goods_info.php" />
+        <option value="$PROJECT_DIR$/php/app/Models/Order.php" />
+        <option value="$PROJECT_DIR$/php/app/Models/Goods.php" />
+        <option value="$PROJECT_DIR$/php/resources/views/Admin/artice/member_list.blade.php" />
+        <option value="$PROJECT_DIR$/php/app/Models/ServerAPI.php" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/812adf28-cc9c-4d82-9eae-23be99a206fb/console.sql" />
+        <option value="$PROJECT_DIR$/php/app/Http/Controllers/Admin/AnchorController.php" />
+        <option value="$PROJECT_DIR$/php/app/Http/Controllers/Apicontroller.php" />
+        <option value="$PROJECT_DIR$/php/config/latrell-alipay.php" />
+        <option value="$PROJECT_DIR$/php/app/Models/snoopy.php" />
+        <option value="$PROJECT_DIR$/php/app/Http/Controllers/Admin/ClassificationController.php" />
+        <option value="$PROJECT_DIR$/php/app/Http/Middleware/VerifyCsrfToken.php" />
+        <option value="$PROJECT_DIR$/php/app/Http/Kernel.php" />
+        <option value="$PROJECT_DIR$/php/.env" />
+        <option value="$PROJECT_DIR$/php/vendor/latrell/alipay/src/Latrell/Alipay/Mobile/SdkPayment.php" />
+        <option value="$PROJECT_DIR$/php/vendor/latrell/alipay/src/Latrell/Alipay/Wap/SdkPayment.php" />
+        <option value="$PROJECT_DIR$/php/app/Http/Controllers/Admin/ceshi.php" />
+        <option value="$PROJECT_DIR$/php/composer.json" />
+        <option value="$PROJECT_DIR$/php/app/Http/Controllers/OrderController.php" />
+        <option value="$PROJECT_DIR$/php/config/app.php" />
+        <option value="$PROJECT_DIR$/php/app/Models/Alipay.php" />
+        <option value="$PROJECT_DIR$/php/config/latrell-alipay-web.php" />
+        <option value="$PROJECT_DIR$/php/vendor/latrell/alipay/src/Latrell/Alipay/Web/SdkPayment.php" />
+        <option value="$PROJECT_DIR$/php/public/Alipay/aop/request/AlipayTradeAppPayRequest.php" />
+        <option value="$PROJECT_DIR$/php/app/Alipay-sdk/aop/request/AlipayTradeAppPayRequest.php" />
+        <option value="$PROJECT_DIR$/php/app/Http/Controllers/Admin/PaymentController.php" />
+        <option value="$PROJECT_DIR$/php/app/Http/Controllers/Admin/ArticeControll.php" />
+        <option value="$PROJECT_DIR$/php/resources/views/Admin/artice/order.blade.php" />
+        <option value="$PROJECT_DIR$/php/app/Http/Controllers/Admin/OrderController.php" />
+        <option value="$PROJECT_DIR$/php/resources/views/Admin/artice/B_backlist_read.blade.php" />
+        <option value="$PROJECT_DIR$/php/database/migrations/2017_08_19_103742_create_order_talbe.php" />
+        <option value="$PROJECT_DIR$/php/app/Http/Controllers/Controller.php" />
+        <option value="$PROJECT_DIR$/php/app/Http/Controllers/routes.php" />
+        <option value="$PROJECT_DIR$/php/app/Http/Controllers/Admin/Bell_userController.php" />
+        <option value="$PROJECT_DIR$/php/app/helpers.php" />
+        <option value="$PROJECT_DIR$/php/app/Http/Controllers/Bell_userController.php" />
+        <option value="$PROJECT_DIR$/php/app/Http/Controllers/Admin/SortController.php" />
+        <option value="$PROJECT_DIR$/php/resources/views/Admin/layout/main.blade.php" />
+        <option value="$PROJECT_DIR$/php/resources/views/Admin/artice/B_dingdan_read.blade.php" />
+        <option value="$PROJECT_DIR$/php/app/Http/routes.php" />
+        <option value="$PROJECT_DIR$/php/app/Http/Controllers/Admin/Apicontroller.php" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/php/public/js/wangEditor/node_modules" />
+  </component>
+  <component name="PhpServers">
+    <servers />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="-24" />
+    <option name="y" value="3" />
+    <option name="width" value="1936" />
+    <option name="height" value="985" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="lingdang" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lingdang" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="lingdang" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lingdang" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="php" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="lingdang" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lingdang" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="php" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="lingdang" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lingdang" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="php" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Http" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="lingdang" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lingdang" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="php" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Http" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Controllers" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="lingdang" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lingdang" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="php" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="lingdang" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lingdang" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="php" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="lingdang" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lingdang" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="php" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Admin" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="lingdang" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lingdang" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="php" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Admin" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="layout" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
+    <property name="settings.editor.selected.configurable" value="database.main" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://E:/wamp64/www/lingdang/php/app/Http/Controllers/Admin/Apicontroller.php" />
+    <property name="js-jscs-nodeInterpreter" value="E:\nodejs\node.exe" />
+    <property name="nodejs_interpreter_path" value="E:/nodejs/node" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\wamp64\www\lingdang\php\app" />
+      <recent name="E:\wamp64\www\lingdang\php\app\Http\Controllers\Admin" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\wamp64\www\lingdang\php\app\Models" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
+      <BehatRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run-script" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cdc35c7a-1676-43b3-8c17-a5a7cdc4cd84" name="Default" comment="" />
+      <created>1491353666581</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1491353666581</updated>
+      <workItem from="1491353669810" duration="19432000" />
+      <workItem from="1491441862544" duration="25576000" />
+      <workItem from="1491528629489" duration="21416000" />
+      <workItem from="1491785944156" duration="33360000" />
+      <workItem from="1491876202508" duration="24305000" />
+      <workItem from="1491960328471" duration="31181000" />
+      <workItem from="1492048011427" duration="9054000" />
+      <workItem from="1492155573511" duration="2779000" />
+      <workItem from="1492388807378" duration="12960000" />
+      <workItem from="1492423740999" duration="104000" />
+      <workItem from="1492423937274" duration="7440000" />
+      <workItem from="1492478785545" duration="1771000" />
+      <workItem from="1492651280122" duration="5167000" />
+      <workItem from="1492681497330" duration="64000" />
+      <workItem from="1492743914322" duration="2486000" />
+      <workItem from="1493002773595" duration="15738000" />
+      <workItem from="1493083500422" duration="2291000" />
+      <workItem from="1493086776573" duration="19858000" />
+      <workItem from="1493169991519" duration="23525000" />
+      <workItem from="1493256363654" duration="18688000" />
+      <workItem from="1493341573741" duration="16538000" />
+      <workItem from="1493691608685" duration="20257000" />
+      <workItem from="1493774124137" duration="11920000" />
+      <workItem from="1495597521507" duration="13102000" />
+      <workItem from="1495676978616" duration="10516000" />
+      <workItem from="1495761975579" duration="1373000" />
+      <workItem from="1495848254085" duration="9713000" />
+      <workItem from="1496193395758" duration="23388000" />
+      <workItem from="1496279712909" duration="11362000" />
+      <workItem from="1496301192535" duration="10669000" />
+      <workItem from="1496367561316" duration="4442000" />
+      <workItem from="1496631673004" duration="11135000" />
+      <workItem from="1496656064858" duration="1268000" />
+      <workItem from="1496710941788" duration="13877000" />
+      <workItem from="1496797533405" duration="25075000" />
+      <workItem from="1496885169411" duration="20630000" />
+      <workItem from="1496971524470" duration="19446000" />
+      <workItem from="1496998406818" duration="4748000" />
+      <workItem from="1497229292847" duration="999000" />
+      <workItem from="1497230397264" duration="20482000" />
+      <workItem from="1497316482036" duration="25868000" />
+      <workItem from="1497406219227" duration="14835000" />
+      <workItem from="1497427201185" duration="1814000" />
+      <workItem from="1497603765770" duration="18000" />
+      <workItem from="1497835570654" duration="1505000" />
+      <workItem from="1498008558235" duration="3427000" />
+      <workItem from="1498094587744" duration="26132000" />
+      <workItem from="1498180314976" duration="23787000" />
+      <workItem from="1498448019052" duration="17731000" />
+      <workItem from="1498527031662" duration="22181000" />
+      <workItem from="1498612520651" duration="824000" />
+      <workItem from="1498613486821" duration="18294000" />
+      <workItem from="1498638726192" duration="9741000" />
+      <workItem from="1498785109045" duration="27779000" />
+      <workItem from="1498871976493" duration="25794000" />
+      <workItem from="1499044089936" duration="5487000" />
+      <workItem from="1499061159040" duration="12635000" />
+      <workItem from="1499132131995" duration="21527000" />
+      <workItem from="1499217369229" duration="20783000" />
+      <workItem from="1499303632620" duration="27697000" />
+      <workItem from="1499392853067" duration="21453000" />
+      <workItem from="1499650549755" duration="5194000" />
+      <workItem from="1499736458359" duration="28206000" />
+      <workItem from="1499825222563" duration="23295000" />
+      <workItem from="1499907786586" duration="7168000" />
+      <workItem from="1499920546180" duration="922000" />
+      <workItem from="1499925744037" duration="10355000" />
+      <workItem from="1499936734718" duration="366000" />
+      <workItem from="1499937154216" duration="3431000" />
+      <workItem from="1499995039123" duration="4450000" />
+      <workItem from="1500106428428" duration="2140000" />
+      <workItem from="1500255866944" duration="13229000" />
+      <workItem from="1500341724583" duration="26781000" />
+      <workItem from="1500428155565" duration="20172000" />
+      <workItem from="1500514475106" duration="12534000" />
+      <workItem from="1500599855121" duration="2472000" />
+      <workItem from="1500693300414" duration="33000" />
+      <workItem from="1500714214101" duration="747000" />
+      <workItem from="1500875173702" duration="1213000" />
+      <workItem from="1500945836389" duration="17000" />
+      <workItem from="1500945976700" duration="19451000" />
+      <workItem from="1501034097012" duration="1415000" />
+      <workItem from="1501127875809" duration="605000" />
+      <workItem from="1501205902607" duration="5107000" />
+      <workItem from="1501551115478" duration="6718000" />
+      <workItem from="1501637006246" duration="8136000" />
+      <workItem from="1503652533811" duration="21000" />
+      <workItem from="1503652724379" duration="3665000" />
+      <workItem from="1503709671515" duration="26026000" />
+      <workItem from="1503797673429" duration="30684000" />
+      <workItem from="1503883094459" duration="23525000" />
+      <workItem from="1503968352927" duration="5377000" />
+      <workItem from="1504058858088" duration="25790000" />
+      <workItem from="1504145392447" duration="19305000" />
+      <workItem from="1504486379226" duration="12722000" />
+      <workItem from="1504517980399" duration="9679000" />
+      <workItem from="1504574297237" duration="10188000" />
+      <workItem from="1504609338365" duration="4785000" />
+      <workItem from="1504659716681" duration="5546000" />
+      <workItem from="1504666627823" duration="1787000" />
+      <workItem from="1504684802982" duration="16598000" />
+      <workItem from="1504744677675" duration="13873000" />
+      <workItem from="1504768303121" duration="14162000" />
+      <workItem from="1504834501234" duration="17038000" />
+      <workItem from="1504861915659" duration="2488000" />
+      <workItem from="1505091859608" duration="33071000" />
+      <workItem from="1505179521422" duration="16546000" />
+      <workItem from="1505212765972" duration="3740000" />
+      <workItem from="1505264975981" duration="4568000" />
+      <workItem from="1505270986575" duration="465000" />
+      <workItem from="1505272227683" duration="19864000" />
+      <workItem from="1505357324719" duration="14440000" />
+      <workItem from="1505378274385" duration="6451000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="1404008000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1096" extended-state="7" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17217484" sideWeight="0.48854166" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32987553" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41979167" sideWeight="0.5063966" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21215352" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328125" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2889126" sideWeight="0.50689656" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44166666" sideWeight="0.4936034" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22654584" sideWeight="0.51145834" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33958334" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/php/vendor/latrell/alipay/src/Latrell/Alipay/Mobile/SdkPayment.php</url>
+          <line>74</line>
+          <option name="timeStamp" value="93" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/php/vendor/latrell/alipay/src/Latrell/Alipay/Mobile/SdkPayment.php</url>
+          <line>192</line>
+          <option name="timeStamp" value="94" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/php/app/Http/Controllers/Admin/Apicontroller.php</url>
+          <line>346</line>
+          <option name="timeStamp" value="105" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/php/app/Alipay-sdk/aop/AopClient.php</url>
+          <line>301</line>
+          <option name="timeStamp" value="116" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="120" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/php/vendor/omnipay/common/src/Omnipay/Common/AbstractGateway.php" />
+    <entry file="file://$PROJECT_DIR$/php/app/Http/Controllers/Admin/ceshi.php" />
+    <entry file="file://$PROJECT_DIR$/php/app/Alipay-sdk/aop/test/TestImage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/vendor/latrell/alipay/src/Latrell/Alipay/AlipayServiceProvider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="42" column="41" lean-forward="false" selection-start-line="42" selection-start-column="41" selection-end-line="42" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/Alipay-sdk/aop/request/AlipayTradeAppPayRequest.php" />
+    <entry file="file://$PROJECT_DIR$/php/vendor/latrell/alipay/src/Latrell/Alipay/Mobile/SdkPayment.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="18" column="29" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="41" column="9" lean-forward="false" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/app/Alipay-sdk/aop/EncryptResponseData.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/app/Alipay-sdk/aop/EncryptParseItem.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/app/Alipay-sdk/aop/AopEncrypt.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/config/key/public_key.pem">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="8" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/app/Models/AclUser.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="5" column="39" lean-forward="true" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/config/latrell-alipay.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="7" column="39" lean-forward="false" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/config/key/private_key.pem">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="9" column="64" lean-forward="true" selection-start-line="9" selection-start-column="64" selection-end-line="9" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/app/Alipay-sdk/AopSdk.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="24" column="24" lean-forward="false" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard/standard_0.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-494">
+          <caret line="429" column="7" lean-forward="true" selection-start-line="429" selection-start-column="7" selection-end-line="429" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/config/app.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="181" column="64" lean-forward="false" selection-start-line="181" selection-start-column="64" selection-end-line="181" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/app/Alipay-sdk/aop/SignData.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="15" column="2" lean-forward="true" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/app/Http/Controllers/OrderController.php" />
+    <entry file="file://$USER_HOME$/Desktop/Alipay.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1012">
+          <caret line="18" column="38" lean-forward="true" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/config/latrell-alipay-web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="7" column="23" lean-forward="false" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="534" column="13" lean-forward="false" selection-start-line="534" selection-start-column="13" selection-end-line="534" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/config/latrell-alipay-mobile.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/vendor/latrell/alipay/src/Latrell/Alipay/Web/SdkPayment.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="93" column="24" lean-forward="true" selection-start-line="93" selection-start-column="24" selection-end-line="93" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/app/Models/Alipay.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="564">
+          <caret line="82" column="21" lean-forward="true" selection-start-line="82" selection-start-column="7" selection-end-line="82" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/public/Alipay/aop/AopClient.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="953" column="0" lean-forward="true" selection-start-line="953" selection-start-column="0" selection-end-line="953" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/public/Alipay/aop/request/AlipayTradeAppPayRequest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="25" column="5" lean-forward="false" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/app/Alipay-sdk/aop/AopClient.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="395">
+          <caret line="64" column="57" lean-forward="true" selection-start-line="64" selection-start-column="57" selection-end-line="64" selection-end-column="57" />
+          <folding>
+            <marker date="1503988012000" expanded="true" signature="10588:10601" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/app/Alipay-sdk/aop/request/AlipayTradeAppPayRequest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1092">
+          <caret line="25" column="5" lean-forward="false" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/app/Models/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="123" column="38" lean-forward="true" selection-start-line="123" selection-start-column="38" selection-end-line="123" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/resources/views/Admin/artice/B_dingdan_backlist.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="17" column="14" lean-forward="true" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/resources/views/Admin/artice/order.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="13" column="29" lean-forward="false" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
+          <folding>
+            <marker date="1505288409430" expanded="true" signature="291:440" ph="..." />
+            <marker date="1505288409430" expanded="true" signature="319:439" ph="..." />
+            <marker date="1505288409430" expanded="true" signature="378:425" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/resources/views/Admin/artice/B_backlist_read.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="496">
+          <caret line="60" column="16" lean-forward="false" selection-start-line="60" selection-start-column="16" selection-end-line="60" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/database/migrations/2017_08_19_103742_create_order_talbe.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13">
+          <caret line="5" column="40" lean-forward="true" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/app/Http/Controllers/Controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="277" column="17" lean-forward="true" selection-start-line="277" selection-start-column="17" selection-end-line="277" selection-end-column="17" />
+          <folding>
+            <element signature="e#40#60#0#PHP" expanded="false" />
+            <element signature="e#6235#7258#0#PHP" expanded="false" />
+            <element signature="e#7953#8181#0#PHP" expanded="false" />
+            <element signature="e#9608#10313#0#PHP" expanded="false" />
+            <marker date="1505358103878" expanded="true" signature="5134:5180" ph="select id fr... sort" />
+            <marker date="1505358103878" expanded="true" signature="5545:5597" ph="select id fr... user_share" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/app/Http/Controllers/Admin/ArticeControll.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="627" column="17" lean-forward="true" selection-start-line="624" selection-start-column="14" selection-end-line="627" selection-end-column="17" />
+          <folding>
+            <element signature="e#46#69#0#PHP" expanded="false" />
+            <element signature="e#538#2513#0#PHP" expanded="false" />
+            <element signature="e#2520#3109#0#PHP" expanded="false" />
+            <element signature="e#3258#3481#0#PHP" expanded="false" />
+            <element signature="e#3593#3682#0#PHP" expanded="false" />
+            <element signature="e#3774#4724#0#PHP" expanded="false" />
+            <element signature="e#4801#5076#0#PHP" expanded="false" />
+            <element signature="e#5161#5628#0#PHP" expanded="false" />
+            <element signature="e#5763#5951#0#PHP" expanded="false" />
+            <element signature="e#6152#7109#0#PHP" expanded="false" />
+            <element signature="e#7226#7676#0#PHP" expanded="false" />
+            <element signature="e#7749#8128#0#PHP" expanded="false" />
+            <element signature="e#8135#10204#0#PHP" expanded="false" />
+            <element signature="e#10454#11144#0#PHP" expanded="false" />
+            <element signature="e#11261#12171#0#PHP" expanded="false" />
+            <element signature="e#12276#12643#0#PHP" expanded="false" />
+            <element signature="e#12927#13838#0#PHP" expanded="false" />
+            <element signature="e#14423#14618#0#PHP" expanded="false" />
+            <element signature="e#14694#15477#0#PHP" expanded="false" />
+            <element signature="e#15556#16531#0#PHP" expanded="false" />
+            <element signature="e#19419#20233#0#PHP" expanded="false" />
+            <element signature="e#22169#22926#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/app/Http/Controllers/routes.php" />
+    <entry file="file://$PROJECT_DIR$/php/app/helpers.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="473">
+          <caret line="457" column="11" lean-forward="true" selection-start-line="457" selection-start-column="11" selection-end-line="457" selection-end-column="11" />
+          <folding>
+            <element signature="e#7#34#0#PHP" expanded="false" />
+            <element signature="n#content_img#0;n#!!top" expanded="false" />
+            <element signature="n#rev#0;n#!!top" expanded="false" />
+            <element signature="n#rej#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/phpstorm.jar!/resources/html5-schema/html5/web-forms.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="679">
+          <caret line="549" column="41" lean-forward="true" selection-start-line="549" selection-start-column="41" selection-end-line="549" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/phpstorm.jar!/resources/html5-schema/html5/web-forms2.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="432" column="22" lean-forward="false" selection-start-line="432" selection-start-column="22" selection-end-line="432" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/app/Http/Controllers/Apicontroller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="1416" column="28" lean-forward="false" selection-start-line="1416" selection-start-column="20" selection-end-line="1416" selection-end-column="28" />
+          <folding>
+            <marker date="1505289108000" expanded="true" signature="59584:59636" ph="select id fr... user_share" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/app/Http/Controllers/Admin/Bell_userController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="418" column="40" lean-forward="true" selection-start-line="418" selection-start-column="40" selection-end-line="418" selection-end-column="40" />
+          <folding>
+            <marker date="1505369785371" expanded="true" signature="10140:10189" ph="select sign_... integration" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/app/Http/Controllers/Admin/OrderController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="167" column="10" lean-forward="true" selection-start-line="167" selection-start-column="10" selection-end-line="167" selection-end-column="10" />
+          <folding>
+            <element signature="e#46#72#0#PHP" expanded="true" />
+            <element signature="e#1735#6440#0#PHP" expanded="false" />
+            <element signature="e#9223#10681#0#PHP" expanded="false" />
+            <element signature="e#10739#11991#0#PHP" expanded="false" />
+            <element signature="e#12272#15492#0#PHP" expanded="false" />
+            <element signature="e#15566#16250#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/app/Http/Controllers/Admin/SortController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="372" column="65" lean-forward="false" selection-start-line="372" selection-start-column="65" selection-end-line="372" selection-end-column="65" />
+          <folding>
+            <element signature="e#1222#2639#0#PHP" expanded="false" />
+            <element signature="e#2991#4074#0#PHP" expanded="false" />
+            <element signature="e#5250#6189#0#PHP" expanded="false" />
+            <element signature="e#7295#9177#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/resources/views/Admin/layout/main.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="529">
+          <caret line="80" column="52" lean-forward="false" selection-start-line="80" selection-start-column="52" selection-end-line="80" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/resources/views/Admin/artice/B_dingdan_read.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="145" column="39" lean-forward="true" selection-start-line="145" selection-start-column="39" selection-end-line="145" selection-end-column="39" />
+          <folding>
+            <marker date="1505383497801" expanded="true" signature="291:440" ph="..." />
+            <marker date="1505383497801" expanded="true" signature="319:439" ph="..." />
+            <marker date="1505383497801" expanded="true" signature="378:425" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/resources/views/Admin/layout/topbar.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="20" column="45" lean-forward="true" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/app/Http/Controllers/Admin/PaymentController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="27" column="45" lean-forward="true" selection-start-line="27" selection-start-column="45" selection-end-line="27" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/app/Http/Controllers/Bell_userController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="569">
+          <caret line="410" column="79" lean-forward="true" selection-start-line="410" selection-start-column="79" selection-end-line="410" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/app/Http/Controllers/Admin/Apicontroller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="938" column="31" lean-forward="false" selection-start-line="938" selection-start-column="20" selection-end-line="938" selection-end-column="31" />
+          <folding>
+            <element signature="e#973#8166#0#PHP" expanded="false" />
+            <element signature="e#8171#9374#0#PHP" expanded="false" />
+            <element signature="e#9379#13606#0#PHP" expanded="false" />
+            <element signature="e#13647#17592#0#PHP" expanded="false" />
+            <element signature="e#17623#20314#0#PHP" expanded="false" />
+            <element signature="e#20336#21517#0#PHP" expanded="false" />
+            <element signature="e#21602#22843#0#PHP" expanded="false" />
+            <element signature="e#22952#24422#0#PHP" expanded="false" />
+            <element signature="e#24461#25250#0#PHP" expanded="false" />
+            <element signature="e#25337#25561#0#PHP" expanded="false" />
+            <element signature="e#25624#27405#0#PHP" expanded="false" />
+            <element signature="e#27490#30404#0#PHP" expanded="false" />
+            <element signature="e#30438#31498#0#PHP" expanded="false" />
+            <element signature="e#31560#32084#0#PHP" expanded="false" />
+            <element signature="e#32146#33298#0#PHP" expanded="false" />
+            <element signature="e#33370#36552#0#PHP" expanded="false" />
+            <element signature="e#36604#40142#0#PHP" expanded="false" />
+            <element signature="e#41231#42346#0#PHP" expanded="false" />
+            <element signature="e#42473#42771#0#PHP" expanded="false" />
+            <element signature="e#42777#43051#0#PHP" expanded="false" />
+            <element signature="e#43118#46293#0#PHP" expanded="false" />
+            <element signature="e#46351#50708#0#PHP" expanded="false" />
+            <element signature="e#50763#53458#0#PHP" expanded="false" />
+            <element signature="e#53562#53910#0#PHP" expanded="false" />
+            <element signature="e#54022#55589#0#PHP" expanded="false" />
+            <element signature="e#55753#58194#0#PHP" expanded="false" />
+            <element signature="e#58351#58993#0#PHP" expanded="false" />
+            <element signature="e#59077#59415#0#PHP" expanded="false" />
+            <marker date="1505384471482" expanded="true" signature="59214:59266" ph="select id fr... user_share" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="85" column="116" lean-forward="true" selection-start-line="85" selection-start-column="116" selection-end-line="85" selection-end-column="116" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

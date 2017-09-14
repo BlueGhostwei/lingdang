@@ -9,7 +9,7 @@
     <!--<div class="main-container">
         <div class="container-fluid">
             @include('Admin.layout.breadcrumb', [
-                'title' => '添加文章',
+                'title' => '订单列表',
                 '' => [
                     '' => '',
                 ]
@@ -24,18 +24,6 @@
             <form method="post" action="">
             <table width=""  cellspacing="0" cellpadding="0" style="float: right; margin-right: 30px;">
                 <tr>
-                    <td>            
-                        <select name="cateid">
-                            <option>订单号</option>
-                            <option>订单状态</option>
-                            <option>商品名称</option>
-                        </select>           
-                    </td>
-                    <td>            
-                        <select name="cateid">
-                            <option>时间排序</option>
-                        </select>           
-                    </td>
                     <td align="right">关键字：</td>
                     <td><input type="text" value="" class="Iar_list" /></td> 
                     <td><input type="submit" name="dosubmit" class="button" value="搜 索"></td>
@@ -54,13 +42,29 @@
                             <th style="width: 150px;">购买用户</th>
                             <th style="width: 100px;">购买总价</th>
                             <th style="width: 180px;">购买日期</th>
-                            <th style="max-width: 250px;">收货地址</th>
                             <th style="width: 100px;">订单状态</th>
                             <th>备注</th>
                             <th style="width: 100px;">管理操作</th>
                         </tr>
-                        
-                        <tr class="Alist_main">
+                        @if(isset($orderList) && !empty($orderList))
+                            @foreach($orderList as $key =>$vel)
+                                <tr class="Alist_main">
+                                    <td class="IMar_list"/>{{$vel['order_id']}}</td>
+                                    <td>{{$vel['goods_name']}}</td>
+                                    <td>直购系列</td>
+                                    <td>{{$vel['username']}}</td>
+                                    <td><font color="red">￥{{$vel['order_price']}}</font></td>
+                                    <td>{{$vel['created_at']}}</td>
+                                    <td>@if($vel['status']=='0')
+                                            待支付
+                                    @endif
+                                    </td>
+                                    <td>暂无</td>
+                                    <td><a href="{{ route('artice.B_dingdan_read').'?order_id='.$vel['order_id'] }}">查看</a></td>
+                                </tr>
+                                @endforeach
+                        @endif
+                        {{--<tr class="Alist_main">
                             <td class="IMar_list"/>1dfs5654445</td>
                             <td>安徽省-蚌埠市-禹会区</td>
                             <td>直购系列</td>
@@ -71,7 +75,7 @@
                             <td>已完成</td>
                             <td>如果是退单的退单原因</td>
                             <td><a href="{{ route('artice.B_dingdan_read') }}">查看</a></td>
-                        </tr>
+                        </tr>--}}
                         
                     </table>
                 </form>

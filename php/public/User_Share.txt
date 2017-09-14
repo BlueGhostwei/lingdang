@@ -1,0 +1,9 @@
+array (
+  '_token' => 'q3tF9LQSep8VF8O2vApjlQVv02OfVnp43oktOZLS',
+  'userdynamics_id' => '98',
+  'share_content' => '哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈还',
+  'share_pic' => '',
+  'pid' => '24',
+  'user_id' => '18',
+  'ssuser' => '1',
+)
